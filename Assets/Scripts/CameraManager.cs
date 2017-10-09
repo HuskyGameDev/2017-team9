@@ -16,7 +16,6 @@ public class CameraManager : MonoBehaviour {
 	private static int[] maskArray = { _DefaultOnlyMask, _TrueMask, _VirtualMask, _TotalMask, _TrueOnly, _FalseOnly, _FalseAndTrueOnly};
 	public enum MaskMode { DefaultOnly=0, True=1, False=2, Total=3, TrueOnly=4, FalseOnly=5, NotDefault=5}
 
-	private float clock = 0.0f;
 	private int cMask = 0;
 	private void Update() {
 
