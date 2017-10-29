@@ -14,7 +14,8 @@ public class InputManager : MonoBehaviour {
 	//This defines the point at which we consider an axis has been used as a button
 	[Range(0.19f,1.0f)]
 	public float moveDead = 0.7f; // CANNOT BE 0
-
+	public float mouseSensitivity = 0.5f;
+	public bool invertedMouse = false;
 
 	//The Movement enum is a helper method to determine what kind of movement on an axis you are trying to read as a button
 	//There is effectivly only negative and positive, but I used Left/Right as well as Forward/Backward to make the desired input more readable.
@@ -28,7 +29,7 @@ public class InputManager : MonoBehaviour {
 	public float[] currentAxis = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
 
 	//Stores the relation of button names to int (18 buttons!)
-	public enum Button {A=0, B=1, X=2, Y=3, LeftBumper=4, RightBumper=5, LeftStick=6, RightStick=7, Back=8, Start=9,
+	public enum Button {nul = -1, A=0, B=1, X=2, Y=3, LeftBumper=4, RightBumper=5, LeftStick=6, RightStick=7, Back=8, Start=9,
 		Dpad_Up =10, Dpad_Right = 11, Dpad_Down = 12, Dpad_Left = 13, Dpad_UpRight = 14, Dpad_DownRight = 15, Dpad_DownLeft = 16, Dpad_UpLeft = 17 }
 
 	//Stores this frames as well as last frames button input 
@@ -58,14 +59,14 @@ public class InputManager : MonoBehaviour {
 		//Update Axis
 		previousAxis = currentAxis;
 
-		currentAxis[(int)Axis.LeftHorizontal		] = Input.GetAxis("LeftHorizontal");
-		currentAxis[(int)Axis.LeftVertical			] = Input.GetAxis("LeftVertical");
+		currentAxis[(int)Axis.LeftHorizontal		] = Input.GetAxis("LeftHorizontal") + GetAxisFromKeyboard(Axis.LeftHorizontal);
+		currentAxis[(int)Axis.LeftVertical			] = Input.GetAxis("LeftVertical") + GetAxisFromKeyboard(Axis.LeftVertical);
 
-		currentAxis[(int)Axis.RightHorizontal		] = Input.GetAxis("RightHorizontal");
-		currentAxis[(int)Axis.RightVertical			] = Input.GetAxis("RightVertical");
+		currentAxis[(int)Axis.RightHorizontal		] = Input.GetAxis("RightHorizontal") + GetAxisFromKeyboard(Axis.RightHorizontal);
+		currentAxis[(int)Axis.RightVertical			] = Input.GetAxis("RightVertical") + GetAxisFromKeyboard(Axis.RightVertical);
 
-		currentAxis[(int)Axis.LeftTrigger			] = Input.GetAxis("LeftTrigger");
-		currentAxis[(int)Axis.RightTrigger			] = Input.GetAxis("RightTrigger");
+		currentAxis[(int)Axis.LeftTrigger			] = Input.GetAxis("LeftTrigger") + GetAxisFromKeyboard(Axis.LeftTrigger);
+		currentAxis[(int)Axis.RightTrigger			] = Input.GetAxis("RightTrigger") + GetAxisFromKeyboard(Axis.RightTrigger);
 
 		currentAxis[(int)Axis.DpadHorizontal		] = Input.GetAxis("DpadHorizontal");
 		currentAxis[(int)Axis.DpadVertical			] = Input.GetAxis("DpadVertical");
@@ -136,47 +137,83 @@ public class InputManager : MonoBehaviour {
 		}
 	}
 
+	private static float GetAxisFromKeyboard(Axis axis) {
+		float ret = 0.0f;
+		//Check all Axis using else if so that we only return the information for one
+		if (axis == Axis.LeftHorizontal) {
+			//So we check if these two keys are pressed and move in that direction
+			//if both are pressed it defaults back to 0 and no movement happens
+			if (Input.GetKey(KeyCode.A) ) {
+				ret -= 1;
+			}
+			if (Input.GetKey(KeyCode.D)) {
+				ret += 1;
+			}
+		}
+		else if (axis == Axis.LeftVertical) {
+			if (Input.GetKey(KeyCode.S)) {
+				ret -= 1;
+			}
+			if (Input.GetKey(KeyCode.W)) {
+				ret += 1;
+			}
+		}
+		else if (axis == Axis.RightHorizontal) {
+			ret = Input.GetAxis("Mouse X") * instance.mouseSensitivity;
+		}
+		else if (axis == Axis.RightVertical) {
+			ret = Input.GetAxis("Mouse Y") * instance.mouseSensitivity;
+			if (instance.invertedMouse == false) ret *= -1; 
+		}
+		else if (axis == Axis.RightTrigger) {
+			ret = (Input.GetMouseButton(1)) ? 1.0f : 0.0f;
+		}
+		else if (axis == Axis.LeftTrigger) {
+			ret = (Input.GetMouseButton(0)) ? 1.0f : 0.0f;
+		}
+
+		return ret;
+	}
+
 	//Returns a button (1-8) depending on the axis input of the Dpad, -1 for no press
-	private static int DpadToButton(float DpadH, float DpadV) {
+	private static Button DpadToButton(float DpadH, float DpadV) {
 		if (DpadV > .9f) {
 			//Up
-			return 10;
+			return Button.Dpad_Up;
 		}
 		else if (DpadH > .9f) {
 			//Right
-			return 11;
+			return Button.Dpad_Right;
 		}
 		else if (DpadV < -.9f) {
 			//Down
-			return 12;
+			return Button.Dpad_Down;
 		}
 		else if (DpadH < -.9f) {
 			//Left
-			return 13;
+			return Button.Dpad_Left;
 		}
 		else if (DpadV > .7f && DpadH > .7f) {
 			//UpRight
-			return 14;
+			return Button.Dpad_UpRight;
 		}
 		else if (DpadV < -.7f && DpadH > .7f) {
 			//DownRight
-			return 15;
+			return Button.Dpad_DownRight;
 		}
 		else if (DpadV < -.7f && DpadH < -.7f) {
 			//DownLeft
-			return 16;
+			return Button.Dpad_DownLeft;
 		}
 		else if (DpadV > .7f && DpadH < -.7f) {
 			//UpLeft
-			return 17;
+			return Button.Dpad_UpLeft;
 		}
-
-		//NoButton
-		return -1;
+		return Button.nul;
 	}
 
 	private static bool DpadButton(Button button) {
-		return (int)button == DpadToButton(instance.currentAxis[(int)Axis.DpadHorizontal], instance.currentAxis[(int)Axis.DpadVertical]);
+		return button == DpadToButton(instance.currentAxis[(int)Axis.DpadHorizontal], instance.currentAxis[(int)Axis.DpadVertical]);
 	}
 
 
