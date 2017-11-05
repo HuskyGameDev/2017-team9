@@ -14,7 +14,7 @@ public class InputManager : MonoBehaviour {
 	//This defines the point at which we consider an axis has been used as a button
 	[Range(0.19f,1.0f)]
 	public float moveDead = 0.7f; // CANNOT BE 0
-	public float mouseSensitivity = 0.5f;
+	public float mouseSensitivity = 0.50f;
 	public bool invertedMouse = false;
 
 	//The Movement enum is a helper method to determine what kind of movement on an axis you are trying to read as a button
