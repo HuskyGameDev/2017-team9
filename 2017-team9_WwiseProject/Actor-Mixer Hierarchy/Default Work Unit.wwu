@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{B73D90A3-B6C3-4792-A17A-76F5246718E1}" SchemaVersion="80">
+	<AudioObjects>
+		<WorkUnit Name="Default Work Unit" ID="{B73D90A3-B6C3-4792-A17A-76F5246718E1}" PersistMode="Standalone">
+			<ChildrenList>
+				<ActorMixer Name="Door Open" ID="{DC5E1E53-0D27-4D39-A42A-BAC4B7B0D3A6}" ShortID="490536436">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<RandomSequenceContainer Name="New Random Container" ID="{9DDB5474-E4EE-4DD5-8D85-1F6466866C19}" ShortID="437853576">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+								</Reference>
+							</ReferenceList>
+						</RandomSequenceContainer>
+					</ChildrenList>
+				</ActorMixer>
+				<Folder Name="Sound Effects" ID="{237FD92E-7481-4DC5-97E8-5B872271263F}" ShortID="184118298">
+					<ChildrenList>
+						<Sound Name="Door Close 1" ID="{1C3AC7F4-D88D-461B-BDFB-F87CDB96C41F}" ShortID="686796031">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Door Close 1" ID="{D8FABA49-3B22-4CFE-81BF-7478A2D98B29}" ShortID="279018514">
+									<Language>SFX</Language>
+									<AudioFile>Sound Effects\Door Close 1.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Door Close 1" ID="{D8FABA49-3B22-4CFE-81BF-7478A2D98B29}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Door Close 2" ID="{E40B5EB4-BDA2-4458-9B17-8F73E9619421}" ShortID="823157756">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Door Close 2" ID="{468E3586-3620-4C89-BBDA-7E527B62CE10}" ShortID="139371744">
+									<Language>SFX</Language>
+									<AudioFile>Sound Effects\Door Close 2.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Door Close 2" ID="{468E3586-3620-4C89-BBDA-7E527B62CE10}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Door Close 3" ID="{8B780BB5-1528-48D3-854D-CC37109BF591}" ShortID="464597351">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Door Close 3" ID="{7C9C0F1C-BA01-4249-A2B2-13E158A9F4F0}" ShortID="337618302">
+									<Language>SFX</Language>
+									<AudioFile>Sound Effects\Door Close 3.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Door Close 3" ID="{7C9C0F1C-BA01-4249-A2B2-13E158A9F4F0}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Door Lock 1" ID="{158839D8-D6FC-43DF-882A-272CEE9D81E3}" ShortID="715507134">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Door Lock 1" ID="{46A5F6BD-3642-480D-8389-F777230FB907}" ShortID="218020994">
+									<Language>SFX</Language>
+									<AudioFile>Sound Effects\Door Lock 1.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Door Lock 1" ID="{46A5F6BD-3642-480D-8389-F777230FB907}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Door Lock 2" ID="{5E15C5F0-5BD7-4964-BFDD-2AA3014E3F07}" ShortID="6607673">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Door Lock 2" ID="{9F5FAD25-9215-4B6F-84E5-FE760551E088}" ShortID="803441014">
+									<Language>SFX</Language>
+									<AudioFile>Sound Effects\Door Lock 2.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Door Lock 2" ID="{9F5FAD25-9215-4B6F-84E5-FE760551E088}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Door Lock 3" ID="{3A09C50A-02F0-4880-B2F4-951DF74F1C50}" ShortID="921096087">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Door Lock 3" ID="{FD7444F4-1522-4DDE-B087-096F13A25CF7}" ShortID="356966690">
+									<Language>SFX</Language>
+									<AudioFile>Sound Effects\Door Lock 3.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Door Lock 3" ID="{FD7444F4-1522-4DDE-B087-096F13A25CF7}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Door Open" ID="{E5B67261-B333-4B68-9AF5-E05A11DB3FB6}" ShortID="332459093">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Door Open" ID="{A599CE18-300A-41A8-AAC5-1B34803A2762}" ShortID="777980011">
+									<Language>SFX</Language>
+									<AudioFile>Sound Effects\Door Open.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Door Open" ID="{A599CE18-300A-41A8-AAC5-1B34803A2762}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Light Switch 1" ID="{FB752222-C841-49AA-9E78-3E0098BD10E9}" ShortID="716361665">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Light Switch 1" ID="{DD2555BD-69A5-468A-A539-FBC4F0739D0C}" ShortID="786828573">
+									<Language>SFX</Language>
+									<AudioFile>Sound Effects\Light Switch 1.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Light Switch 1" ID="{DD2555BD-69A5-468A-A539-FBC4F0739D0C}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Light Switch 2" ID="{B446CFB5-9712-4C41-84FD-57F5AFCB8F7C}" ShortID="661360469">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Light Switch 2" ID="{FB7C0E9F-71E7-4705-986A-12E3D5494F16}" ShortID="711122296">
+									<Language>SFX</Language>
+									<AudioFile>Sound Effects\Light Switch 2.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Light Switch 2" ID="{FB7C0E9F-71E7-4705-986A-12E3D5494F16}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Light Switch 3" ID="{4EC67B6D-D28D-46A2-98A7-7F92EC7A9D0B}" ShortID="665769206">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Light Switch 3" ID="{B2270336-1B40-4F2D-9404-A9BFDE61A14C}" ShortID="865147287">
+									<Language>SFX</Language>
+									<AudioFile>Sound Effects\Light Switch 3.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Light Switch 3" ID="{B2270336-1B40-4F2D-9404-A9BFDE61A14C}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Light Switch 4" ID="{BE127460-0612-4C80-8F8C-C228F9617B97}" ShortID="1000302080">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Light Switch 4" ID="{5E57C542-6607-4606-AC56-A7F129302EEA}" ShortID="900340672">
+									<Language>SFX</Language>
+									<AudioFile>Sound Effects\Light Switch 4.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Light Switch 4" ID="{5E57C542-6607-4606-AC56-A7F129302EEA}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</Folder>
+				<RandomSequenceContainer Name="Door Close" ID="{86230EA3-9D27-4EE7-B28D-C176C5CB69E6}" ShortID="399886170">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="Door Close 1" ID="{6D8EA451-59B9-42EF-A976-ED5C3A654603}" ShortID="125949955">
+							<PropertyList>
+								<Property Name="Weight" Type="Real64">
+									<ValueList>
+										<Value>48</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Door Close 1" ID="{78F1939A-17DC-4BE6-B6A6-6DB6E427AB43}" ShortID="559860460">
+									<Language>SFX</Language>
+									<AudioFile>Door Close 1.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Door Close 1" ID="{78F1939A-17DC-4BE6-B6A6-6DB6E427AB43}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Door Close 2" ID="{39B25092-AF42-432F-A5E0-DA716254CBC7}" ShortID="599618753">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Door Close 2" ID="{FE85BFE2-2723-4B8D-A9E2-29752D374D67}" ShortID="45906224">
+									<Language>SFX</Language>
+									<AudioFile>Door Close 2.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Door Close 2" ID="{FE85BFE2-2723-4B8D-A9E2-29752D374D67}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Door Close 3" ID="{2A909FB9-C3A1-4AFB-9FB0-8DB0C7E8B925}" ShortID="89226523">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Door Close 3" ID="{FDFB9B31-48DE-4CE9-A8A8-BBDD70E226BF}" ShortID="614153702">
+									<Language>SFX</Language>
+									<AudioFile>Door Close 3.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Door Close 3" ID="{FDFB9B31-48DE-4CE9-A8A8-BBDD70E226BF}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</RandomSequenceContainer>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>
