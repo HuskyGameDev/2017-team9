@@ -4,8 +4,10 @@
 		<UserProjectSettings Name="" ID="{1D3556CE-CCC5-4971-9E13-EA3D7A69C773}">
 			<PropertyList>
 				<Property Name="AudioFilesImporter\Path" Type="string" Value="Y:\Documents\HGD Fall 2017\Sound Effects"/>
+				<Property Name="Event Action List\{2825B549-72A4-47A6-9080-CF5E73B91ADE}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{4583E803-9C3C-49DE-8581-61777C16F708}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{A207B644-F494-4BA5-A96E-82362BD5B28A}\x64_Expand States" Type="string" Value=""/>
+				<Property Name="Event Action List\{BF12F682-9074-4305-A11F-B0D3AA12F786}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="EventView\FilterMode1" Type="int32" Value="2"/>
 				<Property Name="ExternalSourcesInputPath" Type="string">
 					<ValueList>
@@ -21,6 +23,9 @@
 				</Property>
 				<Property Name="General\LatestLanguage" Type="int32" Value="684519430"/>
 				<Property Name="General\LatestPlatform" Type="string" Value="Mac"/>
+				<Property Name="GenerateSoundBanks\x64_SelectedLanguages" Type="string" Value="BvDMKA=="/>
+				<Property Name="GenerateSoundBanks\x64_SelectedPlatforms" Type="string" Value="8tn20QNecEeRWPYITk30GLn9RQYqSupLrMIdwsnbMXo="/>
+				<Property Name="GenerateSoundBanks\x64_SelectedSoundBanks" Type="string" Value="yokUePpxcEKDqlxPGwT+Jw=="/>
 				<Property Name="HardwareController\CurrentSession" Type="string" Value="{2451DD2E-A7B2-45E6-B93B-6F49B9B887AD}"/>
 				<Property Name="HardwareController\{2451DD2E-A7B2-45E6-B93B-6F49B9B887AD}\x64_ActiveGroups" Type="string" Value="YpxbetKSsk6mFtnqvZUh3wEYjQH/////Kez+91OP+EahUuudux/eOQEYjQH/////"/>
 				<Property Name="MeterView\LastObject1" Type="string" Value="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}"/>
@@ -49,14 +54,14 @@
 				<Property Name="ProjectExplorer\x64_Expanded_1_1" Type="string" Value=""/>
 				<Property Name="ProjectExplorer\x64_Expanded_20_1" Type="string" Value=""/>
 				<Property Name="ProjectExplorer\x64_Expanded_21_1" Type="string" Value=""/>
-				<Property Name="ProjectExplorer\x64_Expanded_2_1" Type="string" Value="o5A9t8O2kkehenb1JGcY4VMeXtwnDTlNpCq6xLew06ajDiOGJ53nTrKNwXbFy2nm"/>
+				<Property Name="ProjectExplorer\x64_Expanded_2_1" Type="string" Value="o5A9t8O2kkehenb1JGcY4VMeXtwnDTlNpCq6xLew06Y="/>
 				<Property Name="ProjectExplorer\x64_Expanded_3_1" Type="string" Value="cyvnpIuKjkWA1af9i6/IIw=="/>
 				<Property Name="ProjectExplorer\x64_Expanded_4_1" Type="string" Value=""/>
 				<Property Name="ProjectExplorer\x64_Expanded_5_1" Type="string" Value=""/>
-				<Property Name="ProjectExplorer\x64_Expanded_6_1" Type="string" Value=""/>
+				<Property Name="ProjectExplorer\x64_Expanded_6_1" Type="string" Value="ZsvgvDNp+k61eSxF3mZCLA=="/>
 				<Property Name="ProjectExplorer\x64_Expanded_7_1" Type="string" Value=""/>
 				<Property Name="ProjectExplorer\x64_Expanded_8_1" Type="string" Value=""/>
-				<Property Name="SoundBank Manager\x64_Expand States" Type="string" Value=""/>
+				<Property Name="SoundBank Manager\x64_Expand States" Type="string" Value="ZsvgvDNp+k61eSxF3mZCLA=="/>
 				<Property Name="SoundBankHeaderFilePath" Type="string" Value="GeneratedSoundBanks\"/>
 				<Property Name="SoundBankPaths" Type="string">
 					<ValueList>

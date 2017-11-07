@@ -31,6 +31,34 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Light_Switch" ID="{BF12F682-9074-4305-A11F-B0D3AA12F786}">
+					<ChildrenList>
+						<Action Name="" ID="{F1525FBA-D353-4498-AED8-1843274FCD21}" ShortID="618047683">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Light Switch" ID="{486A95C0-882A-4278-B3BE-BFF1F03E18F2}" WorkUnitID="{B73D90A3-B6C3-4792-A17A-76F5246718E1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Door_Lock" ID="{2825B549-72A4-47A6-9080-CF5E73B91ADE}">
+					<ChildrenList>
+						<Action Name="" ID="{10E49A0D-7790-4B15-8680-A17D4906AE50}" ShortID="1018930264">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Door Lock" ID="{3AA65A3E-405D-4EC2-AA0F-B33C9037AAA3}" WorkUnitID="{B73D90A3-B6C3-4792-A17A-76F5246718E1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
