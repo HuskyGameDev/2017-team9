@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{BCE0CB66-6933-4EFA-B579-2C45DE66422C}" SchemaVersion="80">
+	<SoundBanks>
+		<WorkUnit Name="Default Work Unit" ID="{BCE0CB66-6933-4EFA-B579-2C45DE66422C}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="Main" ID="{781489CA-71FA-4270-83AA-5C4F1B04FE27}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Light_Switch" ID="{BF12F682-9074-4305-A11F-B0D3AA12F786}" WorkUnitID="{A4E72B73-8A8B-458E-80D5-A7FD8BAFC823}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Door_Lock" ID="{2825B549-72A4-47A6-9080-CF5E73B91ADE}" WorkUnitID="{A4E72B73-8A8B-458E-80D5-A7FD8BAFC823}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Door_Open" ID="{4583E803-9C3C-49DE-8581-61777C16F708}" WorkUnitID="{A4E72B73-8A8B-458E-80D5-A7FD8BAFC823}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Door_Close" ID="{A207B644-F494-4BA5-A96E-82362BD5B28A}" WorkUnitID="{A4E72B73-8A8B-458E-80D5-A7FD8BAFC823}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundBanks>
+</WwiseDocument>
