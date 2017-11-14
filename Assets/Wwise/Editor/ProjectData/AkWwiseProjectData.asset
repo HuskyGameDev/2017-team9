@@ -110,7 +110,12 @@ MonoBehaviour:
     m_lastTimePsrt1: 214546069
     m_lastTimePart2: -1999295782
     List: []
-  ExpandedItems: []
+  ExpandedItems:
+  - /2017-team9_WwiseProject
+  - /2017-team9_WwiseProject/Events
+  - /2017-team9_WwiseProject/Events/Default Work Unit
+  - /2017-team9_WwiseProject/SoundBanks
+  - /2017-team9_WwiseProject/SoundBanks/Default Work Unit
   m_lastPopulateTimePsrt1: 0
   m_lastPopulateTimePart2: 0
   autoPopulateEnabled: 1
