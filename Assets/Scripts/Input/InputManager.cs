@@ -24,7 +24,7 @@ public class InputManager : MonoBehaviour {
 
 	//This enum maps named Axis to indicies of the stored numbers.
 	public enum Axis { LeftHorizontal = 0, LeftVertical = 1, RightHorizontal = 2, RightVertical = 3, LeftTrigger = 4, RightTrigger = 5, DpadHorizontal = 6, DpadVertical = 7 }
-	public static readonly string[] AxisNames = { "LeftHorizontal", "LeftVertical", "RightHorizontal", "RightVertical", "eftTrigger", "RightTrigger", "DpadHorizontal", "DpadVertical" }
+	public static readonly string[] AxisNames = { "LeftHorizontal", "LeftVertical", "RightHorizontal", "RightVertical", "eftTrigger", "RightTrigger", "DpadHorizontal", "DpadVertical" };
 
 	//Stores the relation of button names to int (18 buttons!)
 	public enum Button {
