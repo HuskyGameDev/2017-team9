@@ -75,7 +75,7 @@ namespace Puzzle {
 			int beamCount = 0; ;
 			for (int i = 0; i < input.Count || beamCount > GetBeamCountFromInput(); i++) {
 				//Calucate the postion our visual indicators need to be
-				List<Vector3> positions = DataBeamVisual.CalculateDataBeamCluster(input[i].internalData.bits.Length, this.transform.position, input[i].transform.position);
+				List<Vector3> positions = DataBeamVisual.CalculateDataBeamCluster(input[i].GetOutputData().bits.Length, this.transform.position, input[i].transform.position);
 				//Caluclate the midpoint
 				Vector3 midPoint = Vector3.Lerp(this.transform.position, input[i].transform.position, 0.5f);
 				//This is used to track wich color we need to apply to the beam, this basically goes through the bits of the current input
@@ -95,7 +95,9 @@ namespace Puzzle {
 					beam.transform.rotation = beam.transform.rotation * Quaternion.Euler(0.0f, 90.0f, 90.0f);
 
 					//Set the beam color by using the bit color saved in data
-					beam.GetComponent<Renderer>().material.color = Data.DataColor[(int)input[i].internalData.bits[color++]];
+					beam.GetComponent<Renderer>().material.color = Data.DataColor[(int)input[i].GetOutputData().bits[color++]];
+
+					beam.transform.parent = this.transform;
 				}
 			}
 		}

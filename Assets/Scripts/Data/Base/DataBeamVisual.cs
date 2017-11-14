@@ -23,6 +23,21 @@ namespace Puzzle {
 				calculations.Add(Vector3.Lerp(start, end, 0.5f));
 				return calculations;
 			}
+			if (beamCount == 2) {
+				Vector3 forward = end - start;
+				//Then we normalize it
+				forward.Normalize();
+				Vector3 right = Vector3.right;
+				if (forward != Vector3.up) {
+					//We calculate these in the normal case
+					right = Vector3.Cross(forward, Vector3.up);
+					right.Normalize();
+				}
+
+				calculations.Add(Vector3.Lerp(start, end, 0.5f) + (BEAM_RADIUS * right));
+				calculations.Add(Vector3.Lerp(start, end, 0.5f) - (BEAM_RADIUS * right));
+				return calculations;
+			}
 
 
 			//So this will be created by solving the placement of two adjacent nodes and the center as if they are
