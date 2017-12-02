@@ -22,9 +22,16 @@ public class PlayerControls : MonoBehaviour {
 		handleMovement();
 	}
 	void Update () {
-		//DEBUGTEST_INPUT();
-
-		if (InputManager.GetButtonDown(InputManager.Button.Y)) {
+        //DEBUGTEST_INPUT();
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            AkSoundEngine.PostEvent("Door_Close", this.gameObject);
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            AkSoundEngine.PostEvent("Door_Lock", this.gameObject);
+        }
+        if (InputManager.GetButtonDown(InputManager.Button.Y)) {
 			cam.GetComponent<CameraManager>().NextRender();
 		}
 	}

@@ -16,6 +16,7 @@ public class InputManager : MonoBehaviour {
 	public float moveDead = 0.7f; // CANNOT BE 0
 	public float mouseSensitivity = 0.50f;
 	public bool invertedMouse = false;
+	public InputSettings settings;
 
 	//The Movement enum is a helper method to determine what kind of movement on an axis you are trying to read as a button
 	//There is effectivly only negative and positive, but I used Left/Right as well as Forward/Backward to make the desired input more readable.
@@ -23,14 +24,17 @@ public class InputManager : MonoBehaviour {
 
 	//This enum maps named Axis to indicies of the stored numbers.
 	public enum Axis { LeftHorizontal = 0, LeftVertical = 1, RightHorizontal = 2, RightVertical = 3, LeftTrigger = 4, RightTrigger = 5, DpadHorizontal = 6, DpadVertical = 7 }
+	public static readonly string[] AxisNames = { "LeftHorizontal", "LeftVertical", "RightHorizontal", "RightVertical", "eftTrigger", "RightTrigger", "DpadHorizontal", "DpadVertical" };
+
+	//Stores the relation of button names to int (18 buttons!)
+	public enum Button {
+		nul = -1, A = 0, B = 1, X = 2, Y = 3, LeftBumper = 4, RightBumper = 5, LeftStick = 6, RightStick = 7, Back = 8, Start = 9,
+		Dpad_Up = 10, Dpad_Right = 11, Dpad_Down = 12, Dpad_Left = 13, Dpad_UpRight = 14, Dpad_DownRight = 15, Dpad_DownLeft = 16, Dpad_UpLeft = 17
+	}
 
 	//Stores this frames as well as last frames axis input 
 	public float[] previousAxis = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
 	public float[] currentAxis = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
-
-	//Stores the relation of button names to int (18 buttons!)
-	public enum Button {nul = -1, A=0, B=1, X=2, Y=3, LeftBumper=4, RightBumper=5, LeftStick=6, RightStick=7, Back=8, Start=9,
-		Dpad_Up =10, Dpad_Right = 11, Dpad_Down = 12, Dpad_Left = 13, Dpad_UpRight = 14, Dpad_DownRight = 15, Dpad_DownLeft = 16, Dpad_UpLeft = 17 }
 
 	//Stores this frames as well as last frames button input 
 	public bool[] previousButtons = {
@@ -44,7 +48,6 @@ public class InputManager : MonoBehaviour {
 		false, false, false, false, false,
 		false, false, false};
 	
-
 	// Use this for initialization
 	void Awake () {
 		if (instance != null) {
