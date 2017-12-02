@@ -13,10 +13,15 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID BUTTON = 977454165U;
         static const AkUniqueID DOOR_CLOSE = 128625444U;
         static const AkUniqueID DOOR_LOCK = 3029008661U;
         static const AkUniqueID DOOR_OPEN = 535830432U;
+        static const AkUniqueID KEYBOARD_CLICKS = 1081112822U;
         static const AkUniqueID LIGHT_SWITCH = 790135102U;
+        static const AkUniqueID PHONE = 3104856687U;
+        static const AkUniqueID SLIDING_DOOR_CLOSE = 1790472453U;
+        static const AkUniqueID SLIDING_DOOR_OPEN = 3615965583U;
     } // namespace EVENTS
 
     namespace BANKS

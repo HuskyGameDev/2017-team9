@@ -59,6 +59,76 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Sliding_Door_Open" ID="{D82E804B-8AAC-46A7-9AED-EEECD73DFEA4}">
+					<ChildrenList>
+						<Action Name="" ID="{E5B30D94-041D-4182-8906-761315979256}" ShortID="954756056">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Sliding Door Open" ID="{DC8BCCE4-9BF5-4262-998F-2AB13EEF74F8}" WorkUnitID="{B73D90A3-B6C3-4792-A17A-76F5246718E1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Sliding_Door_Close" ID="{5DABBCFA-030F-4649-A9B5-0405AC4F15E7}">
+					<ChildrenList>
+						<Action Name="" ID="{1293DFAC-3533-43A5-9499-B6C88CE73A8A}" ShortID="749799026">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Sliding Door Close" ID="{2DBE0B8D-E23D-41EF-A488-5C40047C832E}" WorkUnitID="{B73D90A3-B6C3-4792-A17A-76F5246718E1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Button" ID="{04D0CD60-DF0C-4045-BEF5-CEAD03AD9A64}">
+					<ChildrenList>
+						<Action Name="" ID="{F7532926-B771-4BB5-9648-8CF9B989178A}" ShortID="511555976">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Button" ID="{2E06F9F6-13B4-46B5-B80C-D10DD2839C4B}" WorkUnitID="{B73D90A3-B6C3-4792-A17A-76F5246718E1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Keyboard_Clicks" ID="{C0C1C3AC-9227-490B-AF35-F0BC5910AEEE}">
+					<ChildrenList>
+						<Action Name="" ID="{57991437-D6AE-471F-A209-91B8FAE1DE09}" ShortID="536333300">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Keyboard Clicks" ID="{6026C6B7-D092-40A1-B947-97DE780A7DED}" WorkUnitID="{B73D90A3-B6C3-4792-A17A-76F5246718E1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Phone" ID="{E0C25C26-C765-4566-BED1-4F3F3E700D9A}">
+					<ChildrenList>
+						<Action Name="" ID="{7479F305-2C83-42FD-9EF8-25BABA5DCC9C}" ShortID="735827659">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Phone" ID="{05633800-038D-4C8B-8C02-B7F209DF0ED7}" WorkUnitID="{B73D90A3-B6C3-4792-A17A-76F5246718E1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

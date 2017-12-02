@@ -4,10 +4,15 @@
 		<UserProjectSettings Name="" ID="{1D3556CE-CCC5-4971-9E13-EA3D7A69C773}">
 			<PropertyList>
 				<Property Name="AudioFilesImporter\Path" Type="string" Value="Y:\Documents\HGD Fall 2017\Sound Effects"/>
+				<Property Name="Event Action List\{04D0CD60-DF0C-4045-BEF5-CEAD03AD9A64}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{2825B549-72A4-47A6-9080-CF5E73B91ADE}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{4583E803-9C3C-49DE-8581-61777C16F708}\x64_Expand States" Type="string" Value=""/>
+				<Property Name="Event Action List\{5DABBCFA-030F-4649-A9B5-0405AC4F15E7}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{A207B644-F494-4BA5-A96E-82362BD5B28A}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{BF12F682-9074-4305-A11F-B0D3AA12F786}\x64_Expand States" Type="string" Value=""/>
+				<Property Name="Event Action List\{C0C1C3AC-9227-490B-AF35-F0BC5910AEEE}\x64_Expand States" Type="string" Value=""/>
+				<Property Name="Event Action List\{D82E804B-8AAC-46A7-9AED-EEECD73DFEA4}\x64_Expand States" Type="string" Value=""/>
+				<Property Name="Event Action List\{E0C25C26-C765-4566-BED1-4F3F3E700D9A}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="EventView\FilterMode1" Type="int32" Value="2"/>
 				<Property Name="ExternalSourcesInputPath" Type="string">
 					<ValueList>
@@ -54,7 +59,7 @@
 				<Property Name="ProjectExplorer\x64_Expanded_1_1" Type="string" Value=""/>
 				<Property Name="ProjectExplorer\x64_Expanded_20_1" Type="string" Value=""/>
 				<Property Name="ProjectExplorer\x64_Expanded_21_1" Type="string" Value=""/>
-				<Property Name="ProjectExplorer\x64_Expanded_2_1" Type="string" Value="o5A9t8O2kkehenb1JGcY4VMeXtwnDTlNpCq6xLew06Y="/>
+				<Property Name="ProjectExplorer\x64_Expanded_2_1" Type="string" Value="vIMRvhH+1EW024Rzk4eQMqOQPbfDtpJHoXp29SRnGOH7kkQq9BWySbIioVCYq/uP"/>
 				<Property Name="ProjectExplorer\x64_Expanded_3_1" Type="string" Value="cyvnpIuKjkWA1af9i6/IIw=="/>
 				<Property Name="ProjectExplorer\x64_Expanded_4_1" Type="string" Value=""/>
 				<Property Name="ProjectExplorer\x64_Expanded_5_1" Type="string" Value=""/>

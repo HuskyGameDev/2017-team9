@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ValidationCache Version="1" SchemaVersion="80">
-	<ValidationCacheItem File="Y:\2017-team9\2017-team9_WwiseProject\2017-team9_WwiseProject.crossover.wsettings" DateLow="2199339904" DateHigh="30627426"/>
+	<ValidationCacheItem File="Y:\2017-team9\2017-team9_WwiseProject\2017-team9_WwiseProject.crossover.wsettings" DateLow="2775595904" DateHigh="30632051"/>
 	<ValidationCacheItem File="Y:\2017-team9\2017-team9_WwiseProject\2017-team9_WwiseProject.wproj" DateLow="1878587008" DateHigh="30626027"/>
 	<ValidationCacheItem File="Y:\2017-team9\2017-team9_WwiseProject\Actor-Mixer Hierarchy\Default Work Unit.wwu" DateLow="2009339904" DateHigh="30627426"/>
 	<ValidationCacheItem File="Y:\2017-team9\2017-team9_WwiseProject\Attenuations\Default Work Unit.wwu" DateLow="1878587008" DateHigh="30626027"/>
@@ -20,7 +20,7 @@
 	<ValidationCacheItem File="Y:\2017-team9\2017-team9_WwiseProject\Presets\Default Work Unit.wwu" DateLow="1878587008" DateHigh="30626027"/>
 	<ValidationCacheItem File="Y:\2017-team9\2017-team9_WwiseProject\Queries\Default Work Unit.wwu" DateLow="1878587008" DateHigh="30626027"/>
 	<ValidationCacheItem File="Y:\2017-team9\2017-team9_WwiseProject\Queries\Factory Queries.wwu" DateLow="1878587008" DateHigh="30626027"/>
-	<ValidationCacheItem File="Y:\2017-team9\2017-team9_WwiseProject\SoundBanks\Default Work Unit.wwu" DateLow="1878587008" DateHigh="30626027"/>
+	<ValidationCacheItem File="Y:\2017-team9\2017-team9_WwiseProject\SoundBanks\Default Work Unit.wwu" DateLow="872944768" DateHigh="30627842"/>
 	<ValidationCacheItem File="Y:\2017-team9\2017-team9_WwiseProject\Soundcaster Sessions\Default Work Unit.wwu" DateLow="1878587008" DateHigh="30626027"/>
 	<ValidationCacheItem File="Y:\2017-team9\2017-team9_WwiseProject\States\Default Work Unit.wwu" DateLow="1878587008" DateHigh="30626027"/>
 	<ValidationCacheItem File="Y:\2017-team9\2017-team9_WwiseProject\Switches\Default Work Unit.wwu" DateLow="1878587008" DateHigh="30626027"/>
