@@ -28,10 +28,12 @@ public class DoorOpen : MonoBehaviour {
 				if(p != null){
 					if(door_open){
 						anim.Play("DoorClose");
-						door_open = false;
+                        AkSoundEngine.PostEvent("Door_Close", this.gameObject);
+                        door_open = false;
 					} else {
 						anim.Play("DoorOpen");
-						door_open = true;
+                        AkSoundEngine.PostEvent("Door_Open", this.gameObject);
+                        door_open = true;
 					}
 				}
 			}
