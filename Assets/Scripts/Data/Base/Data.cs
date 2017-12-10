@@ -20,5 +20,18 @@ namespace Puzzle {
 		public Data(DataType[] bits) {
 			this.bits = bits;
 		}
+
+		//true if a is bigger, false if a is smaller, null if they are the same
+		// N is the null type of data, it is never larger. We have two special conditions for this
+		public static bool? CompareBit(DataType a, DataType b) {
+			if (a == DataType.N) {
+				return false;
+			}
+			if (b == DataType.N) {
+				return false;
+			}
+
+			return ((int)a == (int)b) ? ((bool?)null) : ((int)a > (int)b);
+		}
 	}
 }

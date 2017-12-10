@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Puzzle {
-	public class DataAdder : DataConnection {
+	public class DataAdder : DataBase {
 
 		//We cannot send data so return null
 		public override Data GetOutputData() {
@@ -11,7 +11,7 @@ namespace Puzzle {
 
 
 			//Count the type of incomming bits
-			foreach (DataConnection c in input) {
+			foreach (DataBase c in input) {
 				foreach (Data.DataType d in c.GetOutputData().bits) {
 					counts[(int)d]++;
 				}
@@ -52,7 +52,6 @@ namespace Puzzle {
 			return new Data(returnBits);
 		}
 
-		//We can only recieve
 		public override bool CanSend() { return true; }
 		public override bool CanRecieve() { return true; }
 	}

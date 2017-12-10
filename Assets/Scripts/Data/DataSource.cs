@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Puzzle {
 	
 	//A class for something that only supplys data
-	public class DataSource : DataConnection {
+	public class DataSource : DataBase {
 
 		//The data we are sending is set in the editor, and is an inherited member
 		public override Data GetOutputData() {

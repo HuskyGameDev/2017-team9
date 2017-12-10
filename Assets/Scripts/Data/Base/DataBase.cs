@@ -6,9 +6,10 @@ using UnityEngine;
 namespace Puzzle {
 	//This class represents a connection for data
 	//[System.Serializable]
-	public abstract class DataConnection : MonoBehaviour {
+	public abstract class DataBase : MonoBehaviour {
 
-
+		public bool visual = true;
+		public bool playerMovable = false;
 		//The interal data that this connection contains
 		//Its use will change based on the inherited class
 		//This data DOES NOT hold the collection of the input/output
@@ -16,18 +17,18 @@ namespace Puzzle {
 		public Data internalData;
 
 		//The storage of connections
-		public List<DataConnection> input = new List<DataConnection>();
+		public List<DataBase> input = new List<DataBase>();
 		public List<GameObject> beams = new List<GameObject>();
 
 		public void Awake() {
 			UpdateVisual();
 		}
 
-		public void AddInput(DataConnection c) {
+		public void AddInput(DataBase c) {
 			input.Add(c);
 			UpdateVisual();
 		}
-		public void RemoveInput(DataConnection c) {
+		public void RemoveInput(DataBase c) {
 			input.Remove(c);
 			UpdateVisual();
 		}
@@ -36,7 +37,7 @@ namespace Puzzle {
 		//Find the aggregate amount of data beams needed
 		public int GetBeamCountFromInput() {
 			int ret = 0;
-			foreach (DataConnection c in input) {
+			foreach (DataBase c in input) {
 				ret += c.GetOutputData().bits.Length;
 			}
 			return ret;
@@ -47,11 +48,14 @@ namespace Puzzle {
 		}
 
 		public void UpdateVisual() {
+			int BeamCount = GetBeamCountFromInput();
+			//Override the beam count to be 0 if we do not want to display a visual
+			if (BeamCount > 0 && visual == false) BeamCount = 0;
 			//We need to make sure we have the correct count of beams
 			//Doing it this way limits the amount of creation and destruction of beams
-			if (GetBeamCountFromInput() > beams.Count) {
+			if (BeamCount > beams.Count) {
 				int startingBeamCount = beams.Count;
-				for (int i = 0; i < GetBeamCountFromInput() - startingBeamCount; i++) {
+				for (int i = 0; i < BeamCount - startingBeamCount; i++) {
 					//Create new beam
 					GameObject newBeam = Instantiate(Resources.Load("DataBeam", typeof(GameObject))) as GameObject;
 					beams.Add(newBeam);
@@ -59,7 +63,7 @@ namespace Puzzle {
 			}
 			else {
 				//If they are equal this for loop is checked once and doesnt run
-				for (int i = 0; i < GetBeamCountFromInput() - beams.Count; i++) {
+				for (int i = 0; i < beams.Count - BeamCount; i++) {
 					//Remove a beam
 					GameObject temp = beams[0];
 					beams.RemoveAt(0);
@@ -73,9 +77,11 @@ namespace Puzzle {
 			//Otherwise update the beams
 			//track the current beam we are working with
 			int beamCount = 0; ;
-			for (int i = 0; i < input.Count || beamCount > GetBeamCountFromInput(); i++) {
+			for (int i = 0; i < input.Count || BeamCount > beams.Count; i++) {
+				Data OutputData = input[i].GetOutputData();
+
 				//Calucate the postion our visual indicators need to be
-				List<Vector3> positions = DataBeamVisual.CalculateDataBeamCluster(input[i].GetOutputData().bits.Length, this.transform.position, input[i].transform.position);
+				List<Vector3> positions = DataBeamVisual.CalculateDataBeamCluster(OutputData.bits.Length, this.transform.position, input[i].transform.position);
 				//Caluclate the midpoint
 				Vector3 midPoint = Vector3.Lerp(this.transform.position, input[i].transform.position, 0.5f);
 				//This is used to track wich color we need to apply to the beam, this basically goes through the bits of the current input
@@ -95,14 +101,12 @@ namespace Puzzle {
 					beam.transform.rotation = beam.transform.rotation * Quaternion.Euler(0.0f, 90.0f, 90.0f);
 
 					//Set the beam color by using the bit color saved in data
-					beam.GetComponent<Renderer>().material.color = Data.DataColor[(int)input[i].GetOutputData().bits[color++]];
+					beam.GetComponent<Renderer>().material.color = Data.DataColor[(int)OutputData.bits[color++]];
 
 					beam.transform.parent = this.transform;
 				}
 			}
 		}
-
-
 
 
 		//Below are required implemented methods from our decendants

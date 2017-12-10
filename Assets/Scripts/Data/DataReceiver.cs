@@ -7,7 +7,7 @@ namespace Puzzle {
 
 	//A class for a data reciever that cannot send anything out
 	//Essentially, an end point
-	public class DataFinalReciever : DataConnection {
+	public class DataReceiver : DataBase {
 
 		//We cannot send data so return null
 		public override Data GetOutputData() {
