@@ -217,7 +217,14 @@
 					</ChildrenList>
 				</Folder>
 				<ActorMixer Name="Environmental" ID="{2A4492FB-15F4-49B2-B222-A15098ABFB8F}" ShortID="935029426">
+					<PropertyList>
+						<Property Name="3DPositionSource" Type="int16" Value="0"/>
+						<Property Name="PositioningType" Type="int16" Value="1"/>
+					</PropertyList>
 					<ReferenceList>
+						<Reference Name="Attenuation">
+							<ObjectRef Name="New Attenuation" ID="{39B1EDF1-9946-43C9-9519-C1B8703C40AA}" WorkUnitID="{F073EAB7-8401-4C62-9B89-D5DF4295CECF}"/>
+						</Reference>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
 						</Reference>
@@ -731,6 +738,22 @@
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
+					<PositioningInfo>
+						<Position Name="" ID="{2438F97A-4DE7-4F6D-9CB5-69CD6F7F249C}">
+							<ChildrenList>
+								<Path2D Name="Front" ID="{160BB511-0E65-47A4-A9BA-C6DFF5163C09}">
+									<PointList>
+										<Point>
+											<XPos>0</XPos>
+											<YPos>50</YPos>
+											<Flags>12</Flags>
+											<Time>0</Time>
+										</Point>
+									</PointList>
+								</Path2D>
+							</ChildrenList>
+						</Position>
+					</PositioningInfo>
 				</ActorMixer>
 			</ChildrenList>
 		</WorkUnit>

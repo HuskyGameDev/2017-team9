@@ -42,6 +42,7 @@ public class PickupObject : MonoBehaviour {
 			if(Physics.Raycast(ray, out hit)){
 				Pickup p = hit.collider.GetComponent<Pickup>();
 				if(p != null){
+					Debug.Log("HIT");
 					carrying = true;
 					carried_object = p.gameObject;
 					p.gameObject.GetComponent<Rigidbody>().useGravity = false;
