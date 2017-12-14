@@ -13,7 +13,7 @@ public class InputManager : MonoBehaviour {
 
 	//This defines the point at which we consider an axis has been used as a button
 	[Range(0.19f,1.0f)]
-	public float moveDead = 0.7f; // CANNOT BE 0
+	public float moveDead = 0.7f;
 	public float mouseSensitivity = 0.50f;
 	public bool invertedMouse = false;
 	public InputSettings settings;
@@ -24,30 +24,22 @@ public class InputManager : MonoBehaviour {
 
 	//This enum maps named Axis to indicies of the stored numbers.
 	public enum Axis { LeftHorizontal = 0, LeftVertical = 1, RightHorizontal = 2, RightVertical = 3, LeftTrigger = 4, RightTrigger = 5, DpadHorizontal = 6, DpadVertical = 7 }
-	public static readonly string[] AxisNames = { "LeftHorizontal", "LeftVertical", "RightHorizontal", "RightVertical", "eftTrigger", "RightTrigger", "DpadHorizontal", "DpadVertical" };
+	public static readonly string[] AxisNames = { "LeftHorizontal", "LeftVertical", "RightHorizontal", "RightVertical", "LeftTrigger", "RightTrigger", "DpadHorizontal", "DpadVertical" };
 
 	//Stores the relation of button names to int (18 buttons!)
-	public enum Button {
+	public enum ControllerButton {
 		nul = -1, A = 0, B = 1, X = 2, Y = 3, LeftBumper = 4, RightBumper = 5, LeftStick = 6, RightStick = 7, Back = 8, Start = 9,
 		Dpad_Up = 10, Dpad_Right = 11, Dpad_Down = 12, Dpad_Left = 13, Dpad_UpRight = 14, Dpad_DownRight = 15, Dpad_DownLeft = 16, Dpad_UpLeft = 17
 	}
+	public static readonly string[] ControllerButtonToString = { "A", "B", "X","Y", "LeftBumper", "RightBumper", "LeftStick", "RightStick", "Back", "Start"};
 
-	//Stores this frames as well as last frames axis input 
-	public float[] previousAxis = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
-	public float[] currentAxis = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
 
-	//Stores this frames as well as last frames button input 
-	public bool[] previousButtons = {
-		false, false, false, false, false,
-		false, false, false, false, false,
-		false, false, false, false, false,
-		false, false, false};
-	public bool[] currentButtons = {
-		false, false, false, false, false,
-		false, false, false, false, false,
-		false, false, false, false, false,
-		false, false, false};
-	
+	//The overall list of possible game interactions. This excludes things for character and mouse movement. Below it are two arrays that map the proper settings.
+	//DO NOT FORGET: you have to update the two arrays in the awake method below.
+	public enum GameButton {Interact1, Interact2, Menu, Cancel}
+	private ControllerButton[] GameButtonToControllerButton;
+	private KeyCode[] GameButtonToKeycode;
+
 	// Use this for initialization
 	void Awake () {
 		if (instance != null) {
@@ -55,90 +47,33 @@ public class InputManager : MonoBehaviour {
 			Debug.Break();
 		}
 		instance = this;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		//Update Axis
-		previousAxis = currentAxis;
-
-		currentAxis[(int)Axis.LeftHorizontal		] = Input.GetAxis("LeftHorizontal") + GetAxisFromKeyboard(Axis.LeftHorizontal);
-		currentAxis[(int)Axis.LeftVertical			] = Input.GetAxis("LeftVertical") + GetAxisFromKeyboard(Axis.LeftVertical);
-
-		currentAxis[(int)Axis.RightHorizontal		] = Input.GetAxis("RightHorizontal") + GetAxisFromKeyboard(Axis.RightHorizontal);
-		currentAxis[(int)Axis.RightVertical			] = Input.GetAxis("RightVertical") + GetAxisFromKeyboard(Axis.RightVertical);
-
-		currentAxis[(int)Axis.LeftTrigger			] = Input.GetAxis("LeftTrigger") + GetAxisFromKeyboard(Axis.LeftTrigger);
-		currentAxis[(int)Axis.RightTrigger			] = Input.GetAxis("RightTrigger") + GetAxisFromKeyboard(Axis.RightTrigger);
-
-		currentAxis[(int)Axis.DpadHorizontal		] = Input.GetAxis("DpadHorizontal");
-		currentAxis[(int)Axis.DpadVertical			] = Input.GetAxis("DpadVertical");
-
-		//Update Buttons
-		previousButtons = currentButtons;
-
-		currentButtons[(int)Button.A				] = Input.GetButton("A");
-		currentButtons[(int)Button.B				] = Input.GetButton("B");
-		currentButtons[(int)Button.X				] = Input.GetButton("X");
-		currentButtons[(int)Button.Y				] = Input.GetButton("Y");
-
-		currentButtons[(int)Button.LeftBumper		] = Input.GetButton("LeftBumper");
-		currentButtons[(int)Button.RightBumper		] = Input.GetButton("RightBumper");
-
-		currentButtons[(int)Button.LeftStick		] = Input.GetButton("LeftStick");
-		currentButtons[(int)Button.RightStick		] = Input.GetButton("RightStick");
-
-		currentButtons[(int)Button.Back				] = Input.GetButton("Back");
-		currentButtons[(int)Button.Start			] = Input.GetButton("Start");
-
-		currentButtons[(int)Button.Dpad_Up			] = DpadButton(Button.Dpad_Up);
-		currentButtons[(int)Button.Dpad_Right		] = DpadButton(Button.Dpad_Right);
-		currentButtons[(int)Button.Dpad_Down		] = DpadButton(Button.Dpad_Down);
-		currentButtons[(int)Button.Dpad_Left		] = DpadButton(Button.Dpad_Left);
-		currentButtons[(int)Button.Dpad_UpRight		] = DpadButton(Button.Dpad_UpRight);
-		currentButtons[(int)Button.Dpad_DownRight	] = DpadButton(Button.Dpad_DownRight);
-		currentButtons[(int)Button.Dpad_DownLeft	] = DpadButton(Button.Dpad_DownLeft);
-		currentButtons[(int)Button.Dpad_UpLeft		] = DpadButton(Button.Dpad_UpLeft);
-	}
-
-	public static bool GetButton(Button button) {
-		return instance.currentButtons[(int)button];
-	}
-
-	public static bool GetButtonDown(Button button) {
-		return instance.currentButtons[(int)button] && !instance.previousButtons[(int)button];
-	}
-
-	public static bool GetButtonUp(Button button) {
-		return !instance.currentButtons[(int)button] && instance.previousButtons[(int)button];
+		//Link the keyboard settings
+		GameButtonToControllerButton = new ControllerButton[]	{ settings.controller.Interact1	, settings.controller.Interact2	, settings.controller.Menu	, settings.controller.Cancel };
+		GameButtonToKeycode = new KeyCode[]						{ settings.keyboard.Interact1	, settings.keyboard.Interact2	, settings.keyboard.Menu	, settings.keyboard.Cancel };
 	}
 
 	public static float GetAxis(Axis input) {
-		return instance.currentAxis[(int)input];
+		if (input == Axis.LeftHorizontal)
+			return Input.GetAxis(AxisNames[(int)Axis.LeftHorizontal]) + GetAxisFromKeyboard(Axis.LeftHorizontal);
+		else if(input == Axis.LeftVertical)
+			return Input.GetAxis(AxisNames[(int)Axis.LeftVertical]) + GetAxisFromKeyboard(Axis.LeftVertical);
+		else if(input == Axis.RightHorizontal)
+			return Input.GetAxis(AxisNames[(int)Axis.RightHorizontal]) + GetAxisFromKeyboard(Axis.RightHorizontal);
+		else if(input == Axis.RightVertical)
+			return Input.GetAxis(AxisNames[(int)Axis.RightVertical]) + GetAxisFromKeyboard(Axis.RightVertical);
+		else if(input == Axis.LeftTrigger)
+			return Input.GetAxis(AxisNames[(int)Axis.LeftTrigger]) + GetAxisFromKeyboard(Axis.LeftTrigger);
+		else if(input == Axis.RightTrigger)
+			return Input.GetAxis(AxisNames[(int)Axis.RightTrigger]) + GetAxisFromKeyboard(Axis.RightTrigger);
+		else if(input == Axis.DpadHorizontal)
+			return Input.GetAxis(AxisNames[(int)Axis.DpadHorizontal]);
+		else if(input == Axis.DpadVertical)
+			return Input.GetAxis(AxisNames[(int)Axis.DpadVertical]);
+		else
+			return 0;
 	}
 
 
-	public static bool GetAxisAsButton(Axis input, Movement direction) {
-		return ((int)direction == 1) ? instance.currentAxis[(int)input] >= instance.moveDead : instance.currentAxis[(int)input] <= -instance.moveDead;
-	}
-
-	public static bool GetAxisAsButtonDown(Axis input, Movement direction) {
-		if ((int)direction == 1) {
-			return (instance.currentAxis[(int)input] > instance.moveDead && instance.previousAxis[(int)input] < instance.moveDead);
-		}
-		else {
-			return (instance.currentAxis[(int)input] < -instance.moveDead && instance.previousAxis[(int)input] > -instance.moveDead);
-		}
-	}
-
-	public static bool GetAxisAsButtonUp(Axis input, Movement direction) {
-		if ((int)direction == 1) {
-			return (instance.previousAxis[(int)input] >= instance.moveDead && instance.currentAxis[(int)input] < instance.moveDead);
-		}
-		else {
-			return (instance.previousAxis[(int)input] <= -instance.moveDead && instance.currentAxis[(int)input] > -instance.moveDead);
-		}
-	}
 
 	private static float GetAxisFromKeyboard(Axis axis) {
 		float ret = 0.0f;
@@ -179,45 +114,72 @@ public class InputManager : MonoBehaviour {
 	}
 
 	//Returns a button (1-8) depending on the axis input of the Dpad, -1 for no press
-	private static Button DpadToButton(float DpadH, float DpadV) {
+	private static ControllerButton DpadToButton(float DpadH, float DpadV) {
 		if (DpadV > .9f) {
 			//Up
-			return Button.Dpad_Up;
+			return ControllerButton.Dpad_Up;
 		}
 		else if (DpadH > .9f) {
 			//Right
-			return Button.Dpad_Right;
+			return ControllerButton.Dpad_Right;
 		}
 		else if (DpadV < -.9f) {
 			//Down
-			return Button.Dpad_Down;
+			return ControllerButton.Dpad_Down;
 		}
 		else if (DpadH < -.9f) {
 			//Left
-			return Button.Dpad_Left;
+			return ControllerButton.Dpad_Left;
 		}
 		else if (DpadV > .7f && DpadH > .7f) {
 			//UpRight
-			return Button.Dpad_UpRight;
+			return ControllerButton.Dpad_UpRight;
 		}
 		else if (DpadV < -.7f && DpadH > .7f) {
 			//DownRight
-			return Button.Dpad_DownRight;
+			return ControllerButton.Dpad_DownRight;
 		}
 		else if (DpadV < -.7f && DpadH < -.7f) {
 			//DownLeft
-			return Button.Dpad_DownLeft;
+			return ControllerButton.Dpad_DownLeft;
 		}
 		else if (DpadV > .7f && DpadH < -.7f) {
 			//UpLeft
-			return Button.Dpad_UpLeft;
+			return ControllerButton.Dpad_UpLeft;
 		}
-		return Button.nul;
+		return ControllerButton.nul;
 	}
 
-	private static bool DpadButton(Button button) {
-		return button == DpadToButton(instance.currentAxis[(int)Axis.DpadHorizontal], instance.currentAxis[(int)Axis.DpadVertical]);
+	private static bool DpadButton(ControllerButton button) {
+		return button == DpadToButton(Input.GetAxis(AxisNames[(int)Axis.DpadHorizontal]), Input.GetAxis(AxisNames[(int)Axis.DpadVertical]));
 	}
 
+
+
+	/// <summary>
+	/// The following methods encapsulate the comination of the two input methods.
+	/// </summary>
+	/// <param name="button"></param>
+	/// <returns></returns>
+	public static bool GetGameButton(GameButton button) {
+		if (Input.GetButton(ControllerButtonToString[(int)instance.GameButtonToControllerButton[(int)button]]) || Input.GetKey(instance.GameButtonToKeycode[(int)button])) {
+			return true;
+		}
+		return false;
+	}
+	public static bool GetGameButtonDown(GameButton button) {
+		if (Input.GetButtonDown(ControllerButtonToString[(int)instance.GameButtonToControllerButton[(int)button]]) || Input.GetKeyDown(instance.GameButtonToKeycode[(int)button])) {
+			return true;
+		}
+		return false;
+
+	}
+	public static bool GetGameButtonUp(GameButton button) {
+		if (Input.GetButtonUp(ControllerButtonToString[(int)instance.GameButtonToControllerButton[(int)button]]) || Input.GetKeyUp(instance.GameButtonToKeycode[(int)button])) {
+			return true;
+		}
+		return false;
+
+	}
 
 }

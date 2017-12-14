@@ -16,22 +16,22 @@ public class InputSettings {
 	[System.Serializable]
 	public class KeyboardSettings {
 		[SerializeField]
-		KeyCode Forward;
+		public KeyCode Forward;
 		[SerializeField]
-		KeyCode Backward;
+		public KeyCode Backward;
 		[SerializeField]
-		KeyCode LeftStrafe;
+		public KeyCode LeftStrafe;
 		[SerializeField]
-		KeyCode RightStrafe;
+		public KeyCode RightStrafe;
 
 		[SerializeField]
-		KeyCode Interact1;
+		public KeyCode Interact1;
 		[SerializeField]
-		KeyCode Interact2;
+		public KeyCode Interact2;
 		[SerializeField]
-		KeyCode Menu;
+		public KeyCode Menu;
 		[SerializeField]
-		KeyCode Cancel;
+		public KeyCode Cancel;
 
 	}
 
@@ -39,21 +39,21 @@ public class InputSettings {
 	[System.Serializable]
 	public class ControllerSettings {
 		[SerializeField]
-		InputManager.Axis Forward;
+		public InputManager.Axis Forward;
 		[SerializeField]
-		InputManager.Axis Strafe;
+		public InputManager.Axis Strafe;
 		[SerializeField]
-		InputManager.Axis Yaw;
+		public InputManager.Axis Yaw;
 		[SerializeField]
-		InputManager.Axis Pitch;
+		public InputManager.Axis Pitch;
 
 		[SerializeField]
-		InputManager.Button Interact1;
+		public InputManager.ControllerButton Interact1;
 		[SerializeField]
-		InputManager.Button Interact2;
+		public InputManager.ControllerButton Interact2;
 		[SerializeField]
-		InputManager.Button Menu;
+		public InputManager.ControllerButton Menu;
 		[SerializeField]
-		InputManager.Button Cancel;
+		public InputManager.ControllerButton Cancel;
 	}
 }

@@ -14,8 +14,8 @@ public class PlayerControls : MonoBehaviour {
 	private CharacterController body;
 
 	void Awake () {
-		body = this.gameObject.GetComponent<CharacterController>();
 		this.internalRotation = this.gameObject.transform.rotation.y;
+		body = this.gameObject.GetComponent<CharacterController>();
 	}
 
 	private void FixedUpdate() {
@@ -23,18 +23,23 @@ public class PlayerControls : MonoBehaviour {
 		handleMovement();
 	}
 	void Update () {
-        //DEBUGTEST_INPUT();
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            AkSoundEngine.PostEvent("Door_Close", this.gameObject);
-        }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            AkSoundEngine.PostEvent("Door_Lock", this.gameObject);
-        }
-        if (InputManager.GetButtonDown(InputManager.Button.Y)) {
+		//DEBUGTEST_INPUT();
+		/*
+		if (Input.GetKeyDown(KeyCode.M)) {
+			AkSoundEngine.PostEvent("Door_Close", this.gameObject);
+		}
+		if (Input.GetKeyDown(KeyCode.N)) {
+			AkSoundEngine.PostEvent("Door_Lock", this.gameObject);
+		}
+		if (InputManager.GetButtonDown(InputManager.Button.Y)) {
 			cam.GetComponent<CameraManager>().NextRender();
 		}
+		 */
+
+		if (InputManager.GetGameButtonDown(InputManager.GameButton.Interact2)) {
+			Debug.Log("Second Interaction Used.");
+		} 
+
 	}
 
 	private void handleMovement() {

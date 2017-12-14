@@ -13,16 +13,16 @@ namespace PuzzleComponents {
 		/// </summary>
 		/// <returns></returns>
 		public override DataSegment CalculateOutput() {
-			//get our one input
 
-			//If our one input is not connected
-			if (this.input[0].IsConnected() == false) {
+			//If our one input is not connected, or if its output is null
+			if (this.input[0] == null || this.input[0].IsConnected() == false || this.input[0].owner.GetOutput() == null) {
 				//We do not have any output
 				return null;
 			}
 
 			//Otherwise get a copy of our inputs data and set it to linked
 			DataSegment newOutput = this.input[0].owner.GetOutput();
+
 			newOutput.linked = true;
 
 			return newOutput;

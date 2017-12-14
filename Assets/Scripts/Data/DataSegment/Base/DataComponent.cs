@@ -66,6 +66,8 @@ namespace PuzzleComponents {
 		/// </summary>
 		/// <returns></returns>
 		public DataSegment GetOutput() {
+			if (cache == null)
+				return null;
 			return cache.CreateDeepCopy();
 		}
 

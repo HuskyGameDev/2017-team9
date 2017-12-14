@@ -9,7 +9,7 @@ public class InputManagerEditor : Editor {
 		//Call base so that if InputManager gets changes
 		//They will be reflected in the editor properly
 		base.OnInspectorGUI();
-
+		/*
 		InputManager myTar = (InputManager)target;
 
 		//The following adds a section to input manager
@@ -19,24 +19,24 @@ public class InputManagerEditor : Editor {
 		EditorGUILayout.BeginHorizontal();
 		EditorGUILayout.BeginVertical();
 		GUILayout.Label("Buttons\t| Current\t| Previous");
-		GUILayout.Label("A\t| "			 + myTar.currentButtons[(int)InputManager.Button.A]				 + "\t| " + myTar.previousButtons[(int)InputManager.Button.A]);
-		GUILayout.Label("B\t| "			 + myTar.currentButtons[(int)InputManager.Button.B]				 + "\t| " + myTar.previousButtons[(int)InputManager.Button.B]);
-		GUILayout.Label("X\t| "			 + myTar.currentButtons[(int)InputManager.Button.X]				 + "\t| " + myTar.previousButtons[(int)InputManager.Button.X]);
-		GUILayout.Label("Y\t| "			 + myTar.currentButtons[(int)InputManager.Button.Y]				 + "\t| " + myTar.previousButtons[(int)InputManager.Button.Y]);
-		GUILayout.Label("LeftBump\t| "	 + myTar.currentButtons[(int)InputManager.Button.LeftBumper]	 + "\t| " + myTar.previousButtons[(int)InputManager.Button.LeftBumper]);
-		GUILayout.Label("RightBump\t| "	 + myTar.currentButtons[(int)InputManager.Button.RightBumper]	 + "\t| " + myTar.previousButtons[(int)InputManager.Button.RightBumper]);
-		GUILayout.Label("LeftStick\t| "	 + myTar.currentButtons[(int)InputManager.Button.LeftStick]		 + "\t| " + myTar.previousButtons[(int)InputManager.Button.LeftStick]);
-		GUILayout.Label("RightStick\t| " + myTar.currentButtons[(int)InputManager.Button.RightStick]	 + "\t| " + myTar.previousButtons[(int)InputManager.Button.RightStick]);
-		GUILayout.Label("Back\t| "		 + myTar.currentButtons[(int)InputManager.Button.Back]			 + "\t| " + myTar.previousButtons[(int)InputManager.Button.Back]);
-		GUILayout.Label("Start\t| "		 + myTar.currentButtons[(int)InputManager.Button.Start]			 + "\t| " + myTar.previousButtons[(int)InputManager.Button.Start]);
-		GUILayout.Label("Dp_Up\t| "		 + myTar.currentButtons[(int)InputManager.Button.Dpad_Up]		 + "\t| " + myTar.previousButtons[(int)InputManager.Button.Dpad_Up]);
-		GUILayout.Label("Dp_Right\t| "	 + myTar.currentButtons[(int)InputManager.Button.Dpad_Right]	 + "\t| " + myTar.previousButtons[(int)InputManager.Button.Dpad_Right]);
-		GUILayout.Label("Dp_Down\t| "	 + myTar.currentButtons[(int)InputManager.Button.Dpad_Down]		 + "\t| " + myTar.previousButtons[(int)InputManager.Button.Dpad_Down]);
-		GUILayout.Label("Dp_Left\t| "	 + myTar.currentButtons[(int)InputManager.Button.Dpad_Left]		 + "\t| " + myTar.previousButtons[(int)InputManager.Button.Dpad_Left]);
-		GUILayout.Label("Dp_UR\t| "		 + myTar.currentButtons[(int)InputManager.Button.Dpad_UpRight]	 + "\t| " + myTar.previousButtons[(int)InputManager.Button.Dpad_UpRight]);
-		GUILayout.Label("Dp_DR\t| "		 + myTar.currentButtons[(int)InputManager.Button.Dpad_DownRight] + "\t| " + myTar.previousButtons[(int)InputManager.Button.Dpad_DownRight]);
-		GUILayout.Label("Dp_DL\t| "		 + myTar.currentButtons[(int)InputManager.Button.Dpad_DownLeft]	 + "\t| " + myTar.previousButtons[(int)InputManager.Button.Dpad_DownLeft]);
-		GUILayout.Label("Dp_UL\t| "		 + myTar.currentButtons[(int)InputManager.Button.Dpad_UpLeft]	 + "\t| " + myTar.previousButtons[(int)InputManager.Button.Dpad_UpLeft]);
+		GUILayout.Label("A\t| "			 + myTar.currentButtons[(int)InputManager.ControllerButton.A]				 + "\t| " + myTar.previousButtons[(int)InputManager.ControllerButton.A]);
+		GUILayout.Label("B\t| "			 + myTar.currentButtons[(int)InputManager.ControllerButton.B]				 + "\t| " + myTar.previousButtons[(int)InputManager.ControllerButton.B]);
+		GUILayout.Label("X\t| "			 + myTar.currentButtons[(int)InputManager.ControllerButton.X]				 + "\t| " + myTar.previousButtons[(int)InputManager.ControllerButton.X]);
+		GUILayout.Label("Y\t| "			 + myTar.currentButtons[(int)InputManager.ControllerButton.Y]				 + "\t| " + myTar.previousButtons[(int)InputManager.ControllerButton.Y]);
+		GUILayout.Label("LeftBump\t| "	 + myTar.currentButtons[(int)InputManager.ControllerButton.LeftBumper]		 + "\t| " + myTar.previousButtons[(int)InputManager.ControllerButton.LeftBumper]);
+		GUILayout.Label("RightBump\t| "	 + myTar.currentButtons[(int)InputManager.ControllerButton.RightBumper]		 + "\t| " + myTar.previousButtons[(int)InputManager.ControllerButton.RightBumper]);
+		GUILayout.Label("LeftStick\t| "	 + myTar.currentButtons[(int)InputManager.ControllerButton.LeftStick]		 + "\t| " + myTar.previousButtons[(int)InputManager.ControllerButton.LeftStick]);
+		GUILayout.Label("RightStick\t| " + myTar.currentButtons[(int)InputManager.ControllerButton.RightStick]		 + "\t| " + myTar.previousButtons[(int)InputManager.ControllerButton.RightStick]);
+		GUILayout.Label("Back\t| "		 + myTar.currentButtons[(int)InputManager.ControllerButton.Back]			 + "\t| " + myTar.previousButtons[(int)InputManager.ControllerButton.Back]);
+		GUILayout.Label("Start\t| "		 + myTar.currentButtons[(int)InputManager.ControllerButton.Start]			 + "\t| " + myTar.previousButtons[(int)InputManager.ControllerButton.Start]);
+		GUILayout.Label("Dp_Up\t| "		 + myTar.currentButtons[(int)InputManager.ControllerButton.Dpad_Up]			 + "\t| " + myTar.previousButtons[(int)InputManager.ControllerButton.Dpad_Up]);
+		GUILayout.Label("Dp_Right\t| "	 + myTar.currentButtons[(int)InputManager.ControllerButton.Dpad_Right]		 + "\t| " + myTar.previousButtons[(int)InputManager.ControllerButton.Dpad_Right]);
+		GUILayout.Label("Dp_Down\t| "	 + myTar.currentButtons[(int)InputManager.ControllerButton.Dpad_Down]		 + "\t| " + myTar.previousButtons[(int)InputManager.ControllerButton.Dpad_Down]);
+		GUILayout.Label("Dp_Left\t| "	 + myTar.currentButtons[(int)InputManager.ControllerButton.Dpad_Left]		 + "\t| " + myTar.previousButtons[(int)InputManager.ControllerButton.Dpad_Left]);
+		GUILayout.Label("Dp_UR\t| "		 + myTar.currentButtons[(int)InputManager.ControllerButton.Dpad_UpRight]	 + "\t| " + myTar.previousButtons[(int)InputManager.ControllerButton.Dpad_UpRight]);
+		GUILayout.Label("Dp_DR\t| "		 + myTar.currentButtons[(int)InputManager.ControllerButton.Dpad_DownRight]	 + "\t| " + myTar.previousButtons[(int)InputManager.ControllerButton.Dpad_DownRight]);
+		GUILayout.Label("Dp_DL\t| "		 + myTar.currentButtons[(int)InputManager.ControllerButton.Dpad_DownLeft]	 + "\t| " + myTar.previousButtons[(int)InputManager.ControllerButton.Dpad_DownLeft]);
+		GUILayout.Label("Dp_UL\t| "		 + myTar.currentButtons[(int)InputManager.ControllerButton.Dpad_UpLeft]		 + "\t| " + myTar.previousButtons[(int)InputManager.ControllerButton.Dpad_UpLeft]);
 		EditorGUILayout.EndVertical();
 
 		EditorGUILayout.BeginVertical();
@@ -52,6 +52,6 @@ public class InputManagerEditor : Editor {
 		EditorGUILayout.EndVertical();
 
 		EditorGUILayout.EndHorizontal();
-
+		*/
 	}
 }
