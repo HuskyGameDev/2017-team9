@@ -60,6 +60,7 @@ namespace PuzzleComponents {
 		}
 
 		public static void ReturnDataBeam(GameObject beam) {
+			Debug.Log("Ditching");
 			//Cannot return a nonexistant beam
 			if (beam == null)
 				return;

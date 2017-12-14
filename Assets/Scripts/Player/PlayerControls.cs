@@ -60,8 +60,6 @@ public class PlayerControls : MonoBehaviour {
 					}
 					else {
 						//Otherwise create the connection and clear the connectionBuffer
-						connectionBuffer.DisconnectPartner();
-						t.DisconnectPartner();
 						t.CreateConnection(connectionBuffer);
 						connectionBuffer = null;
 					}

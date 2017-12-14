@@ -28,7 +28,15 @@ namespace PuzzleComponents {
 		/// <param name="other"></param>
 		public void CreateConnection(DataPoint other) {
 			//Do not connect to ourself
-			if (other == this) return;
+			if (other == this)
+				return;
+
+			if (other == partner)
+				return;
+
+			//disconnect our new partner if they had one
+			if (other.partner != null)
+				other.DisconnectPartner();
 
 			//Remove our old partner
 			if (partner != null) {
@@ -51,6 +59,7 @@ namespace PuzzleComponents {
 		/// </summary>
 		/// <returns></returns>
 		public DataPoint DisconnectPartner() {
+			Debug.Log("Attempting a disconnect.");
 			//Store the partner to return later
 			DataPoint t = partner;
 
@@ -62,6 +71,8 @@ namespace PuzzleComponents {
 			this.partner = null;
 
 			DataBeamPool.ReturnDataBeam(beam);
+			this.owner.ConnectionChange();
+			t.owner.ConnectionChange();
 
 			return t;
 		}
@@ -71,10 +82,6 @@ namespace PuzzleComponents {
 		/// </summary>
 		/// <param name="other"></param>
 		public void ChangePartner(DataPoint other) {
-			//Do nothing if we already have this partner.
-			if (other == partner)
-				return;
-
 			this.partner = other;
 			this.owner.ConnectionChange();
 			this.partner.owner.ConnectionChange();
