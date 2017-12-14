@@ -15,6 +15,7 @@ public class PlayerControls : MonoBehaviour {
 
 	void Awake () {
 		body = this.gameObject.GetComponent<CharacterController>();
+		this.internalRotation = this.gameObject.transform.rotation.y;
 	}
 
 	private void FixedUpdate() {
