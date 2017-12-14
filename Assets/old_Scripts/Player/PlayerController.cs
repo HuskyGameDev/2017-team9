@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour {
 
 
 	void Update() {
-		cursor.Switch(cursor.defaultCursor);
+		//cursor.Switch(cursor.defaultCursor);
 		Cursor.lockState = CursorLockMode.Locked;
 
 		RaycastHit clickInfo;
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour {
 		Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * 1.5f);
 
 		if (clickInfo.transform != null && clickInfo.transform.gameObject.GetComponents<Interactable>().Length > 0) {
-			cursor.Switch(cursor.overCursor);
+			//cursor.Switch(cursor.overCursor);
 			if (Input.GetButtonDown("Fire1")) {
 				foreach (Interactable i in clickInfo.transform.gameObject.GetComponents<Interactable>()) {
 					i.Interact();

@@ -31,6 +31,10 @@ namespace PuzzleComponents {
 		/// </summary>
 		/// <returns></returns>
 		public static bool DeepComparison(DataSegment A, DataSegment B) {
+			//If either of them is null, return null unless they are both null.
+			if (A == null || B == null)
+				return (A == null && B == null);
+
 			//They cannot be the same if they have a different number of children
 			if (A.children.Length != B.children.Length)
 				return false;

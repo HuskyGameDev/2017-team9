@@ -22,9 +22,10 @@ GameObject:
   - component: {fileID: 33824183114713284}
   - component: {fileID: 23954006514461594}
   - component: {fileID: 114323779666085092}
+  - component: {fileID: 136620827125547756}
   m_Layer: 0
   m_Name: DataPoint
-  m_TagString: Untagged
+  m_TagString: DataPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,3 +95,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   partner: {fileID: 0}
   owner: {fileID: 0}
+  beam: {fileID: 0}
+--- !u!136 &136620827125547756
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1906810517428398}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}

@@ -3,15 +3,21 @@
 [RequireComponent(typeof(CharacterController))]
 public class PlayerControls : MonoBehaviour {
 
-	public GameObject cam;
+	public GameObject playerCamera;
 	public float moveSpeed = 10.0f;
 	public float rotationSpeed = 1.0f;
 	public float pitchSpeed = 1.0f;
 	public Vector2 pitchBounds = new Vector2(-45,45);
+	public LayerMask ignoreMask;
+	public CursorManager cursor;
+
 	private float internalRotation = 0.0f;
 	private float cameraPitch = 0.0f;
 
 	private CharacterController body;
+
+	private PuzzleComponents.DataPoint connectionBuffer;
+
 
 	void Awake () {
 		this.internalRotation = this.gameObject.transform.rotation.y;
@@ -23,7 +29,38 @@ public class PlayerControls : MonoBehaviour {
 		handleMovement();
 	}
 	void Update () {
-		//DEBUGTEST_INPUT();
+		cursor.Switch(cursor.defaultCursor);
+		Cursor.lockState = CursorLockMode.Locked;
+
+		RaycastHit clickInfo;
+		Physics.SphereCast(playerCamera.transform.position, .1f, playerCamera.transform.forward, out clickInfo, 1.5f, ignoreMask);
+		Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * 1.5f);
+
+		if (clickInfo.transform != null) {
+
+			//Check if we are over a data point
+			if (clickInfo.transform.gameObject.tag == "DataPoint") {
+				//If we are this means we can interact so change the cursor
+				cursor.Switch(cursor.overCursor);
+				//Check if we want to interact with the data point
+				if (InputManager.GetGameButtonDown(InputManager.GameButton.Interact1)) {
+					//Get the data point of our target
+					PuzzleComponents.DataPoint t = clickInfo.transform.gameObject.GetComponent<PuzzleComponents.DataPoint>();
+					//Store it if we are not storing one already
+					if (connectionBuffer == null) {
+						connectionBuffer = t;
+					}
+					else {
+						//Otherwise create the connection and clear the connectionBuffer
+						connectionBuffer.DisconnectPartner();
+						t.DisconnectPartner();
+						t.CreateConnection(connectionBuffer);
+						connectionBuffer = null;
+					}
+				}
+			}
+		}
+
 		/*
 		if (Input.GetKeyDown(KeyCode.M)) {
 			AkSoundEngine.PostEvent("Door_Close", this.gameObject);
@@ -36,9 +73,7 @@ public class PlayerControls : MonoBehaviour {
 		}
 		 */
 
-		if (InputManager.GetGameButtonDown(InputManager.GameButton.Interact2)) {
-			Debug.Log("Second Interaction Used.");
-		} 
+
 
 	}
 
@@ -81,6 +116,6 @@ public class PlayerControls : MonoBehaviour {
 		if (cameraPitch < pitchBounds.x) cameraPitch = pitchBounds.x;
 		if (cameraPitch > pitchBounds.y) cameraPitch = pitchBounds.y;
 
-		cam.transform.localRotation = Quaternion.Euler(cameraPitch, 0.0f, 0.0f);
+		playerCamera.transform.localRotation = Quaternion.Euler(cameraPitch, 0.0f, 0.0f);
 	}
 }

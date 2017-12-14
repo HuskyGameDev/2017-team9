@@ -55,7 +55,8 @@ namespace PuzzleComponents {
 			DataPoint t = partner;
 
 			//Set our partners connection to null
-			this.partner.partner = null;
+			if (this.partner != null)
+				this.partner.partner = null;
 
 			//Remove our partner
 			this.partner = null;
@@ -74,8 +75,8 @@ namespace PuzzleComponents {
 			if (other == partner)
 				return;
 
-			this.owner.ConnectionChange();
 			this.partner = other;
+			this.owner.ConnectionChange();
 		}
 
 		/// <summary>

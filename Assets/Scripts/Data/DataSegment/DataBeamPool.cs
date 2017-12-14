@@ -60,12 +60,16 @@ namespace PuzzleComponents {
 		}
 
 		public static void ReturnDataBeam(GameObject beam) {
+			//Cannot return a nonexistant beam
+			if (beam == null)
+				return;
+			beam.SetActive(false);
 			//Shuffle this beam to the end of the list
 			instance.beams.Remove(beam);
 			instance.beams.Add(beam);
 
 			//Disable the beam so it can no longer be seen.
-			beam.SetActive(false);
+
 			//Mark is as unused
 			instance.used--;
 		}
