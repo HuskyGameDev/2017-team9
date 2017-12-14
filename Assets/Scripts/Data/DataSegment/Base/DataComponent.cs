@@ -25,7 +25,7 @@ namespace PuzzleComponents {
 		/// <summary>
 		/// Stores the previously calculated input.
 		/// </summary>
-		private DataSegment cache;
+		private DataSegment cache = null;
 
 		public void Awake() {
 			//Make sure we own all of our datapoints
@@ -38,24 +38,27 @@ namespace PuzzleComponents {
 
 
 			//Make sure our output is appropriate.
-			CalculateOutput();
+			ConnectionChange();
 		}
 
 		/// <summary>
 		/// Recalculates output and signals output connections to update if the result is different from the cache.
 		/// </summary>
 		public void ConnectionChange() {
+			Debug.Log("I have been told to update " + this.gameObject.transform.name);
 			//get the new output
 			DataSegment newResult = CalculateOutput();
 
 			//Compare it to the cached DataSegment
 			if (DataSegment.DeepComparison(cache, newResult) == false) {
+				Debug.Log("I do need to update! " + this.gameObject.transform.name);
 				//Update the result
 				cache = newResult;
 
 				//Signal all output connections that we have changed our data.
 				for (int i = 0; i < output.Length; i++) {
-					output[i].partner.owner.ConnectionChange();
+					if (output[i].IsConnected())
+						output[i].partner.owner.ConnectionChange();
 				}
 			}
 			//Otherwise we dont have to do anything since nothing has changed
@@ -72,10 +75,23 @@ namespace PuzzleComponents {
 		}
 
 		/// <summary>
+		/// REturns the data segements string with protection against it being null
+		/// </summary>
+		/// <returns></returns>
+		public string GetOutputString() {
+			if (cache == null)
+				return "[N]<NULL>";
+			else
+				return cache.GetStringRepresentation();
+		}
+
+		/// <summary>
 		/// Calculates the output of this data component
 		/// </summary>
 		/// <returns></returns>
 		public abstract DataSegment CalculateOutput();
+
+		public abstract string GetString();
 
 	}	
 }

@@ -22,5 +22,9 @@ namespace PuzzleComponents {
 			Debug.Log(source.GetStringRepresentation());
 			return source;
 		}
+
+		public override string GetString() {
+			return "Source";
+		}
 	}
 }

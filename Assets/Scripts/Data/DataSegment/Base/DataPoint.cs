@@ -77,6 +77,7 @@ namespace PuzzleComponents {
 
 			this.partner = other;
 			this.owner.ConnectionChange();
+			this.partner.owner.ConnectionChange();
 		}
 
 		/// <summary>

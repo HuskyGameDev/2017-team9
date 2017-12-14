@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DataConnection
   - DataPoint
+  - Databeam
   layers:
   - Default
   - TransparentFX

@@ -10,6 +10,7 @@ public class PlayerControls : MonoBehaviour {
 	public Vector2 pitchBounds = new Vector2(-45,45);
 	public LayerMask ignoreMask;
 	public CursorManager cursor;
+	public UIManager PlayerUI;
 
 	private float internalRotation = 0.0f;
 	private float cameraPitch = 0.0f;
@@ -36,16 +37,23 @@ public class PlayerControls : MonoBehaviour {
 		Physics.SphereCast(playerCamera.transform.position, .1f, playerCamera.transform.forward, out clickInfo, 1.5f, ignoreMask);
 		Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * 1.5f);
 
+		PlayerUI.type.text = "";
+		PlayerUI.output.text = "";
+
 		if (clickInfo.transform != null) {
 
 			//Check if we are over a data point
 			if (clickInfo.transform.gameObject.tag == "DataPoint") {
 				//If we are this means we can interact so change the cursor
 				cursor.Switch(cursor.overCursor);
+				PuzzleComponents.DataPoint t = clickInfo.transform.gameObject.GetComponent<PuzzleComponents.DataPoint>();
+				PlayerUI.type.text = t.owner.GetString();
+				PlayerUI.output.text = t.owner.GetOutputString();
+
 				//Check if we want to interact with the data point
 				if (InputManager.GetGameButtonDown(InputManager.GameButton.Interact1)) {
 					//Get the data point of our target
-					PuzzleComponents.DataPoint t = clickInfo.transform.gameObject.GetComponent<PuzzleComponents.DataPoint>();
+
 					//Store it if we are not storing one already
 					if (connectionBuffer == null) {
 						connectionBuffer = t;

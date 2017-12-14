@@ -244,6 +244,7 @@ namespace PuzzleComponents {
 		/// </summary>
 		/// <param name="bit"></param>
 		public DataSegment(Bit bit, bool isLinked) {
+			this.children = new DataSegment[0];
 			this.bit = bit;
 			this.linked = isLinked;
 		}
