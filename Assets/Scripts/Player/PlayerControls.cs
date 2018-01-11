@@ -21,6 +21,7 @@ public class PlayerControls : MonoBehaviour {
 
 
 	void Awake () {
+		//Debug.Log(this.gameObject.transform.rotation.y + "|" + this.gameObject.transform.localRotation.y);
 		this.internalRotation = this.gameObject.transform.rotation.y;
 		body = this.gameObject.GetComponent<CharacterController>();
 	}
@@ -39,6 +40,7 @@ public class PlayerControls : MonoBehaviour {
 
 		PlayerUI.type.text = "";
 		PlayerUI.output.text = "";
+		PlayerUI.input.text = "";
 
 		if (clickInfo.transform != null) {
 
@@ -49,6 +51,10 @@ public class PlayerControls : MonoBehaviour {
 				PuzzleComponents.DataPoint t = clickInfo.transform.gameObject.GetComponent<PuzzleComponents.DataPoint>();
 				PlayerUI.type.text = t.owner.GetString();
 				PlayerUI.output.text = t.owner.GetOutputString();
+
+				if ((t.owner.input.Length > 0 && t.owner.input[0] != null && t.owner.input[0].IsConnected() != false && t.owner.input[0].partner.owner.GetOutput() != null)) {
+					PlayerUI.input.text = t.owner.input[0].partner.owner.GetOutputString();
+				}
 
 				//Check if we want to interact with the data point
 				if (InputManager.GetGameButtonDown(InputManager.GameButton.Interact1)) {

@@ -7,4 +7,5 @@ using UnityEngine.UI;
 public class UIManager {
 	public Text type;
 	public Text output;
+	public Text input;
 }
