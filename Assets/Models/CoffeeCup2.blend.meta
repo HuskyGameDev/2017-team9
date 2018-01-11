@@ -121,6 +121,7 @@ ModelImporter:
     2300070: Mug_MeshPart7
     2300072: Mug_MeshPart8
     2300074: Mug_MeshPart9
+    2300076: //RootNode
     3300000: Mug_MeshPart0
     3300002: Mug_MeshPart1
     3300004: Mug_MeshPart10
@@ -159,6 +160,7 @@ ModelImporter:
     3300070: Mug_MeshPart7
     3300072: Mug_MeshPart8
     3300074: Mug_MeshPart9
+    3300076: //RootNode
     4300000: Mug_MeshPart0
     4300002: Mug_MeshPart1
     4300004: Mug_MeshPart2
@@ -197,6 +199,7 @@ ModelImporter:
     4300070: Mug_MeshPart35
     4300072: Mug_MeshPart36
     4300074: Mug_MeshPart37
+    4300076: Mug
     7400000: Default Take
     9500000: //RootNode
   materials:
