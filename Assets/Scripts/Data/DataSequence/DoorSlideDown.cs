@@ -4,18 +4,32 @@ using UnityEngine;
 namespace PuzzleComponents {
 	public class DoorSlideDown : DataTrigger {
 
-		public override void Trigger(DataSequence sequence) {
+		public Vector3 offset;
 
+		public bool triggered = false;
+		public float progress = 0.0f;
+
+		Vector3 start;
+
+		public override void Trigger() {
+			triggered = true;
 		}
 
 		// Use this for initialization
 		void Start() {
-
+			start = this.transform.position;
 		}
 
 		// Update is called once per frame
 		void Update() {
-
+			if (triggered && progress <= 1.0f) {
+				progress += Time.deltaTime;
+				this.transform.position = Vector3.Lerp(start, start + offset, progress);
+			}
+			else if (progress > 1.0f) {
+				this.gameObject.SetActive(false);
+			}
+			
 		}
 	}
 }

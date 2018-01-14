@@ -7,16 +7,28 @@ namespace PuzzleComponents {
 		public enum CombineType { Left, Center, Right};
 
 		public override DataSequence CalculateOutput() {
-			throw new System.NotImplementedException();
+			DataSequence output = new DataSequence(new DataSegment[] { });
+
+			for (int i = 0; i < input.Length; i++) {
+				if (this.input[i].IsConnected() == false || this.input[i].partner.owner.GetOutput() == null)
+					continue;
+				DataSequence dataInput = this.input[i].partner.owner.GetOutput();
+				for (int k = 0; k < dataInput.segments.Length; k++) {
+					output.segments.AddElementAtEnd(dataInput.segments.Get(k));
+				}
+				
+			}
+
+			return output;
 		}
 
 		public override string GetString() {
 			return "Combiner";
-			//throw new System.NotImplementedException();
 		}
 
 		public override void Setup() {
-			throw new System.NotImplementedException();
+			//none Needed
+			//throw new System.NotImplementedException();
 		}
 
 		// Use this for initialization

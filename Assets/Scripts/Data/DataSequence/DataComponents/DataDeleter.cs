@@ -6,6 +6,9 @@ using UnityEngine;
 namespace PuzzleComponents {
 	public class DataDeleter : DataComponent {
 
+		public enum DeleteType { Center, Outside }
+		private static readonly string[] DeleteTypeToText = new string[] { "Center", "Outside" };
+		public DeleteType type;
 
 		public override DataSequence CalculateOutput() {
 			if (this.input[0] == null || this.input[0].IsConnected() == false || this.input[0].partner.owner.GetOutput() == null) {
@@ -15,52 +18,53 @@ namespace PuzzleComponents {
 			}
 
 			//Otherwise get a copy of our inputs data
-			DataSequence input = this.input[0].partner.owner.GetOutput();
+			DataSequence dataInput = this.input[0].partner.owner.GetOutput();
+			if (type == DeleteType.Center || type == DeleteType.Outside) {
+				int length = dataInput.GetBitCount();
+				//Set the index we are trying to delete dependent on the delete type
+				int indexA = (type == DeleteType.Outside) ? 0							: (length / 2) - 1;
+				int indexB = (type == DeleteType.Outside) ? dataInput.GetBitCount() - 1	: indexA + 1;
+				DataSegment segmentA;
+				DataSegment segmentB;
+				int segmentAIndex;
+				int segmentBIndex;
+				bool linkedA;
+				bool linkedB;
+				dataInput.GetBitAtIndex(indexA, out linkedA, out segmentA, out segmentAIndex);
+				dataInput.GetBitAtIndex(indexB, out linkedB, out segmentB, out segmentBIndex);
 
-			int length = input.GetBitCount();
-			int indexA = (length / 2) - 1;
-			int indexB = indexA + 1;
-			DataSegment segmentA;
-			DataSegment segmentB;
-			int segmentAIndex;
-			int segmentBIndex;
-			bool linkedA;
-			bool linkedB;
-			input.GetBitAtIndex(indexA, out linkedA, out segmentA, out segmentAIndex);
-			input.GetBitAtIndex(indexB, out linkedB, out segmentB, out segmentBIndex);
 
+				//Debug.Log(length + "|" + indexA + "|" + indexB);
 
-			//Debug.Log(length + "|" + indexA + "|" + indexB);
-
-			if (linkedB && linkedA && segmentA == segmentB) {
-				//We delete this whole segment!
-				input.segments.Remove(segmentAIndex);
-			}
-			else {
-				//We remove B first to prevent array issues
-				if (linkedB) {
-					input.segments.Remove(segmentBIndex);
+				if (linkedB && linkedA && segmentA == segmentB) {
+					//We delete this whole segment!
+					dataInput.segments.Remove(segmentAIndex);
 				}
 				else {
-					input.segments.Get(segmentBIndex).bits.Remove(indexB);
-				}
-				if (linkedA) {
-					input.segments.Remove(segmentAIndex);
-				}
-				else {
-					input.segments.Get(segmentBIndex).bits.Remove(indexA);
-				}
+					//We remove B first to prevent array issues
+					if (linkedB) {
+						dataInput.segments.Remove(segmentBIndex);
+					}
+					else {
+						dataInput.segments.Get(segmentBIndex).bits.Remove(indexB);
+					}
+					if (linkedA) {
+						dataInput.segments.Remove(segmentAIndex);
+					}
+					else {
+						dataInput.segments.Get(segmentBIndex).bits.Remove(indexA);
+					}
 
+				}
 			}
 
 
-
-			return input;
+			return dataInput;
 			//throw new System.NotImplementedException();
 		}
 
 		public override string GetString() {
-			return "Deleter";
+			return DeleteTypeToText[(int)type] + " Deleter";
 			//throw new System.NotImplementedException();
 		}
 

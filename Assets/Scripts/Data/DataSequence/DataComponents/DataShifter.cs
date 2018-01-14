@@ -27,20 +27,20 @@ namespace PuzzleComponents {
 				//Debug.Log(this.input[0].owner.gameObject.name + " Did not calculate any valid input. HasPoint:" + (this.input[0] == null) + "|IsConnected:" + (this.input[0].IsConnected() == false) + "|HasOutput:" + (this.input[0].owner.GetOutput() == null));
 				return null;
 			}
-			DataSequence input = this.input[0].partner.owner.GetOutput();
+			DataSequence dataInput = this.input[0].partner.owner.GetOutput();
 			//Break down the input so we can perform shifts easier.
-			input.Fracture();
+			dataInput.Fracture();
 			//Debug.Log(input.GetStringRepresentation());
 			//Branch on the different shifting types
 			for (int i = 0; i < amount; i++) {
-				SlideOperation(input.segments.internalArray, shiftType, moveRight);
+				SlideOperation(dataInput.segments.internalArray, shiftType, moveRight);
 			}
 			//Debug.Log(input.GetStringRepresentation());
 
 			//[TODO] This is not entirely necessary but helpful for getting strings easier. Consider removing for efficiency inthe future,
-			input.Simplify();
+			dataInput.Simplify();
 
-			return input;
+			return dataInput;
 		}
 
 		/// <summary>
@@ -104,7 +104,7 @@ namespace PuzzleComponents {
 		}
 
 		public override string GetString() {
-			return "Shifter " + ShiftTypeToText[(int)shiftType] + "| " + ((moveRight) ? "Right":"Left")+">" + amount;
+			return ShiftTypeToText[(int)shiftType] +  " Shifter, " + ((moveRight) ? "Right ":"Left ") + amount + " time(s)";
 		}
 
 		public override void Setup() {

@@ -21,6 +21,8 @@ namespace PuzzleComponents {
 		/// </summary>
 		public DataPoint[] output;
 
+		public DataTrigger[] triggers;
+
 
 		/// <summary>
 		/// Stores the previously calculated input.
@@ -31,8 +33,8 @@ namespace PuzzleComponents {
 			}
 			set {
 				_cache = value;
-				foreach (DataTrigger t in this.gameObject.GetComponents<DataTrigger>()) {
-					t.Trigger(cache);
+				foreach (DataTrigger t in triggers) {
+					t.DataChange(_cache);
 				}
 			}
 		}
@@ -117,8 +119,11 @@ namespace PuzzleComponents {
 		public string GetOutputString() {
 			if (cache == null)
 				return "[N]<NULL>";
-			else
-				return cache.GetStringRepresentation();
+			else {
+				DataSequence t = GetOutput();
+				t.Simplify();
+				return t.GetStringRepresentation();
+			}
 		}
 
 		/// <summary>

@@ -11,7 +11,7 @@ public class InputManagerEditor : Editor {
 		base.OnInspectorGUI();
 		/*
 		InputManager myTar = (InputManager)target;
-
+		
 		//The following adds a section to input manager
 		//To compactly display what is going on with 
 		//The input

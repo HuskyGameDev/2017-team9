@@ -17,9 +17,9 @@ namespace PuzzleComponents {
 			}
 
 			//Otherwise get a copy of our inputs data
-			DataSequence input = this.input[0].partner.owner.GetOutput();
+			DataSequence dataInput = this.input[0].partner.owner.GetOutput();
 
-			DataSequence output = input.CreateDeepCopy();
+			DataSequence output = dataInput.CreateDeepCopy();
 			output.segments.AddElementAtPosition(new DataSegment(new Bit[] { leftAdd.CreateCopy() }), 0);
 			output.segments.AddElementAtEnd(new DataSegment(new Bit[] { rightAdd.CreateCopy()}));
 

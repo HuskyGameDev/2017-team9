@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using PuzzleComponents;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerControls : MonoBehaviour {
@@ -35,12 +37,13 @@ public class PlayerControls : MonoBehaviour {
 		Cursor.lockState = CursorLockMode.Locked;
 
 		RaycastHit clickInfo;
-		Physics.SphereCast(playerCamera.transform.position, .1f, playerCamera.transform.forward, out clickInfo, 1.5f, ignoreMask);
+		Physics.SphereCast(playerCamera.transform.position, .1f, playerCamera.transform.forward, out clickInfo, 2.0f, ignoreMask);
 		Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * 1.5f);
 
 		PlayerUI.type.text = "";
 		PlayerUI.output.text = "";
 		PlayerUI.input.text = "";
+		PlayerUI.trigger.text = "";
 
 		if (clickInfo.transform != null) {
 
@@ -48,12 +51,18 @@ public class PlayerControls : MonoBehaviour {
 			if (clickInfo.transform.gameObject.tag == "DataPoint") {
 				//If we are this means we can interact so change the cursor
 				cursor.Switch(cursor.overCursor);
-				PuzzleComponents.DataPoint t = clickInfo.transform.gameObject.GetComponent<PuzzleComponents.DataPoint>();
+				DataPoint t = clickInfo.transform.gameObject.GetComponent<PuzzleComponents.DataPoint>();
 				PlayerUI.type.text = t.owner.GetString();
-				PlayerUI.output.text = t.owner.GetOutputString();
+				if (t.owner.output.Length > 0)
+					PlayerUI.output.text = t.owner.GetOutputString();
 
 				if ((t.owner.input.Length > 0 && t.owner.input[0] != null && t.owner.input[0].IsConnected() != false && t.owner.input[0].partner.owner.GetOutput() != null)) {
 					PlayerUI.input.text = t.owner.input[0].partner.owner.GetOutputString();
+				}
+
+				//Create all the trigger panels
+				for (int k = 0; k < t.owner.triggers.Length; k++) {
+					PlayerUI.trigger.text = PlayerUI.trigger.text + "\n Trigger: " + ((new DataSequence(t.owner.triggers[k].triggerData)).GetStringRepresentation());
 				}
 
 				//Check if we want to interact with the data point

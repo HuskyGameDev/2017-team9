@@ -34,18 +34,71 @@ namespace PuzzleComponents {
 			if (A == null || B == null)
 				return (A == null && B == null);
 
-			//They cannot be the same if they have a different number of bits
-			if (A.segments.Length != B.segments.Length)
-				return false;
 
-			//Check all of the bits
-			for (int i = 0; i < A.segments.Length; i++) {
-				if (DataSegment.Comparison(A.segments.Get(i), B.segments.Get(i)) == false)
-					return false;
+
+			//If we are comparing no bits it is true.
+			if (A.segments.Length == 0 && B.segments.Length == 0) {
+				return true;
+			}
+			else if (A.segments.Length == 0 || B.segments.Length == 0) {
+				//But if only one of them is empty we cant match
+				return false;
 			}
 
-			//If we have not hit a fail condition by this point, we assume they are equal.
-			return true;
+			//Now we operate on all bits
+			//We keep track of the segment we are on
+			int currentSegmentA = 0;
+			int currentSegmentB = 0;
+			//We keep track of the bits we are currently looking at
+			int currentBitA = 0;
+			int currentBitB = 0;
+			Debug.Log("Comparing: ");
+			Debug.Log(A.GetStringRepresentation());
+			Debug.Log(B.GetStringRepresentation());
+
+			while (true) {
+
+				if (currentBitA >= A.segments.Get(currentSegmentA).bits.Length) {
+					//We have reached the end of this segment, move on to the next one
+					currentBitA = 0;
+					currentSegmentA++;
+				}
+				if (currentBitB >= B.segments.Get(currentSegmentB).bits.Length) {
+					//We have reached the end of this segment, move on to the next one
+					currentBitB = 0;
+					currentSegmentB++;
+				}
+
+				if (currentSegmentA >= A.segments.Length && currentSegmentB >= B.segments.Length) {
+					//If we have made it to the end of all segments and have not hit a fail condition, that means we are equal.
+					Debug.Log("Passed");
+					return true;
+				}
+
+				if (currentSegmentA >= A.segments.Length || currentSegmentB >= B.segments.Length) {
+					//We have reached the end of only one of them, we cannot be the same
+					Debug.Log("Failed");
+					return false;
+				}
+
+				if (A.segments.Get(currentSegmentA).linked != B.segments.Get(currentSegmentB).linked) {
+					//Implicitly, we can assume that if both are not in a linked segment at the same time they are not equal
+					Debug.Log("Failed");
+					return false;
+				}
+
+				if (A.segments.Get(currentSegmentA).bits.Get(currentBitA).state != B.segments.Get(currentSegmentB).bits.Get(currentBitB).state) {
+					//The sate of the two bits we are looking at doesnt match, these cant be equal.
+					Debug.Log("Failed");
+					return false;
+				}
+
+
+
+				//Advance the bits we are looking at
+				currentBitA++;
+				currentBitB++;
+			}
 		}
 
 

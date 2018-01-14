@@ -6,15 +6,15 @@ using UnityEngine;
 namespace PuzzleComponents {
 	
 	/// <summary>
-	/// A data component whos whole purpose is to recieve data.
+	/// A data component used to connect two data points or as an end point for a 
 	/// </summary>
-	public class DataReciever : DataComponent {
+	public class DataConnector : DataComponent {
 
 
 		public override DataSequence CalculateOutput() {
-			if (this.input[0] == null || this.input[0].IsConnected() == false || this.input[0].partner.owner.GetOutput() == null) {
+			if (this.input == null || this.input.Length <= 0 || this.input[0] == null || this.input[0].IsConnected() == false || this.input[0].partner.owner.GetOutput() == null) {
 				//We do not have any output
-				Debug.Log(this.input[0].owner.gameObject.name + " Did not calculate any valid input " + (this.input[0] == null) + " " + (this.input[0].IsConnected() == false) + " " + (this.input[0].owner.GetOutput() == null));
+				//Debug.Log(this.input[0].owner.gameObject.name + " Did not calculate any valid input " + (this.input[0] == null) + " " + (this.input[0].IsConnected() == false) + " " + (this.input[0].owner.GetOutput() == null));
 				return null;
 			}
 
@@ -24,7 +24,7 @@ namespace PuzzleComponents {
 		}
 
 		public override string GetString() {
-			return "Reciever";
+			return "Connector";
 		}
 
 		public override void Setup() {

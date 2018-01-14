@@ -9,6 +9,7 @@ namespace Puzzle {
 		//the dataconnection to watch
 		public DataConnection obvserve;
 		public Data triggerState;
+		
 
 
 		public UnityEvent toTrigger;
