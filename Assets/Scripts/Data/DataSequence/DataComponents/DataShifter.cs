@@ -22,12 +22,12 @@ namespace PuzzleComponents {
 
 
 		public override DataSequence CalculateOutput() {
-			if (this.input[0] == null || this.input[0].IsConnected() == false || this.input[0].partner.owner.GetOutput() == null) {
+			if (this.GetInput().Length <= 0) {
 				//We do not have any output
 				//Debug.Log(this.input[0].owner.gameObject.name + " Did not calculate any valid input. HasPoint:" + (this.input[0] == null) + "|IsConnected:" + (this.input[0].IsConnected() == false) + "|HasOutput:" + (this.input[0].owner.GetOutput() == null));
 				return null;
 			}
-			DataSequence dataInput = this.input[0].partner.owner.GetOutput();
+			DataSequence dataInput = this.GetInput()[0].GetOutput();
 			//Break down the input so we can perform shifts easier.
 			dataInput.Fracture();
 			//Debug.Log(input.GetStringRepresentation());

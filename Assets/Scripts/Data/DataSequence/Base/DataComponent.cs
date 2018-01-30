@@ -11,15 +11,7 @@ namespace PuzzleComponents {
 	/// </summary>
 	public abstract class DataComponent : MonoBehaviour {
 
-		/// <summary>
-		/// The list of input points that this component uses
-		/// </summary>
-		public DataPoint[] input;
-
-		/// <summary>
-		/// The list of output points that this component uses
-		/// </summary>
-		public DataPoint[] output;
+		public GridSquare attachedSquare;
 
 		public DataTrigger[] triggers;
 
@@ -46,33 +38,6 @@ namespace PuzzleComponents {
 			//Setup the non connection based part of the component.
 			Setup();
 
-			//Make sure we own all of our datapoints
-			foreach (DataPoint p in input) {
-				p.state = DataPoint.State.Input;
-				p.owner = this;
-				//This means we have a partner predefined by us, either by weird spawning or manual connection in the editor
-				if (p.partner != null) {
-					//So we need to store the partner temporarily and call CreateConnection with it. The partner has to be null so CreateConnection will execute properly 
-					DataPoint temp = p.partner;
-					p.partner = null;
-					p.CreateConnection(temp);
-				}
-
-			}
-			foreach (DataPoint p in output) {
-				p.state = DataPoint.State.Output;
-				p.owner = this;
-				//This means we have a partner predefined by us, either by weird spawning or manual connection in the editor
-				if (p.partner != null) {
-					//So we need to store the partner temporarily and call CreateConnection with it. The partner has to be null so CreateConnection will execute properly 
-					DataPoint temp = p.partner;
-					p.partner = null;
-					p.CreateConnection(temp);
-				}
-
-			}
-
-
 			//Make sure our output is appropriate now that everything is set up.
 			ConnectionChange();
 
@@ -93,9 +58,9 @@ namespace PuzzleComponents {
 				cache = newResult;
 
 				//Signal all output connections that we have changed our data.
-				for (int i = 0; i < output.Length; i++) {
-					if (output[i].IsConnected())
-						output[i].partner.owner.ConnectionChange();
+				for (int i = 0; i < attachedSquare.line.Length; i++) {
+					if (attachedSquare.connected[i] && (attachedSquare.socketState[i] == GridSquare.SocketState.Output || attachedSquare.socketState[i] == GridSquare.SocketState.Omni) && attachedSquare.line[i].GetOther(this) != null)
+						attachedSquare.line[i].GetOther(this).ConnectionChange();
 				}
 				
 			}
@@ -110,6 +75,23 @@ namespace PuzzleComponents {
 			if (cache == null)
 				return null;
 			return cache.CreateDeepCopy();
+		}
+
+		/// <summary>
+		/// Searches down the lines for any connected inputs along valid input
+		/// </summary>
+		/// <returns></returns>
+		public DataComponent[] GetInput() {
+			List<DataComponent> inputs = new List<DataComponent>();
+			for (int i = 0; i < attachedSquare.line.Length; i++) {
+				if ((attachedSquare.socketState[i] == GridSquare.SocketState.Input || attachedSquare.socketState[i] == GridSquare.SocketState.Omni) 
+					&& attachedSquare.line[i] != null 
+					&& attachedSquare.line[i].GetOther(this) != null) 
+					{
+					inputs.Add(attachedSquare.line[i].GetOther(this));
+				}
+			}
+			return inputs.ToArray();
 		}
 
 		/// <summary>
