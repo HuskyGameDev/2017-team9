@@ -84,7 +84,10 @@ namespace PuzzleComponents {
 		public DataComponent[] GetInput() {
 			List<DataComponent> inputs = new List<DataComponent>();
 			for (int i = 0; i < attachedSquare.line.Length; i++) {
-				if (attachedSquare.line[i] != null && attachedSquare.line[i].GetOther(this) != null) {
+				if ((attachedSquare.socketState[i] == GridSquare.SocketState.Input || attachedSquare.socketState[i] == GridSquare.SocketState.Omni) 
+					&& attachedSquare.line[i] != null 
+					&& attachedSquare.line[i].GetOther(this) != null) 
+					{
 					inputs.Add(attachedSquare.line[i].GetOther(this));
 				}
 			}
