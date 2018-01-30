@@ -36,8 +36,8 @@ public class PlayerControls : MonoBehaviour {
 		cursor.Switch(cursor.defaultCursor);
 		Cursor.lockState = CursorLockMode.Locked;
 
-		RaycastHit clickInfo;
-		Physics.SphereCast(playerCamera.transform.position, .1f, playerCamera.transform.forward, out clickInfo, 2.0f, ignoreMask);
+		RaycastHit rayInfo;
+		Physics.SphereCast(playerCamera.transform.position, .1f, playerCamera.transform.forward, out rayInfo, 2.0f, ignoreMask);
 		Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * 1.5f);
 
 		PlayerUI.type.text = "";
@@ -45,13 +45,15 @@ public class PlayerControls : MonoBehaviour {
 		PlayerUI.input.text = "";
 		PlayerUI.trigger.text = "";
 
-		if (clickInfo.transform != null) {
+		if (rayInfo.transform != null) {
 
+			//The following section was made not necessary when we switched away from the DataPoint connection scheme. It can be removed at a future date but for now exists for reference
+			/*
 			//Check if we are over a data point
-			if (clickInfo.transform.gameObject.tag == "DataPoint") {
+			if (rayInfo.transform.gameObject.tag == "DataPoint") {
 				//If we are this means we can interact so change the cursor
 				cursor.Switch(cursor.overCursor);
-				DataPoint t = clickInfo.transform.gameObject.GetComponent<PuzzleComponents.DataPoint>();
+				DataPoint t = rayInfo.transform.gameObject.GetComponent<PuzzleComponents.DataPoint>();
 				PlayerUI.type.text = t.owner.GetString();
 				if (t.owner.output.Length > 0)
 					PlayerUI.output.text = t.owner.GetOutputString();
@@ -79,7 +81,9 @@ public class PlayerControls : MonoBehaviour {
 						connectionBuffer = null;
 					}
 				}
-			}
+			}*/
+
+
 		}
 
 		/*
@@ -94,8 +98,44 @@ public class PlayerControls : MonoBehaviour {
 		}
 		 */
 
+		TerminalInteraction();
+	}
+
+	private GameObject last;
+
+	private void TerminalInteraction() {
+		RaycastHit rayInfo;
+		Physics.Raycast(playerCamera.GetComponent<Camera>().ScreenPointToRay(new Vector2(Screen.width * 0.5f , Screen.height * 0.5f)), out rayInfo, ignoreMask);
+		if (rayInfo.transform != null && rayInfo.transform.gameObject.tag == "DataTerminal") {
+			Vector3 surfacePoint = rayInfo.point - rayInfo.collider.transform.position;
+			Debug.Log(surfacePoint.y);
+			Debug.Log(rayInfo.textureCoord2);
+			Debug.Log(" " + Screen.width * rayInfo.textureCoord2.x + " " + Screen.height * rayInfo.textureCoord2.y);
 
 
+			Camera terminalCam = rayInfo.transform.gameObject.GetComponent<DataTerminal>().cam;
+
+			Vector2 guess = new Vector2(terminalCam.pixelHeight * rayInfo.textureCoord2.x, terminalCam.pixelHeight * rayInfo.textureCoord2.y);
+
+			if (last != null)
+				last.GetComponent<MeshRenderer>().materials[0].color = Color.white;
+
+			RaycastHit rayInfor2;
+			Physics.Raycast(terminalCam.ScreenPointToRay(guess), out rayInfor2);
+			if (rayInfor2.collider != null) {
+				Debug.Log(rayInfor2.collider.gameObject.transform.name);
+				last = rayInfor2.collider.gameObject;
+				last.GetComponent<MeshRenderer>().materials[0].color = Color.blue;
+			}
+			else {
+				last.GetComponent<MeshRenderer>().materials[0].color = Color.white;
+				last = null;
+			}
+
+		}
+
+		//Debug.Log(Input.mousePosition);
+		//
 	}
 
 	private void handleMovement() {

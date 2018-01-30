@@ -10,14 +10,14 @@ namespace PuzzleComponents {
 		public Bit rightAdd;
 
 		public override DataSequence CalculateOutput() {
-			if (this.input[0] == null || this.input[0].IsConnected() == false || this.input[0].partner.owner.GetOutput() == null) {
+			if (this.GetInput().Length <= 0) {
 				//We do not have any output
 				//Debug.Log(this.input[0].owner.gameObject.name + " Did not calculate any valid input " + (this.input[0] == null) + " " + (this.input[0].IsConnected() == false) + " " + (this.input[0].owner.GetOutput() == null));
 				return null;
 			}
 
 			//Otherwise get a copy of our inputs data
-			DataSequence dataInput = this.input[0].partner.owner.GetOutput();
+			DataSequence dataInput = this.GetInput()[0].GetOutput();
 
 			DataSequence output = dataInput.CreateDeepCopy();
 			output.segments.AddElementAtPosition(new DataSegment(new Bit[] { leftAdd.CreateCopy() }), 0);
