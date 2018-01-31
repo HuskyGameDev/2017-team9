@@ -59,7 +59,7 @@ namespace PuzzleComponents {
 
 				//Signal all output connections that we have changed our data.
 				for (int i = 0; i < attachedSquare.line.Length; i++) {
-					if (attachedSquare.connected[i] && (attachedSquare.socketState[i] == GridSquare.SocketState.Output || attachedSquare.socketState[i] == GridSquare.SocketState.Omni) && attachedSquare.line[i].GetOther(this) != null)
+					if (attachedSquare.line[i] != null && (attachedSquare.socketState[i] == GridSquare.SocketState.Output || attachedSquare.socketState[i] == GridSquare.SocketState.Omni) && attachedSquare.line[i].GetOther(this) != null)
 						attachedSquare.line[i].GetOther(this).ConnectionChange();
 				}
 				
@@ -86,7 +86,8 @@ namespace PuzzleComponents {
 			for (int i = 0; i < attachedSquare.line.Length; i++) {
 				if ((attachedSquare.socketState[i] == GridSquare.SocketState.Input || attachedSquare.socketState[i] == GridSquare.SocketState.Omni) 
 					&& attachedSquare.line[i] != null 
-					&& attachedSquare.line[i].GetOther(this) != null) 
+					&& attachedSquare.line[i].GetOther(this) != null
+					&& attachedSquare.line[i].GetOther(this) != this) 
 					{
 					inputs.Add(attachedSquare.line[i].GetOther(this));
 				}
