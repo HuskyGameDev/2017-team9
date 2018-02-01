@@ -52,69 +52,93 @@ public class GridSquare : MonoBehaviour {
 
 
 	/// <summary>
-	/// Attempts to set the connection in the specified direction. Takes into account weather or not this is possible.
+	/// Creates a connection between two grid squares along the given direction with the specified line. A(->dir->)B
 	/// </summary>
-	/// <param name="direction"> The Direction from A to B</param>
-	/// <returns>Returns true if the connection was sucessful</returns>
-	public bool Connect(GridDirection direction, GridLine newLine) {
+	/// <param name="direction"></param>
+	/// <param name="A"></param>
+	/// <param name="B"></param>
+	/// <param name="newLine"></param>
+	/// <returns></returns>
+	public static bool Connect(GridDirection direction, GridSquare A, GridSquare B, GridLine newLine) {
 
-		if (type == GridType.Unusable) {
-			//We can not use this grid square
+		//If we are trying to connect two non neighbors, we just abort!
+		{
+			GridDirection tdir;
+			if (GridSquare.AreNeighbors(A, B, out tdir) == false) {
+				Debug.LogError("Attempt to connect with non neightbors!");
+				newLine.DeleteFromGrid();
+				return false;
+			}
+		}
+
+		if (B.type == GridType.Unusable) {
+			Debug.Log("X->Unusable");
+			//We can not use one of  these grid squares
 			return false;
 		}
-		else if (type == GridType.Empty) {
-			//We need to break cross connections and the opposite if it is not the same line
-			//But how does this solve the 'loop-around' issue?
-			//It is not a loop around if the other half off us never exits.
-			//This doesnt account for turns tho
 
-			//Check all other directions.
-			//If there are no connections we can just assign and move on
-			//If there is one, it has to to be a connection.
-			//Else
-			//We trim and then make the connection
-			//Unless we are trimming the same line? then we need to reset the line back to that point.
-			//The line will get reset back to that point on a trim, but how do we communicate that back to the caller?
-			//In theory, the caller is attempting to operate on this square anyway, they will just be creating connections differently than intended.
-			//These connections are made here in this method, so I think we can assume they will be handled correctly since we are the one doing the handling
-
-			//First we need to see how many connections already exist
-			int count = 0;
-			GridLine found = null;
-			for (int i = 0; i < line.Length; i++) {
-				if (line[i] != null) {
-					count++;
-					found = line[i];
-				}
+		//First we need to see how many connections already exist on these squares. We take a count as well as track the line that exists on it.
+		int countB = 0;
+		GridLine foundB = null;
+		for (int i = 0; i < A.line.Length; i++) {
+			if (B.line[i] != null) {
+				countB++;
+				foundB = B.line[i];
 			}
+		}
 
-			//If there is one and it is the same line, that means we are just leaving the square
-			if (count == 1 && found == newLine) {
-				//So we can just assign the line and end
 
+		if (B.type == GridType.Empty) {
+			Debug.Log("X->Empty");
+			//This has three cases. We have looped back onto ourselves. We have collided with another line, or everything is fine
+
+			if (countB > 0 && foundB == newLine) {
+				//The case we have wrapped back on ourselves
+				//So we need to trim the line.
+				newLine.Trim(B);
+				//Substitute A for what is left in the line.
+				GridSquare sub = newLine.squares.Last.Value;
+				//Figure out the new connection direction
+				GridSquare.GridDirection newDirection;
+				if (GridSquare.AreNeighbors(sub, B, out newDirection) == false) {
+					//If they are not neigbors, something has gone wrong and we need to abort.
+					newLine.DeleteFromGrid();
+					return false;
+				}
+				//Make the connection.
+				//We know know the new connection to be made, so lets do it.
+				sub.line[(int)newDirection] = newLine;
+				B.line[(int)GridSquare.oppositeDirection[(int)newDirection]] = newLine;
 			}
 			else {
-				//Trim all other connections
-				for (int i = 0; i < line.Length; i++) {
-					if (line[i] != null)
-						line[i].Trim(this);
+				//If we have encountered another line, it needs to get removed.
+				if (countB > 0) {
+					//Remove it
+					for (int i = 0; i < B.line.Length; i++) {
+						if (B.line[i].DeletionFlag == false)
+							B.line[i].DeleteFromGrid();
+					}
 				}
-			}
 
-			//Assign the connection and return
-			line[(int)direction] = newLine;
-		}
-		else {
-			//Trim this line back and add to this socket.
-			if (line[(int)direction] != null) {
-				line[(int)direction].Trim(this);
+				//Now we can just make the connection like normal!
+				A.line[(int)direction] = newLine;
+				B.line[(int)GridSquare.oppositeDirection[(int)direction]] = newLine;
 			}
-
-			line[(int)direction] = newLine;
-			line[(int)direction].AddDataComponent(dataComponent);
-			
 		}
-		this.gameObject.GetComponent<GridSquareVisuals>().UpdateVisuals();
+		else if (B.type != GridType.Empty) {
+			Debug.Log("X->Socket");
+			//So know we know the endpoint is a socket, so we just need to make sure there is one
+			if (B.socketState[(int)GridSquare.oppositeDirection[(int)direction]] != GridSquare.SocketState.None) {
+				//If there is, we can just make the connection!
+				//Implicitly, for us to have made it this far into a connection with a socket, any line that could have existed in this spot has been trimmed.
+				//so we can just make the connection!
+				A.line[(int)direction] = newLine;
+				B.line[(int)GridSquare.oppositeDirection[(int)direction]] = newLine;
+			}
+			else {
+				return false;
+			}
+		}
 		return true;
 	}
 
@@ -169,6 +193,13 @@ public class GridSquare : MonoBehaviour {
 	/// </summary>
 	/// <returns></returns>
 	public static bool AreNeighbors(GridSquare A, GridSquare B, out GridDirection dir) {
+
+		//Base cases
+		if (A == null || B == null || A == B) {
+			dir = GridDirection.Up;
+			return false;
+		}
+
 		//For each possible direction
 		for (int i = 0; i < A.neighbors.Length; i++) {
 			//If we actually have a square in that direction
@@ -277,6 +308,22 @@ public class GridSquare : MonoBehaviour {
 
 		//Debug.Log("Consistent: " + (consistent));
 		return consistent;
+	}
+
+	/// <summary>
+	/// Checks if the passed line is on this square.
+	/// </summary>
+	/// <param name="checkLine"></param>
+	/// <returns></returns>
+	public bool FindLineDirection(GridLine checkLine, out GridDirection dir) {
+		for (int i = 0; i < line.Length; i++) {
+			if (line[i] == checkLine) {
+				dir = (GridDirection)i;
+				return true;
+			}
+		}
+		dir = GridDirection.Up;
+		return false;
 	}
 
 

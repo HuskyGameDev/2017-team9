@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4643291636316154}
   - component: {fileID: 114680269552839778}
+  - component: {fileID: 114027062056831480}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -40,6 +41,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114027062056831480
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1151241278745022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47258f434716ec84fbcb713a96d6d40e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beams: []
 --- !u!114 &114680269552839778
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -62,6 +75,7 @@ MonoBehaviour:
       Pitch: 3
       Interact1: 0
       Interact2: 2
+      cameraLock: 4
       Menu: 9
       Cancel: 1
     keyboard:
@@ -71,25 +85,6 @@ MonoBehaviour:
       RightStrafe: 100
       Interact1: 323
       Interact2: 324
+      cameraLock: 32
       Menu: 9
       Cancel: 27
-  previousAxis:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  currentAxis:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  previousButtons: 000000000000000000000000000000000000
-  currentButtons: 000000000000000000000000000000000000

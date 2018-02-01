@@ -29,6 +29,8 @@ public class InputSettings {
 		[SerializeField]
 		public KeyCode Interact2;
 		[SerializeField]
+		public KeyCode cameraLock;
+		[SerializeField]
 		public KeyCode Menu;
 		[SerializeField]
 		public KeyCode Cancel;
@@ -51,6 +53,8 @@ public class InputSettings {
 		public InputManager.ControllerButton Interact1;
 		[SerializeField]
 		public InputManager.ControllerButton Interact2;
+		[SerializeField]
+		public InputManager.ControllerButton cameraLock;
 		[SerializeField]
 		public InputManager.ControllerButton Menu;
 		[SerializeField]

@@ -35,15 +35,27 @@ public class PlayerControls : MonoBehaviour {
 		}
 		instance = this;
 		terminalInteractionController = this.gameObject.GetComponent<TerminalInteraction>();
+
+
+		cursor.Switch(cursor.defaultCursor);
+		Cursor.lockState = CursorLockMode.Locked;
 	}
 
 	private void FixedUpdate() {
-		//handleCamera();
-		//handleMovement();
+		if (InputManager.GetGameButton(InputManager.GameButton.CameraLock) == false) {
+			handleCamera();
+			handleMovement();
+		}
 	}
 	void Update () {
-		//cursor.Switch(cursor.defaultCursor);
-		//Cursor.lockState = CursorLockMode.Locked;
+		if (InputManager.GetGameButtonDown(InputManager.GameButton.CameraLock)) {
+			cursor.Switch(cursor.overCursor);
+			Cursor.lockState = CursorLockMode.None;
+		}
+		else if (InputManager.GetGameButtonUp(InputManager.GameButton.CameraLock)) {
+			cursor.Switch(cursor.defaultCursor);
+			Cursor.lockState = CursorLockMode.Locked;
+		}
 
 		/*
 		if (Input.GetKeyDown(KeyCode.M)) {

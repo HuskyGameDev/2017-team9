@@ -36,7 +36,7 @@ public class InputManager : MonoBehaviour {
 
 	//The overall list of possible game interactions. This excludes things for character and mouse movement. Below it are two arrays that map the proper settings.
 	//DO NOT FORGET: you have to update the two arrays in the awake method below.
-	public enum GameButton {Interact1, Interact2, Menu, Cancel}
+	public enum GameButton {Interact1, Interact2, Menu, Cancel, CameraLock}
 	private ControllerButton[] GameButtonToControllerButton;
 	private KeyCode[] GameButtonToKeycode;
 
@@ -48,8 +48,8 @@ public class InputManager : MonoBehaviour {
 		}
 		instance = this;
 		//Link the keyboard settings
-		GameButtonToControllerButton = new ControllerButton[]	{ settings.controller.Interact1	, settings.controller.Interact2	, settings.controller.Menu	, settings.controller.Cancel };
-		GameButtonToKeycode = new KeyCode[]						{ settings.keyboard.Interact1	, settings.keyboard.Interact2	, settings.keyboard.Menu	, settings.keyboard.Cancel };
+		GameButtonToControllerButton = new ControllerButton[]	{ settings.controller.Interact1	, settings.controller.Interact2	, settings.controller.Menu	, settings.controller.Cancel, settings.controller.cameraLock };
+		GameButtonToKeycode = new KeyCode[]						{ settings.keyboard.Interact1	, settings.keyboard.Interact2	, settings.keyboard.Menu	, settings.keyboard.Cancel, settings.keyboard.cameraLock };
 	}
 
 	public static float GetAxis(Axis input) {

@@ -53,6 +53,7 @@ namespace PuzzleComponents {
 
 			//Compare it to the cached DataSequence
 			if (DataSequence.Comparison(cache, newResult) == false) {
+				Debug.Log("And I actually could! " + ((newResult == null) ? "Null" : newResult.GetStringRepresentation()));
 				//Debug.Log("I do need to update! " + this.gameObject.transform.name);
 				//Update the result
 				cache = newResult;

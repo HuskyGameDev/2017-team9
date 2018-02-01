@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 [System.Serializable]
 public class UIManager {
+	public Image wholePanel;
 	public Text trigger;
 	public Text type;
 	public Text output;
