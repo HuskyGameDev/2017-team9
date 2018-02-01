@@ -26,9 +26,40 @@ public class GridLine {
 			B = dc;
 
 		if (A != null && B != null) {
-			A.ConnectionChange();
-			B.ConnectionChange();
+			if (ValidatePathBetweenDataComponents() == false)
+				DeleteFromGrid();
+			else {
+				A.ConnectionChange();
+				B.ConnectionChange();
+			}
 		}
+	}
+
+	/// <summary>
+	/// Validates that the two data components are connected via the squares list
+	/// </summary>
+	/// <returns></returns>
+	public bool ValidatePathBetweenDataComponents() {
+		//[TODO] THIS IS NOT CORRECT. IT DOES NOT CHECK FOR BREAKS IN THE LINE
+
+		if (A == null || B == null)
+			return false;
+
+		//First we need to make sure which other we need to find
+		DataComponent other = null;
+		if (squares.First.Value.dataComponent == A) {
+			other = B;
+		}
+		else if (squares.First.Value.dataComponent == B) {
+			other = A;
+		}
+		else {
+			//Neither are in the first square, our line is invalid!
+			return false;
+		}
+		
+		//If the last one's value is the other, we are a valid connection
+		return squares.Last.Value == other;
 	}
 
 	/// <summary>
@@ -93,6 +124,10 @@ public class GridLine {
 	public void DeleteFromGrid() {
 		Debug.Log("DeletingLine");
 		//Since trim handles the removal of squares, and is inclusive of the square past, if we pass the first square everything will be removed properly
-		Trim(squares.First.Value);
+		while (squares.First != null) {
+			//Remove line takes care of removing the datacomponent if it has one
+			squares.First.Value.RemoveLine(this);
+			squares.RemoveFirst();
+		}
 	}
 }

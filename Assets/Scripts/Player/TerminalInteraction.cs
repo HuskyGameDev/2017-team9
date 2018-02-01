@@ -60,13 +60,19 @@ public class TerminalInteraction : MonoBehaviour {
 					Debug.Log("We need to make a connection!");
 
 					//Then we try and make a connection.
-					//We can only do this if they are neighbors
+					//We can only do this if they are neighbors, both can connect, and the socket types are not equal (implicilty not 'none')
 					GridSquare.GridDirection dir;
-					if (GridSquare.AreNeighbors(lastGridSquare, square, out dir)) {
+					if (GridSquare.AreNeighbors(lastGridSquare, square, out dir)
+						&& lastGridSquare.CanConnect(dir)
+						&& square.CanConnect(GridSquare.oppositeDirection[(int)dir])) {
+
+						Debug.Log(lastGridSquare.transform.name + "->" + square.transform.name);
+
+
 						lastGridSquare.Connect(dir, currentLine);
+						square.Connect(GridSquare.oppositeDirection[(int)dir],currentLine);
 
 						currentLine.AddSquare(square);
-						square.Connect(GridSquare.oppositeDirection[(int)dir],currentLine);
 					}
 				}
 				lastGridSquare = square;
@@ -83,9 +89,14 @@ public class TerminalInteraction : MonoBehaviour {
 			if (rayInfo.transform != null && rayInfo.transform.gameObject.tag == "GridSocket") {
 
 				Debug.Log("Up on Socket");
+
 				//We assume the proper connection has already been made since that is handled in the gameButtonStayDown section of the interaction.
 				//So we can just add the component and forget about the line.
 				currentLine.AddDataComponent(rayInfo.transform.gameObject.GetComponent<GridSocket>().gridSquare.dataComponent);
+				//We need to make sure this is a good connection, if it is not we need to ditch it.
+				if (currentLine.ValidatePathBetweenDataComponents() == false)
+					currentLine.DeleteFromGrid();
+
 				currentLine = null;
 			}
 			else {

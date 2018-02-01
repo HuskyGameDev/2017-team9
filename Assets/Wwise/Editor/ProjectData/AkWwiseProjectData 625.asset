@@ -1,0 +1,174 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a6f3583c7c734734b207ecc40751ee4, type: 3}
+  m_Name: AkWwiseProjectData 625
+  m_EditorClassIdentifier: 
+  CurrentPluginConfig: 
+  EventWwu:
+  - PhysicalPath: Events\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{A4E72B73-8A8B-458E-80D5-A7FD8BAFC823}'
+    m_lastTimePsrt1: 1621841288
+    m_lastTimePart2: -1999291177
+    List:
+    - Name: Button
+      Path: Default Work Unit\Button
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Button
+        ObjectType: 3
+      ID: 977454165
+      Guid: 60cdd0040cdf4540bef5cead03ad9a64
+      maxAttenuation: 0
+    - Name: Door_Close
+      Path: Default Work Unit\Door_Close
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Door_Close
+        ObjectType: 3
+      ID: 128625444
+      Guid: 44b607a294f4a54ba96e82362bd5b28a
+      maxAttenuation: 0
+    - Name: Door_Lock
+      Path: Default Work Unit\Door_Lock
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Door_Lock
+        ObjectType: 3
+      ID: -1265958635
+      Guid: 49b52528a472a6479080cf5e73b91ade
+      maxAttenuation: 0
+    - Name: Door_Open
+      Path: Default Work Unit\Door_Open
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Door_Open
+        ObjectType: 3
+      ID: 535830432
+      Guid: 03e883453c9cde49858161777c16f708
+      maxAttenuation: 0
+    - Name: Keyboard_Clicks
+      Path: Default Work Unit\Keyboard_Clicks
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Keyboard_Clicks
+        ObjectType: 3
+      ID: 1081112822
+      Guid: acc3c1c027920b49af35f0bc5910aeee
+      maxAttenuation: 0
+    - Name: Light_Switch
+      Path: Default Work Unit\Light_Switch
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Light_Switch
+        ObjectType: 3
+      ID: 790135102
+      Guid: 82f612bf74900543a11fb0d3aa12f786
+      maxAttenuation: 0
+    - Name: Phone
+      Path: Default Work Unit\Phone
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Phone
+        ObjectType: 3
+      ID: -1190110609
+      Guid: 265cc2e065c76645bed14f3f3e700d9a
+      maxAttenuation: 0
+    - Name: Sliding_Door_Close
+      Path: Default Work Unit\Sliding_Door_Close
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Sliding_Door_Close
+        ObjectType: 3
+      ID: 1790472453
+      Guid: fabcab5d0f034946a9b50405ac4f15e7
+      maxAttenuation: 0
+    - Name: Sliding_Door_Open
+      Path: Default Work Unit\Sliding_Door_Open
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Sliding_Door_Open
+        ObjectType: 3
+      ID: -679001713
+      Guid: 4b802ed8ac8aa7469aedeeecd73dfea4
+      maxAttenuation: 0
+  AuxBusWwu:
+  - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}'
+    m_lastTimePsrt1: 212395459
+    m_lastTimePart2: -1999295782
+    List: []
+  StateWwu:
+  - PhysicalPath: States\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{5FEA3154-1598-4C40-8E05-D526FD335642}'
+    m_lastTimePsrt1: 214526087
+    m_lastTimePart2: -1999295782
+    List: []
+  SwitchWwu:
+  - PhysicalPath: Switches\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{A2358479-B94F-4E9B-BC5B-841C25E86F45}'
+    m_lastTimePsrt1: 214536021
+    m_lastTimePart2: -1999295782
+    List: []
+  BankWwu:
+  - PhysicalPath: SoundBanks\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{BCE0CB66-6933-4EFA-B579-2C45DE66422C}'
+    m_lastTimePsrt1: 1625866796
+    m_lastTimePart2: -1999291177
+    List:
+    - Name: Main
+      Path: Default Work Unit\Main
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Main
+        ObjectType: 7
+      ID: -1133058374
+      Guid: ca891478fa71704283aa5c4f1b04fe27
+  RtpcWwu:
+  - PhysicalPath: Game Parameters\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{2E1DA16A-7106-40E6-8C5A-BB1FE4C2EE9C}'
+    m_lastTimePsrt1: 210813907
+    m_lastTimePart2: -1999295782
+    List: []
+  TriggerWwu:
+  - PhysicalPath: Triggers\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{8B6E9D56-D2F8-45FA-8F0F-DA8664B0B075}'
+    m_lastTimePsrt1: 214546069
+    m_lastTimePart2: -1999295782
+    List: []
+  ExpandedItems: []
+  m_lastPopulateTimePsrt1: 0
+  m_lastPopulateTimePart2: 0
+  autoPopulateEnabled: 1
+  basePath: Audio\GeneratedSoundBanks
+  language: English(US)
+  defaultPoolSize: 4096
+  lowerPoolSize: 2048
+  streamingPoolSize: 1024
+  preparePoolSize: 0
+  memoryCutoffThreshold: 0.95
+  callbackManagerBufferSize: 4

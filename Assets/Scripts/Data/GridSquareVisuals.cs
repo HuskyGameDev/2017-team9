@@ -42,92 +42,86 @@ public class GridSquareVisuals : MonoBehaviour {
 	/// Checks state of the square and updates visuals
 	/// </summary>
 	public void UpdateVisuals() {
+
+		Debug.Log("Updating Visuals of " + this.transform.name);
 		//Disable all so we do not have to do that individually (We may want to consider changing this for performance reasons)
-		DisableAll();
+		//DisableAll();
 
 		//Store the square so we do not have to call GetComponent repeatedly 
 		GridSquare square = this.gameObject.GetComponent<GridSquare>();
 
 		//check the lines
 		for (int i = 0; i < square.line.Length; i++) {
-			if (square.line[i] != null)
-				EnableLine((GridSquare.GridDirection)i);
+			ToggleLine((GridSquare.GridDirection)i, square.line[i] != null);
 		}
 
 		//Check the sockets
 		for (int i = 0; i < square.socketState.Length; i++) {
-			if (square.socketState[i] != GridSquare.SocketState.None)
-				EnableSocket((GridSquare.GridDirection)i, square.socketState[i]);
+			if (square.socketState[i] == GridSquare.SocketState.Input)
+				ToggleInputSocket((GridSquare.GridDirection)i, true);
+			else
+				ToggleInputSocket((GridSquare.GridDirection)i, false);
+
+
+			if (square.socketState[i] == GridSquare.SocketState.Output)
+				ToggleOutputSocket((GridSquare.GridDirection)i, true);
+			else
+				ToggleOutputSocket((GridSquare.GridDirection)i, false);
+
 		}
 
 		//Set the component (counts for it being empty)
 		EnableComponent(square.type);
 	}
 
-
 	/// <summary>
-	/// Disables all visuals so we do not have to worry about things getting left on
-	/// </summary>
-	public void DisableAll() {
-		upLine.SetActive(false);
-		rightLine.SetActive(false);
-		downLine.SetActive(false);
-		leftLine.SetActive(false);
-
-		upInputSocket.SetActive(false);
-		rightInputSocket.SetActive(false);
-		downInputSocket.SetActive(false);
-		leftInputSocket.SetActive(false);
-
-		upOutputSocket.SetActive(false);
-		rightOutputSocket.SetActive(false);
-		downOutputSocket.SetActive(false);
-		leftOutputSocket.SetActive(false);
-
-		component.SetActive(false);
-	}
-
-	/// <summary>
-	/// Enables the socket gameObject for visuals
+	/// Toggles the socket gameObject for visuals
 	/// </summary>
 	/// <param name="dir"></param>
-	public void EnableSocket(GridSquare.GridDirection dir, GridSquare.SocketState state) {
-		if (state == GridSquare.SocketState.Input) {
-			if (dir == GridSquare.GridDirection.Up)
-				upInputSocket.SetActive(true);
-			else if (dir == GridSquare.GridDirection.Right)
-				rightInputSocket.SetActive(true);
-			else if (dir == GridSquare.GridDirection.Down)
-				downInputSocket.SetActive(true);
-			else if (dir == GridSquare.GridDirection.Left)
-				leftInputSocket.SetActive(true);
-		}
-		else if (state == GridSquare.SocketState.Output) {
-			if (dir == GridSquare.GridDirection.Up)
-				upOutputSocket.SetActive(true);
-			else if (dir == GridSquare.GridDirection.Right)
-				rightOutputSocket.SetActive(true);
-			else if (dir == GridSquare.GridDirection.Down)
-				downOutputSocket.SetActive(true);
-			else if (dir == GridSquare.GridDirection.Left)
-				leftOutputSocket.SetActive(true);
-		}
-	}
-
-	/// <summary>
-	/// Enables the Line gameObject for visuals
-	/// </summary>
-	/// <param name="dir"></param>
-	public void EnableLine(GridSquare.GridDirection dir) {
+	public void ToggleInputSocket(GridSquare.GridDirection dir, bool active) {
 		if (dir == GridSquare.GridDirection.Up)
-			upLine.SetActive(true);
+			upInputSocket.SetActive(active);
 		else if (dir == GridSquare.GridDirection.Right)
-			rightLine.SetActive(true);
+			rightInputSocket.SetActive(active);
 		else if (dir == GridSquare.GridDirection.Down)
-			downLine.SetActive(true);
+			downInputSocket.SetActive(active);
 		else if (dir == GridSquare.GridDirection.Left)
-			leftLine.SetActive(true);
+			leftInputSocket.SetActive(active);
 	}
+
+
+	/// <summary>
+	/// Toggles the socket gameObject for visuals
+	/// </summary>
+	/// <param name="dir"></param>
+	public void ToggleOutputSocket(GridSquare.GridDirection dir, bool active) {
+		if (dir == GridSquare.GridDirection.Up)
+			upOutputSocket.SetActive(active);
+		else if (dir == GridSquare.GridDirection.Right)
+			rightOutputSocket.SetActive(active);
+		else if (dir == GridSquare.GridDirection.Down)
+			downOutputSocket.SetActive(active);
+		else if (dir == GridSquare.GridDirection.Left)
+			leftOutputSocket.SetActive(active);
+	}
+
+	/// <summary>
+	/// Toggles the Line gameObject for visuals
+	/// </summary>
+	/// <param name="dir"></param>
+	public void ToggleLine(GridSquare.GridDirection dir, bool active) {
+		if (dir == GridSquare.GridDirection.Up)
+			upLine.SetActive(active);
+		else if (dir == GridSquare.GridDirection.Right) {
+			Debug.Log("Enabling right");
+			rightLine.SetActive(active);
+		}
+		else if (dir == GridSquare.GridDirection.Down)
+			downLine.SetActive(active);
+		else if (dir == GridSquare.GridDirection.Left)
+			leftLine.SetActive(active);
+	}
+
 
 
 	public void EnableComponent(GridSquare.GridType type) {

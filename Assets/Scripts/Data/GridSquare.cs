@@ -109,16 +109,29 @@ public class GridSquare : MonoBehaviour {
 			if (line[(int)direction] != null) {
 				line[(int)direction].Trim(this);
 			}
+
 			line[(int)direction] = newLine;
 			line[(int)direction].AddDataComponent(dataComponent);
 			
 		}
-
-		//Update the visuals and return sucess
 		this.gameObject.GetComponent<GridSquareVisuals>().UpdateVisuals();
 		return true;
 	}
 
+
+	/// <summary>
+	/// Checks if you can make a connection on this square on the given direction
+	/// </summary>
+	/// <param name="dir"></param>
+	/// <returns></returns>
+	public bool CanConnect(GridDirection dir) {
+		if (type == GridType.Unusable)
+			return false;
+		else if (type == GridType.Empty)
+			return true;
+		else
+			return (socketState[(int)dir] != SocketState.None);
+	}
 
 	/// <summary>
 	/// Adds a line onto this square in the specified direction. Does not care about overriding
@@ -132,6 +145,7 @@ public class GridSquare : MonoBehaviour {
 		}
 		//Add the line
 		line[(int)dir] = add;
+		this.gameObject.GetComponent<GridSquareVisuals>().UpdateVisuals();
 	}
 
 	/// <summary>
@@ -139,14 +153,13 @@ public class GridSquare : MonoBehaviour {
 	/// </summary>
 	/// <param name="remove"></param>
 	public void RemoveLine(GridLine remove) {
+		Debug.Log("Removing Line!");
 		for (int i = 0; i < line.Length; i++) {
 			if (line[i] == remove) {
-				if (type != GridType.Empty) {
-					line[i].RemoveDataComponent(dataComponent);
 				line[i] = null;
-				}
 			}
 		}
+		this.gameObject.GetComponent<GridSquareVisuals>().UpdateVisuals();
 	}
 
 
@@ -268,9 +281,9 @@ public class GridSquare : MonoBehaviour {
 
 
 	/// <summary>
-	/// this is an internal MonoBehavoir method that is called when data is changed in the editor
+	/// Method to update the state of the GridSquare based on the classes data
 	/// </summary>
-	private void OnValidate() {
+	public void ValidateSquare() {
 		//If our Type is different from our component, fix that
 		if (ValidateTypeToComponentIntegrity() == false)
 			ChangeComponent(type);

@@ -7,6 +7,10 @@ using UnityEditor;
 public class GridSquareEditor : Editor {
 
 	public override void OnInspectorGUI() {
+		GridSquare myScript = (GridSquare)target;
+		if (GUILayout.Button("Update Square")) {
+			myScript.ValidateSquare();
+		}
 		base.OnInspectorGUI();
 	}
 }
