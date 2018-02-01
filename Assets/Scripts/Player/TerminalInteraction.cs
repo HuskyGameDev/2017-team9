@@ -144,20 +144,30 @@ public class TerminalInteraction : MonoBehaviour {
 				PlayerControls.instance.PlayerUI.input.text = "Looking at this here is not Implemented Yet :(";// square.dataComponent.GetInput();
 				PlayerControls.instance.PlayerUI.output.text = square.dataComponent.GetOutputString();
 				PlayerControls.instance.PlayerUI.trigger.text = "Goal:";
-				foreach (PuzzleComponents.DataTrigger dt in square.gameObject.GetComponents<PuzzleComponents.DataTrigger>()) {
+				foreach (PuzzleComponents.DataTrigger dt in square.dataComponent.triggers) {
+					Debug.Log("Trigger");
 					if (dt.playerVisibleTrigger) {
-						PlayerControls.instance.PlayerUI.trigger.text = PlayerControls.instance.PlayerUI.trigger.text + " " + dt.triggerData.ToString();
+						Debug.Log("PlayerVisible");
+						PlayerControls.instance.PlayerUI.trigger.text = PlayerControls.instance.PlayerUI.trigger.text + " " + (new PuzzleComponents.DataSequence(dt.triggerData)).GetStringRepresentation();
 					}
 				}
 			}
 			else {
 				//Hide the panel
 				PlayerControls.instance.PlayerUI.wholePanel.gameObject.SetActive(false);
+				PlayerControls.instance.PlayerUI.type.text = "";
+				PlayerControls.instance.PlayerUI.input.text = "";
+				PlayerControls.instance.PlayerUI.output.text = "";
+				PlayerControls.instance.PlayerUI.trigger.text = "";
 			}
 		}
 		else {
 			//Hide the panel
 			PlayerControls.instance.PlayerUI.wholePanel.gameObject.SetActive(false);
+			PlayerControls.instance.PlayerUI.type.text = "";
+			PlayerControls.instance.PlayerUI.input.text = "";
+			PlayerControls.instance.PlayerUI.output.text = "";
+			PlayerControls.instance.PlayerUI.trigger.text = "";
 		}
 	}
 }
