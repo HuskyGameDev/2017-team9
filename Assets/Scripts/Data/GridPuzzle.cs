@@ -14,7 +14,6 @@ public class GridPuzzle : MonoBehaviour {
 	/// </summary>
 	public void GenerateGrid() {
 		GridSquare[] bottomRow = new GridSquare[width];
-		GridSquare last = null;
 
 		for (int y = 0; y < height; y++) {
 			GridSquare[] currentRow = new GridSquare[width];

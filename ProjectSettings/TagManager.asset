@@ -8,6 +8,8 @@ TagManager:
   - DataPoint
   - Databeam
   - DataTerminal
+  - GridSquare
+  - GridSocket
   layers:
   - Default
   - TransparentFX

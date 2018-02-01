@@ -4,7 +4,7 @@ using UnityEngine;
 using PuzzleComponents;
 
 
-public class GridLine : MonoBehaviour {
+public class GridLine {
 
 	public DataComponent A;
 	public DataComponent B;
@@ -24,6 +24,11 @@ public class GridLine : MonoBehaviour {
 			A = dc;
 		else
 			B = dc;
+
+		if (A != null && B != null) {
+			A.ConnectionChange();
+			B.ConnectionChange();
+		}
 	}
 
 	/// <summary>
@@ -42,7 +47,7 @@ public class GridLine : MonoBehaviour {
 	/// Adds a square to this line, this method is not responsible for setting connections. It also does not trim.
 	/// </summary>
 	/// <param name="square"></param>
-	public void AddSquare(GridSquare square, GridSquare.GridDirection dir) {
+	public void AddSquare(GridSquare square) {
 		squares.AddLast(square);
 	}
 
@@ -82,5 +87,12 @@ public class GridLine : MonoBehaviour {
 		return (dc == A) ? B : A;
 	}
 
-
+	/// <summary>
+	/// Removes this line from reference on the grid
+	/// </summary>
+	public void DeleteFromGrid() {
+		Debug.Log("DeletingLine");
+		//Since trim handles the removal of squares, and is inclusive of the square past, if we pass the first square everything will be removed properly
+		Trim(squares.First.Value);
+	}
 }

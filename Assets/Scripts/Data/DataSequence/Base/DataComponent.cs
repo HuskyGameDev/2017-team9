@@ -47,7 +47,7 @@ namespace PuzzleComponents {
 		/// Recalculates output and signals output connections to update if the result is different from the cache.
 		/// </summary>
 		public void ConnectionChange() {
-			//Debug.Log("I have been told to update " + this.gameObject.transform.name);
+			Debug.Log("I have been told to update " + this.gameObject.transform.name);
 			//get the new output
 			DataSequence newResult = CalculateOutput();
 
@@ -59,7 +59,7 @@ namespace PuzzleComponents {
 
 				//Signal all output connections that we have changed our data.
 				for (int i = 0; i < attachedSquare.line.Length; i++) {
-					if (attachedSquare.line[i] != null && (attachedSquare.socketState[i] == GridSquare.SocketState.Output || attachedSquare.socketState[i] == GridSquare.SocketState.Omni) && attachedSquare.line[i].GetOther(this) != null)
+					if (attachedSquare.line[i] != null && attachedSquare.socketState[i] == GridSquare.SocketState.Output && attachedSquare.line[i].GetOther(this) != null)
 						attachedSquare.line[i].GetOther(this).ConnectionChange();
 				}
 				
@@ -84,7 +84,7 @@ namespace PuzzleComponents {
 		public DataComponent[] GetInput() {
 			List<DataComponent> inputs = new List<DataComponent>();
 			for (int i = 0; i < attachedSquare.line.Length; i++) {
-				if ((attachedSquare.socketState[i] == GridSquare.SocketState.Input || attachedSquare.socketState[i] == GridSquare.SocketState.Omni) 
+				if ((attachedSquare.socketState[i] == GridSquare.SocketState.Input) 
 					&& attachedSquare.line[i] != null 
 					&& attachedSquare.line[i].GetOther(this) != null
 					&& attachedSquare.line[i].GetOther(this) != this) 
