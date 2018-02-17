@@ -129,6 +129,48 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Puzzle_Correct" ID="{4682A34B-4A56-402A-93D5-AAF435EC6E5C}">
+					<ChildrenList>
+						<Action Name="" ID="{102C1C22-9328-4B1C-996B-1B4426876A37}" ShortID="772100424">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Correct" ID="{867BD353-ECE1-4A63-8A29-758019A7BE33}" WorkUnitID="{B73D90A3-B6C3-4792-A17A-76F5246718E1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Line_Start" ID="{3A90D1AB-F92D-4BD9-A0D7-8701CC651E04}">
+					<ChildrenList>
+						<Action Name="" ID="{9A70567B-11DE-4E9D-8E85-62851E873178}" ShortID="987372493">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Line Start" ID="{14E42440-7FF3-41B5-95E9-01BB05CBF975}" WorkUnitID="{B73D90A3-B6C3-4792-A17A-76F5246718E1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Line_End" ID="{7D9A8559-382F-4CC6-B72C-26EA133F0875}">
+					<ChildrenList>
+						<Action Name="" ID="{02E4520C-57D3-41F8-89BB-CDBCC86F4A92}" ShortID="904736440">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Line End" ID="{05977288-CD43-4CD1-9709-40DE61DC7411}" WorkUnitID="{B73D90A3-B6C3-4792-A17A-76F5246718E1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

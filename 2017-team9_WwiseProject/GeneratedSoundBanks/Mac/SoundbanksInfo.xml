@@ -21,15 +21,18 @@
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<IncludedEvents>
-				<Event Id="977454165" Name="Button" ObjectPath="\Events\Default Work Unit\Button"/>
-				<Event Id="128625444" Name="Door_Close" ObjectPath="\Events\Default Work Unit\Door_Close"/>
-				<Event Id="3029008661" Name="Door_Lock" ObjectPath="\Events\Default Work Unit\Door_Lock"/>
+				<Event Id="977454165" Name="Button" ObjectPath="\Events\Default Work Unit\Button" MaxAttenuation="100.000000"/>
+				<Event Id="128625444" Name="Door_Close" ObjectPath="\Events\Default Work Unit\Door_Close" MaxAttenuation="100.000000"/>
+				<Event Id="3029008661" Name="Door_Lock" ObjectPath="\Events\Default Work Unit\Door_Lock" MaxAttenuation="100.000000"/>
 				<Event Id="535830432" Name="Door_Open" ObjectPath="\Events\Default Work Unit\Door_Open"/>
-				<Event Id="1081112822" Name="Keyboard_Clicks" ObjectPath="\Events\Default Work Unit\Keyboard_Clicks"/>
-				<Event Id="790135102" Name="Light_Switch" ObjectPath="\Events\Default Work Unit\Light_Switch"/>
-				<Event Id="3104856687" Name="Phone" ObjectPath="\Events\Default Work Unit\Phone"/>
-				<Event Id="1790472453" Name="Sliding_Door_Close" ObjectPath="\Events\Default Work Unit\Sliding_Door_Close"/>
-				<Event Id="3615965583" Name="Sliding_Door_Open" ObjectPath="\Events\Default Work Unit\Sliding_Door_Open"/>
+				<Event Id="1081112822" Name="Keyboard_Clicks" ObjectPath="\Events\Default Work Unit\Keyboard_Clicks" MaxAttenuation="100.000000"/>
+				<Event Id="790135102" Name="Light_Switch" ObjectPath="\Events\Default Work Unit\Light_Switch" MaxAttenuation="100.000000"/>
+				<Event Id="392429297" Name="Line_End" ObjectPath="\Events\Default Work Unit\Line_End" MaxAttenuation="100.000000"/>
+				<Event Id="4086643362" Name="Line_Start" ObjectPath="\Events\Default Work Unit\Line_Start" MaxAttenuation="100.000000"/>
+				<Event Id="3104856687" Name="Phone" ObjectPath="\Events\Default Work Unit\Phone" MaxAttenuation="100.000000"/>
+				<Event Id="716673090" Name="Puzzle_Correct" ObjectPath="\Events\Default Work Unit\Puzzle_Correct" MaxAttenuation="100.000000"/>
+				<Event Id="1790472453" Name="Sliding_Door_Close" ObjectPath="\Events\Default Work Unit\Sliding_Door_Close" MaxAttenuation="100.000000"/>
+				<Event Id="3615965583" Name="Sliding_Door_Open" ObjectPath="\Events\Default Work Unit\Sliding_Door_Open" MaxAttenuation="100.000000"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
 				<File Id="33640807" Language="SFX">
@@ -70,11 +73,15 @@
 				</File>
 				<File Id="568625441" Language="SFX">
 					<ShortName>Sliding Door Close.wav</ShortName>
-					<Path>SFX/Sliding Door Close_69720474.wem</Path>
+					<Path>SFX/Sliding Door Close_7C554969.wem</Path>
 				</File>
 				<File Id="570061723" Language="SFX">
 					<ShortName>Light Switch 3.wav</ShortName>
 					<Path>SFX/Light Switch 3_1C9C67B2.wem</Path>
+				</File>
+				<File Id="585100491" Language="SFX">
+					<ShortName>Start Line.wav</ShortName>
+					<Path>SFX/Start Line_C85FDF47.wem</Path>
 				</File>
 				<File Id="614153702" Language="SFX">
 					<ShortName>Door Close 3.wav</ShortName>
@@ -82,7 +89,7 @@
 				</File>
 				<File Id="620467204" Language="SFX">
 					<ShortName>Sliding Door Open.wav</ShortName>
-					<Path>SFX/Sliding Door Open_E59FE07F.wem</Path>
+					<Path>SFX/Sliding Door Open_8B636BCF.wem</Path>
 				</File>
 				<File Id="626533108" Language="SFX">
 					<ShortName>Light Switch 1.wav</ShortName>
@@ -99,6 +106,14 @@
 				<File Id="877375572" Language="SFX">
 					<ShortName>Phone Ringing.wav</ShortName>
 					<Path>SFX/Phone Ringing_D0E6CA48.wem</Path>
+				</File>
+				<File Id="993348874" Language="SFX">
+					<ShortName>Puzzle correct.wav</ShortName>
+					<Path>SFX/Puzzle correct_1779CC25.wem</Path>
+				</File>
+				<File Id="1010716147" Language="SFX">
+					<ShortName>End Line.wav</ShortName>
+					<Path>SFX/End Line_25ED463C.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

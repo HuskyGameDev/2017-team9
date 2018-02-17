@@ -19,7 +19,10 @@ namespace AK
         static const AkUniqueID DOOR_OPEN = 535830432U;
         static const AkUniqueID KEYBOARD_CLICKS = 1081112822U;
         static const AkUniqueID LIGHT_SWITCH = 790135102U;
+        static const AkUniqueID LINE_END = 392429297U;
+        static const AkUniqueID LINE_START = 4086643362U;
         static const AkUniqueID PHONE = 3104856687U;
+        static const AkUniqueID PUZZLE_CORRECT = 716673090U;
         static const AkUniqueID SLIDING_DOOR_CLOSE = 1790472453U;
         static const AkUniqueID SLIDING_DOOR_OPEN = 3615965583U;
     } // namespace EVENTS
