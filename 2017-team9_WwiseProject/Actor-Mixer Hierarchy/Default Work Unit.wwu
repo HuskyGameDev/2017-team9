@@ -774,6 +774,7 @@
 				</ActorMixer>
 				<ActorMixer Name="Puzzle" ID="{E20A7445-6047-433C-B7F1-484D4F731E54}" ShortID="253327903">
 					<PropertyList>
+						<Property Name="3DPositionSource" Type="int16" Value="0"/>
 						<Property Name="PositioningType" Type="int16" Value="1"/>
 					</PropertyList>
 					<ReferenceList>
@@ -930,6 +931,22 @@
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
+					<PositioningInfo>
+						<Position Name="" ID="{A1C3855D-E9DE-4908-8658-0495312FA970}">
+							<ChildrenList>
+								<Path2D Name="Puzzle_Path" ID="{CA91D93A-C7F9-4A40-B5B2-36CC584DB11D}">
+									<PointList>
+										<Point>
+											<XPos>0</XPos>
+											<YPos>50</YPos>
+											<Flags>12</Flags>
+											<Time>0</Time>
+										</Point>
+									</PointList>
+								</Path2D>
+							</ChildrenList>
+						</Position>
+					</PositioningInfo>
 				</ActorMixer>
 			</ChildrenList>
 		</WorkUnit>

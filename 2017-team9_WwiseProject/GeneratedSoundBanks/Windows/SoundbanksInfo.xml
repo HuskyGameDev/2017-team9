@@ -81,7 +81,7 @@
 				</File>
 				<File Id="585100491" Language="SFX">
 					<ShortName>Start Line.wav</ShortName>
-					<Path>SFX/Start Line_DD2BD89E.wem</Path>
+					<Path>SFX/Start Line_C85FDF47.wem</Path>
 				</File>
 				<File Id="614153702" Language="SFX">
 					<ShortName>Door Close 3.wav</ShortName>
@@ -109,11 +109,11 @@
 				</File>
 				<File Id="993348874" Language="SFX">
 					<ShortName>Puzzle correct.wav</ShortName>
-					<Path>SFX/Puzzle correct_E2E410DD.wem</Path>
+					<Path>SFX/Puzzle correct_1779CC25.wem</Path>
 				</File>
 				<File Id="1010716147" Language="SFX">
 					<ShortName>End Line.wav</ShortName>
-					<Path>SFX/End Line_E44A59D8.wem</Path>
+					<Path>SFX/End Line_25ED463C.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>
