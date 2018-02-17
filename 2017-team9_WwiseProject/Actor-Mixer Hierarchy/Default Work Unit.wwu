@@ -218,7 +218,6 @@
 				</Folder>
 				<ActorMixer Name="Environmental" ID="{2A4492FB-15F4-49B2-B222-A15098ABFB8F}" ShortID="935029426">
 					<PropertyList>
-						<Property Name="3DPositionSource" Type="int16" Value="0"/>
 						<Property Name="PositioningType" Type="int16" Value="1"/>
 					</PropertyList>
 					<ReferenceList>
@@ -227,6 +226,9 @@
 						</Reference>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+						</Reference>
+						<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+							<ObjectRef Name="Room_Small" ID="{577F1466-A63B-47F7-98BD-C56E433F8B5D}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
 						</Reference>
 						<Reference Name="OutputBus">
 							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
@@ -320,6 +322,21 @@
 							</ReferenceList>
 							<ChildrenList>
 								<RandomSequenceContainer Name="Door Close" ID="{86230EA3-9D27-4EE7-B28D-C176C5CB69E6}" ShortID="399886170">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{F2976284-54FF-49E8-BC67-B2EE22953978}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="76"/>
+															<Property Name="Min" Type="Real64" Value="-126"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
@@ -742,6 +759,182 @@
 						<Position Name="" ID="{2438F97A-4DE7-4F6D-9CB5-69CD6F7F249C}">
 							<ChildrenList>
 								<Path2D Name="Front" ID="{160BB511-0E65-47A4-A9BA-C6DFF5163C09}">
+									<PointList>
+										<Point>
+											<XPos>0</XPos>
+											<YPos>50</YPos>
+											<Flags>12</Flags>
+											<Time>0</Time>
+										</Point>
+									</PointList>
+								</Path2D>
+							</ChildrenList>
+						</Position>
+					</PositioningInfo>
+				</ActorMixer>
+				<ActorMixer Name="Puzzle" ID="{E20A7445-6047-433C-B7F1-484D4F731E54}" ShortID="253327903">
+					<PropertyList>
+						<Property Name="3DPositionSource" Type="int16" Value="0"/>
+						<Property Name="PositioningType" Type="int16" Value="1"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Attenuation">
+							<ObjectRef Name="New Attenuation_01" ID="{E51C98EF-5A7A-4C1B-A398-5D7FF4EE4AF3}" WorkUnitID="{F073EAB7-8401-4C62-9B89-D5DF4295CECF}"/>
+						</Reference>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="Correct" ID="{867BD353-ECE1-4A63-8A29-758019A7BE33}" ShortID="488651115">
+							<PropertyList>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>29</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Pitch" Type="int32">
+									<ValueList>
+										<Value>40</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-6</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Puzzle correct" ID="{ADBCC903-5112-48CA-B893-AB9C532D0C2A}" ShortID="648184828">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.00437636761487967"/>
+										<Property Name="LoopBegin" Type="Real64" Value="1.04814004376368"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimEnd" Type="Real64" Value="1.99781181619256"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Puzzle correct.wav</AudioFile>
+								</AudioFileSource>
+								<AudioFileSource Name="Puzzle correct_01" ID="{5099E1B4-FB82-444D-880E-B342D59B7A26}" ShortID="993348874">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="2.38293216630197"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.761487964989059"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Puzzle correct.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Puzzle correct_01" ID="{5099E1B4-FB82-444D-880E-B342D59B7A26}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Line Start" ID="{14E42440-7FF3-41B5-95E9-01BB05CBF975}" ShortID="636925344">
+							<PropertyList>
+								<Property Name="Pitch" Type="int32">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{E8E6963D-F3C3-4E7E-BC46-91E5F3347E8C}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="51"/>
+													<Property Name="Min" Type="Real64" Value="-25"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-6</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Start Line" ID="{96B428FA-3A51-4B3F-9EE4-949DFA210DD3}" ShortID="585100491">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.182713347921225"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.521881838074398"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.541575492341357"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Start Line.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Start Line" ID="{96B428FA-3A51-4B3F-9EE4-949DFA210DD3}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Line End" ID="{05977288-CD43-4CD1-9709-40DE61DC7411}" ShortID="610116899">
+							<PropertyList>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>16</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Pitch" Type="int32">
+									<ValueList>
+										<Value>40</Value>
+									</ValueList>
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{41608BE7-DD9B-4AB7-A1BB-1B5A4BBC8063}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="126"/>
+													<Property Name="Min" Type="Real64" Value="-379"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="End Line" ID="{8E7E5038-ACA2-44E6-AE5E-EC82B54D7846}" ShortID="1010716147">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.203501094091904"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.405361050328227"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.983041575492341"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>End Line.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="End Line" ID="{8E7E5038-ACA2-44E6-AE5E-EC82B54D7846}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+					<PositioningInfo>
+						<Position Name="" ID="{A1C3855D-E9DE-4908-8658-0495312FA970}">
+							<ChildrenList>
+								<Path2D Name="Puzzle_Path" ID="{CA91D93A-C7F9-4A40-B5B2-36CC584DB11D}">
 									<PointList>
 										<Point>
 											<XPos>0</XPos>

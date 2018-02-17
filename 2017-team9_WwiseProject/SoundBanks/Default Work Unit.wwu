@@ -5,6 +5,7 @@
 			<ChildrenList>
 				<SoundBank Name="Main" ID="{781489CA-71FA-4270-83AA-5C4F1B04FE27}">
 					<ObjectInclusionList>
+						<ObjectRef Name="Puzzle_Correct" ID="{4682A34B-4A56-402A-93D5-AAF435EC6E5C}" WorkUnitID="{A4E72B73-8A8B-458E-80D5-A7FD8BAFC823}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="Button" ID="{04D0CD60-DF0C-4045-BEF5-CEAD03AD9A64}" WorkUnitID="{A4E72B73-8A8B-458E-80D5-A7FD8BAFC823}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="Light_Switch" ID="{BF12F682-9074-4305-A11F-B0D3AA12F786}" WorkUnitID="{A4E72B73-8A8B-458E-80D5-A7FD8BAFC823}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="Phone" ID="{E0C25C26-C765-4566-BED1-4F3F3E700D9A}" WorkUnitID="{A4E72B73-8A8B-458E-80D5-A7FD8BAFC823}" Filter="7" Origin="Manual"/>
@@ -14,6 +15,8 @@
 						<ObjectRef Name="Keyboard_Clicks" ID="{C0C1C3AC-9227-490B-AF35-F0BC5910AEEE}" WorkUnitID="{A4E72B73-8A8B-458E-80D5-A7FD8BAFC823}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="Door_Open" ID="{4583E803-9C3C-49DE-8581-61777C16F708}" WorkUnitID="{A4E72B73-8A8B-458E-80D5-A7FD8BAFC823}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="Door_Close" ID="{A207B644-F494-4BA5-A96E-82362BD5B28A}" WorkUnitID="{A4E72B73-8A8B-458E-80D5-A7FD8BAFC823}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Line_Start" ID="{3A90D1AB-F92D-4BD9-A0D7-8701CC651E04}" WorkUnitID="{A4E72B73-8A8B-458E-80D5-A7FD8BAFC823}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Line_End" ID="{7D9A8559-382F-4CC6-B72C-26EA133F0875}" WorkUnitID="{A4E72B73-8A8B-458E-80D5-A7FD8BAFC823}" Filter="7" Origin="Manual"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
