@@ -266,43 +266,35 @@ public class GridSquare : MonoBehaviour {
 		bool consistent = false;
 
 		if (type == GridType.Empty && dataComponent == null) {
-			//In this case, we are now marked as empty but we have a DataComponent attacked, so we need to change
+			//In this case, we are marked as empty but we have a DataComponent attacked, so we need to change
 			consistent = true;
 		}
 		else if (dataComponent == null) {
-			//From here, if we do not have a component attached we implicitly know we need to make a chanmge
+			//From here, if we do not have a component attached we implicitly know we need to make a change
 			consistent = false;
 		}
 		else if (type == GridType.Adder && dataComponent.GetType() == typeof(DataAdder)) {
-			//In this case, we are now marked as empty but we have a DataComponent attacked, so we need to change
 			consistent = true;
 		}
 		else if (type == GridType.Combiner && dataComponent.GetType() == typeof(DataCombiner)) {
-			//In this case, we are now marked as empty but we have a DataComponent attacked, so we need to change
 			consistent = true;
 		}
 		else if (type == GridType.Connector && dataComponent.GetType() == typeof(DataConnector)) {
-			//In this case, we are now marked as empty but we have a DataComponent attacked, so we need to change
 			consistent = true;
 		}
 		else if (type == GridType.Deleter && dataComponent.GetType() == typeof(DataDeleter)) {
-			//In this case, we are now marked as empty but we have a DataComponent attacked, so we need to change
 			consistent = true;
 		}
 		else if (type == GridType.Linker && dataComponent.GetType() == typeof(DataLinker)) {
-			//In this case, we are now marked as empty but we have a DataComponent attacked, so we need to change
 			consistent = true;
 		}
 		else if (type == GridType.Shifter && dataComponent.GetType() == typeof(DataShifter)) {
-			//In this case, we are now marked as empty but we have a DataComponent attacked, so we need to change
 			consistent = true;
 		}
 		else if (type == GridType.Source && dataComponent.GetType() == typeof(DataSource)) {
-			//In this case, we are now marked as empty but we have a DataComponent attacked, so we need to change
 			consistent = true;
 		}
 		else if (type == GridType.Unusable && dataComponent.GetType() == typeof(DataUnusable)) {
-			//In this case, we are now marked as empty but we have a DataComponent attacked, so we need to change
 			consistent = true;
 		}
 
