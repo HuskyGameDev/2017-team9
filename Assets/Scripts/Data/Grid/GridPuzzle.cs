@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class GridPuzzle : MonoBehaviour {
 
+	public bool editable = true;
+
 	public float squareScale = 1.0f;
 	public int width = 10;
 	public int height = 10;
 
 
 	/// <summary>
-	/// Generates a grid with the class values
+	/// Generates a grid of grid squares. Automattically links them properly.
 	/// </summary>
 	public void GenerateGrid() {
 		GridSquare[] bottomRow = new GridSquare[width];
@@ -38,12 +40,19 @@ public class GridPuzzle : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Removes all of the grid square game objects
+	/// </summary>
 	public void DestroyGrid() {
 		foreach (GridSquare gO in this.transform.GetComponentsInChildren<GridSquare>())
 			DestroyImmediate(gO.gameObject);
 	}
 
 
+	/// <summary>
+	/// Loads and creates a gridSquare prefab
+	/// </summary>
+	/// <returns></returns>
 	private GridSquare getSquare() {
 		GridSquare newSquare = null;
 		GameObject gO = Instantiate(Resources.Load("GridSquare", typeof(GameObject))) as GameObject;

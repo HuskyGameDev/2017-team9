@@ -24,6 +24,9 @@ public class GridSquare : MonoBehaviour {
 	/// </summary>
 	public enum GridType { Empty, Unusable, Adder, Combiner, Connector, Deleter, Linker, Shifter, Source}
 
+	/// <summary>
+	/// The dataComponent that may exist on this square.
+	/// </summary>
 	public DataComponent dataComponent;
 
 	/// <summary>
@@ -134,11 +137,20 @@ public class GridSquare : MonoBehaviour {
 				//so we can just make the connection!
 				A.line[(int)direction] = newLine;
 				B.line[(int)GridSquare.oppositeDirection[(int)direction]] = newLine;
+
+				//Now that we have made the connection, we should let this dataComponent know about the change.
+				
 			}
 			else {
 				return false;
 			}
 		}
+
+		//Add our newSquare onto the line
+		newLine.AddSquare(B);
+		//If it has a dataComponent, notify it that it is on a line
+		if (B.dataComponent != null)
+			B.dataComponent.ConnectionChange();
 		return true;
 	}
 

@@ -9,6 +9,10 @@ public class CursorManager {
 	public Sprite defaultCursor;
 	public Sprite overCursor;
 
+	/// <summary>
+	/// Changes the current sprite
+	/// </summary>
+	/// <param name="newSprite"></param>
 	public void Switch(Sprite newSprite) {
 		cursor.sprite = newSprite;
 	}

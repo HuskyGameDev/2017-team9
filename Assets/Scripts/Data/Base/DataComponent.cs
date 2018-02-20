@@ -60,8 +60,15 @@ namespace PuzzleComponents {
 
 				//Signal all output connections that we have changed our data.
 				for (int i = 0; i < attachedSquare.line.Length; i++) {
-					if (attachedSquare.line[i] != null && attachedSquare.socketState[i] == GridSquare.SocketState.Output && attachedSquare.line[i].GetOther(this) != null)
-						attachedSquare.line[i].GetOther(this).ConnectionChange();
+					if (attachedSquare.line[i] != null && attachedSquare.socketState[i] == GridSquare.SocketState.Output) {
+						//Use the GridLine method to find the other socket
+						GridSquare other;
+						GridSquare.GridDirection otherSocketDirection;
+						attachedSquare.line[i].CheckForOpposingSocket(attachedSquare, (GridSquare.GridDirection)i, out other, out otherSocketDirection);
+						if (other != null && other.dataComponent != null && other.socketState[(int)otherSocketDirection] == GridSquare.SocketState.Input) {
+							other.dataComponent.ConnectionChange();
+						}
+					}
 				}
 				
 			}
@@ -85,19 +92,28 @@ namespace PuzzleComponents {
 		public DataComponent[] GetInput() {
 			List<DataComponent> inputs = new List<DataComponent>();
 			for (int i = 0; i < attachedSquare.line.Length; i++) {
-				if ((attachedSquare.socketState[i] == GridSquare.SocketState.Input) 
-					&& attachedSquare.line[i] != null 
-					&& attachedSquare.line[i].GetOther(this) != null
-					&& attachedSquare.line[i].GetOther(this) != this) 
-					{
-					inputs.Add(attachedSquare.line[i].GetOther(this));
+				//If this is an input socket
+				if (attachedSquare.socketState[i] == GridSquare.SocketState.Input) {
+					//Check if we have a line
+					if (attachedSquare.line[i] != null) {
+						//Call the line method to get the other socket
+						GridSquare other;
+						GridSquare.GridDirection otherSocketDirection;
+						attachedSquare.line[i].CheckForOpposingSocket(attachedSquare, (GridSquare.GridDirection)i, out other, out otherSocketDirection);
+						Debug.Log(other);
+						//If it is an output, we can include it
+						if (other != null && other.dataComponent != null && other.socketState[(int)otherSocketDirection] == GridSquare.SocketState.Output) {
+							Debug.Log("Found an Input!");
+							inputs.Add(other.dataComponent);
+						}
+					}
 				}
 			}
 			return inputs.ToArray();
 		}
 
 		/// <summary>
-		/// REturns the data segements string with protection against it being null
+		/// Returns the data segements string with protection against it being null
 		/// </summary>
 		/// <returns></returns>
 		public string GetOutputString() {
