@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="11" SoundbankVersion="125">
 	<RootPaths>
-		<ProjectRoot>/Users/andrewstockero/Library/Application Support/Wwise2017/Bottles/wwise/dosdevices/y:/2017-team9/2017-team9_WwiseProject/</ProjectRoot>
-		<SourceFilesRoot>/Users/andrewstockero/Library/Application Support/Wwise2017/Bottles/wwise/dosdevices/y:/2017-team9/2017-team9_WwiseProject/.cache/Windows/</SourceFilesRoot>
-		<SoundBanksRoot>/Users/andrewstockero/Library/Application Support/Wwise2017/Bottles/wwise/dosdevices/y:/2017-team9/2017-team9_WwiseProject/GeneratedSoundBanks/Windows/</SoundBanksRoot>
+		<ProjectRoot>D:\Repos\Team9-2017\2017-team9_WwiseProject\</ProjectRoot>
+		<SourceFilesRoot>D:\Repos\Team9-2017\2017-team9_WwiseProject\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>D:\Repos\Team9-2017\2017-team9_WwiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>/Users/andrewstockero/Library/Application Support/Wwise2017/Bottles/wwise/dosdevices/y:/2017-team9/2017-team9_WwiseProject/GeneratedSoundBanks/Windows/</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>D:\Repos\Team9-2017\2017-team9_WwiseProject\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -37,83 +37,83 @@
 			<IncludedMemoryFiles>
 				<File Id="33640807" Language="SFX">
 					<ShortName>Keyboard Clicks 3.wav</ShortName>
-					<Path>SFX/Keyboard Clicks 3_1C9C67B2.wem</Path>
+					<Path>SFX\Keyboard Clicks 3_1C9C67B2.wem</Path>
 				</File>
 				<File Id="37485589" Language="SFX">
 					<ShortName>Light Switch 2.wav</ShortName>
-					<Path>SFX/Light Switch 2_1C9C67B2.wem</Path>
+					<Path>SFX\Light Switch 2_1C9C67B2.wem</Path>
 				</File>
 				<File Id="39722309" Language="SFX">
 					<ShortName>Keyboard Clicks 1.wav</ShortName>
-					<Path>SFX/Keyboard Clicks 1_1C9C67B2.wem</Path>
+					<Path>SFX\Keyboard Clicks 1_1C9C67B2.wem</Path>
 				</File>
 				<File Id="45906224" Language="SFX">
 					<ShortName>Door Close 2.wav</ShortName>
-					<Path>SFX/Door Close 2_1C9C67B2.wem</Path>
+					<Path>SFX\Door Close 2_1C9C67B2.wem</Path>
 				</File>
 				<File Id="70539900" Language="SFX">
 					<ShortName>Door Lock 3.wav</ShortName>
-					<Path>SFX/Door Lock 3_1C9C67B2.wem</Path>
+					<Path>SFX\Door Lock 3_1C9C67B2.wem</Path>
 				</File>
 				<File Id="156639989" Language="SFX">
 					<ShortName>Keyboard Clicks 2.wav</ShortName>
-					<Path>SFX/Keyboard Clicks 2_1C9C67B2.wem</Path>
+					<Path>SFX\Keyboard Clicks 2_1C9C67B2.wem</Path>
 				</File>
 				<File Id="256585866" Language="SFX">
 					<ShortName>Door Lock 2.wav</ShortName>
-					<Path>SFX/Door Lock 2_1C9C67B2.wem</Path>
+					<Path>SFX\Door Lock 2_1C9C67B2.wem</Path>
 				</File>
 				<File Id="363777522" Language="SFX">
 					<ShortName>Light Switch 4.wav</ShortName>
-					<Path>SFX/Light Switch 4_1C9C67B2.wem</Path>
+					<Path>SFX\Light Switch 4_1C9C67B2.wem</Path>
 				</File>
 				<File Id="559860460" Language="SFX">
 					<ShortName>Door Close 1.wav</ShortName>
-					<Path>SFX/Door Close 1_1C9C67B2.wem</Path>
+					<Path>SFX\Door Close 1_1C9C67B2.wem</Path>
 				</File>
 				<File Id="568625441" Language="SFX">
 					<ShortName>Sliding Door Close.wav</ShortName>
-					<Path>SFX/Sliding Door Close_7C554969.wem</Path>
+					<Path>SFX\Sliding Door Close_7C554969.wem</Path>
 				</File>
 				<File Id="570061723" Language="SFX">
 					<ShortName>Light Switch 3.wav</ShortName>
-					<Path>SFX/Light Switch 3_1C9C67B2.wem</Path>
+					<Path>SFX\Light Switch 3_1C9C67B2.wem</Path>
 				</File>
 				<File Id="585100491" Language="SFX">
 					<ShortName>Start Line.wav</ShortName>
-					<Path>SFX/Start Line_C85FDF47.wem</Path>
+					<Path>SFX\Start Line_B5EAC511.wem</Path>
 				</File>
 				<File Id="614153702" Language="SFX">
 					<ShortName>Door Close 3.wav</ShortName>
-					<Path>SFX/Door Close 3_1C9C67B2.wem</Path>
+					<Path>SFX\Door Close 3_1C9C67B2.wem</Path>
 				</File>
 				<File Id="620467204" Language="SFX">
 					<ShortName>Sliding Door Open.wav</ShortName>
-					<Path>SFX/Sliding Door Open_8B636BCF.wem</Path>
+					<Path>SFX\Sliding Door Open_51E899E2.wem</Path>
 				</File>
 				<File Id="626533108" Language="SFX">
 					<ShortName>Light Switch 1.wav</ShortName>
-					<Path>SFX/Light Switch 1_1C9C67B2.wem</Path>
+					<Path>SFX\Light Switch 1_1C9C67B2.wem</Path>
 				</File>
 				<File Id="777980011" Language="SFX">
 					<ShortName>Sound Effects\Door Open.wav</ShortName>
-					<Path>SFX/Sound Effects/Door Open_1C9C67B2.wem</Path>
+					<Path>SFX\Sound Effects\Door Open_1C9C67B2.wem</Path>
 				</File>
 				<File Id="859492320" Language="SFX">
 					<ShortName>Button.wav</ShortName>
-					<Path>SFX/Button_1C9C67B2.wem</Path>
+					<Path>SFX\Button_1C9C67B2.wem</Path>
 				</File>
 				<File Id="877375572" Language="SFX">
 					<ShortName>Phone Ringing.wav</ShortName>
-					<Path>SFX/Phone Ringing_D0E6CA48.wem</Path>
+					<Path>SFX\Phone Ringing_D0E6CA48.wem</Path>
 				</File>
 				<File Id="993348874" Language="SFX">
 					<ShortName>Puzzle correct.wav</ShortName>
-					<Path>SFX/Puzzle correct_1779CC25.wem</Path>
+					<Path>SFX\Puzzle correct_1779CC25.wem</Path>
 				</File>
 				<File Id="1010716147" Language="SFX">
 					<ShortName>End Line.wav</ShortName>
-					<Path>SFX/End Line_25ED463C.wem</Path>
+					<Path>SFX\End Line_87505E87.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

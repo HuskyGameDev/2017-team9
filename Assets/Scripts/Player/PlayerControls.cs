@@ -57,18 +57,6 @@ public class PlayerControls : MonoBehaviour {
 			Cursor.lockState = CursorLockMode.Locked;
 		}
 
-		/*
-		if (Input.GetKeyDown(KeyCode.M)) {
-			AkSoundEngine.PostEvent("Door_Close", this.gameObject);
-		}
-		if (Input.GetKeyDown(KeyCode.N)) {
-			AkSoundEngine.PostEvent("Door_Lock", this.gameObject);
-		}
-		if (InputManager.GetButtonDown(InputManager.Button.Y)) {
-			cam.GetComponent<CameraManager>().NextRender();
-		}
-		 */
-
 		terminalInteractionController.Interact();
 	}
 

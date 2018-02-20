@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 23586674968588682}
   m_Layer: 2
   m_Name: Component
-  m_TagString: Untagged
+  m_TagString: GridSocket
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

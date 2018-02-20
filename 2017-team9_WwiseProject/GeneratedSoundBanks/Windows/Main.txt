@@ -16,24 +16,24 @@ Effect plug-ins	ID	Name	Type				Notes
 	2995775460	Room_Small	Wwise RoomVerb			
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	33640807	Keyboard Clicks 3	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Keyboard Clicks 3_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Keyboard Clicks\Keyboard Clicks 3		276144
-	37485589	Light Switch 2	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Light Switch 2_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Light Switch\Light Switch 2		1754256
-	39722309	Keyboard Clicks 1	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Keyboard Clicks 1_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Keyboard Clicks\Keyboard Clicks 1		768144
-	45906224	Door Close 2	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Door Close 2_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Doors\Door Close\Door Close 2		136144
-	70539900	Door Lock 3	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Door Lock 3_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Doors\Door Lock\Door Lock 3		163144
-	156639989	Keyboard Clicks 2	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Keyboard Clicks 2_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Keyboard Clicks\Keyboard Clicks 2		432144
-	256585866	Door Lock 2	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Door Lock 2_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Doors\Door Lock\Door Lock 2		163144
-	363777522	Light Switch 4	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Light Switch 4_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Light Switch\Light Switch 4		83656
-	559860460	Door Close 1	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Door Close 1_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Doors\Door Close\Door Close 1		768144
-	568625441	Sliding Door Close	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Sliding Door Close_7C554969.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Doors\Sliding Door Close		447060
-	570061723	Light Switch 3	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Light Switch 3_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Light Switch\Light Switch 3		74844
-	585100491	Line Start	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Start Line_C85FDF47.wem		\Actor-Mixer Hierarchy\Default Work Unit\Puzzle\Line Start		95596
-	614153702	Door Close 3	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Door Close 3_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Doors\Door Close\Door Close 3		1320304
-	620467204	Sliding Door Open	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Sliding Door Open_8B636BCF.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Doors\Sliding Door Open		435328
-	626533108	Light Switch 1	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Light Switch 1_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Light Switch\Light Switch 1		1922256
-	777980011	Door Open	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Sound Effects\Door Open_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Sound Effects\Door Open		136144
-	859492320	Button	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Button_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Button		176144
-	877375572	Phone	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Phone Ringing_D0E6CA48.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Phone		2310250
-	993348874	Correct	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Puzzle correct_1779CC25.wem		\Actor-Mixer Hierarchy\Default Work Unit\Puzzle\Correct		924136
-	1010716147	Line End	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\End Line_25ED463C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Puzzle\Line End		91256
+	33640807	Keyboard Clicks 3	D:\Repos\Team9-2017\2017-team9_WwiseProject\.cache\Windows\SFX\Keyboard Clicks 3_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Keyboard Clicks\Keyboard Clicks 3		276144
+	37485589	Light Switch 2	D:\Repos\Team9-2017\2017-team9_WwiseProject\.cache\Windows\SFX\Light Switch 2_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Light Switch\Light Switch 2		1754256
+	39722309	Keyboard Clicks 1	D:\Repos\Team9-2017\2017-team9_WwiseProject\.cache\Windows\SFX\Keyboard Clicks 1_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Keyboard Clicks\Keyboard Clicks 1		768144
+	45906224	Door Close 2	D:\Repos\Team9-2017\2017-team9_WwiseProject\.cache\Windows\SFX\Door Close 2_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Doors\Door Close\Door Close 2		136144
+	70539900	Door Lock 3	D:\Repos\Team9-2017\2017-team9_WwiseProject\.cache\Windows\SFX\Door Lock 3_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Doors\Door Lock\Door Lock 3		163144
+	156639989	Keyboard Clicks 2	D:\Repos\Team9-2017\2017-team9_WwiseProject\.cache\Windows\SFX\Keyboard Clicks 2_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Keyboard Clicks\Keyboard Clicks 2		432144
+	256585866	Door Lock 2	D:\Repos\Team9-2017\2017-team9_WwiseProject\.cache\Windows\SFX\Door Lock 2_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Doors\Door Lock\Door Lock 2		163144
+	363777522	Light Switch 4	D:\Repos\Team9-2017\2017-team9_WwiseProject\.cache\Windows\SFX\Light Switch 4_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Light Switch\Light Switch 4		83656
+	559860460	Door Close 1	D:\Repos\Team9-2017\2017-team9_WwiseProject\.cache\Windows\SFX\Door Close 1_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Doors\Door Close\Door Close 1		768144
+	568625441	Sliding Door Close	D:\Repos\Team9-2017\2017-team9_WwiseProject\.cache\Windows\SFX\Sliding Door Close_7C554969.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Doors\Sliding Door Close		447060
+	570061723	Light Switch 3	D:\Repos\Team9-2017\2017-team9_WwiseProject\.cache\Windows\SFX\Light Switch 3_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Light Switch\Light Switch 3		74844
+	585100491	Line Start	D:\Repos\Team9-2017\2017-team9_WwiseProject\.cache\Windows\SFX\Start Line_B5EAC511.wem		\Actor-Mixer Hierarchy\Default Work Unit\Puzzle\Line Start		95596
+	614153702	Door Close 3	D:\Repos\Team9-2017\2017-team9_WwiseProject\.cache\Windows\SFX\Door Close 3_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Doors\Door Close\Door Close 3		1320304
+	620467204	Sliding Door Open	D:\Repos\Team9-2017\2017-team9_WwiseProject\.cache\Windows\SFX\Sliding Door Open_51E899E2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Doors\Sliding Door Open		435328
+	626533108	Light Switch 1	D:\Repos\Team9-2017\2017-team9_WwiseProject\.cache\Windows\SFX\Light Switch 1_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Light Switch\Light Switch 1		1922256
+	777980011	Door Open	D:\Repos\Team9-2017\2017-team9_WwiseProject\.cache\Windows\SFX\Sound Effects\Door Open_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Sound Effects\Door Open		136144
+	859492320	Button	D:\Repos\Team9-2017\2017-team9_WwiseProject\.cache\Windows\SFX\Button_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Button		176144
+	877375572	Phone	D:\Repos\Team9-2017\2017-team9_WwiseProject\.cache\Windows\SFX\Phone Ringing_D0E6CA48.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Phone		2310250
+	993348874	Correct	D:\Repos\Team9-2017\2017-team9_WwiseProject\.cache\Windows\SFX\Puzzle correct_1779CC25.wem		\Actor-Mixer Hierarchy\Default Work Unit\Puzzle\Correct		924136
+	1010716147	Line End	D:\Repos\Team9-2017\2017-team9_WwiseProject\.cache\Windows\SFX\End Line_87505E87.wem		\Actor-Mixer Hierarchy\Default Work Unit\Puzzle\Line End		91256
 

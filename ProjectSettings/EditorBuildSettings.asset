@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Playtesting.unity
     guid: 837f148dc8a0e0a4fb3f9505ef73d3a3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DevScenes/dev_Jacob/dev_Jacob_Version-2.unity
     guid: 39d4377a665b3fa4eba8ed9113b473f2
+  - enabled: 1
+    path: Assets/Scenes/DevScenes/dev_Justin.unity
+    guid: 1366380d00aff674aac2af220a9e0802
