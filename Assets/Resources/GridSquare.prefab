@@ -1258,14 +1258,14 @@ MonoBehaviour:
   downOutputSocket: {fileID: 1751011079247962}
   leftOutputSocket: {fileID: 1806094683711048}
   component: {fileID: 1398786285126856}
-  unusableTexture: {fileID: 2800000, guid: fe167a86e9a8df64aaae19087c95d7ed, type: 3}
-  sourceTexture: {fileID: 2800000, guid: c5ba8cdae4788064db6c6c30b9afc398, type: 3}
-  shifterTexture: {fileID: 2800000, guid: dd612eec023747347bf05b4ad444c056, type: 3}
-  linkerTexture: {fileID: 2800000, guid: 92915f2fe6033134c942a33538c87bb9, type: 3}
-  deleterTexture: {fileID: 2800000, guid: 86c337c98b24d744bbc07935a2d01f33, type: 3}
-  connectorTexture: {fileID: 2800000, guid: ecfcfc69d8273b0409928111c7044927, type: 3}
-  combinerTexture: {fileID: 2800000, guid: 78189389e71630044944f74df4901bee, type: 3}
-  adderTexture: {fileID: 2800000, guid: b67ed6d891cdc3d43b2d24363e46861d, type: 3}
+  unusableTexture: {fileID: 2800000, guid: 3cf5a0d21f4d6e447b17b25d2db1bb28, type: 3}
+  sourceTexture: {fileID: 2800000, guid: bcde36993c43f384194c753e2711409c, type: 3}
+  shifterTexture: {fileID: 2800000, guid: eb3bdf4b6ae1e3d4bae0d4f70aebff16, type: 3}
+  linkerTexture: {fileID: 2800000, guid: b81467e986115594facf4a79bb269577, type: 3}
+  deleterTexture: {fileID: 2800000, guid: afdf617bd26e1544b9d2b87ea8dbcf0c, type: 3}
+  connectorTexture: {fileID: 2800000, guid: bf9ae202d17b9ed4099e93c55dad3439, type: 3}
+  combinerTexture: {fileID: 2800000, guid: 11c1ffe458233cd4bbdc87fc5a06506b, type: 3}
+  adderTexture: {fileID: 2800000, guid: 85a59eb5510d1324193bc7f527f3a6b3, type: 3}
 --- !u!114 &114407979251447758
 MonoBehaviour:
   m_ObjectHideFlags: 1
