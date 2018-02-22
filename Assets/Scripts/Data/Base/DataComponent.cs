@@ -53,25 +53,25 @@ namespace PuzzleComponents {
 
 			//Compare it to the cached DataSequence
 			if (DataSequence.Comparison(cache, newResult) == false) {
-				Debug.Log("And I actually could! " + ((newResult == null) ? "Null" : newResult.GetStringRepresentation()));
+				//Debug.Log("And I actually could! " + ((newResult == null) ? "Null" : newResult.GetStringRepresentation()));
 				//Debug.Log("I do need to update! " + this.gameObject.transform.name);
 				//Update the result
-				cache = newResult;
+				cache = newResult;	
+			}
 
-				//Signal all output connections that we have changed our data.
-				for (int i = 0; i < attachedSquare.line.Length; i++) {
-					if (attachedSquare.line[i] != null && attachedSquare.socketState[i] == GridSquare.SocketState.Output) {
-						//Use the GridLine method to find the other socket
-						GridSquare other;
-						GridSquare.GridDirection otherSocketDirection;
-						attachedSquare.line[i].CheckForOpposingSocket(attachedSquare, (GridSquare.GridDirection)i, out other, out otherSocketDirection);
-						if (other != null && other.dataComponent != null && other.socketState[(int)otherSocketDirection] == GridSquare.SocketState.Input) {
-							other.dataComponent.ConnectionChange();
-						}
+			//Signal all output connections that we have changed our data.
+			for (int i = 0; i < attachedSquare.line.Length; i++) {
+				if (attachedSquare.line[i] != null && attachedSquare.socketState[i] == GridSquare.SocketState.Output) {
+					//Use the GridLine method to find the other socket
+					GridSquare other;
+					GridSquare.GridDirection otherSocketDirection;
+					attachedSquare.line[i].CheckForOpposingSocket(attachedSquare, (GridSquare.GridDirection)i, out other, out otherSocketDirection);
+					if (other != null && other.dataComponent != null && other.socketState[(int)otherSocketDirection] == GridSquare.SocketState.Input) {
+						other.dataComponent.ConnectionChange();
 					}
 				}
-				
 			}
+
 			//Otherwise we dont have to do anything since nothing has changed
 		}
 

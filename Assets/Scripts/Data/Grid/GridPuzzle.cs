@@ -11,11 +11,14 @@ public class GridPuzzle : MonoBehaviour {
 	public int height = 10;
 
 
+
+
+
 	/// <summary>
 	/// Generates a grid of grid squares. Automattically links them properly.
 	/// </summary>
 	public void GenerateGrid() {
-		GridSquare[] bottomRow = new GridSquare[width];
+		GridSquare[] lastRow = new GridSquare[width];
 
 		for (int y = 0; y < height; y++) {
 			GridSquare[] currentRow = new GridSquare[width];
@@ -26,17 +29,24 @@ public class GridPuzzle : MonoBehaviour {
 					currentRow[x - 1].neighbors[(int)GridSquare.GridDirection.Right] = newSquare;
 					newSquare.neighbors[(int)GridSquare.GridDirection.Left] = currentRow[x - 1];
 				}
-				if (bottomRow[x] != null) {
-					bottomRow[x].neighbors[(int)GridSquare.GridDirection.Up] = newSquare;
-					newSquare.neighbors[(int)GridSquare.GridDirection.Down] = bottomRow[x];
+				if (lastRow[x] != null) {
+					//If the last row is not null, that means we can set some up/down connections
+					lastRow[x].neighbors[(int)GridSquare.GridDirection.Up] = newSquare;
+					newSquare.neighbors[(int)GridSquare.GridDirection.Down] = lastRow[x];
 				}
+				//Put this grid sqaure under this game obnject
 				newSquare.gameObject.transform.parent = this.transform;
+				//Set the position and scale
 				newSquare.transform.localScale = new Vector3(squareScale, squareScale, squareScale);
 				newSquare.transform.localPosition = new Vector3(x * squareScale, y * squareScale, 0.0f);
+
+				//We blank out the rotation so the grid will look right if this game object is rotated oddly
+				newSquare.transform.localRotation = Quaternion.Euler(Vector3.zero);
+
 				newSquare.transform.name = "(" +x+ "," +y+ ")GridSquare";
 				currentRow[x] = newSquare;
 			}
-			bottomRow = currentRow;
+			lastRow = currentRow;
 		}
 	}
 
