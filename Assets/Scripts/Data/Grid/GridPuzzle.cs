@@ -37,7 +37,7 @@ public class GridPuzzle : MonoBehaviour {
 				//Put this grid sqaure under this game obnject
 				newSquare.gameObject.transform.parent = this.transform;
 				//Set the position and scale
-				newSquare.transform.localScale = new Vector3(squareScale, squareScale, squareScale);
+				newSquare.transform.localScale = new Vector3(squareScale, squareScale, newSquare.transform.localScale.z);
 				newSquare.transform.localPosition = new Vector3(x * squareScale, y * squareScale, 0.0f);
 
 				//We blank out the rotation so the grid will look right if this game object is rotated oddly
