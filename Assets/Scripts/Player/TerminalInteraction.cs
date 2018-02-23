@@ -54,11 +54,7 @@ public class TerminalInteraction : MonoBehaviour {
 				}
 				else {
 					//Get the proper square depending on what we were hovering over.
-					GridSquare square = null;
-					if (rayInfo.transform.gameObject.tag == "GridSocket")
-						square = rayInfo.transform.gameObject.GetComponent<GridSocket>().gridSquare;
-					else
-						square = rayInfo.transform.gameObject.GetComponent<GridSquare>();
+					GridSquare square = rayInfo.transform.gameObject.GetComponent<GridSquare>();
 
 					//If we have a last GridSquare and it is different
 					if (lastGridSquare != null && lastGridSquare != square) {

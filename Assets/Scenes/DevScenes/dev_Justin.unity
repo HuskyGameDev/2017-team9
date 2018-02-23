@@ -33143,7 +33143,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a61ffc694ade5214e86b8ab5f1400fdb, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5
+      value: 95.4
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a61ffc694ade5214e86b8ab5f1400fdb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
