@@ -1,15 +1,22 @@
 fileFormatVersion: 2
-guid: a61ffc694ade5214e86b8ab5f1400fdb
-timeCreated: 1519353058
+guid: e2ca2bff03f983b49af21f15458d5536
+timeCreated: 1519352808
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Icosphere
+    100000: Cube
+    100002: Cylinder
+    100004: //RootNode
+    400000: Cube
+    400002: Cylinder
+    400004: //RootNode
+    2300000: Cube
+    2300002: Cylinder
+    3300000: Cube
+    3300002: Cylinder
+    4300000: Cube
+    4300002: Cylinder
     7400000: Default Take
     9500000: //RootNode
   materials:
