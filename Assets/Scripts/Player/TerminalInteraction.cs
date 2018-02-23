@@ -31,7 +31,7 @@ public class TerminalInteraction : MonoBehaviour {
 
 				Debug.Log("Down on Socket");
 
-				GridSocket socket = rayInfo.transform.gameObject.GetComponent<GridSocket>();
+				/*GridSocket socket = rayInfo.transform.gameObject.GetComponent<GridSocket>();
 				if (socket != null) {
 					//So we have clicked down on a socket.
 					//First we need to delete the previous line if it existed
@@ -40,7 +40,7 @@ public class TerminalInteraction : MonoBehaviour {
 
 					currentLine = new GridLine();
 					currentLine.AddSquare(socket.gridSquare);
-				}
+				}*/
 			}
 		}
 		else if (InputManager.GetGameButton(InputManager.GameButton.Interact1)) {
