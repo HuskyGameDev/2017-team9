@@ -37,7 +37,7 @@ public class GridSquare : MonoBehaviour {
 	/// <summary>
 	/// The states a socket can be in
 	/// </summary>
-	public enum SocketState { None, Input, Output}
+	public enum SocketState { None, Line, Input, Output}
 
 	/// <summary>
 	/// The states for each socket direction
@@ -131,7 +131,7 @@ public class GridSquare : MonoBehaviour {
 		else if (B.type != GridType.Empty) {
 			Debug.Log("X->Socket");
 			//So know we know the endpoint is a socket, so we just need to make sure there is one
-			if (B.socketState[(int)GridSquare.oppositeDirection[(int)direction]] != GridSquare.SocketState.None) {
+			if (B.socketState[(int)GridSquare.oppositeDirection[(int)direction]] == GridSquare.SocketState.Input || B.socketState[(int)GridSquare.oppositeDirection[(int)direction]] == GridSquare.SocketState.Output) {
 				//If there is, we can just make the connection!
 				//Implicitly, for us to have made it this far into a connection with a socket, any line that could have existed in this spot has been trimmed.
 				//so we can just make the connection!
