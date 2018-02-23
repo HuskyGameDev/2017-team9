@@ -266,9 +266,32 @@ public class GridSquare : MonoBehaviour {
 			dataComponent = this.gameObject.AddComponent<DataUnusable>();
 		}
 
-		//Make sure the new component knows about us!
-		if (dataComponent != null)
+		//Destroy the current visual grid
+		for (int i = this.gameObject.transform.childCount; i > 0; i--) {
+			DestroyImmediate(this.gameObject.transform.GetChild(i - 1).gameObject);
+		}
+
+
+		if (dataComponent != null) {
+			//Add the right visual gameobject
+			loadProperVisualsGameObject("Grid/Component", 0.25f);
+			//Make sure the new component knows about us!
 			dataComponent.attachedSquare = this;
+		}
+		else {
+			loadProperVisualsGameObject("Grid/Regular", 0.25f);
+		}
+	}
+
+	//Loads the proper game object that handles the visuals for this square
+	private void loadProperVisualsGameObject(string path, float scaleMulitplier) {
+		GameObject gO = Instantiate(Resources.Load(path, typeof(GameObject))) as GameObject;
+		gO.transform.parent = this.transform;
+		gO.transform.localScale = new Vector3(1.0f * scaleMulitplier, 1.0f * scaleMulitplier, gO.transform.localScale.z);
+		gO.transform.localPosition = Vector3.zero;
+
+		//We blank out the rotation so the grid will look right if this game object is rotated oddly
+		gO.transform.localRotation = Quaternion.Euler(Vector3.zero);
 	}
 
 	/// <summary>
@@ -336,7 +359,7 @@ public class GridSquare : MonoBehaviour {
 	/// </summary>
 	public void ValidateSquare() {
 		//If our Type is different from our component, fix that
-		if (ValidateTypeToComponentIntegrity() == false)
+		//if (ValidateTypeToComponentIntegrity() == false)
 			ChangeComponent(type);
 
 		//Update the visuals when we make a change
