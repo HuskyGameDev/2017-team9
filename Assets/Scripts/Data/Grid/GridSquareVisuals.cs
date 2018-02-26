@@ -36,6 +36,7 @@ public class GridSquareVisuals : MonoBehaviour {
 	public Texture connectorTexture;
 	public Texture combinerTexture;
 	public Texture adderTexture;
+	public Texture encoderTexture;
 
 
 	/// <summary>
@@ -144,6 +145,8 @@ public class GridSquareVisuals : MonoBehaviour {
 			SetTexture(combinerTexture);
 		else if (type == GridSquare.GridType.Adder)
 			SetTexture(adderTexture);
+		else if (type == GridSquare.GridType.Encoder)
+			SetTexture(encoderTexture);
 	}
 
 

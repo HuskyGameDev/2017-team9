@@ -22,7 +22,7 @@ public class GridSquare : MonoBehaviour {
 	/// <summary>
 	/// Enum of all states a grid square can be
 	/// </summary>
-	public enum GridType { Empty, Unusable, Adder, Combiner, Connector, Deleter, Linker, Shifter, Source}
+	public enum GridType { Empty, Unusable, Adder, Combiner, Connector, Deleter, Linker, Shifter, Source, Encoder}
 
 	/// <summary>
 	/// The dataComponent that may exist on this square.
@@ -264,6 +264,9 @@ public class GridSquare : MonoBehaviour {
 		}
 		else if (newType == GridType.Unusable) {
 			dataComponent = this.gameObject.AddComponent<DataUnusable>();
+		} 
+		else if (newType == GridType.Encoder) {
+			dataComponent = this.gameObject.AddComponent<DataEncoder>();
 		}
 
 		//Make sure the new component knows about us!
@@ -307,6 +310,9 @@ public class GridSquare : MonoBehaviour {
 			consistent = true;
 		}
 		else if (type == GridType.Unusable && dataComponent.GetType() == typeof(DataUnusable)) {
+			consistent = true;
+		} 
+		else if (type == GridType.Encoder && dataComponent.GetType() == typeof(DataEncoder)) {
 			consistent = true;
 		}
 
