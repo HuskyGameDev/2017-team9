@@ -37,7 +37,7 @@ public class GridSquare : MonoBehaviour {
 	/// <summary>
 	/// The states a socket can be in
 	/// </summary>
-	public enum SocketState { None, Line, Input, Output}
+	public enum SocketState { None, Input, Output}
 
 	/// <summary>
 	/// The states for each socket direction
@@ -131,7 +131,7 @@ public class GridSquare : MonoBehaviour {
 		else if (B.type != GridType.Empty) {
 			Debug.Log("X->Socket");
 			//So know we know the endpoint is a socket, so we just need to make sure there is one
-			if (B.socketState[(int)GridSquare.oppositeDirection[(int)direction]] == GridSquare.SocketState.Input || B.socketState[(int)GridSquare.oppositeDirection[(int)direction]] == GridSquare.SocketState.Output) {
+			if (B.socketState[(int)GridSquare.oppositeDirection[(int)direction]] != GridSquare.SocketState.None) {
 				//If there is, we can just make the connection!
 				//Implicitly, for us to have made it this far into a connection with a socket, any line that could have existed in this spot has been trimmed.
 				//so we can just make the connection!
@@ -272,32 +272,9 @@ public class GridSquare : MonoBehaviour {
 			dataComponent = this.gameObject.AddComponent<DataMixer>();
 		}
 
-		//Destroy the current visual grid
-		for (int i = this.gameObject.transform.childCount; i > 0; i--) {
-			DestroyImmediate(this.gameObject.transform.GetChild(i - 1).gameObject);
-		}
-
-
-		if (dataComponent != null) {
-			//Add the right visual gameobject
-			loadProperVisualsGameObject("Grid/Component", 0.25f);
-			//Make sure the new component knows about us!
+		//Make sure the new component knows about us!
+		if (dataComponent != null)
 			dataComponent.attachedSquare = this;
-		}
-		else {
-			loadProperVisualsGameObject("Grid/Regular", 0.25f);
-		}
-	}
-
-	//Loads the proper game object that handles the visuals for this square
-	private void loadProperVisualsGameObject(string path, float scaleMulitplier) {
-		GameObject gO = Instantiate(Resources.Load(path, typeof(GameObject))) as GameObject;
-		gO.transform.parent = this.transform;
-		gO.transform.localScale = new Vector3(1.0f * scaleMulitplier, 1.0f * scaleMulitplier, gO.transform.localScale.z);
-		gO.transform.localPosition = Vector3.zero;
-
-		//We blank out the rotation so the grid will look right if this game object is rotated oddly
-		gO.transform.localRotation = Quaternion.Euler(Vector3.zero);
 	}
 
 	/// <summary>
@@ -371,7 +348,7 @@ public class GridSquare : MonoBehaviour {
 	/// </summary>
 	public void ValidateSquare() {
 		//If our Type is different from our component, fix that
-		//if (ValidateTypeToComponentIntegrity() == false)
+		if (ValidateTypeToComponentIntegrity() == false)
 			ChangeComponent(type);
 
 		//Update the visuals when we make a change

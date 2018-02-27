@@ -44,7 +44,6 @@ ModelImporter:
     100072: Mug_MeshPart7
     100074: Mug_MeshPart8
     100076: Mug_MeshPart9
-    100078: Mug
     400000: //RootNode
     400002: Mug_MeshPart0
     400004: Mug_MeshPart1
@@ -84,7 +83,6 @@ ModelImporter:
     400072: Mug_MeshPart7
     400074: Mug_MeshPart8
     400076: Mug_MeshPart9
-    400078: Mug
     2300000: Mug_MeshPart0
     2300002: Mug_MeshPart1
     2300004: Mug_MeshPart10
@@ -124,7 +122,6 @@ ModelImporter:
     2300072: Mug_MeshPart8
     2300074: Mug_MeshPart9
     2300076: //RootNode
-    2300078: Mug
     3300000: Mug_MeshPart0
     3300002: Mug_MeshPart1
     3300004: Mug_MeshPart10
@@ -164,7 +161,6 @@ ModelImporter:
     3300072: Mug_MeshPart8
     3300074: Mug_MeshPart9
     3300076: //RootNode
-    3300078: Mug
     4300000: Mug_MeshPart0
     4300002: Mug_MeshPart1
     4300004: Mug_MeshPart2
@@ -241,7 +237,7 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
@@ -272,10 +268,10 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

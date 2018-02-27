@@ -62,7 +62,7 @@ public class GridLine {
 			}
 			
 			//So we check if this node has a socket on the direction we calculated
-			if (currentNode.Value.socketState[(int)outDirection] == GridSquare.SocketState.Input || currentNode.Value.socketState[(int)outDirection] == GridSquare.SocketState.Output) {
+			if (currentNode.Value.socketState[(int)outDirection] != GridSquare.SocketState.None) {
 				//It does, so we return this new socket
 				retDirection = outDirection;
 				retSquare = currentNode.Value;

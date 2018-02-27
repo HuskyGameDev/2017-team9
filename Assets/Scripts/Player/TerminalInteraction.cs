@@ -31,7 +31,7 @@ public class TerminalInteraction : MonoBehaviour {
 
 				Debug.Log("Down on Socket");
 
-				/*GridSocket socket = rayInfo.transform.gameObject.GetComponent<GridSocket>();
+				GridSocket socket = rayInfo.transform.gameObject.GetComponent<GridSocket>();
 				if (socket != null) {
 					//So we have clicked down on a socket.
 					//First we need to delete the previous line if it existed
@@ -40,7 +40,7 @@ public class TerminalInteraction : MonoBehaviour {
 
 					currentLine = new GridLine();
 					currentLine.AddSquare(socket.gridSquare);
-				}*/
+				}
 			}
 		}
 		else if (InputManager.GetGameButton(InputManager.GameButton.Interact1)) {
@@ -54,7 +54,11 @@ public class TerminalInteraction : MonoBehaviour {
 				}
 				else {
 					//Get the proper square depending on what we were hovering over.
-					GridSquare square = rayInfo.transform.gameObject.GetComponent<GridSquare>();
+					GridSquare square = null;
+					if (rayInfo.transform.gameObject.tag == "GridSocket")
+						square = rayInfo.transform.gameObject.GetComponent<GridSocket>().gridSquare;
+					else
+						square = rayInfo.transform.gameObject.GetComponent<GridSquare>();
 
 					//If we have a last GridSquare and it is different
 					if (lastGridSquare != null && lastGridSquare != square) {
