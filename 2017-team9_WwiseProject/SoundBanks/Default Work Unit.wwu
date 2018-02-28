@@ -8,6 +8,7 @@
 						<ObjectRef Name="Puzzle_Correct" ID="{4682A34B-4A56-402A-93D5-AAF435EC6E5C}" WorkUnitID="{A4E72B73-8A8B-458E-80D5-A7FD8BAFC823}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="Button" ID="{04D0CD60-DF0C-4045-BEF5-CEAD03AD9A64}" WorkUnitID="{A4E72B73-8A8B-458E-80D5-A7FD8BAFC823}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="Light_Switch" ID="{BF12F682-9074-4305-A11F-B0D3AA12F786}" WorkUnitID="{A4E72B73-8A8B-458E-80D5-A7FD8BAFC823}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Footsteps" ID="{05880C38-0E49-4429-9F23-E9C565E71722}" WorkUnitID="{A4E72B73-8A8B-458E-80D5-A7FD8BAFC823}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="Phone" ID="{E0C25C26-C765-4566-BED1-4F3F3E700D9A}" WorkUnitID="{A4E72B73-8A8B-458E-80D5-A7FD8BAFC823}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="Sliding_Door_Close" ID="{5DABBCFA-030F-4649-A9B5-0405AC4F15E7}" WorkUnitID="{A4E72B73-8A8B-458E-80D5-A7FD8BAFC823}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="Sliding_Door_Open" ID="{D82E804B-8AAC-46A7-9AED-EEECD73DFEA4}" WorkUnitID="{A4E72B73-8A8B-458E-80D5-A7FD8BAFC823}" Filter="7" Origin="Manual"/>

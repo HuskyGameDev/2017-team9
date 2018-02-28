@@ -7,12 +7,14 @@ Event	ID	Name			Wwise Object Path	Notes
 	977454165	Button			\Default Work Unit\Button	
 	1081112822	Keyboard_Clicks			\Default Work Unit\Keyboard_Clicks	
 	1790472453	Sliding_Door_Close			\Default Work Unit\Sliding_Door_Close	
+	2385628198	Footsteps			\Default Work Unit\Footsteps	
 	3029008661	Door_Lock			\Default Work Unit\Door_Lock	
 	3104856687	Phone			\Default Work Unit\Phone	
 	3615965583	Sliding_Door_Open			\Default Work Unit\Sliding_Door_Open	
 	4086643362	Line_Start			\Default Work Unit\Line_Start	
 
 Effect plug-ins	ID	Name	Type				Notes
+	1182561210	Cut_3dB_10KHz	Wwise Parametric EQ			
 	2995775460	Room_Small	Wwise RoomVerb			
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
@@ -21,9 +23,12 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	39722309	Keyboard Clicks 1	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Keyboard Clicks 1_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Keyboard Clicks\Keyboard Clicks 1		768144
 	45906224	Door Close 2	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Door Close 2_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Doors\Door Close\Door Close 2		136144
 	70539900	Door Lock 3	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Door Lock 3_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Doors\Door Lock\Door Lock 3		163144
+	111827739	Step2	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\FOOT-Walking on Cement01, jdmoths_DC7E7BBF.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Footsteps\Step2		82160
 	156639989	Keyboard Clicks 2	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Keyboard Clicks 2_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Keyboard Clicks\Keyboard Clicks 2		432144
 	256585866	Door Lock 2	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Door Lock 2_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Doors\Door Lock\Door Lock 2		163144
+	323365193	Step4	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\FOOT-Walking on Cement01, jdmoths_C9D15B67.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Footsteps\Step4		88728
 	363777522	Light Switch 4	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Light Switch 4_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Light Switch\Light Switch 4		83656
+	547717690	Step1	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\FOOT-Walking on Cement01, jdmoths_F83D2604.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Footsteps\Step1		69024
 	559860460	Door Close 1	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Door Close 1_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Doors\Door Close\Door Close 1		768144
 	568625441	Sliding Door Close	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Sliding Door Close_7C554969.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Doors\Sliding Door Close		447060
 	570061723	Light Switch 3	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Light Switch 3_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Light Switch\Light Switch 3		74844
@@ -31,6 +36,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	614153702	Door Close 3	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Door Close 3_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Doors\Door Close\Door Close 3		1320304
 	620467204	Sliding Door Open	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Sliding Door Open_8B636BCF.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Doors\Sliding Door Open		435328
 	626533108	Light Switch 1	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Light Switch 1_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Light Switch\Light Switch 1		1922256
+	769229974	Step3	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\FOOT-Walking on Cement01, jdmoths_3752020C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Footsteps\Step3		70664
 	777980011	Door Open	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Sound Effects\Door Open_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Sound Effects\Door Open		136144
 	859492320	Button	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Button_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Button		176144
 	877375572	Phone	Y:\2017-team9\2017-team9_WwiseProject\.cache\Windows\SFX\Phone Ringing_D0E6CA48.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental\Phone		2310250

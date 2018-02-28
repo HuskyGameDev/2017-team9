@@ -25,6 +25,7 @@
 				<Event Id="128625444" Name="Door_Close" ObjectPath="\Events\Default Work Unit\Door_Close"/>
 				<Event Id="3029008661" Name="Door_Lock" ObjectPath="\Events\Default Work Unit\Door_Lock"/>
 				<Event Id="535830432" Name="Door_Open" ObjectPath="\Events\Default Work Unit\Door_Open"/>
+				<Event Id="2385628198" Name="Footsteps" ObjectPath="\Events\Default Work Unit\Footsteps"/>
 				<Event Id="1081112822" Name="Keyboard_Clicks" ObjectPath="\Events\Default Work Unit\Keyboard_Clicks"/>
 				<Event Id="790135102" Name="Light_Switch" ObjectPath="\Events\Default Work Unit\Light_Switch"/>
 				<Event Id="392429297" Name="Line_End" ObjectPath="\Events\Default Work Unit\Line_End"/>
@@ -55,6 +56,10 @@
 					<ShortName>Door Lock 3.wav</ShortName>
 					<Path>SFX/Door Lock 3_1C9C67B2.wem</Path>
 				</File>
+				<File Id="111827739" Language="SFX">
+					<ShortName>FOOT-Walking on Cement01, jdmoths.wav</ShortName>
+					<Path>SFX/FOOT-Walking on Cement01, jdmoths_DC7E7BBF.wem</Path>
+				</File>
 				<File Id="156639989" Language="SFX">
 					<ShortName>Keyboard Clicks 2.wav</ShortName>
 					<Path>SFX/Keyboard Clicks 2_1C9C67B2.wem</Path>
@@ -63,9 +68,17 @@
 					<ShortName>Door Lock 2.wav</ShortName>
 					<Path>SFX/Door Lock 2_1C9C67B2.wem</Path>
 				</File>
+				<File Id="323365193" Language="SFX">
+					<ShortName>FOOT-Walking on Cement01, jdmoths.wav</ShortName>
+					<Path>SFX/FOOT-Walking on Cement01, jdmoths_C9D15B67.wem</Path>
+				</File>
 				<File Id="363777522" Language="SFX">
 					<ShortName>Light Switch 4.wav</ShortName>
 					<Path>SFX/Light Switch 4_1C9C67B2.wem</Path>
+				</File>
+				<File Id="547717690" Language="SFX">
+					<ShortName>FOOT-Walking on Cement01, jdmoths.wav</ShortName>
+					<Path>SFX/FOOT-Walking on Cement01, jdmoths_F83D2604.wem</Path>
 				</File>
 				<File Id="559860460" Language="SFX">
 					<ShortName>Door Close 1.wav</ShortName>
@@ -94,6 +107,10 @@
 				<File Id="626533108" Language="SFX">
 					<ShortName>Light Switch 1.wav</ShortName>
 					<Path>SFX/Light Switch 1_1C9C67B2.wem</Path>
+				</File>
+				<File Id="769229974" Language="SFX">
+					<ShortName>FOOT-Walking on Cement01, jdmoths.wav</ShortName>
+					<Path>SFX/FOOT-Walking on Cement01, jdmoths_3752020C.wem</Path>
 				</File>
 				<File Id="777980011" Language="SFX">
 					<ShortName>Sound Effects\Door Open.wav</ShortName>
