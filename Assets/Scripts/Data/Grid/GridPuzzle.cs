@@ -28,11 +28,17 @@ public class GridPuzzle : MonoBehaviour {
 				if (x-1 >= 0) {
 					currentRow[x - 1].neighbors[(int)GridSquare.GridDirection.Right] = newSquare;
 					newSquare.neighbors[(int)GridSquare.GridDirection.Left] = currentRow[x - 1];
+
+					currentRow[x - 1].socketState[(int)GridSquare.GridDirection.Right] = GridSquare.SocketState.Line;
+					newSquare.socketState[(int)GridSquare.GridDirection.Left] = GridSquare.SocketState.Line;
 				}
 				if (lastRow[x] != null) {
 					//If the last row is not null, that means we can set some up/down connections
 					lastRow[x].neighbors[(int)GridSquare.GridDirection.Up] = newSquare;
 					newSquare.neighbors[(int)GridSquare.GridDirection.Down] = lastRow[x];
+
+					lastRow[x].socketState[(int)GridSquare.GridDirection.Up] = GridSquare.SocketState.Line;
+					newSquare.socketState[(int)GridSquare.GridDirection.Down] = GridSquare.SocketState.Line;
 				}
 				//Put this grid sqaure under this game obnject
 				newSquare.gameObject.transform.parent = this.transform;
@@ -48,6 +54,10 @@ public class GridPuzzle : MonoBehaviour {
 			}
 			lastRow = currentRow;
 		}
+
+		//Update all the visuals now that we are done generating
+		foreach (GridSquare d in this.gameObject.GetComponentsInChildren<GridSquare>())
+			d.ValidateSquare();
 	}
 
 	/// <summary>
@@ -65,7 +75,7 @@ public class GridPuzzle : MonoBehaviour {
 	/// <returns></returns>
 	private GridSquare getSquare() {
 		GridSquare newSquare = null;
-		GameObject gO = Instantiate(Resources.Load("GridSquare", typeof(GameObject))) as GameObject;
+		GameObject gO = Instantiate(Resources.Load("Grid/GridSquare", typeof(GameObject))) as GameObject;
 		newSquare = gO.GetComponent<GridSquare>();
 		return newSquare;
 	}
