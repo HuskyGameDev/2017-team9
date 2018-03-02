@@ -28,8 +28,8 @@ MonoBehaviour:
     List: []
   BankWwu:
   - Guid: '{BCE0CB66-6933-4EFA-B579-2C45DE66422C}'
-    m_lastTimePart2: -1999274010
-    m_lastTimePsrt1: -821939836
+    m_lastTimePart2: -1999273856
+    m_lastTimePsrt1: -64253097
     ParentPhysicalPath: 
     PhysicalPath: SoundBanks\Default Work Unit.wwu
     List:
@@ -48,8 +48,8 @@ MonoBehaviour:
   defaultPoolSize: 4096
   EventWwu:
   - Guid: '{A4E72B73-8A8B-458E-80D5-A7FD8BAFC823}'
-    m_lastTimePart2: -1999274010
-    m_lastTimePsrt1: -823408746
+    m_lastTimePart2: -1999273856
+    m_lastTimePsrt1: -84969365
     ParentPhysicalPath: 
     PhysicalPath: Events\Default Work Unit.wwu
     List:
@@ -62,7 +62,7 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: Button
         ObjectType: 3
-      maxAttenuation: 0
+      maxAttenuation: 100
       maxDuration: 0
       minDuration: 0
     - Guid: 44b607a294f4a54ba96e82362bd5b28a
@@ -74,7 +74,7 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: Door_Close
         ObjectType: 3
-      maxAttenuation: 0
+      maxAttenuation: 100
       maxDuration: 0
       minDuration: 0
     - Guid: 49b52528a472a6479080cf5e73b91ade
@@ -86,7 +86,7 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: Door_Lock
         ObjectType: 3
-      maxAttenuation: 0
+      maxAttenuation: 100
       maxDuration: 0
       minDuration: 0
     - Guid: 03e883453c9cde49858161777c16f708
@@ -122,7 +122,7 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: Keyboard_Clicks
         ObjectType: 3
-      maxAttenuation: 0
+      maxAttenuation: 100
       maxDuration: 0
       minDuration: 0
     - Guid: 82f612bf74900543a11fb0d3aa12f786
@@ -134,7 +134,7 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: Light_Switch
         ObjectType: 3
-      maxAttenuation: 0
+      maxAttenuation: 100
       maxDuration: 0
       minDuration: 0
     - Guid: 59859a7d2f38c64cb72c26ea133f0875
@@ -146,7 +146,7 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: Line_End
         ObjectType: 3
-      maxAttenuation: 0
+      maxAttenuation: 100
       maxDuration: 0
       minDuration: 0
     - Guid: abd1903a2df9d94ba0d78701cc651e04
@@ -157,6 +157,18 @@ MonoBehaviour:
       - ElementName: Default Work Unit
         ObjectType: 12
       - ElementName: Line_Start
+        ObjectType: 3
+      maxAttenuation: 100
+      maxDuration: 0
+      minDuration: 0
+    - Guid: 238195e38734b449b1020de1b6576960
+      ID: 700375207
+      Name: Opening_Music
+      Path: Default Work Unit\Opening_Music
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Opening_Music
         ObjectType: 3
       maxAttenuation: 0
       maxDuration: 0
@@ -170,7 +182,7 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: Phone
         ObjectType: 3
-      maxAttenuation: 0
+      maxAttenuation: 100
       maxDuration: 0
       minDuration: 0
     - Guid: 4ba38246564a2a4093d5aaf435ec6e5c
@@ -182,7 +194,7 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: Puzzle_Correct
         ObjectType: 3
-      maxAttenuation: 0
+      maxAttenuation: 100
       maxDuration: 0
       minDuration: 0
     - Guid: fabcab5d0f034946a9b50405ac4f15e7
@@ -194,7 +206,7 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: Sliding_Door_Close
         ObjectType: 3
-      maxAttenuation: 0
+      maxAttenuation: 100
       maxDuration: 0
       minDuration: 0
     - Guid: 4b802ed8ac8aa7469aedeeecd73dfea4
@@ -206,7 +218,7 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: Sliding_Door_Open
         ObjectType: 3
-      maxAttenuation: 0
+      maxAttenuation: 100
       maxDuration: 0
       minDuration: 0
   ExpandedItems:
