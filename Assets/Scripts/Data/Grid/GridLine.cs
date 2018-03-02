@@ -5,85 +5,80 @@ using PuzzleComponents;
 
 
 public class GridLine {
-
-	public DataComponent A;
-	public DataComponent B;
-
-	public Color color;
+	public Color color = Color.blue;
 
 	public bool DeletionFlag = false;
 
 	public LinkedList<GridSquare> squares = new LinkedList<GridSquare>();
 
-
-
 	/// <summary>
-	/// Adds a component to one of the ends of this line
-	/// </summary>
-	/// <param name="dc"></param>
-	public void AddDataComponent(DataComponent dc) {
-		Debug.Log("AddingDataComponent!");
-		//Don't add the same one more than once
-		if (A == dc || B == dc)
-			return;
-
-		if (A == null)
-			A = dc;
-		else
-			B = dc;
-	}
-
-	/// <summary>
-	/// Validates that the two data components are connected via the squares list
+	/// Scans down the squares list looking for a socket from a starting point
 	/// </summary>
 	/// <returns></returns>
-	public bool ValidatePathBetweenDataComponents() {
-		//[TODO] THIS IS NOT CORRECT. IT DOES NOT CHECK FOR BREAKS IN THE LINE
+	public void CheckForOpposingSocket(GridSquare square, GridSquare.GridDirection directon, out GridSquare retSquare, out GridSquare.GridDirection retDirection) {
 
-		if (A == null || B == null) {
-			Debug.Log("Validate failed via not having two components");
-			return false;
+		//First, grab this squares node
+		LinkedListNode<GridSquare> node = squares.Find(square);
+		//If this square isnt on the list, abandon search
+		if (node == null) {
+			Debug.Log("CFOS: Failed by not being on the list");
+			retSquare = null;
+			retDirection = GridSquare.GridDirection.Up;
+			return;
 		}
 
-		//Now we need to make sure that both sockets are different.
-		//We also can check to make sure the line exists since we have to call FindLineDirection anyway.
-		GridSquare.GridDirection dirA, dirB;
-		if (A.attachedSquare.FindLineDirection(this, out dirA) == false || B.attachedSquare.FindLineDirection(this, out dirB) == false || A.attachedSquare.socketState[(int)dirA] == B.attachedSquare.socketState[(int)dirB]) {
-			//If they have the same state (Input->Input/Output->Output) we fail them
-			return false;
-		}
+		//So now we need to crawl along the correct direction of our list.
+		//So we need to figure out what direction that is.
+		bool isForward;
 
-
-		//First we need to make sure which other we need to find
-		DataComponent other = null;
-		if (squares.First.Value.dataComponent == A) {
-			other = B;
+		if (node.Next != null && node.Next.Value.line[(int)GridSquare.oppositeDirection[(int)directon]] == this) {
+			isForward = true;
 		}
-		else if (squares.First.Value.dataComponent == B) {
-			other = A;
+		else if (node.Previous != null && node.Previous.Value.line[(int)GridSquare.oppositeDirection[(int)directon]] == this) {
+			isForward = false;
 		}
 		else {
-			Debug.Log("Validate failed via Failed to have socket in First Square");
-			//Neither are in the first square, our line is invalid!
-			return false;
+			Debug.Log("CFOS: Failed by not have a direction that made sense.");
+			retSquare = null;
+			retDirection = GridSquare.GridDirection.Up;
+			return;
 		}
 
-		Debug.Log((squares.Last.Value.dataComponent == other) ? "Validate Pased!" : "Validate failed via Not Finding other at the end.");
-		Debug.Log(squares.Last.Value.dataComponent);
-		//If the last one's value is the other, we are a valid connection
-		return squares.Last.Value.dataComponent == other;
-	}
+		//So now we can start the search down the line
+		LinkedListNode<GridSquare> lastNode = node;
+		LinkedListNode<GridSquare> currentNode = (isForward) ? node.Next : node.Previous;
+		while (currentNode != null) {
+			//So now we check the direction between these two nodes, we do this by calling the ArNeighbors method
+			GridSquare.GridDirection outDirection;
+			if (GridSquare.AreNeighbors(currentNode.Value, lastNode.Value, out outDirection) == false) {
+				//Extra fail condition in that we have found two nodes that are not neighbors
+				//If this is true, we have an incorrect line...
+				DeletionFlag = true;
+				DeleteFromGrid();
+				retSquare = null;
+				retDirection = GridSquare.GridDirection.Up;
+				Debug.Log("CFOS: Failed by non neighbors in the list");
+				return;
+			}
+			
+			//So we check if this node has a socket on the direction we calculated
+			if (currentNode.Value.socketState[(int)outDirection] != GridSquare.SocketState.None) {
+				//It does, so we return this new socket
+				retDirection = outDirection;
+				retSquare = currentNode.Value;
+				return;
+			}
 
-	/// <summary>
-	/// Removes the Datacomponent from the pair
-	/// </summary>
-	public void RemoveDataComponent(DataComponent dc) {
-		if (dc == A) {
-			A = null;
+			//Go to the next part of the loop
+			lastNode = currentNode;
+			currentNode = (isForward) ? currentNode.Next : currentNode.Previous;
 		}
-		if (dc == B) {
-			B = null;
-		}
+
+		//We did not find a socket during the search so we have failed
+		retSquare = null;
+		retDirection = GridSquare.GridDirection.Up;
+		Debug.Log("CFOS: Failed by not finding a socket.");
+		return;
 	}
 
 	/// <summary>
@@ -125,13 +120,6 @@ public class GridLine {
 		}
 	}
 
-	/// <summary>
-	/// Returns the other assuming that the passed argument is one of them
-	/// </summary>
-	/// <param name="dc"></param>
-	public DataComponent GetOther(DataComponent dc) {
-		return (dc == A) ? B : A;
-	}
 
 	/// <summary>
 	/// Removes this line from reference on the grid
@@ -143,12 +131,10 @@ public class GridLine {
 		while (squares.First != null) {
 			//Remove line takes care of removing the datacomponent if it has one
 			squares.First.Value.RemoveLine(this);
+			if (squares.First.Value.dataComponent != null) {
+				squares.First.Value.dataComponent.ConnectionChange();
+			}
 			squares.RemoveFirst();
-		}
-		//If the line had a connecion, we need to notify the components they no longer have one.
-		if (A != null && B != null) {
-			A.ConnectionChange();
-			B.ConnectionChange();
 		}
 	}
 }

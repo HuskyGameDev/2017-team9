@@ -22,8 +22,11 @@ public class GridSquare : MonoBehaviour {
 	/// <summary>
 	/// Enum of all states a grid square can be
 	/// </summary>
-	public enum GridType { Empty, Unusable, Adder, Combiner, Connector, Deleter, Linker, Shifter, Source}
+	public enum GridType { Empty, Unusable, Adder, Combiner, Connector, Deleter, Linker, Shifter, Source, Encoder, Mixer}
 
+	/// <summary>
+	/// The dataComponent that may exist on this square.
+	/// </summary>
 	public DataComponent dataComponent;
 
 	/// <summary>
@@ -134,11 +137,20 @@ public class GridSquare : MonoBehaviour {
 				//so we can just make the connection!
 				A.line[(int)direction] = newLine;
 				B.line[(int)GridSquare.oppositeDirection[(int)direction]] = newLine;
+
+				//Now that we have made the connection, we should let this dataComponent know about the change.
+				
 			}
 			else {
 				return false;
 			}
 		}
+
+		//Add our newSquare onto the line
+		newLine.AddSquare(B);
+		//If it has a dataComponent, notify it that it is on a line
+		if (B.dataComponent != null)
+			B.dataComponent.ConnectionChange();
 		return true;
 	}
 
@@ -252,6 +264,12 @@ public class GridSquare : MonoBehaviour {
 		}
 		else if (newType == GridType.Unusable) {
 			dataComponent = this.gameObject.AddComponent<DataUnusable>();
+		} 
+		else if (newType == GridType.Encoder) {
+			dataComponent = this.gameObject.AddComponent<DataEncoder>();
+		} 
+		else if (newType == GridType.Mixer) {
+			dataComponent = this.gameObject.AddComponent<DataMixer>();
 		}
 
 		//Make sure the new component knows about us!
@@ -266,43 +284,41 @@ public class GridSquare : MonoBehaviour {
 		bool consistent = false;
 
 		if (type == GridType.Empty && dataComponent == null) {
-			//In this case, we are now marked as empty but we have a DataComponent attacked, so we need to change
+			//In this case, we are marked as empty but we have a DataComponent attacked, so we need to change
 			consistent = true;
 		}
 		else if (dataComponent == null) {
-			//From here, if we do not have a component attached we implicitly know we need to make a chanmge
+			//From here, if we do not have a component attached we implicitly know we need to make a change
 			consistent = false;
 		}
 		else if (type == GridType.Adder && dataComponent.GetType() == typeof(DataAdder)) {
-			//In this case, we are now marked as empty but we have a DataComponent attacked, so we need to change
 			consistent = true;
 		}
 		else if (type == GridType.Combiner && dataComponent.GetType() == typeof(DataCombiner)) {
-			//In this case, we are now marked as empty but we have a DataComponent attacked, so we need to change
 			consistent = true;
 		}
 		else if (type == GridType.Connector && dataComponent.GetType() == typeof(DataConnector)) {
-			//In this case, we are now marked as empty but we have a DataComponent attacked, so we need to change
 			consistent = true;
 		}
 		else if (type == GridType.Deleter && dataComponent.GetType() == typeof(DataDeleter)) {
-			//In this case, we are now marked as empty but we have a DataComponent attacked, so we need to change
 			consistent = true;
 		}
 		else if (type == GridType.Linker && dataComponent.GetType() == typeof(DataLinker)) {
-			//In this case, we are now marked as empty but we have a DataComponent attacked, so we need to change
 			consistent = true;
 		}
 		else if (type == GridType.Shifter && dataComponent.GetType() == typeof(DataShifter)) {
-			//In this case, we are now marked as empty but we have a DataComponent attacked, so we need to change
 			consistent = true;
 		}
 		else if (type == GridType.Source && dataComponent.GetType() == typeof(DataSource)) {
-			//In this case, we are now marked as empty but we have a DataComponent attacked, so we need to change
 			consistent = true;
 		}
 		else if (type == GridType.Unusable && dataComponent.GetType() == typeof(DataUnusable)) {
-			//In this case, we are now marked as empty but we have a DataComponent attacked, so we need to change
+			consistent = true;
+		} 
+		else if (type == GridType.Encoder && dataComponent.GetType() == typeof(DataEncoder)) {
+			consistent = true;
+		} 
+		else if (type == GridType.Mixer && dataComponent.GetType() == typeof(DataMixer)) {
 			consistent = true;
 		}
 

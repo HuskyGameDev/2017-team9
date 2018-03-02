@@ -5,153 +5,147 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-using UnityEngine;
-using UnityEditor;
-using System;
-using System.Collections.Generic;
-
 public class AkUnityEventHandlerInspector
 {
-	SerializedProperty	m_triggerList;
-	SerializedProperty	m_useOtherObject;
-	static string[] 			m_triggerTypeNames;
-	static uint[] 		    	m_triggerTypeIDs;
-    static Dictionary<uint, string> m_triggerTypes;
+	private static string[] m_triggerTypeNames;
+	private static uint[] m_triggerTypeIDs;
+	private static System.Collections.Generic.Dictionary<uint, string> m_triggerTypes;
+
+	///Defines the triggers that make use of useOtherObjectMask
+	private static readonly string[] useOtherObjectTriggers =
+		{ "AkTriggerEnter", "AkTriggerExit", "AkTriggerCollisionEnter", "AkTriggerCollisionExit" };
 
 	private string m_label = "Trigger On: ";
 
 	private bool m_showUseOtherToggle = true;
+	private UnityEditor.SerializedProperty m_triggerList;
+	private UnityEditor.SerializedProperty m_useOtherObject;
 
-	///Defines the triggers that make use of useOtherObjectMask
-	static readonly string[] useOtherObjectTriggers = {"AkTriggerEnter", "AkTriggerExit", "AkTriggerCollisionEnter", "AkTriggerCollisionExit"};
-
-    public void Init(SerializedObject in_serializedObject, string in_listName = "triggerList", string in_label = "Trigger On: ", bool in_showUseOtherToggle = true)
-    {
+	public void Init(UnityEditor.SerializedObject in_serializedObject, string in_listName = "triggerList",
+		string in_label = "Trigger On: ", bool in_showUseOtherToggle = true)
+	{
 		m_label = in_label;
 		m_showUseOtherToggle = in_showUseOtherToggle;
 
-        m_triggerList       = in_serializedObject.FindProperty(in_listName);
-		m_useOtherObject	= in_serializedObject.FindProperty("useOtherObject");
+		m_triggerList = in_serializedObject.FindProperty(in_listName);
+		m_useOtherObject = in_serializedObject.FindProperty("useOtherObject");
 
 		//Get the updated list of all triggers
-        if (m_triggerTypes == null)
-        {
-            m_triggerTypes = AkTriggerBase.GetAllDerivedTypes();
-            m_triggerTypeNames = new string[m_triggerTypes.Count];
-            m_triggerTypes.Values.CopyTo(m_triggerTypeNames, 0);
-            m_triggerTypeIDs = new uint[m_triggerTypes.Count];
-            m_triggerTypes.Keys.CopyTo(m_triggerTypeIDs, 0);
-        }
-
-        //apply the modifications made to the mask property
-		in_serializedObject.ApplyModifiedProperties ();
-    }
-
-    public void OnGUI()
-    {
-        GUILayout.Space(EditorGUIUtility.standardVerticalSpacing);
-
-        GUILayout.BeginVertical("Box");
+		if (m_triggerTypes == null)
 		{
-            List<uint> currentTriggers = GetCurrentTriggers();
-            int oldMask = BuildCurrentMaskValue(currentTriggers);
+			m_triggerTypes = AkTriggerBase.GetAllDerivedTypes();
+			m_triggerTypeNames = new string[m_triggerTypes.Count];
+			m_triggerTypes.Values.CopyTo(m_triggerTypeNames, 0);
+			m_triggerTypeIDs = new uint[m_triggerTypes.Count];
+			m_triggerTypes.Keys.CopyTo(m_triggerTypeIDs, 0);
+		}
 
-            int newMask = EditorGUILayout.MaskField(m_label, oldMask, m_triggerTypeNames);
+		//apply the modifications made to the mask property
+		in_serializedObject.ApplyModifiedProperties();
+	}
 
-            if (oldMask != newMask)
-            {
-                currentTriggers.Clear();
-                for (int i = 0; i < m_triggerTypeNames.Length; i++)
-                {
-                    uint curTriggerID = AkUtilities.ShortIDGenerator.Compute(m_triggerTypeNames[i]);
-                    if ((newMask & (1 << i)) != 0 && !currentTriggers.Contains(curTriggerID))
-                    {
-                        currentTriggers.Add(curTriggerID);
-                    }
-                }
-                SaveNewTriggers(currentTriggers);
-            }
+	public void OnGUI()
+	{
+		UnityEngine.GUILayout.Space(UnityEditor.EditorGUIUtility.standardVerticalSpacing);
 
-			if(m_showUseOtherToggle)
+		UnityEngine.GUILayout.BeginVertical("Box");
+		{
+			var currentTriggers = GetCurrentTriggers();
+			var oldMask = BuildCurrentMaskValue(currentTriggers);
+
+			var newMask = UnityEditor.EditorGUILayout.MaskField(m_label, oldMask, m_triggerTypeNames);
+
+			if (oldMask != newMask)
 			{
-				bool toggleWasDisplayed = false;
-
-				for(int i = 0; i < m_triggerTypeNames.Length; i++)
+				currentTriggers.Clear();
+				for (var i = 0; i < m_triggerTypeNames.Length; i++)
 				{
-                    if ((newMask & (1 << i)) != 0 && Contain(useOtherObjectTriggers, m_triggerTypeNames[i]))
+					var curTriggerID = AkUtilities.ShortIDGenerator.Compute(m_triggerTypeNames[i]);
+					if ((newMask & (1 << i)) != 0 && !currentTriggers.Contains(curTriggerID))
+						currentTriggers.Add(curTriggerID);
+				}
+
+				SaveNewTriggers(currentTriggers);
+			}
+
+			if (m_showUseOtherToggle)
+			{
+				var toggleWasDisplayed = false;
+
+				for (var i = 0; i < m_triggerTypeNames.Length; i++)
+				{
+					if ((newMask & (1 << i)) != 0 && Contain(useOtherObjectTriggers, m_triggerTypeNames[i]))
 					{
-						EditorGUILayout.PropertyField(m_useOtherObject, new GUIContent("Use Other Object: "));
+						UnityEditor.EditorGUILayout.PropertyField(m_useOtherObject, new UnityEngine.GUIContent("Use Other Object: "));
 						toggleWasDisplayed = true;
 						break;
 					}
 				}
 
-				if(!toggleWasDisplayed) m_useOtherObject.boolValue = false;
+				if (!toggleWasDisplayed)
+					m_useOtherObject.boolValue = false;
 			}
-
 		}
-        GUILayout.EndVertical();
+		UnityEngine.GUILayout.EndVertical();
 
-        GUILayout.Space(EditorGUIUtility.standardVerticalSpacing);
-    }
+		UnityEngine.GUILayout.Space(UnityEditor.EditorGUIUtility.standardVerticalSpacing);
+	}
 
-    List<uint> GetCurrentTriggers()
-    {
-        List<uint> newList = new List<uint>();
-        for (int i = 0; i < m_triggerList.arraySize; i++)
-        {
-            newList.Add((uint)m_triggerList.GetArrayElementAtIndex(i).intValue);
-        }
-
-        return newList;
-    }
-
-    int GetIdIndex(uint in_ID)
-    {
-        int index = -1;
-        for (int i = 0; i < m_triggerTypeIDs.Length; i++)
-        {
-            if (m_triggerTypeIDs[i] == in_ID)
-            {
-                index = i;
-                break;
-            }
-        }
-        return index;
-    }
-
-    int BuildCurrentMaskValue(List<uint> currentTriggers)
-    {
-        int maskToReturn = 0;
-        for (int i = 0; i < currentTriggers.Count; i++)
-        {
-            int idIndex = GetIdIndex(currentTriggers[i]);
-            if (idIndex != -1)
-            {
-                maskToReturn |= (1 << idIndex);
-            }
-        }
-
-        return maskToReturn;
-    }
-
-    void SaveNewTriggers(List<uint> currentTriggers)
-    {
-        m_triggerList.ClearArray();
-        for (int i = 0; i < currentTriggers.Count; i++)
-        {
-            m_triggerList.InsertArrayElementAtIndex(i);
-            m_triggerList.GetArrayElementAtIndex(i).intValue = (int)currentTriggers[i];
-        }
-    }
-
-    bool Contain(string[] in_array, string in_value)
+	private System.Collections.Generic.List<uint> GetCurrentTriggers()
 	{
-		for(int i = 0; i < in_array.Length; i++)
+		var newList = new System.Collections.Generic.List<uint>();
+		for (var i = 0; i < m_triggerList.arraySize; i++)
+			newList.Add((uint) m_triggerList.GetArrayElementAtIndex(i).intValue);
+
+		return newList;
+	}
+
+	private int GetIdIndex(uint in_ID)
+	{
+		var index = -1;
+		for (var i = 0; i < m_triggerTypeIDs.Length; i++)
 		{
-			if(in_array[i].Equals(in_value)) return true;
+			if (m_triggerTypeIDs[i] == in_ID)
+			{
+				index = i;
+				break;
+			}
 		}
-		
+
+		return index;
+	}
+
+	private int BuildCurrentMaskValue(System.Collections.Generic.List<uint> currentTriggers)
+	{
+		var maskToReturn = 0;
+		for (var i = 0; i < currentTriggers.Count; i++)
+		{
+			var idIndex = GetIdIndex(currentTriggers[i]);
+			if (idIndex != -1)
+				maskToReturn |= 1 << idIndex;
+		}
+
+		return maskToReturn;
+	}
+
+	private void SaveNewTriggers(System.Collections.Generic.List<uint> currentTriggers)
+	{
+		m_triggerList.ClearArray();
+		for (var i = 0; i < currentTriggers.Count; i++)
+		{
+			m_triggerList.InsertArrayElementAtIndex(i);
+			m_triggerList.GetArrayElementAtIndex(i).intValue = (int) currentTriggers[i];
+		}
+	}
+
+	private bool Contain(string[] in_array, string in_value)
+	{
+		for (var i = 0; i < in_array.Length; i++)
+		{
+			if (in_array[i].Equals(in_value))
+				return true;
+		}
+
 		return false;
 	}
 }

@@ -1,152 +1,13 @@
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-
 namespace AK.Wwise.TreeView
 {
-	[Serializable]
+	[System.Serializable]
 	public class TreeViewItem
 	{
-		public string Header = string.Empty;
-		public bool IsDraggable = false;
-		public bool IsExpanded = false;
-		public bool IsCheckBox = false;
-		public bool IsChecked = false;
-		public bool IsHover = false;
-		public bool IsSelected = false;
-		public bool IsHidden = false;
-		public List<TreeViewItem> Items = new List<TreeViewItem>();
-
-		public TreeViewControl ParentControl = null;
-		public TreeViewItem Parent = null;
-		public object DataContext = null;
-
-		static int s_clickCount = 0;
-
-		public class ClickEventArgs : System.EventArgs
-		{
-			public uint m_clickCount = 0;
-
-			public ClickEventArgs(uint in_clickCount)
-			{
-				m_clickCount = in_clickCount;
-			}
-		}
-		public System.EventHandler Click = null;
-
-
-		public class CheckedEventArgs : System.EventArgs
-		{
-		}
-		public System.EventHandler Checked = null;
-
-		public class UncheckedEventArgs : System.EventArgs
-		{
-		}
-		public System.EventHandler Unchecked = null;
-
-		public class SelectedEventArgs : System.EventArgs
-		{
-		}
-		public System.EventHandler Selected = null;
-
-		public class UnselectedEventArgs : System.EventArgs
-		{
-		}
-		public System.EventHandler Unselected = null;
-
-		public class DragEventArgs : System.EventArgs
-		{
-		}
-		public System.EventHandler Dragged = null;
-
-		public class CustomIconEventArgs : System.EventArgs
-		{
-		}
-		public System.EventHandler CustomIconBuilder = null;
-
-		/// <summary>
-		/// The distance to the hover item
-		/// </summary>
-		float m_hoverTime = 0f;
-
-		public TreeViewItem(TreeViewControl parentControl, TreeViewItem parent)
-		{
-			ParentControl = parentControl;
-			Parent = parent;
-
-			if (null == parentControl)
-			{
-				return;
-			}
-		}
-
-		public TreeViewItem AddItem(string header)
-		{
-			TreeViewItem item = new TreeViewItem(ParentControl, this) { Header = header };
-			Items.Add(item);
-			return item;
-		}
-
-		public TreeViewItem AddItem(string header, object context)
-		{
-			TreeViewItem item = new TreeViewItem(ParentControl, this) { Header = header, DataContext = context };
-			Items.Add(item);
-			return item;
-		}
-
-		public TreeViewItem AddItem(string header, object context, bool in_isExpended)
-		{
-			TreeViewItem item = new TreeViewItem(ParentControl, this) { Header = header, DataContext = context, IsExpanded = in_isExpended };
-			Items.Add(item);
-			return item;
-		}
-
-		public TreeViewItem AddItem(string header, bool isExpanded)
-		{
-			TreeViewItem item = new TreeViewItem(ParentControl, this) { Header = header, IsExpanded = isExpanded };
-			Items.Add(item);
-			return item;
-		}
-
-		public TreeViewItem AddItem(string header, bool isDraggable, bool isExpanded, object context)
-		{
-			TreeViewItem item = new TreeViewItem(ParentControl, this) { Header = header, IsDraggable = isDraggable, IsExpanded = isExpanded, DataContext = context };
-			Items.Add(item);
-			return item;
-		}
-
-		public TreeViewItem AddItem(string header, bool isExpanded, bool isChecked)
-		{
-			TreeViewItem item = new TreeViewItem(ParentControl, this) { Header = header, IsExpanded = isExpanded, IsCheckBox = true, IsChecked = isChecked };
-			Items.Add(item);
-			return item;
-		}
-
-		public TreeViewItem FindItemByName(string name)
-		{
-			foreach (TreeViewItem item in Items)
-			{
-				if (item.Header == name)
-				{
-					return item;
-				}
-			}
-
-			return null;
-		}
-
-		public bool HasChildItems()
-		{
-			return null != Items && Items.Count > 0;
-		}
-
 		public enum SiblingOrder
 		{
 			FIRST_CHILD,
 			MIDDLE_CHILD,
-			LAST_CHILD,
+			LAST_CHILD
 		}
 
 		public enum TextureIcons
@@ -160,18 +21,122 @@ namespace AK.Wwise.TreeView
 			MIDDLE_SIBLING_EXPANDED,
 			MIDDLE_SIBLING_NO_CHILD,
 			NORMAL_CHECKED,
-			NORMAL_UNCHECKED,
+			NORMAL_UNCHECKED
 		}
 
-		float CalculateHoverTime(Rect rect, Vector3 mousePos)
+		private static int s_clickCount;
+		public System.EventHandler Checked = null;
+		public System.EventHandler Click = null;
+		public System.EventHandler CustomIconBuilder = null;
+		public object DataContext;
+		public System.EventHandler Dragged = null;
+		public string Header = string.Empty;
+		public bool IsCheckBox;
+		public bool IsChecked;
+		public bool IsDraggable;
+		public bool IsExpanded;
+		public bool IsHidden = false;
+		public bool IsHover;
+		public bool IsSelected;
+		public System.Collections.Generic.List<TreeViewItem> Items = new System.Collections.Generic.List<TreeViewItem>();
+
+		/// <summary>
+		///     The distance to the hover item
+		/// </summary>
+		private float m_hoverTime;
+
+		public TreeViewItem Parent;
+
+		public TreeViewControl ParentControl;
+		public System.EventHandler Selected = null;
+		public System.EventHandler Unchecked = null;
+		public System.EventHandler Unselected = null;
+
+		public TreeViewItem(TreeViewControl parentControl, TreeViewItem parent)
 		{
-			if (rect.Contains(mousePos))
+			ParentControl = parentControl;
+			Parent = parent;
+		}
+
+		public TreeViewItem AddItem(string header)
+		{
+			var item = new TreeViewItem(ParentControl, this) { Header = header };
+			Items.Add(item);
+			return item;
+		}
+
+		public TreeViewItem AddItem(string header, object context)
+		{
+			var item = new TreeViewItem(ParentControl, this) { Header = header, DataContext = context };
+			Items.Add(item);
+			return item;
+		}
+
+		public TreeViewItem AddItem(string header, object context, bool in_isExpended)
+		{
+			var item = new TreeViewItem(ParentControl, this)
 			{
-				return 0f;
-			}
-			float midPoint = (rect.yMin + rect.yMax) * 0.5f;
-			float pointA = mousePos.y;
-			return Mathf.Abs(midPoint - pointA) / 50f;
+				Header = header,
+				DataContext = context,
+				IsExpanded = in_isExpended
+			};
+			Items.Add(item);
+			return item;
+		}
+
+		public TreeViewItem AddItem(string header, bool isExpanded)
+		{
+			var item = new TreeViewItem(ParentControl, this) { Header = header, IsExpanded = isExpanded };
+			Items.Add(item);
+			return item;
+		}
+
+		public TreeViewItem AddItem(string header, bool isDraggable, bool isExpanded, object context)
+		{
+			var item = new TreeViewItem(ParentControl, this)
+			{
+				Header = header,
+				IsDraggable = isDraggable,
+				IsExpanded = isExpanded,
+				DataContext = context
+			};
+			Items.Add(item);
+			return item;
+		}
+
+		public TreeViewItem AddItem(string header, bool isExpanded, bool isChecked)
+		{
+			var item = new TreeViewItem(ParentControl, this)
+			{
+				Header = header,
+				IsExpanded = isExpanded,
+				IsCheckBox = true,
+				IsChecked = isChecked
+			};
+			Items.Add(item);
+			return item;
+		}
+
+		public TreeViewItem FindItemByName(string name)
+		{
+			foreach (var item in Items)
+				if (item.Header == name)
+					return item;
+
+			return null;
+		}
+
+		public bool HasChildItems()
+		{
+			return null != Items && Items.Count > 0;
+		}
+
+		private float CalculateHoverTime(UnityEngine.Rect rect, UnityEngine.Vector3 mousePos)
+		{
+			if (rect.Contains(mousePos)) return 0f;
+			var midPoint = (rect.yMin + rect.yMax) * 0.5f;
+			var pointA = mousePos.y;
+			return UnityEngine.Mathf.Abs(midPoint - pointA) / 50f;
 		}
 
 		private void SetIconExpansion(SiblingOrder siblingOrder, TextureIcons middle, TextureIcons last)
@@ -192,93 +157,70 @@ namespace AK.Wwise.TreeView
 			}
 
 			if (result)
-			{
 				IsExpanded = !IsExpanded;
-			}
 		}
 
 		public void DisplayItem(int levels, SiblingOrder siblingOrder)
 		{
 			if (null == ParentControl || IsHidden)
-			{
 				return;
-			}
 
-			GUILayout.BeginHorizontal();
+			UnityEngine.GUILayout.BeginHorizontal();
 
-			for (int index = 0; index < levels; ++index)
-			{
+			for (var index = 0; index < levels; ++index)
 				ParentControl.Button(TextureIcons.GUIDE);
-			}
 
 			if (!HasChildItems())
-			{
 				SetIconExpansion(siblingOrder, TextureIcons.MIDDLE_SIBLING_NO_CHILD, TextureIcons.LAST_SIBLING_NO_CHILD);
-			}
 			else if (IsExpanded)
-			{
 				SetIconExpansion(siblingOrder, TextureIcons.MIDDLE_SIBLING_EXPANDED, TextureIcons.LAST_SIBLING_EXPANDED);
-			}
 			else
-			{
 				SetIconExpansion(siblingOrder, TextureIcons.MIDDLE_SIBLING_COLLAPSED, TextureIcons.LAST_SIBLING_COLLAPSED);
-			}
 
-			bool clicked = false;
+			var clicked = false;
 
 			// display the text for the tree view
 			if (!string.IsNullOrEmpty(Header))
 			{
 				bool isSelected;
-				if (ParentControl.SelectedItem == this &&
-					!ParentControl.m_forceDefaultSkin)
+				if (ParentControl.SelectedItem == this && !ParentControl.m_forceDefaultSkin)
 				{
 					//use selected skin
-					GUI.skin = ParentControl.m_skinSelected;
+					UnityEngine.GUI.skin = ParentControl.m_skinSelected;
 					isSelected = true;
 				}
 				else
-				{
 					isSelected = false;
-				}
 
 				if (IsCheckBox)
 				{
-					if (IsChecked &&
-						ParentControl.Button(TextureIcons.NORMAL_CHECKED))
+					if (IsChecked && ParentControl.Button(TextureIcons.NORMAL_CHECKED))
 					{
 						IsChecked = false;
 						if (ParentControl.SelectedItem != this)
 						{
 							ParentControl.SelectedItem = this;
-							this.IsSelected = true;
+							IsSelected = true;
 							if (null != Selected)
-							{
 								Selected.Invoke(this, new SelectedEventArgs());
-							}
 						}
+
 						if (null != Unchecked)
-						{
 							Unchecked.Invoke(this, new UncheckedEventArgs());
-						}
 					}
-					else if (!IsChecked &&
-						ParentControl.Button(TextureIcons.NORMAL_UNCHECKED))
+					else if (!IsChecked && ParentControl.Button(TextureIcons.NORMAL_UNCHECKED))
 					{
 						IsChecked = true;
 						if (ParentControl.SelectedItem != this)
 						{
 							ParentControl.SelectedItem = this;
-							this.IsSelected = true;
+							IsSelected = true;
 							if (null != Selected)
-							{
 								Selected.Invoke(this, new SelectedEventArgs());
-							}
 						}
+
 						if (null != Checked)
-						{
 							Checked.Invoke(this, new CheckedEventArgs());
-						}
 					}
 
 					ParentControl.Button(TextureIcons.BLANK);
@@ -294,172 +236,166 @@ namespace AK.Wwise.TreeView
 				if (UnityEngine.Event.current.isMouse)
 					s_clickCount = UnityEngine.Event.current.clickCount;
 
-
 				if (ParentControl.IsHoverEnabled)
 				{
-					GUISkin oldSkin = GUI.skin;
+					var oldSkin = UnityEngine.GUI.skin;
 					if (isSelected)
-					{
-						GUI.skin = ParentControl.m_skinSelected;
-					}
+						UnityEngine.GUI.skin = ParentControl.m_skinSelected;
 					else if (IsHover)
-					{
-						GUI.skin = ParentControl.m_skinHover;
-					}
+						UnityEngine.GUI.skin = ParentControl.m_skinHover;
 					else
-					{
-						GUI.skin = ParentControl.m_skinUnselected;
-					}
+						UnityEngine.GUI.skin = ParentControl.m_skinUnselected;
 					if (ParentControl.IsHoverAnimationEnabled)
+						UnityEngine.GUI.skin.button.fontSize = (int) UnityEngine.Mathf.Lerp(20f, 12f, m_hoverTime);
+					UnityEngine.GUI.SetNextControlName("toggleButton"); //workaround to dirty GUI
+					if (UnityEngine.GUILayout.Button(Header))
 					{
-						GUI.skin.button.fontSize = (int)Mathf.Lerp(20f, 12f, m_hoverTime);
-					}
-					GUI.SetNextControlName("toggleButton"); //workaround to dirty GUI
-					if (GUILayout.Button(Header))
-					{
-						GUI.FocusControl("toggleButton"); //workaround to dirty GUI
+						UnityEngine.GUI.FocusControl("toggleButton"); //workaround to dirty GUI
 						if (ParentControl.SelectedItem != this)
 						{
 							ParentControl.SelectedItem = this;
-							this.IsSelected = true;
+							IsSelected = true;
 							if (null != Selected)
-							{
 								Selected.Invoke(this, new SelectedEventArgs());
-							}
 						}
-						if (null != Click && (uint)s_clickCount <= 2)
-						{
 
+						if (null != Click && (uint) s_clickCount <= 2)
 							clicked = true;
-						}
 					}
-					GUI.skin = oldSkin;
+
+					UnityEngine.GUI.skin = oldSkin;
 				}
 				else
 				{
-					GUI.SetNextControlName("toggleButton"); //workaround to dirty GUI
-					if (GUILayout.RepeatButton(Header))
+					UnityEngine.GUI.SetNextControlName("toggleButton"); //workaround to dirty GUI
+					if (UnityEngine.GUILayout.RepeatButton(Header))
 					{
-						GUI.FocusControl("toggleButton"); //workaround to dirty GUI
+						UnityEngine.GUI.FocusControl("toggleButton"); //workaround to dirty GUI
 						if (ParentControl.SelectedItem != this)
 						{
 							ParentControl.SelectedItem = this;
-							this.IsSelected = true;
+							IsSelected = true;
 							if (null != Selected)
-							{
 								Selected.Invoke(this, new SelectedEventArgs());
-							}
 						}
-						if (null != Click && (uint)s_clickCount <= 2)
-						{
-							clicked = true; ;
-						}
+
+						if (null != Click && (uint) s_clickCount <= 2)
+							clicked = true;
 					}
 				}
 
-				if (isSelected &&
-					!ParentControl.m_forceDefaultSkin)
+				if (isSelected && !ParentControl.m_forceDefaultSkin)
 				{
 					//return to default skin
-					GUI.skin = ParentControl.m_skinUnselected;
+					UnityEngine.GUI.skin = ParentControl.m_skinUnselected;
 				}
 			}
 
-			GUILayout.EndHorizontal();
+			UnityEngine.GUILayout.EndHorizontal();
 
 			if (ParentControl.IsHoverEnabled)
 			{
-				if (null != UnityEngine.Event.current &&
-					UnityEngine.Event.current.type == EventType.Repaint)
+				if (null != UnityEngine.Event.current && UnityEngine.Event.current.type == UnityEngine.EventType.Repaint)
 				{
-					Vector2 mousePos = UnityEngine.Event.current.mousePosition;
+					var mousePos = UnityEngine.Event.current.mousePosition;
 					if (ParentControl.HasFocus(mousePos))
 					{
-						Rect lastRect = GUILayoutUtility.GetLastRect();
+						var lastRect = UnityEngine.GUILayoutUtility.GetLastRect();
 						if (lastRect.Contains(mousePos))
 						{
 							IsHover = true;
 							ParentControl.HoverItem = this;
 						}
 						else
-						{
 							IsHover = false;
-						}
-						if (ParentControl.IsHoverEnabled &&
-							ParentControl.IsHoverAnimationEnabled)
-						{
+
+						if (ParentControl.IsHoverEnabled && ParentControl.IsHoverAnimationEnabled)
 							m_hoverTime = CalculateHoverTime(lastRect, UnityEngine.Event.current.mousePosition);
-						}
 					}
 				}
 			}
 
-			if (HasChildItems() &&
-				IsExpanded)
+			if (HasChildItems() && IsExpanded)
 			{
-				for (int index = 0; index < Items.Count; ++index)
+				for (var index = 0; index < Items.Count; ++index)
 				{
-					TreeViewItem child = Items[index];
+					var child = Items[index];
 					child.Parent = this;
-					if ((index + 1) == Items.Count)
-					{
+					if (index + 1 == Items.Count)
 						child.DisplayItem(levels + 1, SiblingOrder.LAST_CHILD);
-					}
 					else if (index == 0)
-					{
 						child.DisplayItem(levels + 1, SiblingOrder.FIRST_CHILD);
-					}
 					else
-					{
 						child.DisplayItem(levels + 1, SiblingOrder.MIDDLE_CHILD);
-					}
 				}
 			}
 
-			if (clicked)
-			{
-				Click.Invoke(this, new ClickEventArgs((uint)s_clickCount));
-			}
+			if (clicked) Click.Invoke(this, new ClickEventArgs((uint) s_clickCount));
 
-			if (IsSelected &&
-				ParentControl.SelectedItem != this)
-			{
-				if (null != Unselected)
-				{
-					Unselected.Invoke(this, new UnselectedEventArgs());
-				}
-			}
+			if (IsSelected && ParentControl.SelectedItem != this && null != Unselected)
+				Unselected.Invoke(this, new UnselectedEventArgs());
 			IsSelected = ParentControl.SelectedItem == this;
 
-
-			if (IsDraggable)
-			{
-				HandleGUIEvents();
-			}
+			if (IsDraggable) HandleGUIEvents();
 		}
 
-		void HandleGUIEvents()
+		private void HandleGUIEvents()
 		{
 			// Handle events
-			UnityEngine.Event evt = UnityEngine.Event.current;
-			EventType currentEventType = evt.type;
+			var evt = UnityEngine.Event.current;
+			var currentEventType = evt.type;
 
-			if (currentEventType == EventType.MouseDrag)
+			if (currentEventType == UnityEngine.EventType.MouseDrag)
 			{
 				if (null != Dragged)
 				{
 					try
 					{
-						DragAndDrop.PrepareStartDrag();
+						UnityEditor.DragAndDrop.PrepareStartDrag();
 						Dragged.Invoke(ParentControl.SelectedItem, new DragEventArgs());
 						evt.Use();
 					}
-					catch (Exception e)
+					catch (System.Exception e)
 					{
-						Debug.Log(e);
+						UnityEngine.Debug.Log(e);
 					}
 				}
 			}
+		}
+
+		public class ClickEventArgs : System.EventArgs
+		{
+			public uint m_clickCount;
+
+			public ClickEventArgs(uint in_clickCount)
+			{
+				m_clickCount = in_clickCount;
+			}
+		}
+
+
+		public class CheckedEventArgs : System.EventArgs
+		{
+		}
+
+		public class UncheckedEventArgs : System.EventArgs
+		{
+		}
+
+		public class SelectedEventArgs : System.EventArgs
+		{
+		}
+
+		public class UnselectedEventArgs : System.EventArgs
+		{
+		}
+
+		public class DragEventArgs : System.EventArgs
+		{
+		}
+
+		public class CustomIconEventArgs : System.EventArgs
+		{
 		}
 	}
 }

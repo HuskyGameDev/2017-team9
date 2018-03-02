@@ -32,7 +32,11 @@ class WwiseIDConverter(object):
         CSType = 'public class'
         self._ReplaceLineByLine(lines, CType, CSType)
     
-    
+        # Replace "public class AK" with "namespace AK"
+        CType = 'public class AK'
+        CSType = 'namespace AK'
+        self._ReplaceLineByLine(lines, CType, CSType)
+
         # Replace AK type with C# types
         CType = 'static const AkUniqueID'
         CSType = 'public static uint'

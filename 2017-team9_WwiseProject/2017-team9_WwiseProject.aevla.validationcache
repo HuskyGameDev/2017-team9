@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationCache Version="1" SchemaVersion="80">
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\2017-team9_WwiseProject.wproj" DateLow="3770047961" DateHigh="30648393"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\Actor-Mixer Hierarchy\Default Work Unit.wwu" DateLow="1709356141" DateHigh="30648392"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\Attenuations\Default Work Unit.wwu" DateLow="1709366022" DateHigh="30648392"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\Audio Devices\Default Work Unit.wwu" DateLow="1583294092" DateHigh="30648392"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\Control Surface Sessions\Default Work Unit.wwu" DateLow="1583304090" DateHigh="30648392"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\Conversion Settings\Default Work Unit.wwu" DateLow="1583314088" DateHigh="30648392"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\Conversion Settings\Factory Conversion Settings.wwu" DateLow="1583324174" DateHigh="30648392"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\Dynamic Dialogue\Default Work Unit.wwu" DateLow="1583334095" DateHigh="30648392"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\Effects\Default Work Unit.wwu" DateLow="1583344161" DateHigh="30648392"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\Effects\Factory Effects.wwu" DateLow="1709391079" DateHigh="30648392"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\Events\Default Work Unit.wwu" DateLow="1709406025" DateHigh="30648392"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\Game Parameters\Default Work Unit.wwu" DateLow="1583384167" DateHigh="30648392"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\Interactive Music Hierarchy\Default Work Unit.wwu" DateLow="1585489364" DateHigh="30648392"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\Master-Mixer Hierarchy\Default Work Unit.wwu" DateLow="1585499480" DateHigh="30648392"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\Mixing Sessions\Default Work Unit.wwu" DateLow="1585509479" DateHigh="30648392"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\Modulators\Default Work Unit.wwu" DateLow="1585519499" DateHigh="30648392"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\Presets\Default Work Unit.wwu" DateLow="1587624650" DateHigh="30648392"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\Queries\Default Work Unit.wwu" DateLow="1587634639" DateHigh="30648392"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\Queries\Factory Queries.wwu" DateLow="1587649641" DateHigh="30648392"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\SoundBanks\Default Work Unit.wwu" DateLow="1712166443" DateHigh="30648392"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\Soundcaster Sessions\Default Work Unit.wwu" DateLow="1712176373" DateHigh="30648392"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\States\Default Work Unit.wwu" DateLow="1587679640" DateHigh="30648392"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\Switches\Default Work Unit.wwu" DateLow="1587689641" DateHigh="30648392"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\Triggers\Default Work Unit.wwu" DateLow="1587699655" DateHigh="30648392"/>
+	<ValidationCacheItem File="D:\Repos\Team9-2017\2017-team9_WwiseProject\Virtual Acoustics\Default Work Unit.wwu" DateLow="1587709675" DateHigh="30648392"/>
+</ValidationCache>

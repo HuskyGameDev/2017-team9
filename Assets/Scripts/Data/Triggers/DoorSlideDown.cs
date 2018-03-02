@@ -7,6 +7,7 @@ namespace PuzzleComponents {
 		public Vector3 offset;
 
 		public bool triggered = false;
+		public bool playedSound = false;
 		public float progress = 0.0f;
 
 		Vector3 start;
@@ -23,6 +24,11 @@ namespace PuzzleComponents {
 		// Update is called once per frame
 		void Update() {
 			if (triggered && progress <= 1.0f) {
+				if (playedSound == false) {
+					AkSoundEngine.PostEvent("Sliding_Door_Open", this.gameObject);
+					playedSound = true;
+				}
+
 				progress += Time.deltaTime;
 				this.transform.position = Vector3.Lerp(start, start + offset, progress);
 			}

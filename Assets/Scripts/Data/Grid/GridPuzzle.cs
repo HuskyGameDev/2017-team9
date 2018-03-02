@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class GridPuzzle : MonoBehaviour {
 
+	public bool editable = true;
+
 	public float squareScale = 1.0f;
 	public int width = 10;
 	public int height = 10;
 
 
+
+
+
 	/// <summary>
-	/// Generates a grid with the class values
+	/// Generates a grid of grid squares. Automattically links them properly.
 	/// </summary>
 	public void GenerateGrid() {
-		GridSquare[] bottomRow = new GridSquare[width];
+		GridSquare[] lastRow = new GridSquare[width];
 
 		for (int y = 0; y < height; y++) {
 			GridSquare[] currentRow = new GridSquare[width];
@@ -24,26 +29,40 @@ public class GridPuzzle : MonoBehaviour {
 					currentRow[x - 1].neighbors[(int)GridSquare.GridDirection.Right] = newSquare;
 					newSquare.neighbors[(int)GridSquare.GridDirection.Left] = currentRow[x - 1];
 				}
-				if (bottomRow[x] != null) {
-					bottomRow[x].neighbors[(int)GridSquare.GridDirection.Up] = newSquare;
-					newSquare.neighbors[(int)GridSquare.GridDirection.Down] = bottomRow[x];
+				if (lastRow[x] != null) {
+					//If the last row is not null, that means we can set some up/down connections
+					lastRow[x].neighbors[(int)GridSquare.GridDirection.Up] = newSquare;
+					newSquare.neighbors[(int)GridSquare.GridDirection.Down] = lastRow[x];
 				}
+				//Put this grid sqaure under this game obnject
 				newSquare.gameObject.transform.parent = this.transform;
-				newSquare.transform.localScale = new Vector3(squareScale, squareScale, squareScale);
+				//Set the position and scale
+				newSquare.transform.localScale = new Vector3(squareScale, squareScale, newSquare.transform.localScale.z);
 				newSquare.transform.localPosition = new Vector3(x * squareScale, y * squareScale, 0.0f);
+
+				//We blank out the rotation so the grid will look right if this game object is rotated oddly
+				newSquare.transform.localRotation = Quaternion.Euler(Vector3.zero);
+
 				newSquare.transform.name = "(" +x+ "," +y+ ")GridSquare";
 				currentRow[x] = newSquare;
 			}
-			bottomRow = currentRow;
+			lastRow = currentRow;
 		}
 	}
 
+	/// <summary>
+	/// Removes all of the grid square game objects
+	/// </summary>
 	public void DestroyGrid() {
 		foreach (GridSquare gO in this.transform.GetComponentsInChildren<GridSquare>())
 			DestroyImmediate(gO.gameObject);
 	}
 
 
+	/// <summary>
+	/// Loads and creates a gridSquare prefab
+	/// </summary>
+	/// <returns></returns>
 	private GridSquare getSquare() {
 		GridSquare newSquare = null;
 		GameObject gO = Instantiate(Resources.Load("GridSquare", typeof(GameObject))) as GameObject;

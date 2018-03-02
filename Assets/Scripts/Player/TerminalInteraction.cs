@@ -40,8 +40,6 @@ public class TerminalInteraction : MonoBehaviour {
 
 					currentLine = new GridLine();
 					currentLine.AddSquare(socket.gridSquare);
-					//Implicitly, we know that sockets only exist on gridSquares that are components, so we know that component has to exist
-					currentLine.AddDataComponent(socket.gridSquare.dataComponent);
 				}
 			}
 		}
@@ -81,8 +79,6 @@ public class TerminalInteraction : MonoBehaviour {
 							lastGridSquare.gameObject.GetComponent<GridSquareVisuals>().UpdateVisuals();
 							square.gameObject.GetComponent<GridSquareVisuals>().UpdateVisuals();
 							Debug.Log((lastGridSquare.line[0] != null) + "|" + (lastGridSquare.line[1] != null) + "|" + (lastGridSquare.line[2] != null) + "|" + (lastGridSquare.line[3] != null));
-
-							currentLine.AddSquare(square);
 						}
 						else {
 							//This means we have jumped ship for some reason.
@@ -103,71 +99,15 @@ public class TerminalInteraction : MonoBehaviour {
 
 			if (rayInfo.transform != null && rayInfo.transform.gameObject.tag == "GridSocket" && currentLine != null) {
 
-				Debug.Log("Up on Socket");
-
-				//We assume the proper connection has already been made since that is handled in the gameButtonStayDown section of the interaction.
-				//So we can just add the component and forget about the line.
-				currentLine.AddDataComponent(rayInfo.transform.gameObject.GetComponent<GridSocket>().gridSquare.dataComponent);
-				//We need to make sure this is a good connection, if it is not we need to ditch it.
-				if (currentLine.ValidatePathBetweenDataComponents() == false)
-					//If we cannot prove a good line, delete it from the grid
-					currentLine.DeleteFromGrid();
-				else {
-					//Otherwise notify the lines that a connection changes has occured.
-					currentLine.A.ConnectionChange();
-					currentLine.B.ConnectionChange();
-				}
-
-				currentLine = null;
 			}
 			else {
 				Debug.Log("Up Elsewhere");
 				//The player has released the interaction key without completing a proper line, so we destroy the line
 				if (currentLine != null)
 					currentLine.DeleteFromGrid();
-				currentLine = null;
 			}
-		}
 
-		//This handles the UI
-		if (rayInfo.transform != null && (rayInfo.transform.gameObject.tag == "GridSocket" || rayInfo.transform.gameObject.tag == "GridSquare")) {
-			GridSquare square = null;
-			if (rayInfo.transform.gameObject.tag == "GridSocket")
-				square = rayInfo.transform.gameObject.GetComponent<GridSocket>().gridSquare;
-			else
-				square = rayInfo.transform.gameObject.GetComponent<GridSquare>();
-
-			if (square.dataComponent != null) {
-				//Show the panel
-				PlayerControls.instance.PlayerUI.wholePanel.gameObject.SetActive(true);
-				PlayerControls.instance.PlayerUI.type.text = square.dataComponent.GetString();
-				PlayerControls.instance.PlayerUI.input.text = "Looking at this here is not Implemented Yet :(";// square.dataComponent.GetInput();
-				PlayerControls.instance.PlayerUI.output.text = square.dataComponent.GetOutputString();
-				PlayerControls.instance.PlayerUI.trigger.text = "Goal:";
-				foreach (PuzzleComponents.DataTrigger dt in square.dataComponent.triggers) {
-					Debug.Log("Trigger");
-					if (dt.playerVisibleTrigger) {
-						Debug.Log("PlayerVisible");
-						PlayerControls.instance.PlayerUI.trigger.text = PlayerControls.instance.PlayerUI.trigger.text + " " + (new PuzzleComponents.DataSequence(dt.triggerData)).GetStringRepresentation();
-					}
-				}
-			}
-			else {
-				//Hide the panel
-				PlayerControls.instance.PlayerUI.wholePanel.gameObject.SetActive(false);
-				PlayerControls.instance.PlayerUI.type.text = "";
-				PlayerControls.instance.PlayerUI.input.text = "";
-				PlayerControls.instance.PlayerUI.output.text = "";
-				PlayerControls.instance.PlayerUI.trigger.text = "";
-			}
-		}
-		else {
-			//Hide the panel
-			PlayerControls.instance.PlayerUI.wholePanel.gameObject.SetActive(false);
-			PlayerControls.instance.PlayerUI.type.text = "";
-			PlayerControls.instance.PlayerUI.input.text = "";
-			PlayerControls.instance.PlayerUI.output.text = "";
-			PlayerControls.instance.PlayerUI.trigger.text = "";
-		}
+			currentLine = null;
+		}	
 	}
 }

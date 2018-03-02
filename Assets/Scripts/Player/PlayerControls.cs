@@ -13,7 +13,7 @@ public class PlayerControls : MonoBehaviour {
 	public Vector2 pitchBounds = new Vector2(-45,45);
 	public LayerMask ignoreMask;
 	public CursorManager cursor;
-	public UIManager PlayerUI;
+	//public UIManager PlayerUI;
 
 	//The Singleton object for player controls
 	public static PlayerControls instance;
@@ -23,8 +23,14 @@ public class PlayerControls : MonoBehaviour {
 
 	private CharacterController body;
 
+	/// <summary>
+	/// A helper script for interacting with terminals
+	/// </summary>
 	private TerminalInteraction terminalInteractionController;
 
+	/// <summary>
+	/// Happens whenever this game object is enabled, or the start of the scene
+	/// </summary>
 	void Awake () {
 		//Debug.Log(this.gameObject.transform.rotation.y + "|" + this.gameObject.transform.localRotation.y);
 		this.internalRotation = this.gameObject.transform.rotation.y;
@@ -41,12 +47,34 @@ public class PlayerControls : MonoBehaviour {
 		Cursor.lockState = CursorLockMode.Locked;
 	}
 
+	/// <summary>
+	/// Called every physics step
+	/// </summary>
 	private void FixedUpdate() {
-		if (InputManager.GetGameButton(InputManager.GameButton.CameraLock) == false) {
-			handleCamera();
+		if (CheckForCameraLock() == false) {
 			handleMovement();
 		}
 	}
+
+	/// <summary>
+	/// Happens after all other scrips (except for other LateUpdate functions)
+	/// </summary>
+	private void LateUpdate() {
+		if (CheckForCameraLock() == false) {
+			handleCamera();
+		}
+	}
+
+	/// <summary>
+	/// Checks if the player is holding down the camera lock button, or if something else is locking the player
+	/// </summary>
+	public bool CheckForCameraLock() {
+		return InputManager.GetGameButton(InputManager.GameButton.CameraLock);
+	}
+
+	/// <summary>
+	/// Called once a frame, used for handling player action.
+	/// </summary>
 	void Update () {
 		if (InputManager.GetGameButtonDown(InputManager.GameButton.CameraLock)) {
 			cursor.Switch(cursor.overCursor);
@@ -57,21 +85,13 @@ public class PlayerControls : MonoBehaviour {
 			Cursor.lockState = CursorLockMode.Locked;
 		}
 
-		/*
-		if (Input.GetKeyDown(KeyCode.M)) {
-			AkSoundEngine.PostEvent("Door_Close", this.gameObject);
-		}
-		if (Input.GetKeyDown(KeyCode.N)) {
-			AkSoundEngine.PostEvent("Door_Lock", this.gameObject);
-		}
-		if (InputManager.GetButtonDown(InputManager.Button.Y)) {
-			cam.GetComponent<CameraManager>().NextRender();
-		}
-		 */
-
+		//Check for terminal interaction
 		terminalInteractionController.Interact();
 	}
 
+	/// <summary>
+	/// Handles character movement based on player input
+	/// </summary>
 	private void handleMovement() {
 
 		//So we have two inputs that are basically an X and a Y component of a vector.
@@ -100,6 +120,9 @@ public class PlayerControls : MonoBehaviour {
 		body.Move(moveDir * moveSpeed * Time.deltaTime);
 	}
 
+	/// <summary>
+	/// Handles camera orientation change based on player input
+	/// </summary>
 	private void handleCamera() {
 		//Camera is handled by rotating our player model left and right
 		internalRotation += InputManager.GetAxis(InputManager.Axis.RightHorizontal) * rotationSpeed * Time.deltaTime;
