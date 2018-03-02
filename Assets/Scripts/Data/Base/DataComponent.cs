@@ -53,7 +53,7 @@ namespace PuzzleComponents {
 
 			//Compare it to the cached DataSequence
 			if (DataSequence.Comparison(cache, newResult) == false) {
-				//Debug.Log("And I actually could! " + ((newResult == null) ? "Null" : newResult.GetStringRepresentation()));
+				Debug.Log("And I actually could! " + ((newResult == null) ? "Null" : newResult.GetStringRepresentation()));
 				//Debug.Log("I do need to update! " + this.gameObject.transform.name);
 				//Update the result
 				cache = newResult;	
@@ -62,11 +62,13 @@ namespace PuzzleComponents {
 			//Signal all output connections that we have changed our data.
 			for (int i = 0; i < attachedSquare.line.Length; i++) {
 				if (attachedSquare.line[i] != null && attachedSquare.socketState[i] == GridSquare.SocketState.Output) {
+
 					//Use the GridLine method to find the other socket
-					GridSquare other;
 					GridSquare.GridDirection otherSocketDirection;
-					attachedSquare.line[i].CheckForOpposingSocket(attachedSquare, (GridSquare.GridDirection)i, out other, out otherSocketDirection);
+					GridSquare other = attachedSquare.line[i].CheckForOtherComponent(attachedSquare, (GridSquare.GridDirection)i, out otherSocketDirection);
+					//If it exists, and that socket is set as an input.
 					if (other != null && other.dataComponent != null && other.socketState[(int)otherSocketDirection] == GridSquare.SocketState.Input) {
+						//Let them know things have changed.
 						other.dataComponent.ConnectionChange();
 					}
 				}
@@ -96,10 +98,11 @@ namespace PuzzleComponents {
 				if (attachedSquare.socketState[i] == GridSquare.SocketState.Input) {
 					//Check if we have a line
 					if (attachedSquare.line[i] != null) {
+
 						//Call the line method to get the other socket
-						GridSquare other;
 						GridSquare.GridDirection otherSocketDirection;
-						attachedSquare.line[i].CheckForOpposingSocket(attachedSquare, (GridSquare.GridDirection)i, out other, out otherSocketDirection);
+						GridSquare other = attachedSquare.line[i].CheckForOtherComponent(attachedSquare, (GridSquare.GridDirection)i, out otherSocketDirection);
+
 						Debug.Log(other);
 						//If it is an output, we can include it
 						if (other != null && other.dataComponent != null && other.socketState[(int)otherSocketDirection] == GridSquare.SocketState.Output) {

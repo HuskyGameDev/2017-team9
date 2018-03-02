@@ -8,8 +8,8 @@ public class GridSquareEditor : Editor {
 
 	public override void OnInspectorGUI() {
 		GridSquare myScript = (GridSquare)target;
-		if (GUILayout.Button("Update Square")) {
-			myScript.ValidateSquare();
+		if (GUILayout.Button("Rebuild Square")) {
+			myScript.RebuildSquare();
 		}
 		base.OnInspectorGUI();
 	}

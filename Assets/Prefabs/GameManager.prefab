@@ -72,6 +72,6 @@ MonoBehaviour:
       RightStrafe: 100
       Interact1: 323
       Interact2: 324
-      cameraLock: 32
+      cameraLock: 42
       Menu: 9
-      Cancel: 27
+      Cancel: 32

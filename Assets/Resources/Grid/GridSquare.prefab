@@ -22,8 +22,23 @@ GameObject:
   - component: {fileID: 65514438482180304}
   - component: {fileID: 114079558738786610}
   - component: {fileID: 114320737521169992}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GridSquare
+  m_TagString: GridSquare
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1536938675189336
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4814775098738250}
+  m_Layer: 12
+  m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,8 +53,22 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -15, y: 3, z: -40}
   m_LocalScale: {x: 1, y: 1, z: 0.0019999999}
-  m_Children: []
+  m_Children:
+  - {fileID: 4814775098738250}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4814775098738250
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1536938675189336}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4135015025903318}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &65514438482180304
@@ -65,6 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 273e92e63ece7304ead1a03ba8633c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  visualsHolder: {fileID: 1536938675189336}
   unusableTexture: {fileID: 2800000, guid: 3cf5a0d21f4d6e447b17b25d2db1bb28, type: 3}
   sourceTexture: {fileID: 2800000, guid: bcde36993c43f384194c753e2711409c, type: 3}
   shifterTexture: {fileID: 2800000, guid: eb3bdf4b6ae1e3d4bae0d4f70aebff16, type: 3}
@@ -92,3 +122,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  puzzle: {fileID: 0}

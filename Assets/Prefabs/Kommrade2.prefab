@@ -233,6 +233,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d4ce88705a0a2140bc05ccec696438e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 6
+  isGrounded: 0
+  deltaGround: 0.3
   collider: {fileID: 0}
 --- !u!124 &124662408643453434
 Behaviour:

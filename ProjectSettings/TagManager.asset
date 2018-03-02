@@ -4,12 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - DataConnection
-  - DataPoint
-  - Databeam
-  - DataTerminal
   - GridSquare
-  - GridSocket
   layers:
   - Default
   - TransparentFX
@@ -22,7 +17,7 @@ TagManager:
   - 
   - 
   - Dont Render
-  - Line Puzzle
+  - 
   - GridSquares
   - 
   - 
