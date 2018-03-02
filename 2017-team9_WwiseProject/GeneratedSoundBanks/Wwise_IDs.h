@@ -17,6 +17,7 @@ namespace AK
         static const AkUniqueID DOOR_CLOSE = 128625444U;
         static const AkUniqueID DOOR_LOCK = 3029008661U;
         static const AkUniqueID DOOR_OPEN = 535830432U;
+        static const AkUniqueID FOOTSTEPS = 2385628198U;
         static const AkUniqueID KEYBOARD_CLICKS = 1081112822U;
         static const AkUniqueID LIGHT_SWITCH = 790135102U;
         static const AkUniqueID LINE_END = 392429297U;

@@ -7,12 +7,10 @@
 
 public class AkTriggerMouseUp : AkTriggerBase
 {
-	void OnMouseUp()
+	private void OnMouseUp()
 	{
-		if(triggerDelegate != null) 
-		{
+		if (triggerDelegate != null)
 			triggerDelegate(null);
-		}
 	}
 }
 

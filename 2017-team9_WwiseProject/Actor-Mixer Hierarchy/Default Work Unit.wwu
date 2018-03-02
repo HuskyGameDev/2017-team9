@@ -948,6 +948,193 @@
 						</Position>
 					</PositioningInfo>
 				</ActorMixer>
+				<ActorMixer Name="Player" ID="{831C67FD-F76F-4481-89DE-DAB47D132FDA}" ShortID="177453490">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<RandomSequenceContainer Name="Footsteps" ID="{FE4164AF-25AD-4F3E-8D30-D809EA132F0B}" ShortID="687135559">
+							<PropertyList>
+								<Property Name="OverrideEffect" Type="bool" Value="True"/>
+								<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-6</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+								</Reference>
+								<Reference Name="Effect0" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+									<ObjectRef Name="Cut_3dB_10KHz" ID="{83EAB3EA-A43D-470F-A183-7F02DAA44A4D}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="Step1" ID="{9C6FC74C-5DDB-4D56-A3FF-314B6ABE8667}" ShortID="648147335">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="FOOT-Walking on Cement01, jdmoths" ID="{2112399F-4671-4FE5-9F29-193250F3DBC9}" ShortID="547717690">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.0342076039387308"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="2.18073475109409"/>
+												<Property Name="TrimEnd" Type="Real64" Value="2.53991459245077"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>FOOT-Walking on Cement01, jdmoths.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="FOOT-Walking on Cement01, jdmoths" ID="{2112399F-4671-4FE5-9F29-193250F3DBC9}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Step2" ID="{14ED4902-27C3-42A2-B70A-138738060525}" ShortID="907814436">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-3</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="FOOT-Walking on Cement01, jdmoths" ID="{E0DB8A37-E2B8-4840-87B3-0D4E3CF101B6}" ShortID="111827739">
+											<PropertyList>
+												<Property Name="TrimBegin" Type="Real64" Value="2.92475013676149"/>
+												<Property Name="TrimEnd" Type="Real64" Value="3.35234518599563"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>FOOT-Walking on Cement01, jdmoths.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="FOOT-Walking on Cement01, jdmoths" ID="{E0DB8A37-E2B8-4840-87B3-0D4E3CF101B6}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Step3" ID="{6F1E36DA-27B9-4DE2-800A-D021B88DC9B7}" ShortID="741905419">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-3</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="FOOT-Walking on Cement01, jdmoths" ID="{678A14BE-DABA-414D-B5EB-BF20B346283C}" ShortID="769229974">
+											<PropertyList>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.179589920678337"/>
+												<Property Name="TrimBegin" Type="Real64" Value="3.59179841356674"/>
+												<Property Name="TrimEnd" Type="Real64" Value="3.9595301559081"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>FOOT-Walking on Cement01, jdmoths.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="FOOT-Walking on Cement01, jdmoths" ID="{678A14BE-DABA-414D-B5EB-BF20B346283C}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Step4" ID="{3CBEA7F4-48FC-46DB-95B4-8D323C667260}" ShortID="386470862">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-4</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="FOOT-Walking on Cement01, jdmoths" ID="{9A79C530-680A-4B82-9C70-986CBD5C925E}" ShortID="323365193">
+											<PropertyList>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.359179841356674"/>
+												<Property Name="TrimBegin" Type="Real64" Value="5.62715084792122"/>
+												<Property Name="TrimEnd" Type="Real64" Value="6.08895350109409"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>FOOT-Walking on Cement01, jdmoths.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="FOOT-Walking on Cement01, jdmoths" ID="{9A79C530-680A-4B82-9C70-986CBD5C925E}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
+					</ChildrenList>
+				</ActorMixer>
+				<ActorMixer Name="Music" ID="{61CF54FA-4DA7-4DE6-90CA-75676CDE33BC}" ShortID="950079159">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="Opening Music" ID="{CBBD6C82-8844-454A-B88E-0C7768DF806F}" ShortID="1017902722">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2EF4BEFC-BBD5-4FB7-AFAB-1DF927F77D4D}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="THC Main Theme_V3" ID="{2A4AE672-1ED7-485E-9C8A-66AEBDA289B2}" ShortID="623244395">
+									<PropertyList>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>THC Main Theme_V3.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="THC Main Theme_V3" ID="{2A4AE672-1ED7-485E-9C8A-66AEBDA289B2}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</ActorMixer>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

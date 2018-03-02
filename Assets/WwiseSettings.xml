@@ -1,11 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<WwiseSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <WwiseProjectPath>../2017-team9_WwiseProject/2017-team9_WwiseProject.wproj</WwiseProjectPath>
-  <SoundbankPath>Audio/GeneratedSoundBanks/Windows/</SoundbankPath>
-  <CreateWwiseGlobal>true</CreateWwiseGlobal>
-  <CreateWwiseListener>true</CreateWwiseListener>
-  <ShowMissingRigidBodyWarning>true</ShowMissingRigidBodyWarning>
-  <WwiseInstallationPathWindows>C:\Program Files (x86)\Audiokinetic\Wwise 2017.1.3.6377</WwiseInstallationPathWindows>
-  <WwiseInstallationPathMac>/Applications/Audiokinetic/Wwise 2017.1.1.6340/Wwise.app</WwiseInstallationPathMac>
-  <CreatedPicker>true</CreatedPicker>
+<?xml version='1.0'?>
+<WwiseSettings>
+    <CreateWwiseGlobal>true</CreateWwiseGlobal>
+    <CreateWwiseListener>true</CreateWwiseListener>
+    <SoundbankPath>Audio/GeneratedSoundBanks/Windows/</SoundbankPath>
+    <WwiseProjectPath>../../2017-team9/2017-team9_WwiseProject/2017-team9_WwiseProject.wproj</WwiseProjectPath>
+    <WwiseInstallationPathWindows>C:\Program Files (x86)\Audiokinetic\Wwise 2017.1.3.6377</WwiseInstallationPathWindows>
+    <WwiseInstallationPathMac>/Applications/Audiokinetic/Wwise 2017.1.1.6340/Wwise.app</WwiseInstallationPathMac>
 </WwiseSettings>

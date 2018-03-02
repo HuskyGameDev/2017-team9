@@ -4,50 +4,47 @@
 // Copyright (c) 2014 Audiokinetic Inc. / All Rights Reserved
 //
 //////////////////////////////////////////////////////////////////////
-using UnityEngine;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
 
 /// Base class for the generic triggering mechanism for Wwise Integration.
 /// All Wwise components will use this mechanism to drive their behavior.
-/// Derive from this class to add your own triggering condition, as decribed in \ref unity_add_triggers
-public abstract class AkTriggerBase : MonoBehaviour 
+/// Derive from this class to add your own triggering condition, as described in \ref unity_add_triggers
+public abstract class AkTriggerBase : UnityEngine.MonoBehaviour
 {
-	/// Delegate declaration for all Wwise Triggers.  
+	/// Delegate declaration for all Wwise Triggers.
 	public delegate void Trigger(
-	GameObject in_gameObject ///< in_gameObject is used to pass "Collidee" objects when Colliders are used.  Some components have the option "Use other object", this is the object they'll use.
+		UnityEngine.GameObject in_gameObject ///< in_gameObject is used to pass "Collidee" objects when Colliders are used.  Some components have the option "Use other object", this is the object they'll use.
 	);
-	
+
 	/// All components reacting to the trigger will be registered in this delegate.
-	public Trigger triggerDelegate = null;  
+	public Trigger triggerDelegate = null;
 
-	public static Dictionary<uint, string> GetAllDerivedTypes()
+	public static System.Collections.Generic.Dictionary<uint, string> GetAllDerivedTypes()
 	{
-		Dictionary<uint, string> derivedTypes = new Dictionary<uint, string>();
+		var derivedTypes = new System.Collections.Generic.Dictionary<uint, string>();
 
-		Type baseType = typeof(AkTriggerBase);
+		var baseType = typeof(AkTriggerBase);
 
 #if UNITY_WSA && !UNITY_EDITOR
-		IEnumerable<TypeInfo> typeInfos = baseType.GetTypeInfo().Assembly.DefinedTypes;
+		var baseTypeInfo = System.Reflection.IntrospectionExtensions.GetTypeInfo(baseType);
+		var typeInfos = baseTypeInfo.Assembly.DefinedTypes;
 
-		foreach(TypeInfo typeInfo in typeInfos)
+		foreach (var typeInfo in typeInfos)
 		{
-			if(typeInfo.IsClass && (typeInfo.IsSubclassOf(baseType) || baseType.GetTypeInfo().IsAssignableFrom(typeInfo) && baseType != typeInfo.AsType()))
+			if (typeInfo.IsClass && (typeInfo.IsSubclassOf(baseType) || baseTypeInfo.IsAssignableFrom(typeInfo) && baseType != typeInfo.AsType()))
 			{
-				string typeName = typeInfo.Name;
+				var typeName = typeInfo.Name;
 				derivedTypes.Add(AkUtilities.ShortIDGenerator.Compute(typeName), typeName);
 			}
 		}
 #else
-		Type[] types = baseType.Assembly.GetTypes();
+		var types = baseType.Assembly.GetTypes();
 
-		for (int i = 0; i < types.Length; i++)
+		for (var i = 0; i < types.Length; i++)
 		{
-			if (types[i].IsClass && (types[i].IsSubclassOf(baseType) || baseType.IsAssignableFrom(types[i]) && baseType != types[i]))
+			if (types[i].IsClass &&
+			    (types[i].IsSubclassOf(baseType) || baseType.IsAssignableFrom(types[i]) && baseType != types[i]))
 			{
-				string typeName = types[i].Name;
+				var typeName = types[i].Name;
 				derivedTypes.Add(AkUtilities.ShortIDGenerator.Compute(typeName), typeName);
 			}
 		}
@@ -57,7 +54,7 @@ public abstract class AkTriggerBase : MonoBehaviour
 		derivedTypes.Add(AkUtilities.ShortIDGenerator.Compute("Awake"), "Awake");
 		derivedTypes.Add(AkUtilities.ShortIDGenerator.Compute("Start"), "Start");
 		derivedTypes.Add(AkUtilities.ShortIDGenerator.Compute("Destroy"), "Destroy");
-		
+
 		return derivedTypes;
 	}
 }

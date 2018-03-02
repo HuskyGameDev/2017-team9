@@ -171,6 +171,34 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Footsteps" ID="{05880C38-0E49-4429-9F23-E9C565E71722}">
+					<ChildrenList>
+						<Action Name="" ID="{908DE30C-F556-41CE-AA3F-0C8386BF5748}" ShortID="707792672">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Footsteps" ID="{FE4164AF-25AD-4F3E-8D30-D809EA132F0B}" WorkUnitID="{B73D90A3-B6C3-4792-A17A-76F5246718E1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Opening_Music" ID="{E3958123-3487-49B4-B102-0DE1B6576960}">
+					<ChildrenList>
+						<Action Name="" ID="{BE055834-42BA-454F-BF6B-D4346D29B0F8}" ShortID="691858918">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Opening Music" ID="{CBBD6C82-8844-454A-B88E-0C7768DF806F}" WorkUnitID="{B73D90A3-B6C3-4792-A17A-76F5246718E1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

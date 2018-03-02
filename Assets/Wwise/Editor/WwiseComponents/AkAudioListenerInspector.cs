@@ -5,31 +5,27 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-using UnityEngine;
-using UnityEditor;
-using System;
-
-[CanEditMultipleObjects]
-[CustomEditor(typeof(AkAudioListener))]
-public class AkAudioListenerInspector : Editor
+[UnityEditor.CanEditMultipleObjects]
+[UnityEditor.CustomEditor(typeof(AkAudioListener))]
+public class AkAudioListenerInspector : UnityEditor.Editor
 {
-	SerializedProperty m_isDefaultListener;
+	private UnityEditor.SerializedProperty m_isDefaultListener;
 
-	void OnEnable()
+	private void OnEnable()
 	{
 		m_isDefaultListener = serializedObject.FindProperty("isDefaultListener");
 	}
 
 	public override void OnInspectorGUI()
 	{
-		GUILayout.BeginVertical("Box");
+		UnityEngine.GUILayout.BeginVertical("Box");
 		{
-			EditorGUI.BeginChangeCheck();
-			EditorGUILayout.PropertyField(m_isDefaultListener);
-			if (EditorGUI.EndChangeCheck())
+			UnityEditor.EditorGUI.BeginChangeCheck();
+			UnityEditor.EditorGUILayout.PropertyField(m_isDefaultListener);
+			if (UnityEditor.EditorGUI.EndChangeCheck())
 				serializedObject.ApplyModifiedProperties();
 		}
-		GUILayout.EndVertical();
+		UnityEngine.GUILayout.EndVertical();
 	}
 }
 #endif

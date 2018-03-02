@@ -1,32 +1,27 @@
 ﻿#define DISPLAY_GROUP_NAME_AND_VALUE_NAME
 
-using System;
-using UnityEditor;
-
 namespace AK.Wwise.Editor
 {
-	[CustomPropertyDrawer(typeof(State))]
+	[UnityEditor.CustomPropertyDrawer(typeof(State))]
 	public class StateDrawer : BaseTypeDrawer
 	{
-		SerializedProperty groupID;
-
-		public override string UpdateIds(Guid[] in_guid)
+		public override string UpdateIds(System.Guid[] in_guid)
 		{
 			var list = AkWwiseProjectInfo.GetData().StateWwu;
 
-			for (int i = 0; i < list.Count; i++)
+			for (var i = 0; i < list.Count; i++)
 			{
-				var group = list[i].List.Find(x => new Guid(x.Guid).Equals(in_guid[1]));
+				var group = list[i].List.Find(x => new System.Guid(x.Guid).Equals(in_guid[1]));
 
 				if (group != null)
 				{
-					int index = group.ValueGuids.FindIndex(x => new Guid(x.bytes).Equals(in_guid[0]));
+					var index = group.ValueGuids.FindIndex(x => new System.Guid(x.bytes).Equals(in_guid[0]));
 
 					if (index < 0)
 						break;
 
-					groupID.intValue = group.ID;
-					ID.intValue = group.valueIDs[index];
+					m_IDProperty[0].intValue = group.valueIDs[index];
+					m_IDProperty[1].intValue = group.ID;
 
 #if DISPLAY_GROUP_NAME_AND_VALUE_NAME
 					return group.Name + "/" + group.values[index];
@@ -36,17 +31,20 @@ namespace AK.Wwise.Editor
 				}
 			}
 
-			groupID.intValue = ID.intValue = 0;
+			m_IDProperty[0].intValue = m_IDProperty[1].intValue = 0;
 			return string.Empty;
 		}
 
-		public override void SetupSerializedProperties(SerializedProperty property)
+		public override void SetupSerializedProperties(UnityEditor.SerializedProperty property)
 		{
 			m_objectType = AkWwiseProjectData.WwiseObjectType.STATE;
 			m_typeName = "State";
 
-			groupID = property.FindPropertyRelative("groupID");
-			m_guidProperty = new SerializedProperty[2];
+			m_IDProperty = new UnityEditor.SerializedProperty[2];
+			m_IDProperty[0] = property.FindPropertyRelative("ID");
+			m_IDProperty[1] = property.FindPropertyRelative("groupID");
+
+			m_guidProperty = new UnityEditor.SerializedProperty[2];
 			m_guidProperty[0] = property.FindPropertyRelative("valueGuid.Array");
 			m_guidProperty[1] = property.FindPropertyRelative("groupGuid.Array");
 		}

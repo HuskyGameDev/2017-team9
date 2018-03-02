@@ -5,20 +5,18 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-using UnityEngine;
-using System.Collections.Generic;
-
-
-public class AkEventCallbackData : ScriptableObject
+public class AkEventCallbackData : UnityEngine.ScriptableObject
 {
 	////AkSoundEngine.PostEvent callback flags. See the AkCallbackType enumeration for a list of all callbacks
-	public List<int> callbackFlags = new List<int>();
-	////GameObject that will receive the callback
-	public List<GameObject> callbackGameObj = new List<GameObject>();
+	public System.Collections.Generic.List<int> callbackFlags = new System.Collections.Generic.List<int>();
 
 	////Names of the callback functions.
-	public List<string> callbackFunc = new List<string>();
-	
+	public System.Collections.Generic.List<string> callbackFunc = new System.Collections.Generic.List<string>();
+
+	////GameObject that will receive the callback
+	public System.Collections.Generic.List<UnityEngine.GameObject> callbackGameObj =
+		new System.Collections.Generic.List<UnityEngine.GameObject>();
+
 	////The sum of the flags of all game objects. This is the flag that will be passed to AkSoundEngine.PostEvent
 	public int uFlags = 0;
 }

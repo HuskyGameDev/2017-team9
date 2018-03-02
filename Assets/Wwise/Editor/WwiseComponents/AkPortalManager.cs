@@ -5,52 +5,52 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-using UnityEngine;
-using UnityEditor;
-using System;
-using System.Collections.Generic;
-
-[InitializeOnLoad]
+[UnityEditor.InitializeOnLoad]
 public class AkPortalManager
 {
-	static private AkPortalManager s_portalManager = null;
+	private static AkPortalManager s_portalManager;
 
-	public List<AkEnvironment>			EnvironmentList	= new List<AkEnvironment>(); 
-	public List<AkEnvironmentPortal>	PortalList 		= new List<AkEnvironmentPortal>();
+	public System.Collections.Generic.List<AkEnvironment> EnvironmentList =
+		new System.Collections.Generic.List<AkEnvironment>();
 
-	public Dictionary<int, List<AkEnvironment>>[] IntersectingEnvironments = new []
-	{
-		new Dictionary<int, List<AkEnvironment>>(), //All environments on the negative side of each portal(opposite to the direction of the chosen axis)
-		new Dictionary<int, List<AkEnvironment>>()	//All environments on the positive side of each portal(same direction as the chosen axis)
-	};
+	public System.Collections.Generic.Dictionary<int, System.Collections.Generic.List<AkEnvironment>>[]
+		IntersectingEnvironments =
+		{
+			//All environments on the negative side of each portal(opposite to the direction of the chosen axis)
+			new System.Collections.Generic.Dictionary<int, System.Collections.Generic.List<AkEnvironment>>(),
+			//All environments on the positive side of each portal(same direction as the chosen axis)
+			new System.Collections.Generic.Dictionary<int, System.Collections.Generic.List<AkEnvironment>>()
+		};
 
-	float m_timeStamp = Time.realtimeSinceStartup;
+	private float m_timeStamp = UnityEngine.Time.realtimeSinceStartup;
+
+	public System.Collections.Generic.List<AkEnvironmentPortal> PortalList =
+		new System.Collections.Generic.List<AkEnvironmentPortal>();
 
 	static AkPortalManager()
 	{
 		//This constructor is called before any game object is created when there is a compilation which makes the 'FindObjectsOfType' function return null.
 		//So we register the init function to be called at hte first update.
-		EditorApplication.update += Init;
+		UnityEditor.EditorApplication.update += Init;
 	}
 
-	static public void Init()
+	public static void Init()
 	{
 		//Do nothing if Manager exists
-		if(s_portalManager == null)
+		if (s_portalManager == null)
 		{
-			s_portalManager = new AkPortalManager(); 			
-		
+			s_portalManager = new AkPortalManager();
 			s_portalManager.Populate();
 
 			//Register the update function to be called at each frame
-			EditorApplication.update += s_portalManager.UpdateEnvironments;
+			UnityEditor.EditorApplication.update += s_portalManager.UpdateEnvironments;
 		}
 
 		//Unregister in case we were registered
-		EditorApplication.update -= Init;
+		UnityEditor.EditorApplication.update -= Init;
 	}
 
-	static public AkPortalManager GetManager()
+	public static AkPortalManager GetManager()
 	{
 		return s_portalManager;
 	}
@@ -58,149 +58,131 @@ public class AkPortalManager
 	public void Populate()
 	{
 		//Add all environments in the scene to the environment list 
-		AkEnvironment[] akEnv = UnityEngine.Object.FindObjectsOfType(typeof(AkEnvironment)) as AkEnvironment[];
-		s_portalManager.EnvironmentList.Clear ();
-		s_portalManager.EnvironmentList.AddRange (akEnv);
+		var akEnv = UnityEngine.Object.FindObjectsOfType<AkEnvironment>();
+		s_portalManager.EnvironmentList.Clear();
+		s_portalManager.EnvironmentList.AddRange(akEnv);
 
 		//Add all portals in the scene to the portal list 
-		AkEnvironmentPortal[] akPortals = UnityEngine.Object.FindObjectsOfType(typeof(AkEnvironmentPortal)) as AkEnvironmentPortal[];
-		s_portalManager.PortalList.Clear ();
-		s_portalManager.PortalList.AddRange (akPortals);
+		var akPortals = UnityEngine.Object.FindObjectsOfType<AkEnvironmentPortal>();
+		s_portalManager.PortalList.Clear();
+		s_portalManager.PortalList.AddRange(akPortals);
 
 		//check for portal-environment intersections and populate the IntersectingEnvironments dictionary
-		for(int i = 0; i < s_portalManager.PortalList.Count; i++)
-		{
+		for (var i = 0; i < s_portalManager.PortalList.Count; i++)
 			s_portalManager.UpdatePortal(s_portalManager.PortalList[i]);
-		}
 	}
-	
+
 	public void UpdatePortal(AkEnvironmentPortal in_portal)
 	{
-		List<AkEnvironment>[] envList = new List<AkEnvironment>[2];
+		var envList = new System.Collections.Generic.List<AkEnvironment>[2];
 
-		for(int i = 0; i < 2; i++)
+		for (var i = 0; i < 2; i++)
 		{
-			if(!IntersectingEnvironments[i].TryGetValue(in_portal.GetInstanceID(), out envList[i]))
+			if (!IntersectingEnvironments[i].TryGetValue(in_portal.GetInstanceID(), out envList[i]))
 			{
-				envList[i] = new List<AkEnvironment>();
+				envList[i] = new System.Collections.Generic.List<AkEnvironment>();
 				IntersectingEnvironments[i][in_portal.GetInstanceID()] = envList[i];
 			}
 			else
-			{
 				envList[i].Clear();
-			}
-
 		}
 
 		//We check if a portal intersects any environment 
-		for(int i = EnvironmentList.Count - 1; i >= 0 ; i--)//Iterate in reverse order for safe removal form list while iterating
+		//Iterate in reverse order for safe removal form list while iterating
+		for (var i = EnvironmentList.Count - 1; i >= 0; i--)
 		{
-			if(EnvironmentList[i] != null)
+			if (EnvironmentList[i] != null)
 			{
 				//if there is an intersection
-				if(in_portal.GetComponent<Collider>().bounds.Intersects(EnvironmentList[i].GetComponent<Collider>().bounds))
+				if (in_portal.GetComponent<UnityEngine.Collider>().bounds
+					.Intersects(EnvironmentList[i].GetComponent<UnityEngine.Collider>().bounds))
 				{
-					//We check if the environment is on the left(negatif side of chosen axis) or right side of the portal
-					if(Vector3.Dot(in_portal.transform.rotation * in_portal.axis, EnvironmentList[i].transform.position - in_portal.transform.position) >= 0)
-					{
+					if (UnityEngine.Vector3.Dot(in_portal.transform.rotation * in_portal.axis,
+						    EnvironmentList[i].transform.position - in_portal.transform.position) >= 0)
 						envList[1].Add(EnvironmentList[i]);
-					}
 					else
-					{
 						envList[0].Add(EnvironmentList[i]);
-					}
 				}
 			}
 			else
-			{
 				EnvironmentList.RemoveAt(i);
-			}
 		}
 	}
 
-	void UpdateEnvironment(AkEnvironment in_env)
+	private void UpdateEnvironment(AkEnvironment in_env)
 	{
-		for(int i = PortalList.Count -1; i >= 0 ; i--)//Iterate in reverse order for safe removal form list while iterating
+		for (var i = PortalList.Count - 1; i >= 0; i--) //Iterate in reverse order for safe removal form list while iterating
 		{
-			if(PortalList[i] != null)
+			if (PortalList[i] != null)
 			{
-				if(in_env.GetComponent<Collider>().bounds.Intersects(PortalList[i].GetComponent<Collider>().bounds))
+				if (in_env.GetComponent<UnityEngine.Collider>().bounds
+					.Intersects(PortalList[i].GetComponent<UnityEngine.Collider>().bounds))
 				{
-					List<AkEnvironment> envList = null;
-						
+					System.Collections.Generic.List<AkEnvironment> envList = null;
+
 					//Get index of the list that should contain this environment
 					//Index = 0 means that the enviroment is on the negative side of the portal (opposite to the direction of the chosen axis)
 					//Index = 1 means that the enviroment is on the positive side of the portal (same direction as the chosen axis)
-					int index = (Vector3.Dot(PortalList[i].transform.rotation * PortalList[i].axis, in_env.transform.position - PortalList[i].transform.position) >= 0) ? 1 : 0;
-						
-					if(!IntersectingEnvironments[index].TryGetValue(PortalList[i].GetInstanceID(), out envList))
+					var index = UnityEngine.Vector3.Dot(PortalList[i].transform.rotation * PortalList[i].axis,
+						            in_env.transform.position - PortalList[i].transform.position) >= 0
+						? 1
+						: 0;
+
+					if (!IntersectingEnvironments[index].TryGetValue(PortalList[i].GetInstanceID(), out envList))
 					{
-						envList = new List<AkEnvironment>();
+						envList = new System.Collections.Generic.List<AkEnvironment>();
 						envList.Add(in_env);
 						IntersectingEnvironments[index][PortalList[i].GetInstanceID()] = envList;
 					}
-					else
-					{
-						if(!envList.Contains(in_env))
-						{
-							envList.Add(in_env);
-						}
-					}
+					else if (!envList.Contains(in_env))
+						envList.Add(in_env);
 				}
 			}
 			else
-			{
 				PortalList.RemoveAt(i);
-			}
 		}
 	}
-	
+
 	public void UpdateEnvironments()
-	{ 
+	{
 		//Timer is reset when starting play mode and when coming back to editor mode 
-		if (Time.realtimeSinceStartup < m_timeStamp)
+		if (UnityEngine.Time.realtimeSinceStartup < m_timeStamp)
 		{
-			m_timeStamp = Time.realtimeSinceStartup;
+			m_timeStamp = UnityEngine.Time.realtimeSinceStartup;
 
 			//The PortalManager object doesn't get destroyed but all game objects in our lists become null
 			//So we populate
 			Populate();
-
 			return;
 		}
 
 		//The update is done once every second
-		if(Time.realtimeSinceStartup - m_timeStamp < 1.0f)
+		if (UnityEngine.Time.realtimeSinceStartup - m_timeStamp < 1.0f)
 			return;
 
-		m_timeStamp = Time.realtimeSinceStartup;		
+		m_timeStamp = UnityEngine.Time.realtimeSinceStartup;
 
-
-		UnityEngine.Object[] portals = Selection.GetFiltered (typeof(AkEnvironmentPortal), SelectionMode.Unfiltered);
-		if(portals != null) 
+		var portals = UnityEditor.Selection.GetFiltered(typeof(AkEnvironmentPortal), UnityEditor.SelectionMode.Unfiltered);
+		if (portals != null)
 		{
-			for(int i = 0; i < portals.Length; i++) 
+			for (var i = 0; i < portals.Length; i++)
 			{
-				if(!PortalList.Contains((AkEnvironmentPortal)portals[i])) 
-				{
-					PortalList.Add((AkEnvironmentPortal)portals[i]);
-				}
+				if (!PortalList.Contains((AkEnvironmentPortal) portals[i]))
+					PortalList.Add((AkEnvironmentPortal) portals[i]);
 
-				UpdatePortal((AkEnvironmentPortal)portals[i]);
+				UpdatePortal((AkEnvironmentPortal) portals[i]);
 			}
 		}
 
-		UnityEngine.Object[] envs = Selection.GetFiltered (typeof(AkEnvironment), SelectionMode.Unfiltered);
-		if(envs != null)
+		var envs = UnityEditor.Selection.GetFiltered(typeof(AkEnvironment), UnityEditor.SelectionMode.Unfiltered);
+		if (envs != null)
 		{
-			for(int i = 0; i < envs.Length; i++)
+			for (var i = 0; i < envs.Length; i++)
 			{
-				if(!EnvironmentList.Contains((AkEnvironment)envs[i]))
-				{
-					EnvironmentList.Add((AkEnvironment)envs[i]);
-				}
-					
-				UpdateEnvironment((AkEnvironment)envs[i]);
+				if (!EnvironmentList.Contains((AkEnvironment) envs[i]))
+					EnvironmentList.Add((AkEnvironment) envs[i]);
+
+				UpdateEnvironment((AkEnvironment) envs[i]);
 			}
 		}
 	}
