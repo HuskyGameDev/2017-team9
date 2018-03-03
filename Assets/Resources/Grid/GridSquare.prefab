@@ -95,14 +95,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualsHolder: {fileID: 1536938675189336}
-  unusableTexture: {fileID: 2800000, guid: 3cf5a0d21f4d6e447b17b25d2db1bb28, type: 3}
+  unusableTexture: {fileID: 2800000, guid: 792e34a020b954d488238aa8a9968314, type: 3}
   sourceTexture: {fileID: 2800000, guid: bcde36993c43f384194c753e2711409c, type: 3}
   shifterTexture: {fileID: 2800000, guid: eb3bdf4b6ae1e3d4bae0d4f70aebff16, type: 3}
-  linkerTexture: {fileID: 2800000, guid: b81467e986115594facf4a79bb269577, type: 3}
+  linkerTexture: {fileID: 2800000, guid: 8fa5eba4476d66245996884c9f9dadd9, type: 3}
   deleterTexture: {fileID: 2800000, guid: afdf617bd26e1544b9d2b87ea8dbcf0c, type: 3}
   connectorTexture: {fileID: 2800000, guid: bf9ae202d17b9ed4099e93c55dad3439, type: 3}
-  combinerTexture: {fileID: 2800000, guid: 11c1ffe458233cd4bbdc87fc5a06506b, type: 3}
-  adderTexture: {fileID: 2800000, guid: 85a59eb5510d1324193bc7f527f3a6b3, type: 3}
+  combinerTexture: {fileID: 2800000, guid: 59679e93d0f1afa4eb13335a43553188, type: 3}
+  adderTexture: {fileID: 2800000, guid: d19601eeed3d7034c96c0dad9c15de7f, type: 3}
+  mixerTexture: {fileID: 2800000, guid: 751eaaed0c4bb9e4caf8a7ad9a2ac3f6, type: 3}
+  encoderTexture: {fileID: 2800000, guid: 5c12f96bac7d2724fa8f7bd5714b85f1, type: 3}
 --- !u!114 &114320737521169992
 MonoBehaviour:
   m_ObjectHideFlags: 1
