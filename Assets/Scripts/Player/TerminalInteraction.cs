@@ -70,7 +70,7 @@ public class TerminalInteraction : MonoBehaviour {
 
 							Debug.Log(lastGridSquare.transform.name + "->" + square.transform.name);
 
-							GridSquare.Connect(dir, lastGridSquare, square, currentLine);
+							//GridSquare.Connect(dir, lastGridSquare, square, currentLine);
 
 							lastGridSquare.gameObject.GetComponent<GridSquareVisuals>().UpdateVisuals();
 							square.gameObject.GetComponent<GridSquareVisuals>().UpdateVisuals();

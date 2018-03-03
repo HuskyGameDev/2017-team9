@@ -55,6 +55,12 @@ public class GridSquare : MonoBehaviour {
 
 
 	/// <summary>
+	/// The puzzle that this square exists on
+	/// </summary>
+	public GridPuzzle puzzle;
+
+
+	/// <summary>
 	/// Creates a connection between two grid squares along the given direction with the specified line. A(->dir->)B
 	/// </summary>
 	/// <param name="direction"></param>
@@ -69,7 +75,7 @@ public class GridSquare : MonoBehaviour {
 			GridDirection tdir;
 			if (GridSquare.AreNeighbors(A, B, out tdir) == false) {
 				Debug.LogError("Attempt to connect with non neightbors!");
-				newLine.DeleteFromGrid();
+				
 				return false;
 			}
 		}
@@ -98,9 +104,9 @@ public class GridSquare : MonoBehaviour {
 			if (countB > 0 && foundB == newLine) {
 				//The case we have wrapped back on ourselves
 				//So we need to trim the line.
-				newLine.Trim(B);
+				newLine.TrimInclusive(B);
 				//Substitute A for what is left in the line.
-				GridSquare sub = newLine.squares.Last.Value;
+				GridSquare sub = newLine.lineSegments.Last.Value.square;
 				//Figure out the new connection direction
 				GridSquare.GridDirection newDirection;
 				if (GridSquare.AreNeighbors(sub, B, out newDirection) == false) {
@@ -132,16 +138,15 @@ public class GridSquare : MonoBehaviour {
 			Debug.Log("X->Socket");
 			//So know we know the endpoint is a socket, so we just need to make sure there is one
 			if (B.socketState[(int)GridSquare.oppositeDirection[(int)direction]] == GridSquare.SocketState.Input || B.socketState[(int)GridSquare.oppositeDirection[(int)direction]] == GridSquare.SocketState.Output) {
+			//if (B.socketState[(int)GridSquare.oppositeDirection[(int)direction]] != GridSquare.SocketState.None) { 
 				//If there is, we can just make the connection!
 				//Implicitly, for us to have made it this far into a connection with a socket, any line that could have existed in this spot has been trimmed.
 				//so we can just make the connection!
 				A.line[(int)direction] = newLine;
-				B.line[(int)GridSquare.oppositeDirection[(int)direction]] = newLine;
-
-				//Now that we have made the connection, we should let this dataComponent know about the change.
-				
+				B.line[(int)GridSquare.oppositeDirection[(int)direction]] = newLine;				
 			}
 			else {
+				Debug.Log("Socket Connection Failed");
 				return false;
 			}
 		}
@@ -169,20 +174,6 @@ public class GridSquare : MonoBehaviour {
 			return (socketState[(int)dir] != SocketState.None);
 	}
 
-	/// <summary>
-	/// Adds a line onto this square in the specified direction. Does not care about overriding
-	/// </summary>
-	/// <param name="add"></param>
-	/// <param name="dir"></param>
-	public void AddLine(GridLine add, GridDirection dir) {
-		//the unusuable type cannot have any connections, ever
-		if (type == GridType.Unusable) {
-			return;
-		}
-		//Add the line
-		line[(int)dir] = add;
-		this.gameObject.GetComponent<GridSquareVisuals>().UpdateVisuals();
-	}
 
 	/// <summary>
 	/// Removes a line from our square.
@@ -193,6 +184,10 @@ public class GridSquare : MonoBehaviour {
 		for (int i = 0; i < line.Length; i++) {
 			if (line[i] == remove) {
 				line[i] = null;
+				if (neighbors[i] != null && neighbors[i].line[(int)oppositeDirection[i]] != null) {
+					//Make sure our neighbor forgets about this connection as well if they have it
+					neighbors[i].line[(int)oppositeDirection[i]] = null;
+				}
 			}
 		}
 		this.gameObject.GetComponent<GridSquareVisuals>().UpdateVisuals();
@@ -201,7 +196,7 @@ public class GridSquare : MonoBehaviour {
 
 
 	/// <summary>
-	/// Static method that checks if two Squares are neighbors
+	/// Static method that checks if two Squares are neighbors. Returns the dirction of A->B.
 	/// </summary>
 	/// <returns></returns>
 	public static bool AreNeighbors(GridSquare A, GridSquare B, out GridDirection dir) {
@@ -237,7 +232,7 @@ public class GridSquare : MonoBehaviour {
 		Debug.Log("Attempting to ChangeComponent");
 		//Clear all old components (should only be one but this is more safe)
 		foreach (DataComponent dc in this.gameObject.GetComponents<DataComponent>()) {
-			StartCoroutine(DestroyEndOfFrame(dc));
+			DestroyImmediate(dc);
 		}
 
 		//Add the new type of component
@@ -266,32 +261,13 @@ public class GridSquare : MonoBehaviour {
 			dataComponent = this.gameObject.AddComponent<DataUnusable>();
 		}
 
-		//Destroy the current visual grid
-		for (int i = this.gameObject.transform.childCount; i > 0; i--) {
-			DestroyImmediate(this.gameObject.transform.GetChild(i - 1).gameObject);
-		}
+
 
 
 		if (dataComponent != null) {
-			//Add the right visual gameobject
-			loadProperVisualsGameObject("Grid/Component", 0.25f);
 			//Make sure the new component knows about us!
 			dataComponent.attachedSquare = this;
 		}
-		else {
-			loadProperVisualsGameObject("Grid/Regular", 0.25f);
-		}
-	}
-
-	//Loads the proper game object that handles the visuals for this square
-	private void loadProperVisualsGameObject(string path, float scaleMulitplier) {
-		GameObject gO = Instantiate(Resources.Load(path, typeof(GameObject))) as GameObject;
-		gO.transform.parent = this.transform;
-		gO.transform.localScale = new Vector3(1.0f * scaleMulitplier, 1.0f * scaleMulitplier, gO.transform.localScale.z);
-		gO.transform.localPosition = Vector3.zero;
-
-		//We blank out the rotation so the grid will look right if this game object is rotated oddly
-		gO.transform.localRotation = Quaternion.Euler(Vector3.zero);
 	}
 
 	/// <summary>
@@ -357,19 +333,41 @@ public class GridSquare : MonoBehaviour {
 	/// <summary>
 	/// Method to update the state of the GridSquare based on the classes data
 	/// </summary>
-	public void ValidateSquare() {
-		//If our Type is different from our component, fix that
-		//if (ValidateTypeToComponentIntegrity() == false)
-			ChangeComponent(type);
+	public void RebuildSquare() {
+		ChangeComponent(type);
 
-		//Update the visuals when we make a change
+
+		//Now we go through and make sure that our neighbors share None and Line states;
+		//This is so we do not have to update adjacent lines manually when we  make a change
+		for (int i = 0; i < socketState.Length; i++) {
+			if (neighbors[i] != null) {
+				if (socketState[i] == SocketState.None) {
+				//If we are none on this side, we need to be none on the other side
+					//Change their state
+					neighbors[i].socketState[(int)oppositeDirection[i]] = SocketState.None;
+					//Tell them to redo visuals
+					neighbors[i].GetComponent<GridSquareVisuals>().UpdateVisuals();
+				}
+				else {
+					//if it not-none, then we need to set it to line if it is none. We do not want to override if it is set to Input or output
+					if (neighbors[i].socketState[(int)oppositeDirection[i]] == SocketState.None) {
+						//Change their state
+						neighbors[i].socketState[(int)oppositeDirection[i]] = SocketState.Line;
+						//Tell them to redo visuals
+						neighbors[i].GetComponent<GridSquareVisuals>().UpdateVisuals();
+					}
+					if (type == GridType.Empty && socketState[i] != SocketState.Line && socketState[i] != SocketState.None) {
+						//If we are not a line or none, but our type is empty we cannot have input/output so we change it to a line
+						socketState[i] = SocketState.Line;
+					}
+				}
+			}
+			else {
+				//If we have no neighbor we set this to none!
+				socketState[i] = SocketState.None;
+			}
+		}
+
 		this.gameObject.GetComponent<GridSquareVisuals>().UpdateVisuals();
-	}
-
-
-
-	IEnumerator DestroyEndOfFrame(MonoBehaviour go) {
-		yield return new WaitForEndOfFrame();
-		DestroyImmediate(go);
 	}
 }
