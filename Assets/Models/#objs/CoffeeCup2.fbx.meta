@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 1059386a61f0e44e58fd47a694c65693
-timeCreated: 1520111295
-=======
-guid: 586f02c00b22c5c478ec698608584c64
-timeCreated: 1520111543
->>>>>>> e3cd7f84cf6001e61b9c9778b4393c3b2e801caf
-licenseType: Free
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
@@ -20,6 +13,7 @@ ModelImporter:
     2300000: Mug
     3300000: Mug
     4300000: Mug
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -89,7 +83,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

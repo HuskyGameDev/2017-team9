@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 5c034cd34d4654cc4b5f61ae08db0902
-timeCreated: 1520111299
-=======
-guid: 50e35e822dbca424aaf0ffbe933c2c46
-timeCreated: 1520111543
->>>>>>> e3cd7f84cf6001e61b9c9778b4393c3b2e801caf
-licenseType: Free
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
@@ -22,6 +15,7 @@ ModelImporter:
     2300000: Suzanne
     3300000: Suzanne
     4300000: Suzanne
+    9500000: //RootNode
     10800000: Lamp
   materials:
     importMaterials: 1
@@ -92,7 +86,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
