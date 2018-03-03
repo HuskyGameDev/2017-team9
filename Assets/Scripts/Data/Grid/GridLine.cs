@@ -170,6 +170,23 @@ public class GridLine {
 		if (lineSegments.Last != null) {
 			GameObject lineSection = loadLineSection();
 			lineSection.transform.position = Vector3.Lerp(segment.square.transform.position, lineSegments.Last.Value.square.transform.position, 0.5f);
+
+
+			Vector3 scale = new Vector3(0.0f, 0.0f, lineSection.transform.localScale.z);
+			GridSquare.GridDirection dir;
+			GridSquare.AreNeighbors(lineSegments.Last.Value.square, square, out dir);
+
+			if (dir == GridSquare.GridDirection.Up || dir == GridSquare.GridDirection.Down) {
+				scale.x = 0.175f;
+				scale.y = 1.0f;
+			}
+			else if (dir == GridSquare.GridDirection.Left || dir == GridSquare.GridDirection.Right) {
+				scale.x = 1.0f;
+				scale.y = 0.175f; 
+			}
+
+			lineSection.transform.localScale = scale;
+
 			segment.priorLineVisual = lineSection;
 		}
 

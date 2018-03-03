@@ -51,7 +51,6 @@ public class GridSquareVisuals : MonoBehaviour {
 		child.rightLine.SetActive(square.socketState[(int)GridSquare.GridDirection.Right] != GridSquare.SocketState.None);
 
 		if (square.type != GridSquare.GridType.Empty) {
-			((GridSquareComponent)child).component.GetComponent<Renderer>().material.SetTexture("_MainTex", getTexture());
 			//Now we draw input/output arrows
 			//[TODO] Make this actually look good
 
@@ -62,6 +61,7 @@ public class GridSquareVisuals : MonoBehaviour {
 					GameObject arrow = loadVisualGameObject("Grid/Arrow", 0.15f);
 					//Set the proper position.
 					arrow.transform.localPosition = arrowPlacementDirections[i] * 0.25f;
+					arrow.transform.localScale = new Vector3(0.14f, 0.14f, 1.0f);
 					//Calcualte the correct z rotation
 					float zRotation = 270 - (i * 90);
 					if (square.socketState[i] == GridSquare.SocketState.Input)
@@ -70,7 +70,7 @@ public class GridSquareVisuals : MonoBehaviour {
 				}
 			}
 
-			
+			((GridSquareComponent)child).component.GetComponent<Renderer>().material.SetTexture("_MainTex", getTexture());
 		}
 
 	}
