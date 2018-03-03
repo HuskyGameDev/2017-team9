@@ -22,6 +22,7 @@ namespace AK
         static const AkUniqueID LIGHT_SWITCH = 790135102U;
         static const AkUniqueID LINE_END = 392429297U;
         static const AkUniqueID LINE_START = 4086643362U;
+        static const AkUniqueID OPENING_MUSIC = 700375207U;
         static const AkUniqueID PHONE = 3104856687U;
         static const AkUniqueID PUZZLE_CORRECT = 716673090U;
         static const AkUniqueID SLIDING_DOOR_CLOSE = 1790472453U;
@@ -39,6 +40,12 @@ namespace AK
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
         static const AkUniqueID MASTER_SECONDARY_BUS = 805203703U;
     } // namespace BUSSES
+
+    namespace AUDIO_DEVICES
+    {
+        static const AkUniqueID NO_OUTPUT = 2317455096U;
+        static const AkUniqueID SYSTEM = 3859886410U;
+    } // namespace AUDIO_DEVICES
 
 }// namespace AK
 
