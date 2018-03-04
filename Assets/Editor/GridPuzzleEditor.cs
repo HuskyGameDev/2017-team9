@@ -12,11 +12,14 @@ public class GridPuzzleEditor : Editor {
 		base.OnInspectorGUI();
 
 		GridPuzzle myScript = (GridPuzzle)target;
-		if (GUILayout.Button("Build Grid")) {
+		if (GUILayout.Button("Create")) {
 			myScript.GenerateGrid();
 		}
-		if (GUILayout.Button("Destroy Grid")) {
+		if (GUILayout.Button("Destroy")) {
 			myScript.DestroyGrid();
+		}
+		if (GUILayout.Button("Rebuild Visuals")) {
+			myScript.RebuildGrid();
 		}
 	}
 }

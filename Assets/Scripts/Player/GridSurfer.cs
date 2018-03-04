@@ -19,9 +19,9 @@ public class GridSurfer : MonoBehaviour {
 	void Start () {
 		state = GridSurferState.Disabled;
 	}
-	
+
 	// Update is called once per frame
-	void Update () {
+	void Update() {
 		if (player.state == PlayerControls.PlayerState.GridInteraction) {
 			if (currentSquare == null) {
 				Debug.LogWarning("Player is in Grid Interaction state, but the line is null.");
@@ -47,9 +47,7 @@ public class GridSurfer : MonoBehaviour {
 					}
 				}
 				else {
-					for (int i = 0; i < player.dataPanel.sections.Length; i++) {
-						player.dataPanel.sections[i].gameObject.SetActive(false);
-					}
+					DisableVisuals();
 				}
 
 			}
@@ -63,11 +61,11 @@ public class GridSurfer : MonoBehaviour {
 					//if we are holding down both inputs do nothing
 				}
 				else if (x > 0) {
-					transitionDirection = GridSquare.GridDirection.Left;
+					transitionDirection = GridSquare.GridDirection.Right;
 					doMove = true;
 				}
 				else if (x < 0) {
-					transitionDirection = GridSquare.GridDirection.Right;
+					transitionDirection = GridSquare.GridDirection.Left;
 					doMove = true;
 				}
 				else if (y > 0) {
@@ -79,7 +77,7 @@ public class GridSurfer : MonoBehaviour {
 					doMove = true;
 				}
 				else {
-					
+
 				}
 
 				if (doMove) {
@@ -161,8 +159,15 @@ public class GridSurfer : MonoBehaviour {
 	}
 
 
+	private void DisableVisuals() {
+		for (int i = 0; i < player.dataPanel.sections.Length; i++) {
+			player.dataPanel.sections[i].gameObject.SetActive(false);
+		}
+	}
+
+
 	private Vector3 posAboveSquare(GridSquare square) {
-		return square.transform.position + square.transform.forward * 2.0f * square.puzzle.transform.localScale.x;
+		return square.transform.position + square.transform.forward * -2.0f * square.puzzle.transform.localScale.x;
 	}
 
 	/// <summary>
@@ -183,7 +188,7 @@ public class GridSurfer : MonoBehaviour {
 
 		while (cTime < maxTime) {
 			player.playerCamera.transform.position = Vector3.Slerp(startPosition, goalPosition, cTime / maxTime);
-			player.playerCamera.transform.rotation = Quaternion.Slerp(startRotation, Quaternion.LookRotation(currentSquare.transform.forward * -1.0f), cTime / maxTime);
+			player.playerCamera.transform.rotation = Quaternion.Slerp(startRotation, Quaternion.LookRotation(currentSquare.transform.forward), cTime / maxTime);
 			cTime += Time.deltaTime;
 			yield return null;
 		}
@@ -192,7 +197,7 @@ public class GridSurfer : MonoBehaviour {
 		player.playerCamera.transform.position = goalPosition;
 		player.playerCamera.transform.LookAt(newSquare.gameObject.transform);
 
-		yield return new WaitForSeconds(0.1f);
+		yield return new WaitForSeconds(0.05f);
 
 		yield return null;
 		currentSquare = newSquare;
@@ -209,12 +214,12 @@ public class GridSurfer : MonoBehaviour {
 
 		float cTime = 0.0f;
 		//The transition takes 2 seconds
-		float maxTime = 1.0f;
+		float maxTime = 0.5f;
 
 		while (cTime < maxTime) {
 			player.playerCamera.transform.position = Vector3.Slerp(startPosition, goalPosition, cTime / maxTime);
 
-			player.playerCamera.transform.rotation = Quaternion.Slerp(startRotation, Quaternion.LookRotation(currentSquare.transform.forward * -1.0f), cTime / maxTime);
+			player.playerCamera.transform.rotation = Quaternion.Slerp(startRotation, Quaternion.LookRotation(currentSquare.transform.forward), cTime / maxTime);
 
 			cTime += Time.deltaTime;
 			yield return null;
@@ -233,6 +238,7 @@ public class GridSurfer : MonoBehaviour {
 
 
 	IEnumerator TransitionToPlayer() {
+		DisableVisuals();
 		state = GridSurferState.Disabled;
 		//For best results, this should use local position and local rotation so we can use vector.zero and player.cameraPitch to line things up right
 		Vector3 startPosition = player.playerCamera.transform.localPosition;
@@ -240,7 +246,7 @@ public class GridSurfer : MonoBehaviour {
 
 		float cTime = 0.0f;
 		//The transition takes 2 seconds
-		float maxTime = 1.0f;
+		float maxTime = 0.5f;
 
 		while (cTime < maxTime) {
 			player.playerCamera.transform.localPosition = Vector3.Slerp(startPosition, Vector3.zero, cTime / maxTime);

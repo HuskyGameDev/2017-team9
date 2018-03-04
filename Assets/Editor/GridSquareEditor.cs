@@ -11,6 +11,7 @@ public class GridSquareEditor : Editor {
 		if (GUILayout.Button("Rebuild Square")) {
 			myScript.RebuildSquare();
 		}
+
 		base.OnInspectorGUI();
 	}
 }
