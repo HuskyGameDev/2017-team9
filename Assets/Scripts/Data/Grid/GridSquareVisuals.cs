@@ -19,6 +19,8 @@ public class GridSquareVisuals : MonoBehaviour {
 	public Texture connectorTexture;
 	public Texture combinerTexture;
 	public Texture adderTexture;
+	public Texture mixerTexture;
+	public Texture encoderTexture;
 
 	/// <summary>
 	/// Checks state of the square and updates visuals
@@ -95,6 +97,10 @@ public class GridSquareVisuals : MonoBehaviour {
 			return combinerTexture;
 		else if (square.type == GridSquare.GridType.Adder)
 			return adderTexture;
+		else if (square.type == GridSquare.GridType.Mixer)
+			return mixerTexture;
+		else if (square.type == GridSquare.GridType.Encoder)
+			return encoderTexture;
 		return null;
 	}
 
