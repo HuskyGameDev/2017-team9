@@ -27,6 +27,7 @@ public class PlayerControls : MonoBehaviour {
 	public LayerMask ignoreMask;
 	public CursorManager cursor;
 	public GridDataPanel dataPanel;
+	public GameObject heldObject;
 	//public UIManager PlayerUI;
 
 	//The Singleton object for player controls
@@ -108,7 +109,7 @@ public class PlayerControls : MonoBehaviour {
 			Cursor.lockState = CursorLockMode.Locked;
 		}
 
-
+		/*
 		//Check if we need to switch to gridinteraction mode
 		if (state == PlayerState.LockedWithMouse) {
 			//If the player is in the right state, and they have clicked
@@ -133,7 +134,7 @@ public class PlayerControls : MonoBehaviour {
 					}
 				}
 			}
-		}
+		}*/
 
 
 
@@ -155,6 +156,9 @@ public class PlayerControls : MonoBehaviour {
 						gridSurfer.StartCoroutine("TransitionToGrid");
 					}
 				}
+			} else if (rayInfo.collider != null && rayInfo.collider.gameObject.tag == "Interactable") { // check if object is pickup
+				Debug.Log("Raycast on: " + rayInfo.collider.gameObject.name);
+				rayInfo.collider.gameObject.GetComponent<Interactable>().Interact();
 			}
 		}
 
