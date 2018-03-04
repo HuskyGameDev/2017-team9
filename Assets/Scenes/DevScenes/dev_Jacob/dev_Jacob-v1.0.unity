@@ -2066,6 +2066,8 @@ MonoBehaviour:
     cursor: {fileID: 1768968957}
     defaultCursor: {fileID: 21300000, guid: a9921ca8faaf5e7419e4380f10949319, type: 3}
     overCursor: {fileID: 21300000, guid: 36bd46e18d57bb444b5296663761e9e8, type: 3}
+  dataPanel: {fileID: 0}
+  heldObject: {fileID: 0}
 --- !u!143 &515925767
 CharacterController:
   m_ObjectHideFlags: 0
