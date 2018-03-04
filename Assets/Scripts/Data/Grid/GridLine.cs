@@ -191,6 +191,7 @@ public class GridLine {
 		}
 
 		lineSegments.AddLast(segment);
+
 	}
 
 
@@ -294,5 +295,4 @@ public class GridLine {
 		gO.transform.localScale = new Vector3(0.175f, 0.175f, 0.0005f);
 		return gO;
 	}
-
 }

@@ -26,6 +26,7 @@ public class PlayerControls : MonoBehaviour {
 	public Vector2 pitchBounds = new Vector2(-45,45);
 	public LayerMask ignoreMask;
 	public CursorManager cursor;
+	public GridDataPanel dataPanel;
 	//public UIManager PlayerUI;
 
 	//The Singleton object for player controls

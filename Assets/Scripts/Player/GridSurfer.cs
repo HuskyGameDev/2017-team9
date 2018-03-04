@@ -27,6 +27,32 @@ public class GridSurfer : MonoBehaviour {
 				Debug.LogWarning("Player is in Grid Interaction state, but the line is null.");
 				return;
 			}
+			else {
+				//check if this is a component.
+				if (currentSquare.dataComponent != null) {
+					for (int i = 0; i < currentSquare.socketState.Length; i++) {
+						if (currentSquare.socketState[i] == GridSquare.SocketState.Input) {
+							player.dataPanel.sections[i].gameObject.SetActive(true);
+							player.dataPanel.sections[i].labelText.text = "Input";
+							player.dataPanel.sections[i].dataText.text = "?";
+						}
+						else if (currentSquare.socketState[i] == GridSquare.SocketState.Output) {
+							player.dataPanel.sections[i].gameObject.SetActive(true);
+							player.dataPanel.sections[i].labelText.text = "Output";
+							player.dataPanel.sections[i].dataText.text = currentSquare.dataComponent.GetOutputString();
+						}
+						else {
+							player.dataPanel.sections[i].gameObject.SetActive(false);
+						}
+					}
+				}
+				else {
+					for (int i = 0; i < player.dataPanel.sections.Length; i++) {
+						player.dataPanel.sections[i].gameObject.SetActive(false);
+					}
+				}
+
+			}
 			if (state == GridSurferState.CanMove) {
 				//First check if the player wants to move in a direction
 				float x = InputManager.GetAxis(InputManager.Axis.LeftHorizontal);
@@ -37,11 +63,11 @@ public class GridSurfer : MonoBehaviour {
 					//if we are holding down both inputs do nothing
 				}
 				else if (x > 0) {
-					transitionDirection = GridSquare.GridDirection.Right;
+					transitionDirection = GridSquare.GridDirection.Left;
 					doMove = true;
 				}
 				else if (x < 0) {
-					transitionDirection = GridSquare.GridDirection.Left;
+					transitionDirection = GridSquare.GridDirection.Right;
 					doMove = true;
 				}
 				else if (y > 0) {
@@ -136,7 +162,7 @@ public class GridSurfer : MonoBehaviour {
 
 
 	private Vector3 posAboveSquare(GridSquare square) {
-		return square.transform.position + square.transform.forward * -2.0f * square.puzzle.transform.localScale.x;
+		return square.transform.position + square.transform.forward * 2.0f * square.puzzle.transform.localScale.x;
 	}
 
 	/// <summary>
@@ -157,7 +183,7 @@ public class GridSurfer : MonoBehaviour {
 
 		while (cTime < maxTime) {
 			player.playerCamera.transform.position = Vector3.Slerp(startPosition, goalPosition, cTime / maxTime);
-			player.playerCamera.transform.rotation = Quaternion.Slerp(startRotation, Quaternion.LookRotation(currentSquare.transform.forward), cTime / maxTime);
+			player.playerCamera.transform.rotation = Quaternion.Slerp(startRotation, Quaternion.LookRotation(currentSquare.transform.forward * -1.0f), cTime / maxTime);
 			cTime += Time.deltaTime;
 			yield return null;
 		}
@@ -188,7 +214,7 @@ public class GridSurfer : MonoBehaviour {
 		while (cTime < maxTime) {
 			player.playerCamera.transform.position = Vector3.Slerp(startPosition, goalPosition, cTime / maxTime);
 
-			player.playerCamera.transform.rotation = Quaternion.Slerp(startRotation, Quaternion.LookRotation(currentSquare.transform.forward), cTime / maxTime);
+			player.playerCamera.transform.rotation = Quaternion.Slerp(startRotation, Quaternion.LookRotation(currentSquare.transform.forward * -1.0f), cTime / maxTime);
 
 			cTime += Time.deltaTime;
 			yield return null;
