@@ -176,7 +176,7 @@ public class GridSurfer : MonoBehaviour {
 
 
 	private Vector3 posAboveSquare(GridSquare square) {
-		return square.transform.position + square.transform.forward * -2.0f * square.puzzle.transform.localScale.x;
+		return square.transform.position + square.transform.forward * -3.0f * square.puzzle.transform.localScale.x;
 	}
 
 	/// <summary>
@@ -196,8 +196,8 @@ public class GridSurfer : MonoBehaviour {
 		float maxTime = 0.4f;
 
 		while (cTime < maxTime) {
-			player.playerCamera.transform.position = Vector3.Slerp(startPosition, goalPosition, cTime / maxTime);
-			player.playerCamera.transform.rotation = Quaternion.Slerp(startRotation, Quaternion.LookRotation(currentSquare.transform.forward), cTime / maxTime);
+			player.playerCamera.transform.position = Vector3.Lerp(startPosition, goalPosition, cTime / maxTime);
+			player.playerCamera.transform.rotation = Quaternion.Lerp(startRotation, Quaternion.LookRotation(newSquare.transform.forward), cTime / maxTime);
 			cTime += Time.deltaTime;
 			yield return null;
 		}
