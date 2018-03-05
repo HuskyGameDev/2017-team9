@@ -7,25 +7,29 @@ public class GridSpriteVisuals : MonoBehaviour {
 	public SpriteRenderer channel;
 	public SpriteRenderer inputArrows;
 	public SpriteRenderer outputArrows;
-	public SpriteRenderer line;
+	public SpriteRenderer[] lines;
 	public SpriteRenderer component;
+
+	private static string Anim_InToOut = "Sprites/Grid/Line/InToOut/Anim_InToOut_";
+	private static string Anim_OutToIn = "Sprites/Grid/Line/OutToIn/Anim_OutToIn_";
+
 
 	public void UpdateVisuals() {
 		GridSquare square = gameObject.GetComponent<GridSquare>();
 
 		if (square.type == GridSquare.GridType.Empty) {
-			center.sprite = Resources.Load<Sprite>("Sprites/GridPieces/Icon_GridCenter");
+			center.sprite = Resources.Load<Sprite>("Sprites/Grid/Structure/Sprite_Grid_Center");
 			component.sprite = null;
 		}
 		else {
-			center.sprite = Resources.Load<Sprite>("Sprites/GridPieces/Icon_GridComponent");
-			component.sprite = Resources.Load<Sprite>("Sprites/Components/Sprite_" + GridSquare.typeToString[(int)square.type]);
+			center.sprite = Resources.Load<Sprite>("Sprites/Grid/Structure/Sprite_Grid_Component");
+			component.sprite = Resources.Load<Sprite>("Sprites/Grid/Components/Sprite_Component_" + GridSquare.typeToString[(int)square.type]);
 		}
 
 
 		{
 			//Create the proper text string for loading a line sprite
-			string gridLineText = "Sprites/GridPieces/Icon_GridLine_";
+			string gridLineText = "Sprites/Grid/Structure/Sprite_Grid_Channel_";
 			//0 = No line
 			//1 = line
 			// we compile a 4 bit segment (EX: 0101) to tell what lines are loaded in Up Right Down Left order
@@ -34,7 +38,7 @@ public class GridSpriteVisuals : MonoBehaviour {
 			}
 
 
-			if (gridLineText == "Sprites/GridPieces/Icon_GridLine_0000")
+			if (gridLineText == "Sprites/Grid/Structure/Sprite_Grid_Channel_0000")
 				channel.sprite = null;
 			else
 				channel.sprite = Resources.Load<Sprite>(gridLineText);
@@ -42,7 +46,7 @@ public class GridSpriteVisuals : MonoBehaviour {
 
 
 		{ 
-			string gridInputArrowText = "Sprites/GridPieces/Icon_GridLine_";
+			string gridInputArrowText = "Sprites/Grid/Structure/Sprite_Grid_Channel_";
 			//0 = No line
 			//1 = line
 			// we compile a 4 bit segment (EX: 0101) to tell what lines are loaded in Up Right Down Left order
@@ -51,14 +55,14 @@ public class GridSpriteVisuals : MonoBehaviour {
 			}
 
 
-			if (gridInputArrowText == "Sprites/GridPieces/Icon_GridLine_0000")
+			if (gridInputArrowText == "Sprites/Grid/Structure/Sprite_Grid_Channel_0000")
 				inputArrows.sprite = null;
 			else
 				inputArrows.sprite = Resources.Load<Sprite>(gridInputArrowText);
 		}
 
 		{
-			string gridOutputArrowText = "Sprites/GridPieces/Icon_GridLine_";
+			string gridOutputArrowText = "Sprites/Grid/Structure/Sprite_Grid_Channel_";
 			//0 = No line
 			//1 = line
 			// we compile a 4 bit segment (EX: 0101) to tell what lines are loaded in Up Right Down Left order
@@ -67,11 +71,55 @@ public class GridSpriteVisuals : MonoBehaviour {
 			}
 
 
-			if (gridOutputArrowText == "Sprites/GridPieces/Icon_GridLine_0000")
+			if (gridOutputArrowText == "Sprites/Grid/Structure/Sprite_Grid_Channel_0000")
 				outputArrows.sprite = null;
 			else
 				outputArrows.sprite = Resources.Load<Sprite>(gridOutputArrowText);
 		}
 
 	}
+
+	public IEnumerator DrawLineInDirection(GridSquare.GridDirection dir, GridSquare a, Color color) {
+		GridSquare b = a.neighbors[(int)dir];
+		a.sprites.lines[(int)dir].color = color;
+		b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]].color = color;
+		b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]].sprite = null;
+		yield return a.sprites.StartCoroutine(AnimFromResources(a.sprites.lines[(int)dir], Anim_InToOut, 33, true));
+		yield return b.sprites.StartCoroutine(AnimFromResources(b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]], Anim_OutToIn, 33, true));
+	}
+
+
+	public IEnumerator RemoveLineInDirection(GridSquare.GridDirection dir, GridSquare a) {
+		
+		yield return a.sprites.StartCoroutine(AnimFromResources(a.sprites.lines[(int)dir], Anim_OutToIn, 33, false));
+		a.sprites.lines[(int)dir].sprite = null;
+
+
+		GridSquare b = a.neighbors[(int)dir];
+
+		if (b == null)
+			yield break;
+
+		yield return b.sprites.StartCoroutine(AnimFromResources(b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]], Anim_InToOut, 33, false));
+		b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]].sprite = null;
+	}
+
+
+
+
+	public IEnumerator AnimFromResources(SpriteRenderer target, string basePath, int frames, bool forward) {
+		if (forward) {
+			for (int i = 1; i <= frames; i += 2) {
+				target.sprite = Resources.Load<Sprite>(basePath + i);
+				yield return null;
+			}
+		}
+		else {
+			for (int i = frames; i > 0 ; i -= 2) {
+				target.sprite = Resources.Load<Sprite>(basePath + i);
+				yield return null;
+			}
+		}
+	}
+
 }

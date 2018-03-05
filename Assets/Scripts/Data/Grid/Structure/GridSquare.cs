@@ -57,7 +57,7 @@ public class GridSquare : MonoBehaviour {
 	/// <summary>
 	/// The GridLine that is on this square.
 	/// </summary>
-	public GridLine[] line = new GridLine[4];
+	public int[] line = new int[4];
 
 
 	/// <summary>
@@ -67,15 +67,44 @@ public class GridSquare : MonoBehaviour {
 
 
 	/// <summary>
-	/// Creates a connection between two grid squares along the given direction with the specified line. A(->dir->)B
+	/// Creates a connection between two grid squares along the given direction with the specified line. A(->dir->)B.
+	/// Also handles any issues we have with other lines on the square.
+	/// Does not check if it is a valid connection.
 	/// </summary>
 	/// <param name="direction"></param>
 	/// <param name="A"></param>
 	/// <param name="B"></param>
 	/// <param name="newLine"></param>
 	/// <returns></returns>
-	public static bool Connect(GridDirection direction, GridSquare A, GridSquare B, GridLine newLine) {
+	public bool Connect(GridDirection direction, int newLine) {
 
+		if (neighbors[(int)direction] == null) {
+			Debug.Log("Connect failed");
+			return false;
+		}
+
+		if (neighbors[(int)direction].type == GridType.Empty) {
+			//Clear all of our neighbors other lines and draw ours.
+			for (int i = 0; i < neighbors[(int)direction].line.Length; i++) {
+				//We cannot break the connection we are bout to make or else we remove the line we are trying to draw
+				if (i == (int)oppositeDirection[(int)direction])
+					continue;
+				neighbors[(int)direction].BreakConnection((GridDirection)i);
+			}
+			//set this new connection between us and the neighbor
+			line[(int)direction] = newLine;
+			neighbors[(int)direction].line[(int)oppositeDirection[(int)direction]] = newLine;
+		}
+		else {
+			//Since this is a socket, we do not modify its other lines.
+			//We set only this connection
+			line[(int)direction] = newLine;
+			neighbors[(int)direction].line[(int)oppositeDirection[(int)direction]] = newLine;
+			neighbors[(int)direction].dataComponent.ConnectionChange();
+		}
+		return true;
+
+		/*
 		//If we are trying to connect two non neighbors, we just abort!
 		{
 			GridDirection tdir;
@@ -157,12 +186,69 @@ public class GridSquare : MonoBehaviour {
 			}
 		}
 
-		//Add our newSquare onto the line
-		newLine.AddSquare(B);
 		//If it has a dataComponent, notify it that it is on a line
 		if (B.dataComponent != null)
 			B.dataComponent.ConnectionChange();
-		return true;
+		return true;*/
+	}
+
+	public void BreakConnection(GridDirection direction) {
+		line[(int)direction] = 0;
+		if (sprites.lines[(int)direction].sprite != null)
+			StartCoroutine(sprites.RemoveLineInDirection(direction, this));//Remove visuals on the grid
+
+
+
+		if (neighbors[(int)direction] != null) {
+			neighbors[(int)direction].line[(int)oppositeDirection[(int)direction]] = 0;
+		}
+	}
+
+	//Takes the direction given and follows a line until it hits a component
+	public GridSquare FindDataComponentInDirection(GridDirection direcion, out GridDirection finalDirection) {
+		finalDirection = GridDirection.Up;
+		//We do not have a line to follow
+		if (line[(int)direcion] == 0)
+			return null;
+
+		int lineToFollow = line[(int)direcion];
+
+		GridSquare lastSquare = null;
+		GridSquare currentSquare = this;
+		while (currentSquare != null)  {
+
+			//Look for the line on this node.
+			int foundDirection = -1;
+			for (int i = 0; i < currentSquare.neighbors.Length; i++) {
+				//Don't check the way we just came
+				if (currentSquare.neighbors[i] == lastSquare)
+					continue;
+
+				if (currentSquare.line[i] == lineToFollow) {
+					//Debug.Log("Found a direction to move.");
+					foundDirection = i;
+					break;
+				}
+			}
+
+			//Check if it has a data component (we move then check so we can start the search on the node instead of moving first.)
+			if (currentSquare != this && currentSquare.dataComponent != null)
+				return currentSquare;
+			else if (foundDirection == -1) {
+				//Debug.Log("didnt find a direction to move " + currentSquare.name);
+				break;
+			}
+
+			//Debug.Log("Moved Onto " + currentSquare.gameObject.name);
+			//Move onto the next square
+			lastSquare = currentSquare;
+			currentSquare = currentSquare.neighbors[foundDirection];
+			finalDirection = oppositeDirection[(int)foundDirection];
+
+
+		}
+		//Debug.LogWarning("Find other failed");
+		return null;
 	}
 
 
@@ -179,26 +265,6 @@ public class GridSquare : MonoBehaviour {
 		else
 			return (socketState[(int)dir] != SocketState.None);
 	}
-
-
-	/// <summary>
-	/// Removes a line from our square.
-	/// </summary>
-	/// <param name="remove"></param>
-	public void RemoveLine(GridLine remove) {
-		Debug.Log("Removing Line!");
-		for (int i = 0; i < line.Length; i++) {
-			if (line[i] == remove) {
-				line[i] = null;
-				if (neighbors[i] != null && neighbors[i].line[(int)oppositeDirection[i]] != null) {
-					//Make sure our neighbor forgets about this connection as well if they have it
-					neighbors[i].line[(int)oppositeDirection[i]] = null;
-				}
-			}
-		}
-		sprites.UpdateVisuals();
-	}
-
 
 
 	/// <summary>
@@ -332,23 +398,6 @@ public class GridSquare : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Checks if the passed line is on this square.
-	/// </summary>
-	/// <param name="checkLine"></param>
-	/// <returns></returns>
-	public bool FindLineDirection(GridLine checkLine, out GridDirection dir) {
-		for (int i = 0; i < line.Length; i++) {
-			if (line[i] == checkLine) {
-				dir = (GridDirection)i;
-				return true;
-			}
-		}
-		dir = GridDirection.Up;
-		return false;
-	}
-
-
-	/// <summary>
 	/// Method to update the state of the GridSquare based on the classes data
 	/// </summary>
 	public void RebuildSquare() {
@@ -358,6 +407,12 @@ public class GridSquare : MonoBehaviour {
 		//Now we go through and make sure that our neighbors share None and Line states;
 		//This is so we do not have to update adjacent lines manually when we  make a change
 		for (int i = 0; i < socketState.Length; i++) {
+			if (type != GridType.Empty) {
+				if (socketState[i] == SocketState.Line)
+					socketState[i] = SocketState.None;
+			}
+
+
 			if (neighbors[i] != null) {
 				if (socketState[i] == SocketState.None) {
 				//If we are none on this side, we need to be none on the other side

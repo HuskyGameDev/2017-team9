@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CustomDataStructures;
 
 public class GridPuzzle : MonoBehaviour {
 
@@ -9,9 +10,8 @@ public class GridPuzzle : MonoBehaviour {
 	public int width = 10;
 	public int height = 10;
 
-	public List<GridLine> lines = new List<GridLine>();
-	public GameObject gridSquareHolder;
-	public GameObject lineVisualsHolder;
+	int usedLineCount = 0;
+	public static Dictionary<int, Color> usedLines = new Dictionary<int, Color>();
 
 
 
@@ -19,6 +19,10 @@ public class GridPuzzle : MonoBehaviour {
 	/// Generates a grid of grid squares. Automattically links them properly.
 	/// </summary>
 	public void GenerateGrid() {
+		StaticGenerateGrid(this, this.gameObject, width, height);
+	}
+
+	public static void StaticGenerateGrid(GridPuzzle puzzle, GameObject gridSquareHolder, int width, int height) {
 		GridSquare[] lastRow = new GridSquare[width];
 
 		for (int y = 0; y < height; y++) {
@@ -26,7 +30,7 @@ public class GridPuzzle : MonoBehaviour {
 			for (int x = 0; x < width; x++) {
 				GridSquare newSquare = getSquare();
 				//Make our left connection, and the previous one's right connection
-				if (x-1 >= 0) {
+				if (x - 1 >= 0) {
 					currentRow[x - 1].neighbors[(int)GridSquare.GridDirection.Right] = newSquare;
 					newSquare.neighbors[(int)GridSquare.GridDirection.Left] = currentRow[x - 1];
 
@@ -50,24 +54,37 @@ public class GridPuzzle : MonoBehaviour {
 				//We blank out the rotation so the grid will look right if this game object is rotated oddly
 				newSquare.transform.localRotation = Quaternion.Euler(Vector3.zero);
 
-				newSquare.transform.name = "(" +x+ "," +y+ ")GridSquare";
+				newSquare.transform.name = "(" + x + "," + y + ")GridSquare";
 				currentRow[x] = newSquare;
-				newSquare.puzzle = this;
+				newSquare.puzzle = puzzle;
 			}
 			lastRow = currentRow;
 		}
 
 		//Update all the visuals now that we are done generating
-		foreach (GridSquare d in this.gameObject.GetComponentsInChildren<GridSquare>())
+		foreach (GridSquare d in gridSquareHolder.GetComponentsInChildren<GridSquare>())
 			d.RebuildSquare();
 	}
+
+	/// <summary>
+	/// Returns an unused ID for a line on this puzzle.
+	/// </summary>
+	/// <returns></returns>
+	public int GetLine() {
+		Debug.Log("Creating new line");
+		usedLines.Add(++usedLineCount, Random.ColorHSV());
+		return usedLineCount;
+	}
+
+
+
 
 	/// <summary>
 	/// Removes all of the grid square game objects
 	/// </summary>
 	public void DestroyGrid() {
-		foreach (GridSquare gO in this.transform.GetComponentsInChildren<GridSquare>())
-			DestroyImmediate(gO.gameObject);
+		foreach (GridSquare s in this.gameObject.GetComponentsInChildren<GridSquare>())
+			DestroyImmediate(s.gameObject);
 	}
 
 
@@ -75,43 +92,18 @@ public class GridPuzzle : MonoBehaviour {
 	/// Loads and creates a gridSquare prefab
 	/// </summary>
 	/// <returns></returns>
-	private GridSquare getSquare() {
+	private static GridSquare getSquare() {
 		GridSquare newSquare = null;
 		GameObject gO = Instantiate(Resources.Load("Grid/GridSquare", typeof(GameObject))) as GameObject;
 		newSquare = gO.GetComponent<GridSquare>();
 		return newSquare;
 	}
 
-
-	/// <summary>
-	/// Removes a line from this puzzle
-	/// </summary>
-	/// <param name="line"></param>
-	public void RemoveLine(GridLine line) {
-		if (lines.Contains(line)) {
-			if (line.DeletionFlag == false) {
-				line.DeleteFromGrid();
-			}
-			lines.Remove(line);
-		}
-	}
-
-
-	/// <summary>
-	/// Returns a new empty line
-	/// </summary>
-	public GridLine GetEmptyLine() {
-		GridLine ret = new GridLine();
-		ret.owner = this;
-		lines.Add(ret);
-		return ret;
-	}
-
 	/// <summary>
 	/// Calls rebuild square on all nodes in the grid
 	/// </summary>
 	public void RebuildGrid() {
-		foreach (GridSquare s in gridSquareHolder.GetComponentsInChildren<GridSquare>())
+		foreach (GridSquare s in this.gameObject.GetComponentsInChildren<GridSquare>())
 			s.RebuildSquare();
 	}
 }

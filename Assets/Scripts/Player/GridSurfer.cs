@@ -84,64 +84,73 @@ public class GridSurfer : MonoBehaviour {
 					if (InputManager.GetGameButton(InputManager.GameButton.Interact1)) {
 						//This means we are trying to draw a line.
 						//THe directions we can move are now restricted
-						//First, We need to figure out what line we are working with
-						if (currentSquare.type != GridSquare.GridType.Empty) {
-							//If we are on a component, we can only draw on input/output
-							if (currentSquare.socketState[(int)transitionDirection] == GridSquare.SocketState.Input ||
-								currentSquare.socketState[(int)transitionDirection] == GridSquare.SocketState.Output) {
+						
+						//Frst we check if we are restricted in any way.
+						bool failed = false;
+						int foundPrevLine = 0; // foundPrevLine is used later to check for previous lines and then use it for drawing on empty sockets
 
+						{
+							//Failcase: We can only move on non empty sockets
+							if (currentSquare.socketState[(int)transitionDirection] == GridSquare.SocketState.None)
+								failed = true;
 
-								//So if we are on a Component, we only need to care about the line on the direction we are going on
-								if (currentSquare.line[(int)transitionDirection] == null) {
-									//There is no line, so we create a new one with this as its sparting point
-									currentSquare.line[(int)transitionDirection] = currentSquare.puzzle.GetEmptyLine();
-									currentSquare.line[(int)transitionDirection].AddSquare(currentSquare);
-								}
-								else {
-									//there is one, so we trim it and go from there
-									currentSquare.line[(int)transitionDirection].TrimExclusive(currentSquare);
-								}
-								//From here we know that we are prepped to make a connection
-								//Make the connection then Transition.
-
-
-								//We can only move off a component when drawing if it is a input/output
-								if (GridSquare.Connect(transitionDirection, currentSquare, currentSquare.neighbors[(int)transitionDirection], currentSquare.line[(int)transitionDirection])) {
-									state = GridSurferState.Disabled;
-									StartCoroutine("TransitionToNewSquare");
+							//Failcase: we can only leave a component on a socket
+							if (currentSquare.type != GridSquare.GridType.Empty) {
+								if (currentSquare.socketState[(int)transitionDirection] != GridSquare.SocketState.Input &&
+									currentSquare.socketState[(int)transitionDirection] != GridSquare.SocketState.Output) {
+									//Fail Case
+									failed = true;
 								}
 							}
-
-						}
-						else {
-							//else if we are not a component
-
-							GridLine inLine = null;
-							for (int i = 0; i < currentSquare.line.Length; i++) {
-								if (currentSquare.line[i] != null) {
-									inLine = currentSquare.line[i];
-								}
-							}
-							if (inLine == null) {
-								//We cannot start a line on a non component grid square
-								//[TODO] Think about wether or  not the above line is true.
-
-								//So we do nothing!
+							//Handle the failcases involving where we are going
+							GridSquare other = currentSquare.neighbors[(int)transitionDirection];
+							if (other == null) {
+								failed = true;
 							}
 							else {
-								//By the nature of connection, we know there can only be one line here.
-								//But we do not know if the line has already left this area. (IE it enters and exits)
-								//So we Trim the line to this square.
-								inLine.TrimExclusive(currentSquare);
-								//This means that there will only be one direction this line rests on.
-								//So we can just draw as normal.
-
-								//Make the Connection, then transition.
-								if (GridSquare.Connect(transitionDirection, currentSquare, currentSquare.neighbors[(int)transitionDirection], inLine)) {
-									state = GridSurferState.Disabled;
-									StartCoroutine("TransitionToNewSquare");
+								//Failcase: We are moving onto a component not through an input/output socket. 
+								GridSquare.SocketState othersSocket = other.socketState[(int)GridSquare.oppositeDirection[(int)transitionDirection]];
+								if (other.type != GridSquare.GridType.Empty && (othersSocket != GridSquare.SocketState.Input && othersSocket != GridSquare.SocketState.Output)) {
+									Debug.LogWarning("Failed by moving onto a socket");
+									failed = true;
 								}
+							}
 
+
+
+							//Failcase: We are trying to start drawing on an empty square with no lines already here.
+
+							if (currentSquare.type == GridSquare.GridType.Empty) {
+
+								for (int i = 0; i < currentSquare.line.Length; i++) {
+									if (currentSquare.line[i] != 0) {
+										foundPrevLine = currentSquare.line[i];
+									}
+								}
+								if (foundPrevLine == 0) {
+									Debug.LogWarning("Failed move no existing line on an empty socket.");
+									failed = true;
+								}
+							}
+						}
+						//Only continue if we have not found a failcase
+						if (failed == false) {
+							//Second, we do prep work
+							if (currentSquare.type != GridSquare.GridType.Empty) {
+								if (currentSquare.line[(int)transitionDirection] == 0) {
+									//There is no line, so we create a new one with this as its sparting point
+									currentSquare.line[(int)transitionDirection] = currentSquare.puzzle.GetLine();
+								}
+							}
+							else {
+								currentSquare.line[(int)transitionDirection] = foundPrevLine;
+							}
+
+							//Finnaly, we make the connection
+							if (currentSquare.Connect(transitionDirection, currentSquare.line[(int)transitionDirection])) {
+								state = GridSurferState.Disabled;
+								StartCoroutine(currentSquare.sprites.DrawLineInDirection(transitionDirection, currentSquare, GridPuzzle.usedLines[currentSquare.line[(int)transitionDirection]]));//Draw visuals on the grid
+								StartCoroutine("TransitionToNewSquare");
 							}
 						}
 					}
@@ -179,7 +188,7 @@ public class GridSurfer : MonoBehaviour {
 		Vector3 startPosition = player.playerCamera.transform.position;
 		Vector3 goalPosition = posAboveSquare(newSquare);
 		Quaternion startRotation = player.playerCamera.transform.rotation;
-		Debug.Log("Move " + currentSquare.name + " -> " + newSquare.name);
+		//Debug.Log("Move " + currentSquare.name + " -> " + newSquare.name);
 
 
 		float cTime = 0.0f;
@@ -205,7 +214,6 @@ public class GridSurfer : MonoBehaviour {
 		yield return null;
 		state = GridSurferState.CanMove;
 	}
-
 
 	IEnumerator TransitionToGrid() {
 		Vector3 startPosition = player.playerCamera.transform.position;

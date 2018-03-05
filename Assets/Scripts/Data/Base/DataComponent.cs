@@ -61,11 +61,11 @@ namespace PuzzleComponents {
 
 			//Signal all output connections that we have changed our data.
 			for (int i = 0; i < attachedSquare.line.Length; i++) {
-				if (attachedSquare.line[i] != null && attachedSquare.socketState[i] == GridSquare.SocketState.Output) {
+				if (attachedSquare.line[i] != 0 && attachedSquare.socketState[i] == GridSquare.SocketState.Output) {
 
 					//Use the GridLine method to find the other socket
 					GridSquare.GridDirection otherSocketDirection;
-					GridSquare other = attachedSquare.line[i].CheckForOtherComponent(attachedSquare, (GridSquare.GridDirection)i, out otherSocketDirection);
+					GridSquare other = attachedSquare.FindDataComponentInDirection((GridSquare.GridDirection)i, out otherSocketDirection);
 					//If it exists, and that socket is set as an input.
 					if (other != null && other.dataComponent != null && other.socketState[(int)otherSocketDirection] == GridSquare.SocketState.Input) {
 						//Let them know things have changed.
@@ -97,11 +97,11 @@ namespace PuzzleComponents {
 				//If this is an input socket
 				if (attachedSquare.socketState[i] == GridSquare.SocketState.Input) {
 					//Check if we have a line
-					if (attachedSquare.line[i] != null) {
+					if (attachedSquare.line[i] != 0) {
 
 						//Call the line method to get the other socket
 						GridSquare.GridDirection otherSocketDirection;
-						GridSquare other = attachedSquare.line[i].CheckForOtherComponent(attachedSquare, (GridSquare.GridDirection)i, out otherSocketDirection);
+						GridSquare other = attachedSquare.FindDataComponentInDirection((GridSquare.GridDirection)i, out otherSocketDirection);
 
 						Debug.Log(other);
 						//If it is an output, we can include it
