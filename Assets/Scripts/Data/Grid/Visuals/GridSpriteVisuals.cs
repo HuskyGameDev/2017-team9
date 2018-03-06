@@ -14,6 +14,9 @@ public class GridSpriteVisuals : MonoBehaviour {
 	private static string Anim_OutToIn = "Sprites/Grid/Line/OutToIn/Anim_OutToIn_";
 
 
+	private float lineAnimSpeed = 5.0f;
+
+
 	public void UpdateVisuals() {
 		GridSquare square = gameObject.GetComponent<GridSquare>();
 
@@ -84,14 +87,14 @@ public class GridSpriteVisuals : MonoBehaviour {
 		a.sprites.lines[(int)dir].color = color;
 		b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]].color = color;
 		b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]].sprite = null;
-		yield return a.sprites.StartCoroutine(AnimFromResources(a.sprites.lines[(int)dir], Anim_InToOut, 33, true));
-		yield return b.sprites.StartCoroutine(AnimFromResources(b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]], Anim_OutToIn, 33, true));
+		yield return a.sprites.StartCoroutine(AnimFromResources(a.sprites.lines[(int)dir], Anim_InToOut, 33, true, lineAnimSpeed));
+		yield return b.sprites.StartCoroutine(AnimFromResources(b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]], Anim_OutToIn, 33, true, lineAnimSpeed));
 	}
 
 
 	public IEnumerator RemoveLineInDirection(GridSquare.GridDirection dir, GridSquare a) {
 		
-		yield return a.sprites.StartCoroutine(AnimFromResources(a.sprites.lines[(int)dir], Anim_OutToIn, 33, false));
+		yield return a.sprites.StartCoroutine(AnimFromResources(a.sprites.lines[(int)dir], Anim_OutToIn, 33, false, lineAnimSpeed));
 		a.sprites.lines[(int)dir].sprite = null;
 
 
@@ -100,25 +103,27 @@ public class GridSpriteVisuals : MonoBehaviour {
 		if (b == null)
 			yield break;
 
-		yield return b.sprites.StartCoroutine(AnimFromResources(b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]], Anim_InToOut, 33, false));
+		yield return b.sprites.StartCoroutine(AnimFromResources(b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]], Anim_InToOut, 33, false, lineAnimSpeed));
 		b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]].sprite = null;
 	}
 
 
 
 
-	public IEnumerator AnimFromResources(SpriteRenderer target, string basePath, int frames, bool forward) {
+	public IEnumerator AnimFromResources(SpriteRenderer target, string basePath, int frames, bool forward, float speed) {
 		if (forward) {
-			for (int i = 1; i <= frames; i += 2) {
-				target.sprite = Resources.Load<Sprite>(basePath + i);
+			for (float i = 1; i <= frames; i += speed) {
+				target.sprite = Resources.Load<Sprite>(basePath + Mathf.RoundToInt(i));
 				yield return null;
+				target.sprite = Resources.Load<Sprite>(basePath + frames);
 			}
 		}
 		else {
-			for (int i = frames; i > 0 ; i -= 2) {
-				target.sprite = Resources.Load<Sprite>(basePath + i);
+			for (float i = frames; i > 0 ; i -= speed) {
+				target.sprite = Resources.Load<Sprite>(basePath + Mathf.RoundToInt(i));
 				yield return null;
 			}
+			target.sprite = Resources.Load<Sprite>(basePath + 0);
 		}
 	}
 

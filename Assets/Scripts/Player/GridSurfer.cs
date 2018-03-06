@@ -236,7 +236,7 @@ public class GridSurfer : MonoBehaviour {
 
 		float cTime = 0.0f;
 		//The transition takes 2 seconds
-		float maxTime = 0.4f;
+		float maxTime = 0.25f;
 
 		while (cTime < maxTime) {
 			player.playerCamera.transform.position = Vector3.Lerp(startPosition, goalPosition, cTime / maxTime);
@@ -249,7 +249,8 @@ public class GridSurfer : MonoBehaviour {
 		player.playerCamera.transform.position = goalPosition;
 		player.playerCamera.transform.LookAt(newSquare.gameObject.transform);
 
-		yield return new WaitForSeconds(0.05f);
+		yield return new WaitForSeconds(0.01f);
+
 
 		yield return null;
 		currentSquare = newSquare;
