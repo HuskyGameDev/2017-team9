@@ -84,24 +84,27 @@ public class GridSquare : MonoBehaviour {
 		}
 
 		if (neighbors[(int)direction].type == GridType.Empty) {
-			//Clear all of our neighbors other lines and draw ours.
+			int similarLines = 0;
+			int otherLines = 0;
 			for (int i = 0; i < neighbors[(int)direction].line.Length; i++) {
-				//We cannot break the connection we are bout to make or else we remove the line we are trying to draw
-				if (i == (int)oppositeDirection[(int)direction])
-					continue;
-				neighbors[(int)direction].BreakConnection((GridDirection)i);
+				if (neighbors[(int)direction].line[i] == newLine)
+					similarLines++;
+				else if (neighbors[(int)direction].line[i] != 0)
+					otherLines++;
 			}
-			//set this new connection between us and the neighbor
-			line[(int)direction] = newLine;
-			neighbors[(int)direction].line[(int)oppositeDirection[(int)direction]] = newLine;
+			//If there is a single other type of line, or more than one other of use, remove all lines.
+			//this lets us reconnect a broken line
+			if (otherLines > 0 || similarLines > 1) {
+				//Break all the connections.
+				for (int i = 0; i < neighbors[(int)direction].line.Length; i++) {
+					neighbors[(int)direction].BreakConnection((GridDirection)i);
+				}
+			}
 		}
-		else {
-			//Since this is a socket, we do not modify its other lines.
-			//We set only this connection
-			line[(int)direction] = newLine;
-			neighbors[(int)direction].line[(int)oppositeDirection[(int)direction]] = newLine;
-			neighbors[(int)direction].dataComponent.ConnectionChange();
-		}
+		line[(int)direction] = newLine;
+		neighbors[(int)direction].line[(int)oppositeDirection[(int)direction]] = newLine;
+		neighbors[(int)direction].PingLine();
+
 		return true;
 
 		/*
@@ -190,6 +193,35 @@ public class GridSquare : MonoBehaviour {
 		if (B.dataComponent != null)
 			B.dataComponent.ConnectionChange();
 		return true;*/
+	}
+
+	public void PingLine() {
+		//Searches this line for data components and tells them to check for updates.
+		if (dataComponent != null) {
+			dataComponent.CheckOutput();
+			for (int i = 0; i < neighbors.Length; i++) {
+				if (socketState[i] == SocketState.Output &&line[i] != 0) {
+					Debug.Log("Searching in " + ((GridDirection)i));
+					GridDirection d;
+					GridSquare other = FindDataComponentInDirection((GridDirection)i, out d);
+					if (other != null) {
+						other.dataComponent.CheckOutput();
+					}
+				}
+			}
+		}
+		else {
+			for (int i = 0; i < neighbors.Length; i++) {
+				if (line[i] != 0) {
+					Debug.Log("Searching in " + ((GridDirection)i));
+					GridDirection d;
+					GridSquare other = FindDataComponentInDirection((GridDirection)i, out d);
+					if (other != null) {
+						other.dataComponent.CheckOutput();
+					}
+				}
+			}
+		}
 	}
 
 	public void BreakConnection(GridDirection direction) {

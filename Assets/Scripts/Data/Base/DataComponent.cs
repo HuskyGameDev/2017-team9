@@ -34,35 +34,32 @@ namespace PuzzleComponents {
 		private DataSequence _cache = null;
 
 
-		public DataSequence[] inputs = new DataSequence[] { null, null, null, null };
+		public DataSequence[] inputs;
 
 		public void Awake() {
-
+			inputs = new DataSequence[] { null, null, null, null };
 			//Setup the non connection based part of the component.
 			Setup();
 
 			//Make sure our output is appropriate now that everything is set up.
-			ConnectionChange();
+			CheckOutput();
 
 		}
 
-		/// <summary>
-		/// Recalculates output and signals output connections to update if the result is different from the cache.
-		/// </summary>
-		public void ConnectionChange() {
-			Debug.Log("I have been told to update " + this.gameObject.transform.name);
-			//get the new output
+		public bool CheckOutput() {
 			GetInput();
 			DataSequence newResult = CalculateOutput();
-
-			//Compare it to the cached DataSequence
 			if (DataSequence.Comparison(cache, newResult) == false) {
 				Debug.Log("And I actually could! " + ((newResult == null) ? "Null" : newResult.GetStringRepresentation()));
-				//Debug.Log("I do need to update! " + this.gameObject.transform.name);
 				//Update the result
-				cache = newResult;	
+				cache = newResult;
+				UpdateConnectedComponents();
+				return true;
 			}
+			return false;
+		}
 
+		public void UpdateConnectedComponents() {
 			//Signal all output connections that we have changed our data.
 			for (int i = 0; i < attachedSquare.line.Length; i++) {
 				if (attachedSquare.line[i] != 0 && attachedSquare.socketState[i] == GridSquare.SocketState.Output) {
@@ -73,12 +70,10 @@ namespace PuzzleComponents {
 					//If it exists, and that socket is set as an input.
 					if (other != null && other.dataComponent != null && other.socketState[(int)otherSocketDirection] == GridSquare.SocketState.Input) {
 						//Let them know things have changed.
-						other.dataComponent.ConnectionChange();
+						other.dataComponent.CheckOutput();
 					}
 				}
 			}
-
-			//Otherwise we dont have to do anything since nothing has changed
 		}
 
 		/// <summary>
@@ -86,6 +81,7 @@ namespace PuzzleComponents {
 		/// </summary>
 		/// <returns></returns>
 		public DataSequence GetOutput() {
+			CheckOutput();
 			if (cache == null)
 				return null;
 			return cache.CreateDeepCopy();
