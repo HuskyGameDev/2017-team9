@@ -12,12 +12,36 @@ namespace PuzzleComponents {
 		public OrderType orderType;
 
 		public override DataSequence CalculateOutput() {
-			if (this.GetInput().Length <= 0) {
+
+			int inputCount = 0;
+			int foundInput1 = -1;
+			int foundInput2 = -1;
+			for (int i = 0; i < inputs.Length; i++) {
+				if (inputs[i] != null) {
+					if (foundInput1 == -1) {
+						foundInput1 = i;
+					}
+					else if (foundInput2 == -1) {
+						foundInput2 = i;
+					}
+					inputCount++;
+				}
+			}
+			
+			if (inputCount == 0)
 				return null;
-			} else if (this.GetInput().Length == 1) {
-				return this.GetInput()[0].GetOutput();
-			} else if (this.GetInput().Length >= 3) {
-				throw new System.Exception("Mixer has a maximum of 3 inputs, " + this.GetInput().Length + " are connected.");
+
+
+
+
+
+
+			if (inputCount <= 0) {
+				return null;
+			} else if (inputCount == 1) {
+				return inputs[foundInput1];
+			} else if (inputCount >= 3) {
+				throw new System.Exception("Mixer has a maximum of 2 inputs, " + inputs.Length + " are connected.");
 			}
 
 			DataSequence sequence1;
@@ -37,11 +61,11 @@ namespace PuzzleComponents {
 				advanceRate = 1;
 			}
 			if (orderType == OrderType.In1_First) {
-				sequence1 = this.GetInput()[0].GetOutput();
-				sequence2 = this.GetInput()[1].GetOutput();
+				sequence1 = inputs[foundInput1];
+				sequence2 = inputs[foundInput2];
 			} else {    // orderType == OrderType.In2_First
-				sequence1 = this.GetInput()[1].GetOutput();
-				sequence2 = this.GetInput()[0].GetOutput();
+				sequence1 = inputs[foundInput2];
+				sequence2 = inputs[foundInput1];
 			}
 
 			sequence1.Fracture();
@@ -71,16 +95,6 @@ namespace PuzzleComponents {
 		}
 
 		public override void Setup() {
-		}
-
-		// Use this for initialization
-		void Start() {
-
-		}
-
-		// Update is called once per frame
-		void Update() {
-
 		}
 	}
 }

@@ -9,10 +9,9 @@ namespace PuzzleComponents {
 		public override DataSequence CalculateOutput() {
 			DataSequence output = new DataSequence(new DataSegment[] { });
 
-			for (int i = 0; i < this.GetInput().Length; i++) {
-				DataSequence dataInput = this.GetInput()[i].GetOutput();
-				for (int k = 0; k < dataInput.segments.Length; k++) {
-					output.segments.AddElementAtEnd(dataInput.segments.Get(k));
+			for (int i = 0; i < inputs.Length; i++) {
+				for (int k = 0; k < inputs[i].segments.Length; k++) {
+					output.segments.AddElementAtEnd(inputs[i].segments.Get(k));
 				}
 				
 			}

@@ -22,8 +22,8 @@ public class GridSquare : MonoBehaviour {
 	/// <summary>
 	/// Enum of all states a grid square can be
 	/// </summary>
-	public enum GridType { Empty, Unusable, Adder, Combiner, Connector, Deleter, Linker, Shifter, Source, Mixer, Encoder}
-	public static readonly string[] typeToString = new string[] { "Empty", "Unusable", "Adder", "Combiner", "Connector", "Deleter", "Linker", "Shifter", "Source", "Mixer", "Encoder" };
+	public enum GridType { Empty, Adder, Combiner, Connector, Deleter, Linker, Shifter, Source, Mixer, Encoder}
+	public static readonly string[] typeToString = new string[] { "Empty", "Adder", "Combiner", "Connector", "Deleter", "Linker", "Shifter", "Source", "Mixer", "Encoder" };
 
 	/// <summary>
 	/// The script that handles the visuals
@@ -258,12 +258,7 @@ public class GridSquare : MonoBehaviour {
 	/// <param name="dir"></param>
 	/// <returns></returns>
 	public bool CanConnect(GridDirection dir) {
-		if (type == GridType.Unusable)
-			return false;
-		else if (type == GridType.Empty)
-			return true;
-		else
-			return (socketState[(int)dir] != SocketState.None);
+		return socketState[(int)dir] != SocketState.None;
 	}
 
 
@@ -329,9 +324,6 @@ public class GridSquare : MonoBehaviour {
 		else if (newType == GridType.Source) {
 			dataComponent = this.gameObject.AddComponent<DataSource>();
 		}
-		else if (newType == GridType.Unusable) {
-			dataComponent = this.gameObject.AddComponent<DataUnusable>();
-		} 
 		else if (newType == GridType.Mixer) {
 			dataComponent = this.gameObject.AddComponent<DataMixer>();
 		} 
@@ -383,9 +375,6 @@ public class GridSquare : MonoBehaviour {
 		else if (type == GridType.Source && dataComponent.GetType() == typeof(DataSource)) {
 			consistent = true;
 		}
-		else if (type == GridType.Unusable && dataComponent.GetType() == typeof(DataUnusable)) {
-			consistent = true;
-		} 
 		else if (type == GridType.Mixer && dataComponent.GetType() == typeof(DataMixer)) {
 			consistent = true;
 		} 

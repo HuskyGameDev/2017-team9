@@ -11,14 +11,21 @@ namespace PuzzleComponents {
 		public DeleteType type;
 
 		public override DataSequence CalculateOutput() {
-			if (this.GetInput().Length <= 0) {
-				//We do not have any output
-				//Debug.Log(this.input[0].owner.gameObject.name + " Did not calculate any valid input " + (this.input[0] == null) + " " + (this.input[0].IsConnected() == false) + " " + (this.input[0].owner.GetOutput() == null));
-				return null;
+
+			//We can only take in one input
+			int foundInput = -1;
+			for (int i = 0; i < inputs.Length; i++) {
+				if (inputs[i] != null) {
+					foundInput = i;
+				}
 			}
+			//If we found nothing, we return null
+			if (foundInput == -1)
+				return null;
+
 
 			//Otherwise get a copy of our inputs data
-			DataSequence dataInput = this.GetInput()[0].GetOutput();
+			DataSequence dataInput = inputs[foundInput];
 			if (type == DeleteType.Center || type == DeleteType.Outside) {
 				int length = dataInput.GetBitCount();
 				//Set the index we are trying to delete dependent on the delete type
@@ -70,18 +77,6 @@ namespace PuzzleComponents {
 
 		public override void Setup() {
 			//throw new System.NotImplementedException();
-		}
-
-
-
-		// Use this for initialization
-		void Start() {
-
-		}
-
-		// Update is called once per frame
-		void Update() {
-
 		}
 	}
 }

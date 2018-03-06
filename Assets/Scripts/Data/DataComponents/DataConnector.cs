@@ -10,17 +10,9 @@ namespace PuzzleComponents {
 	/// </summary>
 	public class DataConnector : DataComponent {
 
-
+		//The connector does not have output
 		public override DataSequence CalculateOutput() {
-			if (this.GetInput().Length <= 0) {
-				//We do not have any output
-				//Debug.Log(this.input[0].owner.gameObject.name + " Did not calculate any valid input " + (this.input[0] == null) + " " + (this.input[0].IsConnected() == false) + " " + (this.input[0].owner.GetOutput() == null));
-				return null;
-			}
-
-
-			return this.GetInput()[0].GetOutput();
-			//throw new System.NotImplementedException();
+			return null;
 		}
 
 		public override string GetString() {
@@ -30,16 +22,6 @@ namespace PuzzleComponents {
 		public override void Setup() {
 			//None needed
 			//throw new System.NotImplementedException();
-		}
-
-		// Use this for initialization
-		void Start() {
-
-		}
-
-		// Update is called once per frame
-		void Update() {
-
 		}
 	}
 }

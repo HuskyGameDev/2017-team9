@@ -10,12 +10,18 @@ namespace PuzzleComponents {
 		public EncodeType encodeType;
 
 		public override DataSequence CalculateOutput() {
-			//DataComponent[] inputComponents = GetInput();
-			if (this.GetInput().Length <= 0) {
-				return null;
+			//We can only take in one input
+			int foundInput = -1;
+			for (int i = 0; i < inputs.Length; i++) {
+				if (inputs[i] != null) {
+					foundInput = i;
+				}
 			}
+			//If we found nothing, we return null
+			if (foundInput == -1)
+				return null;
 
-			DataSequence dataInput = this.GetInput()[0].GetOutput();
+			DataSequence dataInput = inputs[foundInput];
 			DataSequence output = new DataSequence(new DataSegment[] { });
 			//dataInput.Fracture();
 
@@ -56,16 +62,6 @@ namespace PuzzleComponents {
 		}
 
 		public override void Setup() {
-
-		}
-
-		// Use this for initialization
-		void Start() {
-
-		}
-
-		// Update is called once per frame
-		void Update() {
 
 		}
 	}

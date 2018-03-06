@@ -33,6 +33,9 @@ namespace PuzzleComponents {
 
 		private DataSequence _cache = null;
 
+
+		protected DataSequence[] inputs = new DataSequence[4];
+
 		public void Awake() {
 
 			//Setup the non connection based part of the component.
@@ -91,9 +94,10 @@ namespace PuzzleComponents {
 		/// Searches down the lines for any connected inputs along valid input
 		/// </summary>
 		/// <returns></returns>
-		public DataComponent[] GetInput() {
-			List<DataComponent> inputs = new List<DataComponent>();
+		public void GetInput() {
+
 			for (int i = 0; i < attachedSquare.line.Length; i++) {
+				inputs[i] = null;
 				//If this is an input socket
 				if (attachedSquare.socketState[i] == GridSquare.SocketState.Input) {
 					//Check if we have a line
@@ -107,12 +111,11 @@ namespace PuzzleComponents {
 						//If it is an output, we can include it
 						if (other != null && other.dataComponent != null && other.socketState[(int)otherSocketDirection] == GridSquare.SocketState.Output) {
 							Debug.Log("Found an Input!");
-							inputs.Add(other.dataComponent);
+							inputs[i] = other.dataComponent.GetOutput();
 						}
 					}
 				}
 			}
-			return inputs.ToArray();
 		}
 
 		/// <summary>

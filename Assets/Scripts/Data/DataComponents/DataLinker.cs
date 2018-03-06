@@ -14,15 +14,20 @@ namespace PuzzleComponents {
 		/// <returns></returns>
 		public override DataSequence CalculateOutput() {
 
-			//If our one input is not connected, or if its output is null
-			if (this.GetInput().Length <= 0) {
-				//We do not have any output
-				//Debug.Log(this.input[0].owner.gameObject.name + " Did not calculate any valid input " + (this.input[0] == null) + " " + (this.input[0].IsConnected() == false) + " " + (this.input[0].owner.GetOutput() == null));
-				return null;
+			//We can only take in one input
+			int foundInput = -1;
+			for (int i = 0; i < inputs.Length; i++) {
+				if (inputs[i] != null) {
+					foundInput = i;
+				}
 			}
+			//If we found nothing, we return null
+			if (foundInput == -1)
+				return null;
+
 
 			//Otherwise get a copy of our inputs data
-			DataSequence unlinkedOutput = this.GetInput()[0].GetOutput();
+			DataSequence unlinkedOutput = inputs[foundInput];
 
 			//Create the unified data segment
 			DataSegment singleSegment = new DataSegment(unlinkedOutput.GetOrderedBitSequence());
