@@ -12,7 +12,7 @@ public class GridPuzzle : MonoBehaviour {
 
 	public GridSquare[,] squares;
 
-	int usedLineCount = 0;
+	static int usedLineCount = 0;
 	public static Dictionary<int, Color> usedLines = new Dictionary<int, Color>();
 
 
@@ -82,7 +82,7 @@ public class GridPuzzle : MonoBehaviour {
 	/// Returns an unused ID for a line on this puzzle.
 	/// </summary>
 	/// <returns></returns>
-	public int GetLine() {
+	public static int GetLine() {
 		Debug.Log("Creating new line");
 		usedLines.Add(++usedLineCount, Random.ColorHSV());
 		return usedLineCount;

@@ -34,7 +34,7 @@ namespace PuzzleComponents {
 		private DataSequence _cache = null;
 
 
-		protected DataSequence[] inputs = new DataSequence[4];
+		public DataSequence[] inputs = new DataSequence[] { null, null, null, null };
 
 		public void Awake() {
 
@@ -52,6 +52,7 @@ namespace PuzzleComponents {
 		public void ConnectionChange() {
 			Debug.Log("I have been told to update " + this.gameObject.transform.name);
 			//get the new output
+			GetInput();
 			DataSequence newResult = CalculateOutput();
 
 			//Compare it to the cached DataSequence

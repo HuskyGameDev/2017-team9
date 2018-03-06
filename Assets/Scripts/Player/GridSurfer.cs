@@ -32,9 +32,15 @@ public class GridSurfer : MonoBehaviour {
 				if (currentSquare.dataComponent != null) {
 					for (int i = 0; i < currentSquare.socketState.Length; i++) {
 						if (currentSquare.socketState[i] == GridSquare.SocketState.Input) {
-							player.dataPanel.sections[i].gameObject.SetActive(true);
-							player.dataPanel.sections[i].labelText.text = "Input";
-							player.dataPanel.sections[i].dataText.text = "?";
+							if (currentSquare.dataComponent.inputs[i] != null) {
+								player.dataPanel.sections[i].gameObject.SetActive(true);
+								player.dataPanel.sections[i].labelText.text = "Input";
+								Debug.Log(currentSquare.dataComponent.inputs[i]);
+								player.dataPanel.sections[i].dataText.text = currentSquare.dataComponent.inputs[i].GetStringRepresentation();
+							}
+							else {
+								player.dataPanel.sections[i].gameObject.SetActive(false);
+							}
 						}
 						else if (currentSquare.socketState[i] == GridSquare.SocketState.Output) {
 							player.dataPanel.sections[i].gameObject.SetActive(true);
@@ -47,6 +53,15 @@ public class GridSurfer : MonoBehaviour {
 					}
 				}
 				else {
+
+					/*
+					 	GridSquare input = currentSquare.FindDataComponentInDirection((GridSquare.GridDirection)i);
+						if (input != null) {
+							player.dataPanel.sections[i].gameObject.SetActive(true);
+							player.dataPanel.sections[i].labelText.text = "Input";
+							player.dataPanel.sections[i].dataText.text = input.dataComponent.GetOutputString();
+						}
+					 */
 					DisableVisuals();
 				}
 

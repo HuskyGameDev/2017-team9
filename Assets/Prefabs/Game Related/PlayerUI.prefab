@@ -21,12 +21,12 @@ GameObject:
   - component: {fileID: 224988335981694988}
   - component: {fileID: 114757690161285998}
   m_Layer: 5
-  m_Name: Left GridLabel
+  m_Name: Right GridLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1100674638036304
 GameObject:
   m_ObjectHideFlags: 1
@@ -148,7 +148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1426089197203724
 GameObject:
   m_ObjectHideFlags: 1
@@ -235,7 +235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1545213762364716
 GameObject:
   m_ObjectHideFlags: 1
@@ -246,12 +246,12 @@ GameObject:
   - component: {fileID: 224516013113289748}
   - component: {fileID: 114360739062424298}
   m_Layer: 5
-  m_Name: Right GridLabel
+  m_Name: Left GridLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1811136603923364
 GameObject:
   m_ObjectHideFlags: 1
@@ -454,9 +454,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sections:
   - {fileID: 114714905063367850}
-  - {fileID: 114360739062424298}
-  - {fileID: 114348361078944950}
   - {fileID: 114757690161285998}
+  - {fileID: 114348361078944950}
+  - {fileID: 114360739062424298}
 --- !u!114 &114444244062745418
 MonoBehaviour:
   m_ObjectHideFlags: 1
