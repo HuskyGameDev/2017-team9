@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class KeyBindScript : MonoBehaviour {
@@ -12,14 +13,30 @@ public class KeyBindScript : MonoBehaviour {
     public Color32 normal = new Color(5, 5, 5, 5);
     public Color32 selected = new Color(255,255,255,255);
     // Use this for initialization
+    public Button StartButton;
+    public Button Options;
+    public Button Quit;
+    public GameObject Main_Menu;
+    public GameObject Options_Menu; 
 
     void Start () {
-        keys.Add("Up", KeyCode.W);
-        keys.Add("Down", KeyCode.S);
-        keys.Add("Left", KeyCode.A);
-        keys.Add("Right", KeyCode.D);
-        keys.Add("Pause", KeyCode.Escape);
 
+        Main_Menu.SetActive(true);
+        Options_Menu.SetActive(false);
+
+        Button start = StartButton.GetComponent<Button>();
+        start.onClick.AddListener(StartGame);
+        Button options = Options.GetComponent<Button>();
+        options.onClick.AddListener(OptionsMenu);
+        Button exit = Quit.GetComponent<Button>();
+        exit.onClick.AddListener(GetOut);
+        
+
+        keys.Add("Up", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Up","W")));
+        keys.Add("Down", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Down", "S")));
+        keys.Add("Left", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Left", "A")));
+        keys.Add("Right", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Right", "D")));
+        keys.Add("Pause", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Pause", "Escape")));
         up.text = keys["Up"].ToString();
         down.text = keys["Down"].ToString();
         left.text = keys["Left"].ToString();
@@ -27,34 +44,12 @@ public class KeyBindScript : MonoBehaviour {
         pause.text = keys["Pause"].ToString();
 
     }
-	
+
+   
 	// Update is called once per frame
 	void Update () {
 		
-        if(Input.GetKeyDown(keys["Up"]))
-        {
-            Debug.Log("Up");
-        }
-
-        if (Input.GetKeyDown(keys["Down"]))
-        {
-            Debug.Log("Down");
-        }
-
-        if (Input.GetKeyDown(keys["Left"]))
-        {
-            Debug.Log("Left");
-        }
-
-        if (Input.GetKeyDown(keys["Right"]))
-        {
-            Debug.Log("Right");
-        }
-
-        if (Input.GetKeyDown(keys["Pause"]))
-        {
-            Debug.Log("Pause");
-        }
+       
     }
 
     private void OnGUI()
@@ -81,6 +76,38 @@ public class KeyBindScript : MonoBehaviour {
 
         currentKey = clicked;
         currentKey.GetComponent<Image>().color = selected; 
+    }
+
+    void StartGame()
+    {
+        Debug.Log("LOAD THE FUCKING SCENE");
+        Debug.Log("Loading Scene ");
+        SceneManager.LoadScene("PlayTesting");
+    }
+    void OptionsMenu()
+    {
+        Debug.Log("LOAD THE FUCKING OPTIONS SCREEN");
+        Main_Menu.SetActive(false);
+        Options_Menu.SetActive(true);
+        
+    }
+    void GetOut()
+    {
+        Debug.Log("GET THE FUCK OUT OF OUR GAME");
+        Debug.Log("Quit");
+        Application.Quit();
+    }
+
+    public void SaveKeys()
+    {
+        foreach(var key in keys)
+        {
+            PlayerPrefs.SetString(key.Key, key.Value.ToString());
+            Options_Menu.SetActive(false);
+            Main_Menu.SetActive(true);
+        }
+
+        PlayerPrefs.Save(); 
     }
 
 
