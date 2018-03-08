@@ -17,10 +17,13 @@ namespace AllTheColorsOfTheWind {
 		/// Checks if the input color and calls Trigger if they match
 		/// </summary>
 		/// <param name="color"></param>
-		public void Check(ColorBit color) {
+		public bool Check(ColorBit color) {
 			Debug.Log("Check Called | " + color + " | " + triggerColor);
-			if (triggerColor.Equals(color))
+			if (triggerColor.Equals(color)) {
 				Trigger();
+				return true;
+			}
+			return false;
 		}
 		#endregion
 
