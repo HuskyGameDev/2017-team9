@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PuzzleComponents;
+using AllTheColorsOfTheWind;
 
 public class Receptacle : Interactable {
 
 	public Vector3 heldObjectPosition = new Vector3(0, 0.2f, 0);
 	public Quaternion heldObjectRotation = new Quaternion();
 	public GameObject heldObject = null;
-	public DataTrigger[] triggers;
+	public ColorTrigger[] triggers;
 
 	public override void Interact() {
 		//Debug.Log("Interact called on: " + this.name);
@@ -25,10 +25,10 @@ public class Receptacle : Interactable {
 				heldObject.transform.localPosition = heldObjectPosition;	// set object's position and rotation relative to recepticle
 				heldObject.transform.localRotation = heldObjectRotation;
 
-				foreach (DataTrigger t in triggers) {
+				/*foreach (ColorTrigger t in triggers) {
 					Debug.Log("testing trigger with data: "+ heldObject.GetComponent<Pickupable>().GetDataSequence().GetStringRepresentation());
 					t.DataChange(heldObject.GetComponent<Pickupable>().GetDataSequence());
-				}
+				}*/
 			}
 		}
 	}

@@ -23,13 +23,6 @@ public class GridSurfer : MonoBehaviour {
 	// Update is called once per frame
 	void Update() {
 
-		if (currentSquare != null) {
-			UpdateUIVisuals();
-		}
-		else {
-			DisableVisuals();
-		}
-
 		if (player.state == PlayerControls.PlayerState.GridInteraction) {
 			if (currentSquare == null) {
 				Debug.LogWarning("Player is in Grid Interaction state, but the line is null.");
@@ -71,7 +64,7 @@ public class GridSurfer : MonoBehaviour {
 						
 						//Frst we check if we are restricted in any way.
 						bool failed = false;
-						int foundPrevLine = 0; // foundPrevLine is used later to check for previous lines and then use it for drawing on empty sockets
+						GridLine foundPrevLine = null; // foundPrevLine is used later to check for previous lines and then use it for drawing on empty sockets
 
 						{
 							//Failcase: We can only move on non empty sockets
@@ -108,13 +101,13 @@ public class GridSurfer : MonoBehaviour {
 								int prevCount = 0;
 								int prevDir = -1;
 								for (int i = 0; i < currentSquare.line.Length; i++) {
-									if (currentSquare.line[i] != 0) {
+									if (currentSquare.line[i] != null) {
 										prevCount++;
 										foundPrevLine = currentSquare.line[i];
 										prevDir = i;
 									}
 								}
-								if (foundPrevLine == 0) {
+								if (foundPrevLine == null) {
 									Debug.LogWarning("Failed move no existing line on an empty socket.");
 									failed = true;
 								}
@@ -135,9 +128,9 @@ public class GridSurfer : MonoBehaviour {
 						if (failed == false) {
 							//Second, we do prep work
 							if (currentSquare.type != GridSquare.GridType.Empty) {
-								if (currentSquare.line[(int)transitionDirection] == 0) {
+								if (currentSquare.line[(int)transitionDirection] == null) {
 									//There is no line, so we create a new one with this as its sparting point
-									currentSquare.line[(int)transitionDirection] = GridPuzzle.GetLine();
+									currentSquare.line[(int)transitionDirection] = new GridLine();
 								}
 							}
 							else {
@@ -147,7 +140,7 @@ public class GridSurfer : MonoBehaviour {
 							//Finnaly, we make the connection
 							if (currentSquare.Connect(transitionDirection, currentSquare.line[(int)transitionDirection])) {
 								state = GridSurferState.Disabled;
-								StartCoroutine(currentSquare.sprites.DrawLineInDirection(transitionDirection, currentSquare, GridPuzzle.usedLines[currentSquare.line[(int)transitionDirection]]));//Draw visuals on the grid
+								StartCoroutine(currentSquare.sprites.DrawLineInDirection(transitionDirection, currentSquare, currentSquare.line[(int)transitionDirection].GetColor()));//Draw visuals on the grid
 								StartCoroutine("TransitionToNewSquare");
 							}
 						}
@@ -162,58 +155,6 @@ public class GridSurfer : MonoBehaviour {
 				}
 
 			}
-		}
-	}
-
-
-	private void UpdateUIVisuals() {
-		DisableVisuals();
-		if (currentSquare.dataComponent != null) {
-			for (int i = 0; i < currentSquare.socketState.Length; i++) {
-				if (currentSquare.socketState[i] == GridSquare.SocketState.Input) {
-					if (currentSquare.dataComponent.inputs[i] != null) {
-						player.dataPanel.sections[i].gameObject.SetActive(true);
-						player.dataPanel.sections[i].labelText.text = "Input";
-						Debug.Log(currentSquare.dataComponent.inputs[i]);
-						player.dataPanel.sections[i].dataText.text = currentSquare.dataComponent.inputs[i].GetStringRepresentation();
-					}
-					else {
-						player.dataPanel.sections[i].gameObject.SetActive(false);
-					}
-				}
-				else if (currentSquare.socketState[i] == GridSquare.SocketState.Output) {
-					player.dataPanel.sections[i].gameObject.SetActive(true);
-					player.dataPanel.sections[i].labelText.text = "Output";
-					player.dataPanel.sections[i].dataText.text = currentSquare.dataComponent.GetOutputString();
-				}
-				else {
-					player.dataPanel.sections[i].gameObject.SetActive(false);
-				}
-			}
-		}
-		else {
-			//Loop through all neighbors
-			for (int i = 0; i < currentSquare.neighbors.Length; i++) {
-				if (currentSquare.neighbors[i] == null)
-					continue;
-				//Check if there is a data component with an output on this line
-				GridSquare.GridDirection otherSocketDirection;
-				GridSquare other = currentSquare.FindDataComponentInDirection((GridSquare.GridDirection)i, out otherSocketDirection);
-				if (other != null && other.dataComponent != null && other.socketState[(int)otherSocketDirection] == GridSquare.SocketState.Output) {
-					player.dataPanel.sections[i].gameObject.SetActive(true);
-					player.dataPanel.sections[i].labelText.text = "Output";
-					player.dataPanel.sections[i].dataText.text = other.dataComponent.GetOutputString();
-				}
-				else {
-					player.dataPanel.sections[i].gameObject.SetActive(false);
-				}
-			}
-		}
-	}
-
-	private void DisableVisuals() {
-		for (int i = 0; i < player.dataPanel.sections.Length; i++) {
-			player.dataPanel.sections[i].gameObject.SetActive(false);
 		}
 	}
 
@@ -291,7 +232,6 @@ public class GridSurfer : MonoBehaviour {
 
 	IEnumerator TransitionToPlayer() {
 		currentSquare = null;
-		DisableVisuals();
 		state = GridSurferState.Disabled;
 		//For best results, this should use local position and local rotation so we can use vector.zero and player.cameraPitch to line things up right
 		Vector3 startPosition = player.playerCamera.transform.localPosition;

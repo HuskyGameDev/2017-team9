@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using PuzzleComponents;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(GridSurfer))]
@@ -26,7 +25,6 @@ public class PlayerControls : MonoBehaviour {
 	public Vector2 pitchBounds = new Vector2(-45,45);
 	public LayerMask ignoreMask;
 	public CursorManager cursor;
-	public GridDataPanel dataPanel;
 	public GameObject heldObject;
 	//public UIManager PlayerUI;
 

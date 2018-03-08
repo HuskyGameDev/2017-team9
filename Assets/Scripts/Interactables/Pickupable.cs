@@ -2,13 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PuzzleComponents;
 
 
 public class Pickupable : Interactable {
 
 	public Vector3 heldObjectPosition = new Vector3( -0.2f, 0.2f, 0.2f);
 
+	/*
 	private DataSequence source = new DataSequence(new DataSegment[0]);
 	public DataSegment[] _source;
 
@@ -20,7 +20,7 @@ public class Pickupable : Interactable {
 	public DataSequence GetDataSequence() {
 		source = new DataSequence(_source);
 		return source;
-	}
+	}*/
 
 	public override void Interact() {
 		GameObject playerGameObject = PlayerControls.instance.gameObject;

@@ -19,7 +19,7 @@ public class GridSquareEditor : Editor {
 
 			myScript.socketState[i] = (GridSquare.SocketState)EditorGUILayout.EnumPopup("", myScript.socketState[i], new GUILayoutOption[] { GUILayout.Width(75) });
 			myScript.neighbors[i] = EditorGUILayout.ObjectField(myScript.neighbors[i], typeof(GridSquare), true) as GridSquare;
-			GUILayout.Label("Line: " + myScript.line[0], new GUILayoutOption[] { GUILayout.Width(50) });
+			GUILayout.Label("" + ((myScript.line[i] != null) ? myScript.line[i].GetColor().ToString() : "") ); 
 			EditorGUILayout.EndHorizontal();
 		}
 
