@@ -226,5 +226,8 @@ public class Receptacle : Interactable {
 	public void removeHeldObject() {
 		heldObject = null;
 		updateVisuals();
+		foreach (ColorTrigger t in triggers) {
+			t.CanUntrigger();
+		}
 	}
 }

@@ -61,14 +61,14 @@ public class ButtonInteractable : Interactable {
 		if (pressed) {
 			pressed = false;
 			updateVisuals();
-			/*foreach (ColorTrigger t in triggers) {	// untrigger all attached triggers
-				t.UnTrigger();
-			}*/
+			foreach (ColorTrigger t in triggers) {	// untrigger all attached triggers
+				t.CanUntrigger();
+			}
 		} else {
 			pressed = true;
 			updateVisuals();
 			foreach (ColorTrigger t in triggers) {	// trigger all attached triggers
-				t.Trigger();
+				t.CanTrigger();
 			}
 		}
 	}
