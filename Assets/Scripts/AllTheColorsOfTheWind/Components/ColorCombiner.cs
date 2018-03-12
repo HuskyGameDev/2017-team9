@@ -16,11 +16,27 @@ namespace AllTheColorsOfTheWind {
 			if (inputs.Length == 0)
 				return new ColorBit(null);
 
+			/*
 			//Store the first one.
 			byte r = 0;
 			byte g = 0;
 			byte b = 0;
 				
+
+			//And add the rest to it
+			for (int i = 1; i < inputs.Length; i++) {
+				r += inputs[i].color.r;
+				g += inputs[i].color.g;
+				b += inputs[i].color.b;
+
+			}
+			*/
+
+			//Store the first one.
+			byte r = inputs[0].color.r;
+			byte g = inputs[0].color.g;
+			byte b = inputs[0].color.b;
+
 
 			//And add the rest to it
 			for (int i = 1; i < inputs.Length; i++) {

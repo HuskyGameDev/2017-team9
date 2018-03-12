@@ -8,6 +8,17 @@ namespace AllTheColorsOfTheWind {
 	/// </summary>
 	public class ColorShifter : ColorComponent {
 
+		#region Properties
+		#region Public
+		/// <summary>
+		/// The color to subtract from our input
+		/// </summary>
+		//public Color32 subtractionValue;
+		public enum ShiftDirection { R_to_G, R_to_B };
+		public ShiftDirection shiftDirection;
+		#endregion
+		#endregion
+
 		#region Methods
 		#region Public
 		#region Override
@@ -21,7 +32,13 @@ namespace AllTheColorsOfTheWind {
 			//R->B
 			//G->R
 			//B->G
-			Color32 retColor = new Color32(inputs[0].color.b, inputs[0].color.r, inputs[0].color.g, inputs[0].color.a);
+			Color32 retColor;
+			if (shiftDirection == ShiftDirection.R_to_B) {
+				retColor = new Color32(inputs[0].color.b, inputs[0].color.r, inputs[0].color.g, inputs[0].color.a);
+			}else {
+				retColor = new Color32(inputs[0].color.g, inputs[0].color.b, inputs[0].color.r, inputs[0].color.a);
+			}
+			
 
 			return new ColorBit(retColor);
 		}

@@ -32,10 +32,14 @@ namespace AllTheColorsOfTheWind {
 			byte b = (byte)Mathf.Max(subtractionValue.b - inputs[0].color.b, 0);
 			*/
 
-				// subtract value from input
-			byte r = (byte)Mathf.Max(inputs[0].color.r - subtractionValue.r, 0);
-			byte g = (byte)Mathf.Max(inputs[0].color.b - subtractionValue.g, 0);
-			byte b = (byte)Mathf.Max(inputs[0].color.b - subtractionValue.b, 0);
+			int inR = inputs[0].color.r; // this makes it work correctly for some reason
+			int inG = inputs[0].color.g;
+			int inB = inputs[0].color.b;
+
+			// subtract value from input
+			byte r = (byte)Mathf.Max(inR - subtractionValue.r, 0);
+			byte g = (byte)Mathf.Max(inG - subtractionValue.g, 0);
+			byte b = (byte)Mathf.Max(inB - subtractionValue.b, 0);
 			
 
 
