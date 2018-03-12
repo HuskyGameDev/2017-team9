@@ -26,10 +26,17 @@ namespace AllTheColorsOfTheWind {
 			if (inputs.Length == 0)
 				return new ColorBit(null);
 
+			/*	// subtract input from value
 			byte r = (byte)Mathf.Max(subtractionValue.r - inputs[0].color.r, 0);
 			byte g = (byte)Mathf.Max(subtractionValue.g - inputs[0].color.b, 0);
 			byte b = (byte)Mathf.Max(subtractionValue.b - inputs[0].color.b, 0);
+			*/
 
+				// subtract value from input
+			byte r = (byte)Mathf.Max(inputs[0].color.r - subtractionValue.r, 0);
+			byte g = (byte)Mathf.Max(inputs[0].color.b - subtractionValue.g, 0);
+			byte b = (byte)Mathf.Max(inputs[0].color.b - subtractionValue.b, 0);
+			
 
 
 			return new ColorBit(new Color32(r, g, b, inputs[0].color.a));

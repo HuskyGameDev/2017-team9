@@ -13,6 +13,7 @@ public class ButtonInteractable : Interactable {
 	public bool pressed = false;
 
 	public ColorTrigger[] triggers;
+	//public bool[] reverse;
 
 	private SpriteRenderer spriteRend;
 

@@ -34,7 +34,7 @@ namespace AllTheColorsOfTheWind {
 		/// </summary>
 		/// <returns>true if the script was not already untriggered</returns>
 		public bool CanUntrigger() {
-			Debug.Log("CanUnTrigger Called: " + triggered);
+			//Debug.Log("CanUnTrigger Called: " + triggered);
 			if (triggered) {
 				Untrigger();
 				triggered = false;
@@ -50,7 +50,7 @@ namespace AllTheColorsOfTheWind {
 		/// </summary>
 		/// <returns>true if the script was not already triggered</returns>
 		public bool CanTrigger() {
-			Debug.Log("CanTrigger Called: " + !triggered);
+			//Debug.Log("CanTrigger Called: " + !triggered);
 			if (triggered) {
 				return false;
 			} else {
