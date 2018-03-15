@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 23250332128432780}
   - component: {fileID: 95290458429231708}
   m_Layer: 0
-  m_Name: Can Light (1)
+  m_Name: Can Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

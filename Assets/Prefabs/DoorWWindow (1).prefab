@@ -22,12 +22,13 @@ GameObject:
   - component: {fileID: 33269693638018090}
   - component: {fileID: 23947599766290182}
   - component: {fileID: 95809199192480818}
+  - component: {fileID: 65087048496481984}
   m_Layer: 0
   m_Name: DoorWWindow (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4110969977590650
 Transform:
@@ -35,13 +36,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1862105929632096}
-  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 19.557652, y: 29.723566, z: 34.894}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 43.279, y: -77.8351, z: 15.852}
   m_LocalScale: {x: 0.71928996, y: 0.049999997, z: 1.32489}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!23 &23947599766290182
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -83,6 +84,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1862105929632096}
   m_Mesh: {fileID: 4300000, guid: e421637919431487c8788e54c5ea62cd, type: 3}
+--- !u!65 &65087048496481984
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1862105929632096}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9999998, y: 2.0208695, z: 2.0000007}
+  m_Center: {x: 0, y: 0.010463111, z: -0.0000023393955}
 --- !u!95 &95809199192480818
 Animator:
   serializedVersion: 3

@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 54375519565223936}
   - component: {fileID: 114082956438770422}
   - component: {fileID: 114570857430190910}
+  - component: {fileID: 114909892556269936}
   m_Layer: 10
   m_Name: Camera
   m_TagString: Untagged
@@ -117,15 +118,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1462684467049576}
-  m_LocalRotation: {x: 0, y: -0.6199844, z: 0, w: 0.7846142}
-  m_LocalPosition: {x: -39.02517, y: 1.16, z: -17.244106}
+  m_LocalRotation: {x: -0, y: -0.65039563, z: -0, w: 0.7595957}
+  m_LocalPosition: {x: -24.918, y: 1.2, z: 26.015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4802766946220460}
   - {fileID: 4149155982329810}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -76.63, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -81.143005, z: 0}
 --- !u!4 &4802766946220460
 Transform:
   m_ObjectHideFlags: 1
@@ -165,12 +166,12 @@ Camera:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294955999
-  m_RenderingPath: -1
+  m_RenderingPath: 3
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 0
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -329,6 +330,18 @@ MonoBehaviour:
   currentSquare: {fileID: 0}
   player: {fileID: 114971420993045934}
   transitionDirection: 0
+--- !u!114 &114909892556269936
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1687376522209164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: c58c7399ec6f63a45a86c2c44d8aaebe, type: 2}
 --- !u!114 &114971420993045934
 MonoBehaviour:
   m_ObjectHideFlags: 1
