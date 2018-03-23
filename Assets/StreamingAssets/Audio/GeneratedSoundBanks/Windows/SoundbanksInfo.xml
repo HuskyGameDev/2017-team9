@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="11" SoundbankVersion="128">
+	<RootPaths>
+		<ProjectRoot>/Users/andrewstockero/Library/Application Support/Wwise2017/Bottles/wwise/dosdevices/y:/2017-team9/2017-team9_WwiseProject/</ProjectRoot>
+		<SourceFilesRoot>/Users/andrewstockero/Library/Application Support/Wwise2017/Bottles/wwise/dosdevices/y:/2017-team9/2017-team9_WwiseProject/.cache/Windows/</SourceFilesRoot>
+		<SoundBanksRoot>/Users/andrewstockero/Library/Application Support/Wwise2017/Bottles/wwise/dosdevices/y:/2017-team9/2017-team9_WwiseProject/GeneratedSoundBanks/Windows/</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>/Users/andrewstockero/Library/Application Support/Wwise2017/Bottles/wwise/dosdevices/y:/2017-team9/2017-team9_WwiseProject/GeneratedSoundBanks/Windows/</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Language="SFX">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="3161908922" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
+			<ShortName>Main</ShortName>
+			<Path>Main.bnk</Path>
+			<IncludedEvents>
+				<Event Id="977454165" Name="Button" ObjectPath="\Events\Default Work Unit\Button"/>
+				<Event Id="128625444" Name="Door_Close" ObjectPath="\Events\Default Work Unit\Door_Close"/>
+				<Event Id="3029008661" Name="Door_Lock" ObjectPath="\Events\Default Work Unit\Door_Lock"/>
+				<Event Id="535830432" Name="Door_Open" ObjectPath="\Events\Default Work Unit\Door_Open"/>
+				<Event Id="2385628198" Name="Footsteps" ObjectPath="\Events\Default Work Unit\Footsteps"/>
+				<Event Id="1081112822" Name="Keyboard_Clicks" ObjectPath="\Events\Default Work Unit\Keyboard_Clicks"/>
+				<Event Id="790135102" Name="Light_Switch" ObjectPath="\Events\Default Work Unit\Light_Switch"/>
+				<Event Id="392429297" Name="Line_End" ObjectPath="\Events\Default Work Unit\Line_End"/>
+				<Event Id="4086643362" Name="Line_Start" ObjectPath="\Events\Default Work Unit\Line_Start"/>
+				<Event Id="700375207" Name="Opening_Music" ObjectPath="\Events\Default Work Unit\Opening_Music"/>
+				<Event Id="3104856687" Name="Phone" ObjectPath="\Events\Default Work Unit\Phone"/>
+				<Event Id="716673090" Name="Puzzle_Correct" ObjectPath="\Events\Default Work Unit\Puzzle_Correct"/>
+				<Event Id="1790472453" Name="Sliding_Door_Close" ObjectPath="\Events\Default Work Unit\Sliding_Door_Close"/>
+				<Event Id="3615965583" Name="Sliding_Door_Open" ObjectPath="\Events\Default Work Unit\Sliding_Door_Open"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="33640807" Language="SFX">
+					<ShortName>Keyboard Clicks 3.wav</ShortName>
+					<Path>SFX/Keyboard Clicks 3_1C9C67B2.wem</Path>
+				</File>
+				<File Id="37485589" Language="SFX">
+					<ShortName>Light Switch 2.wav</ShortName>
+					<Path>SFX/Light Switch 2_1C9C67B2.wem</Path>
+				</File>
+				<File Id="39722309" Language="SFX">
+					<ShortName>Keyboard Clicks 1.wav</ShortName>
+					<Path>SFX/Keyboard Clicks 1_1C9C67B2.wem</Path>
+				</File>
+				<File Id="45906224" Language="SFX">
+					<ShortName>Door Close 2.wav</ShortName>
+					<Path>SFX/Door Close 2_1C9C67B2.wem</Path>
+				</File>
+				<File Id="70539900" Language="SFX">
+					<ShortName>Door Lock 3.wav</ShortName>
+					<Path>SFX/Door Lock 3_1C9C67B2.wem</Path>
+				</File>
+				<File Id="111827739" Language="SFX">
+					<ShortName>FOOT-Walking on Cement01, jdmoths.wav</ShortName>
+					<Path>SFX/FOOT-Walking on Cement01, jdmoths_1DF7A8AC.wem</Path>
+				</File>
+				<File Id="156639989" Language="SFX">
+					<ShortName>Keyboard Clicks 2.wav</ShortName>
+					<Path>SFX/Keyboard Clicks 2_1C9C67B2.wem</Path>
+				</File>
+				<File Id="256585866" Language="SFX">
+					<ShortName>Door Lock 2.wav</ShortName>
+					<Path>SFX/Door Lock 2_1C9C67B2.wem</Path>
+				</File>
+				<File Id="323365193" Language="SFX">
+					<ShortName>FOOT-Walking on Cement01, jdmoths.wav</ShortName>
+					<Path>SFX/FOOT-Walking on Cement01, jdmoths_8D9DE8CF.wem</Path>
+				</File>
+				<File Id="363777522" Language="SFX">
+					<ShortName>Light Switch 4.wav</ShortName>
+					<Path>SFX/Light Switch 4_1C9C67B2.wem</Path>
+				</File>
+				<File Id="547717690" Language="SFX">
+					<ShortName>FOOT-Walking on Cement01, jdmoths.wav</ShortName>
+					<Path>SFX/FOOT-Walking on Cement01, jdmoths_4A5FEBA4.wem</Path>
+				</File>
+				<File Id="559860460" Language="SFX">
+					<ShortName>Door Close 1.wav</ShortName>
+					<Path>SFX/Door Close 1_1C9C67B2.wem</Path>
+				</File>
+				<File Id="568625441" Language="SFX">
+					<ShortName>Sliding Door Close.wav</ShortName>
+					<Path>SFX/Sliding Door Close_7C554969.wem</Path>
+				</File>
+				<File Id="570061723" Language="SFX">
+					<ShortName>Light Switch 3.wav</ShortName>
+					<Path>SFX/Light Switch 3_1C9C67B2.wem</Path>
+				</File>
+				<File Id="585100491" Language="SFX">
+					<ShortName>Start Line.wav</ShortName>
+					<Path>SFX/Start Line_C85FDF47.wem</Path>
+				</File>
+				<File Id="614153702" Language="SFX">
+					<ShortName>Door Close 3.wav</ShortName>
+					<Path>SFX/Door Close 3_1C9C67B2.wem</Path>
+				</File>
+				<File Id="620467204" Language="SFX">
+					<ShortName>Sliding Door Open.wav</ShortName>
+					<Path>SFX/Sliding Door Open_8B636BCF.wem</Path>
+				</File>
+				<File Id="623244395" Language="SFX">
+					<ShortName>THC Main Theme_V3.wav</ShortName>
+					<Path>SFX/THC Main Theme_V3_1C9C67B2.wem</Path>
+				</File>
+				<File Id="626533108" Language="SFX">
+					<ShortName>Light Switch 1.wav</ShortName>
+					<Path>SFX/Light Switch 1_1C9C67B2.wem</Path>
+				</File>
+				<File Id="769229974" Language="SFX">
+					<ShortName>FOOT-Walking on Cement01, jdmoths.wav</ShortName>
+					<Path>SFX/FOOT-Walking on Cement01, jdmoths_69FC8759.wem</Path>
+				</File>
+				<File Id="777980011" Language="SFX">
+					<ShortName>Sound Effects\Door Open.wav</ShortName>
+					<Path>SFX/Sound Effects/Door Open_1C9C67B2.wem</Path>
+				</File>
+				<File Id="859492320" Language="SFX">
+					<ShortName>Button.wav</ShortName>
+					<Path>SFX/Button_1C9C67B2.wem</Path>
+				</File>
+				<File Id="877375572" Language="SFX">
+					<ShortName>Phone Ringing.wav</ShortName>
+					<Path>SFX/Phone Ringing_D0E6CA48.wem</Path>
+				</File>
+				<File Id="993348874" Language="SFX">
+					<ShortName>Puzzle correct.wav</ShortName>
+					<Path>SFX/Puzzle correct_1779CC25.wem</Path>
+				</File>
+				<File Id="1010716147" Language="SFX">
+					<ShortName>End Line.wav</ShortName>
+					<Path>SFX/End Line_25ED463C.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>
