@@ -1,0 +1,6 @@
+Event	ID	Name			Wwise Object Path	Notes
+	3638457343	DoorClose			\Default Work Unit\DoorClose	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	99708889	Door Close 1	Y:\Documents\THC2018\THC2018_WwiseProject\.cache\Windows\SFX\Door Close 1_32667BCA.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Door Close 1		222812
+

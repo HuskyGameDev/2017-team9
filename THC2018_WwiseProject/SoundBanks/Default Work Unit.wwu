@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{8E513DE1-6DF4-45DD-A284-16AA235D783B}" SchemaVersion="85">
+	<SoundBanks>
+		<WorkUnit Name="Default Work Unit" ID="{8E513DE1-6DF4-45DD-A284-16AA235D783B}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="New_SoundBank" ID="{AA91707B-1918-4665-940D-291A73CB22B3}">
+					<ObjectInclusionList>
+						<ObjectRef Name="DoorClose" ID="{1C0D2D9D-3D65-4513-9C9C-EFE4F4A2DC32}" WorkUnitID="{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundBanks>
+</WwiseDocument>

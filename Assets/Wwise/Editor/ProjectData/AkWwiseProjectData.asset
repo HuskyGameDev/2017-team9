@@ -8,226 +8,69 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a6f3583c7c734734b207ecc40751ee4, type: 3}
+  m_Script: {fileID: 11500000, guid: b4dbd201b2fed46e1b817db31d0781d0, type: 3}
   m_Name: AkWwiseProjectData
   m_EditorClassIdentifier: 
   AcousticTextureWwu:
-  - Guid: '{3AA510A3-EFD5-4DA2-ACA2-09729D661583}'
-    m_lastTimePart2: -1999273649
-    m_lastTimePsrt1: 1304807296
+  - Guid: '{E043C3C1-8C0C-4974-93A8-99A686C099CE}'
+    m_lastTimePart2: -1999269031
+    m_lastTimePsrt1: -829132928
     ParentPhysicalPath: 
     PhysicalPath: Virtual Acoustics/Default Work Unit.wwu
     List: []
   autoPopulateEnabled: 1
   AuxBusWwu:
-  - Guid: '{C0D9191B-A443-4AA3-858F-8FA7D7ED1BCB}'
-    m_lastTimePart2: -1999273649
-    m_lastTimePsrt1: 1304807296
+  - Guid: '{5AD32E1A-081C-4281-91BA-CFF1907098EF}'
+    m_lastTimePart2: -1999269031
+    m_lastTimePsrt1: -829132928
     ParentPhysicalPath: 
     PhysicalPath: Master-Mixer Hierarchy/Default Work Unit.wwu
     List: []
   BankWwu:
-  - Guid: '{BCE0CB66-6933-4EFA-B579-2C45DE66422C}'
-    m_lastTimePart2: -1999273649
-    m_lastTimePsrt1: 1304807296
+  - Guid: '{8E513DE1-6DF4-45DD-A284-16AA235D783B}'
+    m_lastTimePart2: -1999269030
+    m_lastTimePsrt1: 1830867072
     ParentPhysicalPath: 
     PhysicalPath: SoundBanks/Default Work Unit.wwu
     List:
-    - Guid: ca891478fa71704283aa5c4f1b04fe27
-      ID: -1133058374
-      Name: Main
-      Path: Default Work Unit/Main
+    - Guid: 7b7091aa18196546940d291a73cb22b3
+      ID: -222937841
+      Name: New_SoundBank
+      Path: Default Work Unit/New_SoundBank
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: Main
+      - ElementName: New_SoundBank
         ObjectType: 7
   basePath: Audio/GeneratedSoundBanks
   callbackManagerBufferSize: 4
   CurrentPluginConfig: 
   defaultPoolSize: 4096
   EventWwu:
-  - Guid: '{A4E72B73-8A8B-458E-80D5-A7FD8BAFC823}'
-    m_lastTimePart2: -1999273649
-    m_lastTimePsrt1: 1304807296
+  - Guid: '{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}'
+    m_lastTimePart2: -1999269030
+    m_lastTimePsrt1: 980867072
     ParentPhysicalPath: 
     PhysicalPath: Events/Default Work Unit.wwu
     List:
-    - Guid: 60cdd0040cdf4540bef5cead03ad9a64
-      ID: 977454165
-      Name: Button
-      Path: Default Work Unit/Button
+    - Guid: 9d2d0d1c653d13459c9cefe4f4a2dc32
+      ID: -656509953
+      Name: DoorClose
+      Path: Default Work Unit/DoorClose
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: Button
+      - ElementName: DoorClose
         ObjectType: 3
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - Guid: 44b607a294f4a54ba96e82362bd5b28a
-      ID: 128625444
-      Name: Door_Close
-      Path: Default Work Unit/Door_Close
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Door_Close
-        ObjectType: 3
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - Guid: 49b52528a472a6479080cf5e73b91ade
-      ID: -1265958635
-      Name: Door_Lock
-      Path: Default Work Unit/Door_Lock
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Door_Lock
-        ObjectType: 3
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - Guid: 03e883453c9cde49858161777c16f708
-      ID: 535830432
-      Name: Door_Open
-      Path: Default Work Unit/Door_Open
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Door_Open
-        ObjectType: 3
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - Guid: 380c8805490e29449f23e9c565e71722
-      ID: -1909339098
-      Name: Footsteps
-      Path: Default Work Unit/Footsteps
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Footsteps
-        ObjectType: 3
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - Guid: acc3c1c027920b49af35f0bc5910aeee
-      ID: 1081112822
-      Name: Keyboard_Clicks
-      Path: Default Work Unit/Keyboard_Clicks
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Keyboard_Clicks
-        ObjectType: 3
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - Guid: 82f612bf74900543a11fb0d3aa12f786
-      ID: 790135102
-      Name: Light_Switch
-      Path: Default Work Unit/Light_Switch
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Light_Switch
-        ObjectType: 3
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - Guid: 59859a7d2f38c64cb72c26ea133f0875
-      ID: 392429297
-      Name: Line_End
-      Path: Default Work Unit/Line_End
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Line_End
-        ObjectType: 3
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - Guid: abd1903a2df9d94ba0d78701cc651e04
-      ID: -208323934
-      Name: Line_Start
-      Path: Default Work Unit/Line_Start
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Line_Start
-        ObjectType: 3
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - Guid: 238195e38734b449b1020de1b6576960
-      ID: 700375207
-      Name: Opening_Music
-      Path: Default Work Unit/Opening_Music
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Opening_Music
-        ObjectType: 3
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - Guid: 265cc2e065c76645bed14f3f3e700d9a
-      ID: -1190110609
-      Name: Phone
-      Path: Default Work Unit/Phone
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Phone
-        ObjectType: 3
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - Guid: 4ba38246564a2a4093d5aaf435ec6e5c
-      ID: 716673090
-      Name: Puzzle_Correct
-      Path: Default Work Unit/Puzzle_Correct
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Puzzle_Correct
-        ObjectType: 3
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - Guid: fabcab5d0f034946a9b50405ac4f15e7
-      ID: 1790472453
-      Name: Sliding_Door_Close
-      Path: Default Work Unit/Sliding_Door_Close
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Sliding_Door_Close
-        ObjectType: 3
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - Guid: 4b802ed8ac8aa7469aedeeecd73dfea4
-      ID: -679001713
-      Name: Sliding_Door_Open
-      Path: Default Work Unit/Sliding_Door_Open
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Sliding_Door_Open
-        ObjectType: 3
-
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
   ExpandedItems:
-  - /2017-team9_WwiseProject
-  - /2017-team9_WwiseProject/Events
-  - /2017-team9_WwiseProject/Events/Default Work Unit
-  - /2017-team9_WwiseProject/SoundBanks
-  - /2017-team9_WwiseProject/SoundBanks/Default Work Unit
+  - /THC2018_WwiseProject
+  - /THC2018_WwiseProject/Events
+  - /THC2018_WwiseProject/Events/Default Work Unit
+  - /THC2018_WwiseProject/SoundBanks
+  - /THC2018_WwiseProject/SoundBanks/Default Work Unit
   language: English(US)
   lowerPoolSize: 2048
   m_lastPopulateTimePart2: 0
@@ -235,31 +78,31 @@ MonoBehaviour:
   memoryCutoffThreshold: 0.95
   preparePoolSize: 0
   RtpcWwu:
-  - Guid: '{2E1DA16A-7106-40E6-8C5A-BB1FE4C2EE9C}'
-    m_lastTimePart2: -1999273649
-    m_lastTimePsrt1: 1304807296
+  - Guid: '{017E9E7C-CBB3-4532-BCFD-0E1FA18BD4D7}'
+    m_lastTimePart2: -1999269031
+    m_lastTimePsrt1: -829132928
     ParentPhysicalPath: 
     PhysicalPath: Game Parameters/Default Work Unit.wwu
     List: []
   StateWwu:
-  - Guid: '{5FEA3154-1598-4C40-8E05-D526FD335642}'
-    m_lastTimePart2: -1999273649
-    m_lastTimePsrt1: 1304807296
+  - Guid: '{C66CEDE8-A30B-4F25-BEB4-F4AC55199F3D}'
+    m_lastTimePart2: -1999269031
+    m_lastTimePsrt1: -829132928
     ParentPhysicalPath: 
     PhysicalPath: States/Default Work Unit.wwu
     List: []
   streamingPoolSize: 1024
   SwitchWwu:
-  - Guid: '{A2358479-B94F-4E9B-BC5B-841C25E86F45}'
-    m_lastTimePart2: -1999273649
-    m_lastTimePsrt1: 1304807296
+  - Guid: '{5A2E0D30-2B55-405B-B946-64198CA0B3DF}'
+    m_lastTimePart2: -1999269031
+    m_lastTimePsrt1: -829132928
     ParentPhysicalPath: 
     PhysicalPath: Switches/Default Work Unit.wwu
     List: []
   TriggerWwu:
-  - Guid: '{8B6E9D56-D2F8-45FA-8F0F-DA8664B0B075}'
-    m_lastTimePart2: -1999273649
-    m_lastTimePsrt1: 1304807296
+  - Guid: '{E0E611B2-F0DD-4350-B24E-3B4337DD4483}'
+    m_lastTimePart2: -1999269031
+    m_lastTimePsrt1: -829132928
     ParentPhysicalPath: 
     PhysicalPath: Triggers/Default Work Unit.wwu
     List: []

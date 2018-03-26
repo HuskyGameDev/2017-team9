@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="11" SoundbankVersion="128">
+	<RootPaths>
+		<ProjectRoot>/Users/andrewstockero/Library/Application Support/Wwise2017/Bottles/wwise/dosdevices/y:/Documents/THC2018/THC2018_WwiseProject/</ProjectRoot>
+		<SourceFilesRoot>/Users/andrewstockero/Library/Application Support/Wwise2017/Bottles/wwise/dosdevices/y:/Documents/THC2018/THC2018_WwiseProject/.cache/Mac/</SourceFilesRoot>
+		<SoundBanksRoot>/Users/andrewstockero/Library/Application Support/Wwise2017/Bottles/wwise/dosdevices/y:/Documents/THC2018/THC2018_WwiseProject/GeneratedSoundBanks/Mac/</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>/Users/andrewstockero/Library/Application Support/Wwise2017/Bottles/wwise/dosdevices/y:/Documents/THC2018/THC2018_WwiseProject/GeneratedSoundBanks/Mac/</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Language="SFX">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="4072029455" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\New_SoundBank</ObjectPath>
+			<ShortName>New_SoundBank</ShortName>
+			<Path>New_SoundBank.bnk</Path>
+			<IncludedEvents>
+				<Event Id="3638457343" Name="DoorClose" ObjectPath="\Events\Default Work Unit\DoorClose"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="99708889" Language="SFX">
+					<ShortName>Door Close 1.wav</ShortName>
+					<Path>SFX/Door Close 1_32667BCA.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>

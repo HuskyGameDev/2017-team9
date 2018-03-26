@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{81EC2559-910B-4FFF-B407-91511DC95592}" SchemaVersion="85">
+	<AudioObjects>
+		<WorkUnit Name="Default Work Unit" ID="{81EC2559-910B-4FFF-B407-91511DC95592}" PersistMode="Standalone">
+			<ChildrenList>
+				<ActorMixer Name="Environment" ID="{98930ED1-678E-451D-B9DE-329A1A35011E}" ShortID="882317541">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5B0665EA-E1B1-40CB-9F7A-27B3F8040A9B}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{5AD32E1A-081C-4281-91BA-CFF1907098EF}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="Door Close 1" ID="{010C3609-17CA-4B90-BA96-121F7E6B6140}" ShortID="386495685">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5B0665EA-E1B1-40CB-9F7A-27B3F8040A9B}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{5AD32E1A-081C-4281-91BA-CFF1907098EF}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Door Close 1" ID="{F22DB97F-93AC-4D70-BBF7-A2418E975BC1}" ShortID="99708889">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.258205689277899"/>
+										<Property Name="TrimEnd" Type="Real64" Value="1.15973741794311"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Door Close 1.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Door Close 1" ID="{F22DB97F-93AC-4D70-BBF7-A2418E975BC1}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</ActorMixer>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>

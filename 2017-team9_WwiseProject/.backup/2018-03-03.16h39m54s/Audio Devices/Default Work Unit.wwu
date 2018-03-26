@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<WwiseDocument Type="WorkUnit" ID="{C636B0E1-2C6D-4E2B-9996-81E1A3F7699C}" SchemaVersion="80">
-	<AudioDevices>
-		<WorkUnit Name="Default Work Unit" ID="{C636B0E1-2C6D-4E2B-9996-81E1A3F7699C}" PersistMode="Standalone"/>
-	</AudioDevices>
-</WwiseDocument>

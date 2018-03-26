@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}" SchemaVersion="85">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="DoorClose" ID="{1C0D2D9D-3D65-4513-9C9C-EFE4F4A2DC32}">
+					<ChildrenList>
+						<Action Name="" ID="{D458E174-1B26-40B4-A1C4-1B29CFD80D19}" ShortID="353892697">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Door Close 1" ID="{010C3609-17CA-4B90-BA96-121F7E6B6140}" WorkUnitID="{81EC2559-910B-4FFF-B407-91511DC95592}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>
