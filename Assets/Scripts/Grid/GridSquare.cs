@@ -57,7 +57,7 @@ public class GridSquare : MonoBehaviour {
 	/// <summary>
 	/// The GridLine that is on this square.
 	/// </summary>
-	public GridLine[] line = new GridLine[4];
+	public List<GridLine> lines = new List<GridLine>();
 
 
 	/// <summary>
@@ -76,8 +76,9 @@ public class GridSquare : MonoBehaviour {
 	/// <param name="B"></param>
 	/// <param name="newLine"></param>
 	/// <returns></returns>
-	public bool Connect(GridDirection direction, GridLine newLine) {
-
+	/*public bool Connect(GridDirection direction, GridLine newLine) {
+		return false;
+		
 		if (neighbors[(int)direction] == null) {
 			Debug.Log("Connect failed");
 			return false;
@@ -194,25 +195,25 @@ public class GridSquare : MonoBehaviour {
 		//If it has a dataComponent, notify it that it is on a line
 		if (B.dataComponent != null)
 			B.dataComponent.ConnectionChange();
-		return true;*/
+		return true;
+}
+
+public void BreakConnection(GridDirection direction) {
+	if (line[(int)direction] != null) {
+		line[(int)direction].Remove(this, direction);
+		line[(int)direction] = null;
+		if (sprites.lines[(int)direction].sprite != null)
+			StartCoroutine(sprites.RemoveLineInDirection(direction, this));//Remove visuals on the grid
 	}
 
-	public void BreakConnection(GridDirection direction) {
-		if (line[(int)direction] != null) {
-			line[(int)direction].Remove(this, direction);
-			line[(int)direction] = null;
-			if (sprites.lines[(int)direction].sprite != null)
-				StartCoroutine(sprites.RemoveLineInDirection(direction, this));//Remove visuals on the grid
-		}
-
-		GridDirection opp = oppositeDirection[(int)direction];
-		if (neighbors[(int)direction] != null && neighbors[(int)direction].line[(int)opp] != null) {
-			neighbors[(int)direction].line[(int)opp].Remove(neighbors[(int)direction], opp);
-			neighbors[(int)direction].line[(int)opp] = null;
-		}
+	GridDirection opp = oppositeDirection[(int)direction];
+	if (neighbors[(int)direction] != null && neighbors[(int)direction].line[(int)opp] != null) {
+		neighbors[(int)direction].line[(int)opp].Remove(neighbors[(int)direction], opp);
+		neighbors[(int)direction].line[(int)opp] = null;
 	}
+}*/
 
-	
+
 
 
 	/// <summary>
@@ -222,6 +223,42 @@ public class GridSquare : MonoBehaviour {
 	/// <returns></returns>
 	public bool CanConnect(GridDirection dir) {
 		return socketState[(int)dir] != SocketState.None;
+	}
+
+	/// <summary>
+	/// Figures out which direction the line continues. Returns false if this is on the end of a line.
+	/// </summary>
+	/// <param name="lineToCheck"></param>
+	/// <param name="returnValue"></param>
+	/// <returns></returns>
+	public bool GetLineDirection(GridLine lineToCheck, out GridDirection returnValue) {
+		returnValue = GridDirection.Down;
+		//We can only check on lines that we are conencted to.
+		if (lines.Contains(lineToCheck) == false)
+			return false;
+
+		LinkedListNode<GridSquare> ourNode = lineToCheck.lineNodes.Find(this);
+		//If we are at the end of the line we do not have a direction yet
+		if (ourNode == null || ourNode.Next == null)
+			return false;
+
+		return AreNeighbors(this, ourNode.Next.Value, out returnValue);
+	}
+
+	/// <summary>
+	/// Get all lines that fall on a specified socket state
+	/// </summary>
+	/// <param name="state"></param>
+	/// <returns></returns>
+	public List<GridLine> GetLinesOnSocketState(SocketState state) {
+		List<GridLine> foundLines = new List<GridLine>();
+		foreach (GridLine line in lines) {
+			GridDirection dir;
+			GetLineDirection(line, out dir);
+			if (socketState[(int)dir] == state)
+				foundLines.Add(line);
+		}
+		return foundLines;
 	}
 
 

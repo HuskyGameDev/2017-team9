@@ -42,7 +42,7 @@ namespace AllTheColorsOfTheWind {
 		}
 		#endregion
 		#region Private
-		private ColorBit[] inputs;
+		private List<ColorBit> inputs;
 		#endregion
 		#endregion
 
@@ -52,7 +52,7 @@ namespace AllTheColorsOfTheWind {
 		#region Public
 
 		public void Awake() {
-			inputs = new ColorBit[] { new ColorBit(null), new ColorBit(null), new ColorBit(null), new ColorBit(null) };
+			inputs = new List<ColorBit>();
 
 			Setup();
 
@@ -84,30 +84,42 @@ namespace AllTheColorsOfTheWind {
 
 		public void UpdateConnectedComponents() {
 			//Signal all output connections that we have changed our data.
-			for (int i = 0; i < square.line.Length; i++) {
-				if (square.line[i] != null && square.socketState[i] == GridSquare.SocketState.Output) {
-					foreach (KeyValuePair<GridSquare, GridSquare.GridDirection> f in square.line[i].FindDataComponents( new List<GridSquare>(new GridSquare[] { square } ) )) {
-						if (f.Key.socketState[(int)f.Value] == GridSquare.SocketState.Input) {
-							f.Key.component.CheckOutput();
-						}
+			//For each of our squares lines
+
+			foreach (GridLine line in square.GetLinesOnSocketState(GridSquare.SocketState.Output)) {
+				//If this line is connecting two components
+				if (line.IsComplete()) {
+					//Check which one we are
+					if (line.lineNodes.First.Value == this.square) {
+						//And update the other one.
+						line.lineNodes.Last.Value.component.CheckOutput();
+					}
+					else {
+						//And update the other one.
+						line.lineNodes.First.Value.component.CheckOutput();
 					}
 				}
 			}
-
 		}
 
 		/// Searches down the lines for any connected inputs along valid input
 		/// </summary>
 		/// <returns></returns>
 		public void GetInput() {
-			for (int i = 0; i < square.line.Length; i++) {
-				inputs[i] = new ColorBit(null);
-				if (square.line[i] != null && square.socketState[i] == GridSquare.SocketState.Input) {
-					foreach (KeyValuePair<GridSquare, GridSquare.GridDirection> f in square.line[i].FindDataComponents(new List<GridSquare>(new GridSquare[] { square }))) {
-						if (f.Key.socketState[(int)f.Value] == GridSquare.SocketState.Output) {
-							Debug.Log("Found an input");
-							inputs[i] = f.Key.component.GetOutput();
-						}
+			//Set our inputs to blank
+			inputs = new List<ColorBit>();
+			foreach (GridLine line in square.GetLinesOnSocketState(GridSquare.SocketState.Input)) {
+				//If this line is connecting two components
+				if (line.IsComplete()) {
+					//Check which one we are
+					if (line.lineNodes.First.Value == this.square) {
+						//And update the other one.
+						inputs.Add(line.lineNodes.Last.Value.component.GetOutput());
+					}
+					else {
+						//And update the other one.
+						inputs.Add(line.lineNodes.First.Value.component.GetOutput());
+
 					}
 				}
 			}
@@ -135,7 +147,7 @@ namespace AllTheColorsOfTheWind {
 				//Keep track of things to return
 				List<ColorBit> ret = new List<ColorBit>();
 				//Find the valid inputs and track them
-				for (int i = 0; i < inputs.Length; i++) {
+				for (int i = 0; i < inputs.Count; i++) {
 					if (inputs[i].nulled == false) {
 						Debug.Log(inputs[i]);
 						ret.Add(inputs[i]);

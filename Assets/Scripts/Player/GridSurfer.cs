@@ -64,10 +64,14 @@ public class GridSurfer : MonoBehaviour {
 						
 						//Frst we check if we are restricted in any way.
 						bool failed = false;
-						GridLine foundPrevLine = null; // foundPrevLine is used later to check for previous lines and then use it for drawing on empty sockets
 
 						{
-							//Failcase: We can only move on non empty sockets
+							//Failcase: we just cant move in that direction.
+							if (currentSquare.CanConnect(transitionDirection) == false) {
+								failed = true;
+							}
+
+							//Failcase: We can only move on connections that exist
 							if (currentSquare.socketState[(int)transitionDirection] == GridSquare.SocketState.None)
 								failed = true;
 
@@ -82,67 +86,101 @@ public class GridSurfer : MonoBehaviour {
 							//Handle the failcases involving where we are going
 							GridSquare other = currentSquare.neighbors[(int)transitionDirection];
 							if (other == null) {
+								//Failcase: we do not have a neighbor in that direction.
 								failed = true;
 							}
 							else {
 								//Failcase: We are moving onto a component not through an input/output socket. 
 								GridSquare.SocketState othersSocket = other.socketState[(int)GridSquare.oppositeDirection[(int)transitionDirection]];
 								if (other.type != GridSquare.GridType.Empty && (othersSocket != GridSquare.SocketState.Input && othersSocket != GridSquare.SocketState.Output)) {
-									Debug.LogWarning("Failed by moving onto a socket");
+									Debug.LogWarning("Failed by trying to move onto a component through not an input or output");
 									failed = true;
 								}
 							}
 
 
 
-							//Failcase: We are trying to start drawing on an empty square with no lines already here.
 
+							//Check if there is a line on here
 							if (currentSquare.type == GridSquare.GridType.Empty) {
-								int prevCount = 0;
-								int prevDir = -1;
-								for (int i = 0; i < currentSquare.line.Length; i++) {
-									if (currentSquare.line[i] != null) {
-										prevCount++;
-										foundPrevLine = currentSquare.line[i];
-										prevDir = i;
-									}
-								}
-								if (foundPrevLine == null) {
-									Debug.LogWarning("Failed move no existing line on an empty socket.");
+								if (currentSquare.lines.Count == 0) {
+									//Failcase: We are trying to start drawing on an empty square with no lines already here.
+									Debug.LogWarning("Failed move by there being no line on this empty socket.");
 									failed = true;
 								}
+								else {
+									//So there is a line here, so lets get the last direction that line moved in.
+									if (currentSquare.lines[0].lineNodes.Count < 2)
+										//Failcase: we cannot back down a line of size 1.
+										failed = true;
+									else {
+										if (currentSquare.type == GridSquare.GridType.Empty) {
+											//Calculate the previously traveled direction by using the Are Neighbors function. We pass in the node previous on the line and the current square
+											GridSquare.GridDirection prevDir;
+											GridSquare.AreNeighbors(currentSquare.lines[0].lineNodes.Find(currentSquare).Previous.Value, currentSquare, out prevDir);
 
-								//Failcase: We are trying to continue drawing on a line that is not an endpoint.
-								if (prevCount > 1) {
-									failed = true;
-								}
-								else if (prevCount == 1 && (GridSquare.GridDirection)prevDir == transitionDirection) {
-									//Special Case: we are backing up down a line.
-									failed = true; //Mark failed as true so we do not follow the normal movement
-									currentSquare.BreakConnection(transitionDirection);
-									StartCoroutine("TransitionToNewSquare");
+											if (currentSquare.lines[0].IsTip(currentSquare) == true && GridSquare.oppositeDirection[(int)prevDir] == transitionDirection) {
+												//Special Case: we are backing down a line. (our movement is the opposite of the last movement we did)
+												failed = true; //Mark failed as true so we do not follow the normal movement
+												Debug.LogWarning("Specialcase: Backing down a line");
+												currentSquare.lines[0].Pop();
+												state = GridSurferState.Disabled;
+												StartCoroutine("TransitionToNewSquare");
+												//If this line is size one or less we need to get rid of it now.
+												if (currentSquare.lines[0].lineNodes.Count < 2)
+													currentSquare.lines[0].DestroyLine();
+											}
+										}
+									}
 								}
 							}
 						}
-						//Only continue if we have not found a failcase
+						//Only continue if we have not found a failcase. The movement should now be 100% correct to do.
 						if (failed == false) {
-							//Second, we do prep work
+							//Finnally, if we can move in that drection.
+
+							GridLine line;
 							if (currentSquare.type != GridSquare.GridType.Empty) {
-								if (currentSquare.line[(int)transitionDirection] == null) {
-									//There is no line, so we create a new one with this as its sparting point
-									currentSquare.line[(int)transitionDirection] = new GridLine();
+								//If we are not empty, that means we may need to create a line
+								//If the line exists then we need to do something. I am unsure on what so for now we are destorying it.
+								//We loop backwards here so that if we remove a line we do not desync from the iteration
+								for (int i = currentSquare.lines.Count - 1; i >= 0; i--) {
+									GridLine checkLine = currentSquare.lines[i];
+									//If us and our neighbor are on the next line
+									//[TODO] I think the logic of these next two statements needs to be cleaned up
+									if (checkLine.lineNodes.Count < 1) {
+										Debug.Log("Destrpyed an Orphan Line.");
+										checkLine.DestroyLine();
+									}
+									if (checkLine.lineNodes.Contains(currentSquare) && checkLine.lineNodes.Contains(currentSquare.neighbors[(int)transitionDirection]) ) {
+										//if this line leads directly to that node.
+										if (checkLine.lineNodes.Find(currentSquare).Next != null && checkLine.lineNodes.Find(currentSquare).Next.Value == currentSquare.neighbors[(int)transitionDirection]) {
+											//then what?
+											Debug.Log("Found a line to destroy");
+											checkLine.DestroyLine();
+										}
+									}
 								}
+								Debug.Log("Created new line");
+								//otherwise we need to make a new one
+								line = new GridLine();
+								currentSquare.lines = new List<GridLine>();
+								currentSquare.lines.Add(line);
+								//Add this current node to this new line since it starts here.
+								line.Add(currentSquare);
 							}
 							else {
-								currentSquare.line[(int)transitionDirection] = foundPrevLine;
+								Debug.Log("using old line");
+								line = currentSquare.lines[0];
 							}
 
-							//Finnaly, we make the connection
-							if (currentSquare.Connect(transitionDirection, currentSquare.line[(int)transitionDirection])) {
-								state = GridSurferState.Disabled;
-								StartCoroutine(currentSquare.sprites.DrawLineInDirection(transitionDirection, currentSquare, currentSquare.line[(int)transitionDirection].GetColor()));//Draw visuals on the grid
-								StartCoroutine("TransitionToNewSquare");
-							}
+							Debug.Log(currentSquare.gameObject.name + "->" + currentSquare.neighbors[(int)transitionDirection].gameObject.name);
+							line.Add(currentSquare.neighbors[(int)transitionDirection]);
+							state = GridSurferState.Disabled;
+							StartCoroutine("TransitionToNewSquare");
+						}
+						else {
+							//[TODO] Make an Anim for a failed move
 						}
 					}
 					else {

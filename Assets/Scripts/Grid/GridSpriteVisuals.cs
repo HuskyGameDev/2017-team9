@@ -82,6 +82,26 @@ public class GridSpriteVisuals : MonoBehaviour {
 
 	}
 
+	public IEnumerator RemoveLine(LinkedList<GridSquare> list) {
+
+		while (list.Count > 0) {
+			if (list.Count == 1) {
+				list.RemoveFirst();
+				break;
+			}
+			//Start a couritine for the last and first node
+
+			GridSquare.GridDirection dir1, dir2;
+			GridSquare.AreNeighbors(list.First.Value, list.First.Next.Value, out dir1);
+			GridSquare.AreNeighbors(list.Last.Value, list.Last.Previous.Value, out dir2);
+			list.First.Value.sprites.StartCoroutine(list.First.Value.sprites.RemoveLineInDirection(dir1, list.First.Value));
+			yield return list.Last.Value.sprites.StartCoroutine(list.First.Value.sprites.RemoveLineInDirection(dir2, list.Last.Value));
+			list.RemoveFirst();
+			list.RemoveLast();
+
+		}
+	}
+
 	public IEnumerator DrawLineInDirection(GridSquare.GridDirection dir, GridSquare a, Color color) {
 		GridSquare b = a.neighbors[(int)dir];
 		a.sprites.lines[(int)dir].color = color;
