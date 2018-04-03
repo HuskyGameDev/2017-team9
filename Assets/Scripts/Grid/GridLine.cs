@@ -26,10 +26,6 @@ public class GridLine {
 		squares.Remove(obj);
 	}
 
-	public void UpdateColor() {
-		color = Color.white;
-	}
-
 	public List<KeyValuePair<GridSquare, GridSquare.GridDirection>> GetOutputSockets() {
 		return squares.FindAll(
 			delegate (KeyValuePair<GridSquare, GridSquare.GridDirection> pair) {
@@ -46,7 +42,7 @@ public class GridLine {
 
 
 	public void Ping() {
-		Debug.Log("PING! " + squares.Count);
+		//Debug.Log("PING! " + squares.Count);
 		//Gather all inputs and outputs on this state.
 		List<KeyValuePair<GridSquare, GridSquare.GridDirection>> inputs = GetInputSockets();
 		List<KeyValuePair<GridSquare, GridSquare.GridDirection>> outputs = GetOutputSockets();
@@ -59,13 +55,25 @@ public class GridLine {
 				//This line is inputting into this component, so we need to notify it of a change
 				inputs[0].Key.component.CheckOutput();
 			}
-			Color32 tempColor = ((outputs.Count == 1) ? outputs[0].Key.component.GetOutput().color : (Color32)Color.white);
-			//If the color is different update all of our line sections
-			if (tempColor.Equals(color) == false) {
-				foreach (KeyValuePair<GridSquare, GridSquare.GridDirection> pair in squares)
-					pair.Key.sprites.lines[(int)(pair.Value)].color = tempColor;
-				color = tempColor;
-			}
+			UpdateColor(outputs);
+		}
+	}
+
+	/// <summary>
+	/// Updates the color of this line. If passed an output list it will use that to update the line color
+	/// </summary>
+	/// <param name="outputs"></param>
+	public void UpdateColor(List<KeyValuePair<GridSquare, GridSquare.GridDirection>> outputs = null) {
+		if (outputs == null)
+			outputs = GetOutputSockets();
+		//Debug.Log("Update color was called");
+		Color32 tempColor = ((outputs.Count == 1) ? outputs[0].Key.component.GetOutput().color : (Color32)Color.white);
+		//If the color is different update all of our line sections
+		if (tempColor.Equals(color) == false) {
+			//Debug.Log("Our Color is different!");
+			foreach (KeyValuePair<GridSquare, GridSquare.GridDirection> pair in squares)
+				pair.Key.sprites.lines[(int)(pair.Value)].color = tempColor;
+			color = tempColor;
 		}
 	}
 

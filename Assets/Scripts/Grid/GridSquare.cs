@@ -122,12 +122,15 @@ public class GridSquare : MonoBehaviour {
 	/// <param name="dir"></param>
 	/// <param name="line"></param>
 	public void AddLine(GridDirection dir, GridLine line) {
-		//[TODO] Update color and components if need be
+		Debug.Log("AddLine Called");
 		lines[(int)dir] = line;
 		neighbors[(int)dir].lines[(int)oppositeDirection[(int)dir]] = line;
 
 		line.Add(this, dir);
 		line.Add(neighbors[(int)dir], oppositeDirection[(int)dir]);
+
+		Debug.Log("About to update color!");
+		line.UpdateColor(null);
 
 		sprites.StartCoroutine(sprites.DrawLineInDirection(dir, this, line));
 	}
