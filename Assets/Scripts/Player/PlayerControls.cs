@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
-[RequireComponent(typeof(GridSurfer))]
+[RequireComponent(typeof(GridMovementController))]
 public class PlayerControls : MonoBehaviour {
 
 	/// <summary>
@@ -38,7 +38,7 @@ public class PlayerControls : MonoBehaviour {
 	/// <summary>
 	/// A helper script for interacting with terminals
 	/// </summary>
-	private GridSurfer gridSurfer;
+	private GridMovementController gridMovementController;
 
 	/// <summary>
 	/// Happens whenever this game object is enabled, or the start of the scene
@@ -53,7 +53,7 @@ public class PlayerControls : MonoBehaviour {
 		}
 		instance = this;
 		//terminalInteractionController = this.gameObject.GetComponent<TerminalInteraction>();
-		gridSurfer = this.gameObject.GetComponent<GridSurfer>();
+		gridMovementController = this.gameObject.GetComponent<GridMovementController>();
 
 		cursor.Switch(cursor.defaultCursor);
 		Cursor.lockState = CursorLockMode.Locked;
@@ -150,8 +150,8 @@ public class PlayerControls : MonoBehaviour {
 					//If this puzzle is ok to edit
 					if (square.puzzle.editable) {
 						state = PlayerState.GridInteractionTransition;
-						gridSurfer.currentSquare = square;
-						gridSurfer.StartCoroutine("TransitionToGrid");
+						gridMovementController.currentSquare = square;
+						gridMovementController.StartCoroutine("TransitionToGrid");
 					}
 				}
 			} else if (rayInfo.collider != null && rayInfo.collider.gameObject.tag == "Interactable") { // check if object is pickup
@@ -166,10 +166,10 @@ public class PlayerControls : MonoBehaviour {
 
 		//Check if we need to switch out of gridinteraction mode
 		if (state == PlayerState.GridInteraction) {
-			if (InputManager.GetGameButtonDown(InputManager.GameButton.Cancel) && gridSurfer.state != GridSurfer.GridSurferState.Disabled) {
+			if (InputManager.GetGameButtonDown(InputManager.GameButton.Cancel) && gridMovementController.state != GridMovementController.GridMovementState.Disabled) {
 				state = PlayerState.GridInteractionTransition;
-				gridSurfer.currentSquare = null;
-				gridSurfer.StartCoroutine("TransitionToPlayer");
+				gridMovementController.currentSquare = null;
+				gridMovementController.StartCoroutine("TransitionToPlayer");
 			}
 		}
 

@@ -82,37 +82,17 @@ public class GridSpriteVisuals : MonoBehaviour {
 
 	}
 
-	public IEnumerator RemoveLine(LinkedList<GridSquare> list) {
-
-		while (list.Count > 0) {
-			if (list.Count == 1) {
-				list.RemoveFirst();
-				break;
-			}
-			//Start a couritine for the last and first node
-
-			GridSquare.GridDirection dir1, dir2;
-			GridSquare.AreNeighbors(list.First.Value, list.First.Next.Value, out dir1);
-			GridSquare.AreNeighbors(list.Last.Value, list.Last.Previous.Value, out dir2);
-			list.First.Value.sprites.StartCoroutine(list.First.Value.sprites.RemoveLineInDirection(dir1, list.First.Value));
-			yield return list.Last.Value.sprites.StartCoroutine(list.First.Value.sprites.RemoveLineInDirection(dir2, list.Last.Value));
-			list.RemoveFirst();
-			list.RemoveLast();
-
-		}
-	}
-
-	public IEnumerator DrawLineInDirection(GridSquare.GridDirection dir, GridSquare a, Color color) {
+	public IEnumerator DrawLineInDirection(GridSquare.GridDirection dir, GridSquare a, GridLine line) {
 		GridSquare b = a.neighbors[(int)dir];
-		a.sprites.lines[(int)dir].color = color;
-		b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]].color = color;
 		b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]].sprite = null;
 		yield return a.sprites.StartCoroutine(AnimFromResources(a.sprites.lines[(int)dir], Anim_InToOut, 33, true, lineAnimSpeed));
 		yield return b.sprites.StartCoroutine(AnimFromResources(b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]], Anim_OutToIn, 33, true, lineAnimSpeed));
+
+		line.Ping();
 	}
 
 
-	public IEnumerator RemoveLineInDirection(GridSquare.GridDirection dir, GridSquare a) {
+	public IEnumerator RemoveLineInDirection(GridSquare.GridDirection dir, GridSquare a, GridLine line) {
 		
 		yield return a.sprites.StartCoroutine(AnimFromResources(a.sprites.lines[(int)dir], Anim_OutToIn, 33, false, lineAnimSpeed));
 		a.sprites.lines[(int)dir].sprite = null;
@@ -125,6 +105,8 @@ public class GridSpriteVisuals : MonoBehaviour {
 
 		yield return b.sprites.StartCoroutine(AnimFromResources(b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]], Anim_InToOut, 33, false, lineAnimSpeed));
 		b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]].sprite = null;
+
+		line.Ping();
 	}
 
 

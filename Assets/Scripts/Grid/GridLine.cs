@@ -5,30 +5,89 @@ using UnityEngine;
 public class GridLine {
 	#region State
 	#region Private
-	private Color color;
+	private Color32 color = Color.white;
 	#endregion
 	#region Public
-	public LinkedList<GridSquare> lineNodes = new LinkedList<GridSquare>();
+	public List<KeyValuePair<GridSquare,GridSquare.GridDirection>> squares = new List<KeyValuePair<GridSquare, GridSquare.GridDirection>>();
 	#endregion
 	#endregion
 
 
 	#region Methods
 	#region Public
-	public Color GetColor() {
-		return color;
+
+	public void Add(GridSquare square, GridSquare.GridDirection dir) {
+		square.sprites.lines[(int)dir].color = color;
+		squares.Add(new KeyValuePair<GridSquare, GridSquare.GridDirection>(square, dir));
 	}
 
+	public void Remove(GridSquare square, GridSquare.GridDirection dir) {
+		KeyValuePair<GridSquare, GridSquare.GridDirection> obj = squares.Find(delegate(KeyValuePair<GridSquare, GridSquare.GridDirection> pair) { return pair.Key == square && pair.Value == dir; });
+		squares.Remove(obj);
+	}
+
+	public void UpdateColor() {
+		color = Color.white;
+	}
+
+	public List<KeyValuePair<GridSquare, GridSquare.GridDirection>> GetOutputSockets() {
+		return squares.FindAll(
+			delegate (KeyValuePair<GridSquare, GridSquare.GridDirection> pair) {
+				return pair.Key.type != GridSquare.GridType.Empty && pair.Key.socketState[(int)pair.Value] == GridSquare.SocketState.Output;
+			});
+	}
+
+	public List<KeyValuePair<GridSquare, GridSquare.GridDirection>> GetInputSockets() {
+		return squares.FindAll(
+			delegate (KeyValuePair<GridSquare, GridSquare.GridDirection> pair) {
+				return pair.Key.type != GridSquare.GridType.Empty && pair.Key.socketState[(int)pair.Value] == GridSquare.SocketState.Input;
+			});
+	}
+
+
+	public void Ping() {
+		Debug.Log("PING! " + squares.Count);
+		//Gather all inputs and outputs on this state.
+		List<KeyValuePair<GridSquare, GridSquare.GridDirection>> inputs = GetInputSockets();
+		List<KeyValuePair<GridSquare, GridSquare.GridDirection>> outputs = GetOutputSockets();
+
+		//Update line color and components since there may have been a change.
+		if (inputs.Count > 1 || outputs.Count > 1)
+			Debug.Log("We have a line here with more than one kind of  socketstate(input/output)");
+		else {
+			if (inputs.Count == 1 && outputs.Count > 0) {
+				//This line is inputting into this component, so we need to notify it of a change
+				inputs[0].Key.component.CheckOutput();
+			}
+			Color32 tempColor = ((outputs.Count == 1) ? outputs[0].Key.component.GetOutput().color : (Color32)Color.white);
+			//If the color is different update all of our line sections
+			if (tempColor.Equals(color) == false) {
+				foreach (KeyValuePair<GridSquare, GridSquare.GridDirection> pair in squares)
+					pair.Key.sprites.lines[(int)(pair.Value)].color = tempColor;
+				color = tempColor;
+			}
+		}
+	}
+
+
+
+	/*
 	/// <summary>
 	/// Adds a square to this line. Manages if there is another line on the square.
 	/// </summary>
 	/// <param name="square"></param>
 	public void Add(GridSquare square) {
 		Debug.Log("Add Called " + square.gameObject.name + " |" + square.lines.Count);
+		if (lineNodes.Contains(square)) {
+			Debug.Log("We already have this node on our list.");
+			return;
+		}
 		if (square.type == GridSquare.GridType.Empty && square.lines.Count > 0) {
 			//If we are trying to connect onto the tip of the line we can join them
 			if (square.lines.Count > 1)
 				Debug.LogError("An empty grid square has more than one line! This will break everything!");
+			else if (square.lines.Count == 1)
+				Debug.Log("We are adding onto a square with just one line already there");
 
 			if (square.lines[0].IsTip(square)) {
 				Debug.Log("We have decided to Join Lines");
@@ -61,6 +120,10 @@ public class GridLine {
 	/// </summary>
 	/// <param name="other"></param>
 	public void JoinLines(GridLine other) {
+		if (lineNodes.Count < 1) {
+			Debug.Log("Join failed because we are an empty line.");
+			return;
+		}
 		GridSquare currentLastSquare = lineNodes.Last.Value;
 		//Since each line has to start at a component we know that the last is were we need to start adding.
 		LinkedListNode<GridSquare> current = other.lineNodes.Last;
@@ -114,6 +177,11 @@ public class GridLine {
 			GridSquare.AreNeighbors(breakPoint, newLine.lineNodes.Last.Value, out dir2);
 			breakPoint.sprites.StartCoroutine(breakPoint.sprites.RemoveLineInDirection(dir1, breakPoint));
 			breakPoint.sprites.StartCoroutine(breakPoint.sprites.RemoveLineInDirection(dir2, breakPoint));
+
+			if (newLine.lineNodes.Count < 2)
+				newLine.DestroyLine();
+			if (lineNodes.Count < 2)
+				DestroyLine();
 			return newLine;
 		}
 		else {
@@ -140,6 +208,10 @@ public class GridLine {
 
 			breakPoint.sprites.StartCoroutine(breakPoint.sprites.RemoveLine(toRemove));
 		}
+
+		if (lineNodes.Count < 2)
+			DestroyLine();
+
 		return null;
 	}
 
@@ -164,6 +236,7 @@ public class GridLine {
 		return lineNodes.First.Value.type != GridSquare.GridType.Empty || lineNodes.Last.Value.type != GridSquare.GridType.Empty;
 	}
 
+
 	/// <summary>
 	/// Removes the last node on this line
 	/// </summary>
@@ -176,8 +249,8 @@ public class GridLine {
 		lineNodes.RemoveLast();
 
 		return ret;
-	}
-
+	}*/
+	/*
 	public void DestroyLine() {
 		if (lineNodes.Count < 1) {
 			Debug.Log("Destroying Empty Line!");
@@ -196,8 +269,9 @@ public class GridLine {
 		// used removed to handle visuals
 		removed.First.Value.sprites.StartCoroutine(removed.First.Value.sprites.RemoveLine(removed));
 
-	}
+	}*/
 
+	/*
 	/// <summary>
 	/// Checks our two endpoints for a component and set our color to the output.
 	/// </summary>
@@ -249,7 +323,8 @@ public class GridLine {
 				lineNodes.Last.Value.component.CheckOutput();
 			}
 		}
-	}
+	}*/
+
 	#endregion
 	#endregion
 	/*

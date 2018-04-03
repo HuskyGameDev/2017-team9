@@ -86,17 +86,11 @@ namespace AllTheColorsOfTheWind {
 			//Signal all output connections that we have changed our data.
 			//For each of our squares lines
 
-			foreach (GridLine line in square.GetLinesOnSocketState(GridSquare.SocketState.Output)) {
-				//If this line is connecting two components
-				if (line.IsComplete()) {
-					//Check which one we are
-					if (line.lineNodes.First.Value == this.square) {
-						//And update the other one.
-						line.lineNodes.Last.Value.component.CheckOutput();
-					}
-					else {
-						//And update the other one.
-						line.lineNodes.First.Value.component.CheckOutput();
+			for (int i = 0; i < square.socketState.Length; i++) {
+				if (square.socketState[i] == GridSquare.SocketState.Output && square.lines[i] != null) {
+					List<KeyValuePair<GridSquare, GridSquare.GridDirection>> inputSockets = square.lines[i].GetInputSockets();
+					foreach(KeyValuePair<GridSquare, GridSquare.GridDirection> pair in inputSockets) {
+						pair.Key.component.CheckOutput();
 					}
 				}
 			}
@@ -108,18 +102,12 @@ namespace AllTheColorsOfTheWind {
 		public void GetInput() {
 			//Set our inputs to blank
 			inputs = new List<ColorBit>();
-			foreach (GridLine line in square.GetLinesOnSocketState(GridSquare.SocketState.Input)) {
-				//If this line is connecting two components
-				if (line.IsComplete()) {
-					//Check which one we are
-					if (line.lineNodes.First.Value == this.square) {
-						//And update the other one.
-						inputs.Add(line.lineNodes.Last.Value.component.GetOutput());
-					}
-					else {
-						//And update the other one.
-						inputs.Add(line.lineNodes.First.Value.component.GetOutput());
 
+			for (int i = 0; i < square.socketState.Length; i++) {
+				if (square.socketState[i] == GridSquare.SocketState.Input && square.lines[i] != null) {
+					List<KeyValuePair<GridSquare, GridSquare.GridDirection>> outputSockets = square.lines[i].GetOutputSockets();
+					foreach (KeyValuePair<GridSquare, GridSquare.GridDirection> pair in outputSockets) {
+						inputs.Add(pair.Key.component.GetOutput());
 					}
 				}
 			}

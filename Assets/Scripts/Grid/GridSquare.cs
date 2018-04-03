@@ -43,7 +43,7 @@ public class GridSquare : MonoBehaviour {
 	/// <summary>
 	/// The states a socket can be in
 	/// </summary>
-	public enum SocketState { None, Line, Input, Output}
+	public enum SocketState {None, Line, Input, Output}
 
 	/// <summary>
 	/// The states for each socket direction
@@ -57,164 +57,14 @@ public class GridSquare : MonoBehaviour {
 	/// <summary>
 	/// The GridLine that is on this square.
 	/// </summary>
-	public List<GridLine> lines = new List<GridLine>();
+	//public List<GridLine> lines = new List<GridLine>();
+	public GridLine[] lines = new GridLine[4];
 
 
 	/// <summary>
 	/// The puzzle that this square exists on
 	/// </summary>
 	public GridPuzzle puzzle;
-
-
-	/// <summary>
-	/// Creates a connection between two grid squares along the given direction with the specified line. A(->dir->)B.
-	/// Also handles any issues we have with other lines on the square.
-	/// Does not check if it is a valid connection.
-	/// </summary>
-	/// <param name="direction"></param>
-	/// <param name="A"></param>
-	/// <param name="B"></param>
-	/// <param name="newLine"></param>
-	/// <returns></returns>
-	/*public bool Connect(GridDirection direction, GridLine newLine) {
-		return false;
-		
-		if (neighbors[(int)direction] == null) {
-			Debug.Log("Connect failed");
-			return false;
-		}
-
-		if (neighbors[(int)direction].type == GridType.Empty) {
-			int similarLines = 0;
-			int otherLines = 0;
-			for (int i = 0; i < neighbors[(int)direction].line.Length; i++) {
-				if (neighbors[(int)direction].line[i] == newLine)
-					similarLines++;
-				else if (neighbors[(int)direction].line[i] != null)
-					otherLines++;
-			}
-			//If there is a single other type of line, or more than one other of use, remove all lines.
-			//this lets us reconnect a broken line
-			if (otherLines > 0 || similarLines > 1) {
-				//Break all the connections.
-				for (int i = 0; i < neighbors[(int)direction].line.Length; i++) {
-					neighbors[(int)direction].BreakConnection((GridDirection)i);
-				}
-			}
-		}
-		line[(int)direction] = newLine;
-		neighbors[(int)direction].line[(int)oppositeDirection[(int)direction]] = newLine;
-		newLine.Add(this, direction);
-		newLine.Add(neighbors[(int)direction], oppositeDirection[(int)direction]);
-		newLine.PingLine();
-
-		return true;
-
-		/*
-		//If we are trying to connect two non neighbors, we just abort!
-		{
-			GridDirection tdir;
-			if (GridSquare.AreNeighbors(A, B, out tdir) == false) {
-				Debug.LogError("Attempt to connect with non neightbors!");
-				
-				return false;
-			}
-		}
-
-		if (B.type == GridType.Unusable) {
-			Debug.Log("X->Unusable");
-			//We can not use one of  these grid squares
-			return false;
-		}
-
-		//First we need to see how many connections already exist on these squares. We take a count as well as track the line that exists on it.
-		int countB = 0;
-		GridLine foundB = null;
-		for (int i = 0; i < A.line.Length; i++) {
-			if (B.line[i] != null) {
-				countB++;
-				foundB = B.line[i];
-			}
-		}
-
-
-		if (B.type == GridType.Empty) {
-			Debug.Log("X->Empty");
-			//This has three cases. We have looped back onto ourselves. We have collided with another line, or everything is fine
-
-			if (countB > 0 && foundB == newLine) {
-				//The case we have wrapped back on ourselves
-				//So we need to trim the line.
-				newLine.TrimInclusive(B);
-				//Substitute A for what is left in the line.
-				GridSquare sub = newLine.lineSegments.Last.Value.square;
-				//Figure out the new connection direction
-				GridSquare.GridDirection newDirection;
-				if (GridSquare.AreNeighbors(sub, B, out newDirection) == false) {
-					//If they are not neigbors, something has gone wrong and we need to abort.
-					newLine.DeleteFromGrid();
-					return false;
-				}
-				//Make the connection.
-				//We know know the new connection to be made, so lets do it.
-				sub.line[(int)newDirection] = newLine;
-				B.line[(int)GridSquare.oppositeDirection[(int)newDirection]] = newLine;
-			}
-			else {
-				//If we have encountered another line, it needs to get removed.
-				if (countB > 0) {
-					//Remove it
-					for (int i = 0; i < B.line.Length; i++) {
-						if (B.line[i].DeletionFlag == false)
-							B.line[i].DeleteFromGrid();
-					}
-				}
-
-				//Now we can just make the connection like normal!
-				A.line[(int)direction] = newLine;
-				B.line[(int)GridSquare.oppositeDirection[(int)direction]] = newLine;
-			}
-		}
-		else if (B.type != GridType.Empty) {
-			Debug.Log("X->Socket");
-			//So know we know the endpoint is a socket, so we just need to make sure there is one
-			if (B.socketState[(int)GridSquare.oppositeDirection[(int)direction]] == GridSquare.SocketState.Input || B.socketState[(int)GridSquare.oppositeDirection[(int)direction]] == GridSquare.SocketState.Output) {
-			//if (B.socketState[(int)GridSquare.oppositeDirection[(int)direction]] != GridSquare.SocketState.None) { 
-				//If there is, we can just make the connection!
-				//Implicitly, for us to have made it this far into a connection with a socket, any line that could have existed in this spot has been trimmed.
-				//so we can just make the connection!
-				A.line[(int)direction] = newLine;
-				B.line[(int)GridSquare.oppositeDirection[(int)direction]] = newLine;				
-			}
-			else {
-				Debug.Log("Socket Connection Failed");
-				return false;
-			}
-		}
-
-		//If it has a dataComponent, notify it that it is on a line
-		if (B.dataComponent != null)
-			B.dataComponent.ConnectionChange();
-		return true;
-}
-
-public void BreakConnection(GridDirection direction) {
-	if (line[(int)direction] != null) {
-		line[(int)direction].Remove(this, direction);
-		line[(int)direction] = null;
-		if (sprites.lines[(int)direction].sprite != null)
-			StartCoroutine(sprites.RemoveLineInDirection(direction, this));//Remove visuals on the grid
-	}
-
-	GridDirection opp = oppositeDirection[(int)direction];
-	if (neighbors[(int)direction] != null && neighbors[(int)direction].line[(int)opp] != null) {
-		neighbors[(int)direction].line[(int)opp].Remove(neighbors[(int)direction], opp);
-		neighbors[(int)direction].line[(int)opp] = null;
-	}
-}*/
-
-
-
 
 	/// <summary>
 	/// Checks if you can make a connection on this square on the given direction
@@ -226,41 +76,94 @@ public void BreakConnection(GridDirection direction) {
 	}
 
 	/// <summary>
-	/// Figures out which direction the line continues. Returns false if this is on the end of a line.
+	/// Removes all lines in the line data structure
 	/// </summary>
-	/// <param name="lineToCheck"></param>
-	/// <param name="returnValue"></param>
-	/// <returns></returns>
-	public bool GetLineDirection(GridLine lineToCheck, out GridDirection returnValue) {
-		returnValue = GridDirection.Down;
-		//We can only check on lines that we are conencted to.
-		if (lines.Contains(lineToCheck) == false)
-			return false;
-
-		LinkedListNode<GridSquare> ourNode = lineToCheck.lineNodes.Find(this);
-		//If we are at the end of the line we do not have a direction yet
-		if (ourNode == null || ourNode.Next == null)
-			return false;
-
-		return AreNeighbors(this, ourNode.Next.Value, out returnValue);
+	public void ClearLines() {
+		for (int i = 0; i < lines.Length; i++)
+			if (lines[i] != null)
+				ClearSingleLine((GridDirection)i);
 	}
 
 	/// <summary>
-	/// Get all lines that fall on a specified socket state
+	/// Removes a line in the current direction
 	/// </summary>
-	/// <param name="state"></param>
-	/// <returns></returns>
-	public List<GridLine> GetLinesOnSocketState(SocketState state) {
-		List<GridLine> foundLines = new List<GridLine>();
-		foreach (GridLine line in lines) {
-			GridDirection dir;
-			GetLineDirection(line, out dir);
-			if (socketState[(int)dir] == state)
-				foundLines.Add(line);
-		}
-		return foundLines;
+	/// <param name="dir"></param>
+	public void ClearSingleLine(GridDirection dir) {
+		if (lines[(int)dir] == null)
+			return;
+
+		//Store the lines for modification later
+		GridLine tempLine;
+		tempLine = lines[(int)dir];
+
+		lines[(int)dir] = null;
+		neighbors[(int)dir].lines[(int)oppositeDirection[(int)dir]] = null;
+
+
+		lines[(int)dir] = null;
+		neighbors[(int)dir].lines[(int)oppositeDirection[(int)dir]] = null;
+
+		tempLine.Remove(this, dir);
+		tempLine.Remove(neighbors[(int)dir], oppositeDirection[(int)dir]);
+
+
+		//So for clearing a line we need to do something special
+		//If we are clearing a line in a direction that belongs to a component then we have it shrink out of the component
+		//[TODO] There is a visual bug that must be accounted for here. If you are backing down the very last point of this line the visuals will break
+		if (neighbors[(int)dir].type != GridType.Empty)
+			sprites.StartCoroutine(sprites.RemoveLineInDirection(oppositeDirection[(int)dir], neighbors[(int)dir], tempLine));
+		else
+			sprites.StartCoroutine(sprites.RemoveLineInDirection(dir, this, tempLine));
 	}
 
+	/// <summary>
+	/// Adds a line to this node.
+	/// </summary>
+	/// <param name="dir"></param>
+	/// <param name="line"></param>
+	public void AddLine(GridDirection dir, GridLine line) {
+		//[TODO] Update color and components if need be
+		lines[(int)dir] = line;
+		neighbors[(int)dir].lines[(int)oppositeDirection[(int)dir]] = line;
+
+		line.Add(this, dir);
+		line.Add(neighbors[(int)dir], oppositeDirection[(int)dir]);
+
+		sprites.StartCoroutine(sprites.DrawLineInDirection(dir, this, line));
+	}
+
+	/// <summary>
+	/// Checks if a line is on this square
+	/// </summary>
+	/// <param name="line"></param>
+	public bool HasLine(GridLine line) {
+		for (int i = 0; i < lines.Length; i++) {
+			if (lines[i] == line)
+				return true;
+		}
+		return false;
+	}
+
+	/// <summary>
+	/// Returnes the number of lines and unique lines on this node
+	/// </summary>
+	/// <returns>Total,Unique</returns>
+	public int[] CountLines() {
+		int totalLines = 0;
+		int uniqueLines = 0;
+
+		List<GridLine> foundLine = new List<GridLine>();
+		for (int i = 0; i < lines.Length; i++) {
+			if (lines[i] != null) {
+				totalLines++;
+				if (foundLine.Contains(lines[i]) == false) {
+					foundLine.Add(lines[i]);
+					uniqueLines++;
+				}
+			}
+		}
+		return new int[] {totalLines, uniqueLines};
+	}
 
 	/// <summary>
 	/// Static method that checks if two Squares are neighbors. Returns the dirction of A->B.
