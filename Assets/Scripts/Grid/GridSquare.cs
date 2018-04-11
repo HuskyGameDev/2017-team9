@@ -58,7 +58,7 @@ public class GridSquare : MonoBehaviour {
 	/// The GridLine that is on this square.
 	/// </summary>
 	//public List<GridLine> lines = new List<GridLine>();
-	public GridLine[] lines = new GridLine[4];
+	public LineHint[] lines = new LineHint[4];
 
 
 	/// <summary>
@@ -79,16 +79,52 @@ public class GridSquare : MonoBehaviour {
 	/// Removes all lines in the line data structure
 	/// </summary>
 	public void ClearLines() {
-		for (int i = 0; i < lines.Length; i++)
-			if (lines[i] != null)
+		for (int i = 0; i < lines.Length; i++) {
+			if (lines[i] != null) {
 				ClearSingleLine((GridDirection)i);
+			}
+		}
 	}
 
 	/// <summary>
-	/// Removes a line in the current direction
+	/// Removes a line on this square in the current direction
 	/// </summary>
 	/// <param name="dir"></param>
 	public void ClearSingleLine(GridDirection dir) {
+		if (lines[(int)dir] == null)
+			return;
+		//Get this current edge.
+		GridSquare other = neighbors[(int)dir];
+		GridDirection otherDirection = oppositeDirection[(int)dir];
+		LineHint hint = lines[(int)dir];
+
+		//Clear this connection
+		lines[(int)dir] = null;
+		other.lines[(int)otherDirection] = null;
+		//[TODO] Play removal animation here.
+		/* This is how I was doing it before
+		if (neighbors[(int)dir].type != GridType.Empty)
+			sprites.StartCoroutine(sprites.RemoveLineInDirection(oppositeDirection[(int)dir], neighbors[(int)dir], tempLine));
+		else
+			sprites.StartCoroutine(sprites.RemoveLineInDirection(dir, this, tempLine));
+		*/
+		sprites.StartCoroutine(sprites.RemoveLineInDirection(dir, this));
+
+
+
+
+		//We branch based on if it is a component or not
+		if (other.type == GridType.Empty) {
+			//Now that we know our edge, we need to see if this line continues and If it does call Update line on that line
+			for (int i = 0; i < other.lines.Length; i++) {
+				if (other.lines[i] == hint) {
+					Debug.Log("Updating Orphaned Line.");
+					other.UpdateLine((GridDirection)i);
+				}
+			}
+		}
+
+		/*
 		if (lines[(int)dir] == null)
 			return;
 
@@ -113,7 +149,78 @@ public class GridSquare : MonoBehaviour {
 		if (neighbors[(int)dir].type != GridType.Empty)
 			sprites.StartCoroutine(sprites.RemoveLineInDirection(oppositeDirection[(int)dir], neighbors[(int)dir], tempLine));
 		else
-			sprites.StartCoroutine(sprites.RemoveLineInDirection(dir, this, tempLine));
+			sprites.StartCoroutine(sprites.RemoveLineInDirection(dir, this, tempLine));*/
+	}
+
+	public LinkedList<KeyValuePair<GridSquare, GridDirection>> GetLine(GridDirection startDir) {
+		//Track a list of all sections of this line we have found
+		LinkedList<KeyValuePair<GridSquare, GridDirection>> foundList = new LinkedList<KeyValuePair<GridSquare, GridDirection>>();
+		//We treat the passed direction as the end point, so we will being 
+
+		GridSquare current = this;
+		GridDirection currentDirection = startDir;
+		int limiter = 0;
+		while (current != null && limiter < 10000) {
+			limiter++;
+			//Store the grid square on the other side.
+			GridSquare next = current.neighbors[(int)currentDirection];
+			GridDirection prevDirection = oppositeDirection[(int)currentDirection];
+			LineHint line = current.lines[(int)currentDirection];
+			//Add this edge to teh list
+			foundList.AddLast(new KeyValuePair<GridSquare, GridDirection>(current, currentDirection));
+			foundList.AddLast(new KeyValuePair<GridSquare, GridDirection>(next, prevDirection));
+			current = null; //We have to set it to null here to make sure that the loop will end
+			//Find the next direction to move on.
+			for (int i = 0; i < next.lines.Length; i++) {
+				if ((GridDirection)i == prevDirection) continue; //Dont fold back on ourselves
+				if (next.lines[i] == line) {
+					current = next;
+					currentDirection = (GridDirection)i;
+					break;
+				}
+			}
+		}
+		if (limiter >= 10000) {
+			Debug.Log("Hit Limit");
+			return null;
+		}
+		return foundList;
+	}
+
+
+	public void UpdateLine(GridDirection startDir) {
+		LinkedList<KeyValuePair<GridSquare, GridDirection>> foundList = GetLine(startDir);
+		if (foundList == null) return;
+
+		//Now we have the data structure for this line.
+		//If either end is a component with an output socket on the direction, we are that color
+		//Otherwise we are white.
+		//If we have a complete connection, we need to notify components with input sockets to change their output.
+		GridSquare first = foundList.First.Value.Key;
+		GridSquare last = foundList.Last.Value.Key;
+
+
+		Color32 color = Color.white;
+		if (first.type != GridType.Empty && first.socketState[(int)foundList.First.Value.Value] == SocketState.Output) {
+			//Debug.Log("Found a Color");
+			color = first.component.GetOutput().color;
+		}
+		if (last.type != GridType.Empty && last.socketState[(int)foundList.Last.Value.Value] == SocketState.Output) {
+			//Debug.Log("Found a Color");
+			color = last.component.GetOutput().color;
+		}
+
+		//Update the color of all found segements
+		foreach (KeyValuePair<GridSquare,GridDirection> pair in foundList) {
+			pair.Key.sprites.lines[(int)pair.Value].color = color;
+		}
+
+		if (first.type != GridType.Empty && last.type != GridType.Empty) {
+			//Notify the input sockets to update
+			first.component.CheckOutput();
+			last.component.CheckOutput();
+		}
+
 	}
 
 	/// <summary>
@@ -121,25 +228,29 @@ public class GridSquare : MonoBehaviour {
 	/// </summary>
 	/// <param name="dir"></param>
 	/// <param name="line"></param>
-	public void AddLine(GridDirection dir, GridLine line) {
-		Debug.Log("AddLine Called");
+	public void AddLine(GridDirection dir, LineHint line) {
+		//Check other.
+		GridSquare other = neighbors[(int)dir];
+		if (other == null) //We cannot add in a direction we cannot go
+			return;
+		if (other.type == GridType.Empty)
+			other.ClearLines();
+		else
+			other.ClearSingleLine(oppositeDirection[(int)dir]);
+
+		//Create our connection
 		lines[(int)dir] = line;
 		neighbors[(int)dir].lines[(int)oppositeDirection[(int)dir]] = line;
 
-		line.Add(this, dir);
-		line.Add(neighbors[(int)dir], oppositeDirection[(int)dir]);
-
-		Debug.Log("About to update color!");
-		line.UpdateColor(null);
-
-		sprites.StartCoroutine(sprites.DrawLineInDirection(dir, this, line));
+		//Start the coroutine
+		sprites.StartCoroutine(sprites.DrawLineInDirection(dir, this));
 	}
 
 	/// <summary>
 	/// Checks if a line is on this square
 	/// </summary>
 	/// <param name="line"></param>
-	public bool HasLine(GridLine line) {
+	public bool HasLine(LineHint line) {
 		for (int i = 0; i < lines.Length; i++) {
 			if (lines[i] == line)
 				return true;
@@ -155,7 +266,7 @@ public class GridSquare : MonoBehaviour {
 		int totalLines = 0;
 		int uniqueLines = 0;
 
-		List<GridLine> foundLine = new List<GridLine>();
+		List<LineHint> foundLine = new List<LineHint>();
 		for (int i = 0; i < lines.Length; i++) {
 			if (lines[i] != null) {
 				totalLines++;
@@ -285,4 +396,6 @@ public class GridSquare : MonoBehaviour {
 
 		sprites.UpdateVisuals();
 	}
+
+	public class LineHint { }
 }

@@ -82,17 +82,17 @@ public class GridSpriteVisuals : MonoBehaviour {
 
 	}
 
-	public IEnumerator DrawLineInDirection(GridSquare.GridDirection dir, GridSquare a, GridLine line) {
+	public IEnumerator DrawLineInDirection(GridSquare.GridDirection dir, GridSquare a) {
 		GridSquare b = a.neighbors[(int)dir];
 		b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]].sprite = null;
 		yield return a.sprites.StartCoroutine(AnimFromResources(a.sprites.lines[(int)dir], Anim_InToOut, 33, true, lineAnimSpeed));
 		yield return b.sprites.StartCoroutine(AnimFromResources(b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]], Anim_OutToIn, 33, true, lineAnimSpeed));
 
-		line.Ping();
+		b.UpdateLine(GridSquare.oppositeDirection[(int)dir]);
 	}
 
 
-	public IEnumerator RemoveLineInDirection(GridSquare.GridDirection dir, GridSquare a, GridLine line) {
+	public IEnumerator RemoveLineInDirection(GridSquare.GridDirection dir, GridSquare a) {
 		
 		yield return a.sprites.StartCoroutine(AnimFromResources(a.sprites.lines[(int)dir], Anim_OutToIn, 33, false, lineAnimSpeed));
 		a.sprites.lines[(int)dir].sprite = null;
@@ -105,8 +105,6 @@ public class GridSpriteVisuals : MonoBehaviour {
 
 		yield return b.sprites.StartCoroutine(AnimFromResources(b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]], Anim_InToOut, 33, false, lineAnimSpeed));
 		b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]].sprite = null;
-
-		line.Ping();
 	}
 
 

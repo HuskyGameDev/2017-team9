@@ -88,9 +88,15 @@ namespace AllTheColorsOfTheWind {
 
 			for (int i = 0; i < square.socketState.Length; i++) {
 				if (square.socketState[i] == GridSquare.SocketState.Output && square.lines[i] != null) {
-					List<KeyValuePair<GridSquare, GridSquare.GridDirection>> inputSockets = square.lines[i].GetInputSockets();
-					foreach(KeyValuePair<GridSquare, GridSquare.GridDirection> pair in inputSockets) {
-						pair.Key.component.CheckOutput();
+					//get the line flowing from this direction
+					LinkedList<KeyValuePair<GridSquare, GridSquare.GridDirection>> foundLine = this.square.GetLine((GridSquare.GridDirection)i);
+					//If it is a component
+					if (foundLine.Last.Value.Key.type != GridSquare.GridType.Empty) {
+						//And if it is not us and and on an input socket 
+						if (foundLine.Last.Value.Key != this.square && foundLine.Last.Value.Key.socketState[(int)foundLine.Last.Value.Value] == GridSquare.SocketState.Input) {
+							//Tell them to check their output
+							foundLine.Last.Value.Key.component.CheckOutput();
+						}
 					}
 				}
 			}
@@ -105,9 +111,15 @@ namespace AllTheColorsOfTheWind {
 
 			for (int i = 0; i < square.socketState.Length; i++) {
 				if (square.socketState[i] == GridSquare.SocketState.Input && square.lines[i] != null) {
-					List<KeyValuePair<GridSquare, GridSquare.GridDirection>> outputSockets = square.lines[i].GetOutputSockets();
-					foreach (KeyValuePair<GridSquare, GridSquare.GridDirection> pair in outputSockets) {
-						inputs.Add(pair.Key.component.GetOutput());
+					//get the line flowing from this direction
+					LinkedList<KeyValuePair<GridSquare, GridSquare.GridDirection>> foundLine = this.square.GetLine((GridSquare.GridDirection)i);
+					//If it is a component
+					if (foundLine.Last.Value.Key.type != GridSquare.GridType.Empty) {
+						//And if it is not us and and on an input socket 
+						if (foundLine.Last.Value.Key != this.square && foundLine.Last.Value.Key.socketState[(int)foundLine.Last.Value.Value] == GridSquare.SocketState.Output) {
+							//Tell them to check their output
+							inputs.Add(foundLine.Last.Value.Key.component.GetOutput());
+						}
 					}
 				}
 			}

@@ -76,6 +76,48 @@ public class GridLine {
 			color = tempColor;
 		}
 	}
+	/*
+	public void SplitOnSquare(GridSquare square, GridSquare.GridDirection dir) {
+		//Check if we go on in two different directions
+		List<KeyValuePair<GridSquare, GridSquare.GridDirection>> otherSide = new List<KeyValuePair<GridSquare, GridSquare.GridDirection>>();
+		//Starting with the node after dir, we follow that for as long as we can adding it to otherSide.
+		//We then remove everying from otherside and the passed stuff from our current list
+		//We make a new line using the otherSide information.
+
+		GridSquare currentSquare = square;
+		GridSquare.GridDirection currentDirection = dir;
+		while (true) {
+			otherSide.Add(new KeyValuePair<GridSquare, GridSquare.GridDirection>(currentSquare, currentDirection));
+			Remove(currentSquare, currentDirection);
+			GridSquare.GridDirection oppositeDirection = GridSquare.oppositeDirection[(int)dir];
+			GridSquare nextSquare = currentSquare.neighbors[(int)currentDirection];
+			if (nextSquare == null)
+				break;
+			if (nextSquare.lines[(int)oppositeDirection] == this) {
+				otherSide.Add(new KeyValuePair<GridSquare, GridSquare.GridDirection>(nextSquare, oppositeDirection));
+				Remove(nextSquare, oppositeDirection);
+			}
+			else
+				break;
+			//So now we have taken care of the opposite side of where we came from. Now we need to calculate were we are going
+			for (int i = 0; i < nextSquare.lines.Length; i++) {
+				if (nextSquare.lines[i] == this) {
+					currentSquare = nextSquare;
+					currentDirection = (GridSquare.GridDirection)i;
+					continue;
+				}
+			}
+			break;
+		}
+
+		GridLine newLine = new GridLine();
+		KeyValuePair<GridSquare, GridSquare.GridDirection> obj = squares.Find(delegate (KeyValuePair<GridSquare, GridSquare.GridDirection> pair) { return pair.Key == square && pair.Value == dir; });
+		otherSide.Remove(obj);
+		for (int i = 0; i < otherSide.Count; i++) {
+			otherSide[i].Key.AddLine(otherSide[i].Value, newLine);
+		}
+
+	}*/
 
 
 

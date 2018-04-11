@@ -7,7 +7,7 @@ public class GridMovementController : MonoBehaviour {
 	public enum GridMovementState { Unrestricted, Disabled }
 	public GridMovementState state = GridMovementState.Disabled;
 
-	public GridLine currentLine = null;
+	public GridSquare.LineHint currentLine = null;
 	public GridSquare currentSquare;
 	private PlayerControls player;
 	private bool firstUnrestrictedState = true;
@@ -47,8 +47,7 @@ public class GridMovementController : MonoBehaviour {
 			if (currentSquare.type != GridSquare.GridType.Empty) {
 				Debug.Log("Creating a new Line!");
 				//Whenever we are on a component, we can just make a new line.
-				GridLine newLine = new GridLine();
-				currentLine = newLine;
+				currentLine = new GridSquare.LineHint();
 			}
 			else {
 				if (currentSquare.CountLines()[0] < 1) {
@@ -102,6 +101,7 @@ public class GridMovementController : MonoBehaviour {
 					StartCoroutine(TransitionToNewSquare(movementDirection));
 				}
 				else {
+					Debug.Log("Fail move while trying to draw");
 					//[TODO]play movement failure animation
 				}
 			}
@@ -111,6 +111,7 @@ public class GridMovementController : MonoBehaviour {
 			if (GetMovementDirection(out movementDirection)) {
 				if (CheckLegalMovementBase(movementDirection)) {
 					//We are not trying to draw so we can just move
+					Debug.Log("Fail move");
 					StartCoroutine(TransitionToNewSquare(movementDirection));
 				}
 				else {
@@ -120,7 +121,7 @@ public class GridMovementController : MonoBehaviour {
 		}
 
 		firstUnrestrictedState = false;
-	}
+	}//End Unrestricted State
 
 	/// <summary>
 	/// Checks if there is a basic connection on the specified movement direction
@@ -190,7 +191,7 @@ public class GridMovementController : MonoBehaviour {
 					return false;
 			}
 		}
-
+		Debug.Log("Passed regular movement check.");
 		return true;
 	}
 
