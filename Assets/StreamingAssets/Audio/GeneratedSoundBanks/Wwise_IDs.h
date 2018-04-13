@@ -13,7 +13,19 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID BUTTON = 977454165U;
         static const AkUniqueID DOORCLOSE = 3638457343U;
+        static const AkUniqueID DOORLOCK = 2536181312U;
+        static const AkUniqueID DOOROPEN = 1404805401U;
+        static const AkUniqueID FAN = 1183803264U;
+        static const AkUniqueID FOOTSTEPS = 2385628198U;
+        static const AkUniqueID KEYBOARDS = 2080209293U;
+        static const AkUniqueID LINEEND = 3118278710U;
+        static const AkUniqueID LINESTART = 4004898589U;
+        static const AkUniqueID PHONE = 3104856687U;
+        static const AkUniqueID PUZZLECOMPLETE = 2628769756U;
+        static const AkUniqueID SLIDINGDOORCLOSE = 2462111035U;
+        static const AkUniqueID SLIDINGDOOROPEN = 3537518429U;
     } // namespace EVENTS
 
     namespace BANKS
