@@ -9,7 +9,7 @@ Material:
   m_Name: Lightbulbs
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
-  m_LightmapFlags: 2
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -73,4 +73,4 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.654902, g: 0.60784316, b: 0, a: 1}
-    - _EmissionColor: {r: 1.644, g: 1.5231175, b: 0, a: 1}
+    - _EmissionColor: {r: 2.542, g: 1.7293932, b: 0.66675407, a: 1}
