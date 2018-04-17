@@ -22,6 +22,7 @@ namespace AK
         static const AkUniqueID KEYBOARDS = 2080209293U;
         static const AkUniqueID LINEEND = 3118278710U;
         static const AkUniqueID LINESTART = 4004898589U;
+        static const AkUniqueID MUSIC_GAMEPLAY = 620878633U;
         static const AkUniqueID PHONE = 3104856687U;
         static const AkUniqueID PUZZLECOMPLETE = 2628769756U;
         static const AkUniqueID SLIDINGDOORCLOSE = 2462111035U;

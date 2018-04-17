@@ -11,6 +11,7 @@
 						<ObjectRef Name="Phone" ID="{FF1F23B9-70A6-436B-AE22-3C1A9537EF82}" WorkUnitID="{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="DoorClose" ID="{1C0D2D9D-3D65-4513-9C9C-EFE4F4A2DC32}" WorkUnitID="{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="DoorOpen" ID="{94DF6008-70AB-4590-AB82-3C1872C0F640}" WorkUnitID="{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Music_Gameplay" ID="{14E3F086-5365-45DA-BB0B-A7B9F5084468}" WorkUnitID="{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="LineStart" ID="{960773E0-3661-46C0-9209-5E2D4AD9B94D}" WorkUnitID="{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="Footsteps" ID="{12F53BAF-0721-4A2B-A3D4-18DCC768E1C3}" WorkUnitID="{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="Fan" ID="{47FAFA20-C7CD-4B4B-88C3-ECE347960BFA}" WorkUnitID="{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}" Filter="7" Origin="Manual"/>

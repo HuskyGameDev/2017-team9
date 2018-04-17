@@ -892,6 +892,53 @@
 						<Position Name="" ID="{A291B6CA-B03D-4793-95F0-F7B277B1B258}"/>
 					</PositioningInfo>
 				</ActorMixer>
+				<ActorMixer Name="Music" ID="{BC07F7C1-3218-495F-91C5-A73F0C698950}" ShortID="218247641">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5B0665EA-E1B1-40CB-9F7A-27B3F8040A9B}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{5AD32E1A-081C-4281-91BA-CFF1907098EF}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="Music Gameplay" ID="{1F856293-AEE1-43E2-BB20-ABF856EC808B}" ShortID="977784613">
+							<PropertyList>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="OverrideEffect" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>12</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5B0665EA-E1B1-40CB-9F7A-27B3F8040A9B}"/>
+								</Reference>
+								<Reference Name="Effect0" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+									<ObjectRef Name="Low_Pass_20KHz" ID="{830124FB-B9D5-4AE8-846E-E94A74652666}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{5AD32E1A-081C-4281-91BA-CFF1907098EF}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Ambience" ID="{A4E5865E-105F-466F-8D49-7CCD6DF35A7E}" ShortID="492501456">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.388949671772429"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.194474835886211"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Ambience.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Ambience" ID="{A4E5865E-105F-466F-8D49-7CCD6DF35A7E}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</ActorMixer>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>
