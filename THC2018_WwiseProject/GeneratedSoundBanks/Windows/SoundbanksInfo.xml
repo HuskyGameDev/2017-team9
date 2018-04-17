@@ -31,10 +31,12 @@
 				<Event Id="3118278710" Name="LineEnd" ObjectPath="\Events\Default Work Unit\LineEnd"/>
 				<Event Id="4004898589" Name="LineStart" ObjectPath="\Events\Default Work Unit\LineStart"/>
 				<Event Id="620878633" Name="Music_Gameplay" ObjectPath="\Events\Default Work Unit\Music_Gameplay"/>
+				<Event Id="339096882" Name="No_Menu" ObjectPath="\Events\Default Work Unit\No_Menu"/>
 				<Event Id="3104856687" Name="Phone" ObjectPath="\Events\Default Work Unit\Phone" MaxAttenuation="100.000000"/>
 				<Event Id="2628769756" Name="PuzzleComplete" ObjectPath="\Events\Default Work Unit\PuzzleComplete"/>
 				<Event Id="2462111035" Name="SlidingDoorClose" ObjectPath="\Events\Default Work Unit\SlidingDoorClose" MaxAttenuation="100.000000"/>
 				<Event Id="3537518429" Name="SlidingDoorOpen" ObjectPath="\Events\Default Work Unit\SlidingDoorOpen" MaxAttenuation="100.000000"/>
+				<Event Id="2047954648" Name="Yes_Menu" ObjectPath="\Events\Default Work Unit\Yes_Menu"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
 				<File Id="10328643" Language="SFX">
@@ -79,7 +81,7 @@
 				</File>
 				<File Id="492501456" Language="SFX">
 					<ShortName>Ambience.wav</ShortName>
-					<Path>SFX/Ambience_0DFEDC74.wem</Path>
+					<Path>SFX/Ambience_329B0799.wem</Path>
 				</File>
 				<File Id="591278847" Language="SFX">
 					<ShortName>FOOT-Walking on Cement01, jdmoths.wav</ShortName>
@@ -108,6 +110,14 @@
 				<File Id="780241240" Language="SFX">
 					<ShortName>Puzzle correct.wav</ShortName>
 					<Path>SFX/Puzzle correct_5C1EE05E.wem</Path>
+				</File>
+				<File Id="810866731" Language="SFX">
+					<ShortName>No.wav</ShortName>
+					<Path>SFX/No_E1825E92.wem</Path>
+				</File>
+				<File Id="821114391" Language="SFX">
+					<ShortName>Yes.wav</ShortName>
+					<Path>SFX/Yes_26D08764.wem</Path>
 				</File>
 				<File Id="822988725" Language="SFX">
 					<ShortName>Phone Ringing.wav</ShortName>

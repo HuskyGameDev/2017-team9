@@ -1,8 +1,10 @@
 Event	ID	Name			Wwise Object Path	Notes
+	339096882	No_Menu			\Default Work Unit\No_Menu	
 	620878633	Music_Gameplay			\Default Work Unit\Music_Gameplay	
 	977454165	Button			\Default Work Unit\Button	
 	1183803264	Fan			\Default Work Unit\Fan	
 	1404805401	DoorOpen			\Default Work Unit\DoorOpen	
+	2047954648	Yes_Menu			\Default Work Unit\Yes_Menu	
 	2080209293	Keyboards			\Default Work Unit\Keyboards	
 	2385628198	Footsteps			\Default Work Unit\Footsteps	
 	2462111035	SlidingDoorClose			\Default Work Unit\SlidingDoorClose	
@@ -28,7 +30,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	352866607	Keyboard Clicks 3	Y:\Documents\THC2018\THC2018_WwiseProject\.cache\Mac\SFX\Keyboard Clicks 3_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Keyboard Input\Keyboard Clicks 3		276144
 	362427333	FOOT-Walking on Cement01, jdmoths_04	Y:\Documents\THC2018\THC2018_WwiseProject\.cache\Mac\SFX\FOOT-Walking on Cement01, jdmoths_2BF86630.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Footsteps\FOOT-Walking on Cement01, jdmoths_04		69024
 	477707282	Keyboard Clicks 2	Y:\Documents\THC2018\THC2018_WwiseProject\.cache\Mac\SFX\Keyboard Clicks 2_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Keyboard Input\Keyboard Clicks 2		432144
-	492501456	Music Gameplay	Y:\Documents\THC2018\THC2018_WwiseProject\.cache\Mac\SFX\Ambience_0DFEDC74.wem		\Actor-Mixer Hierarchy\Default Work Unit\Music\Music Gameplay		10451844
+	492501456	Music Gameplay	Y:\Documents\THC2018\THC2018_WwiseProject\.cache\Mac\SFX\Ambience_329B0799.wem		\Actor-Mixer Hierarchy\Default Work Unit\Music\Music Gameplay		10451844
 	591278847	FOOT-Walking on Cement01, jdmoths_03	Y:\Documents\THC2018\THC2018_WwiseProject\.cache\Mac\SFX\FOOT-Walking on Cement01, jdmoths_AC1E1451.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Footsteps\FOOT-Walking on Cement01, jdmoths_03		67384
 	647000801	FOOT-Walking on Cement01, jdmoths	Y:\Documents\THC2018\THC2018_WwiseProject\.cache\Mac\SFX\FOOT-Walking on Cement01, jdmoths_00B974FE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Footsteps\FOOT-Walking on Cement01, jdmoths		78876
 	711063116	FOOT-Walking on Cement01, jdmoths_01	Y:\Documents\THC2018\THC2018_WwiseProject\.cache\Mac\SFX\FOOT-Walking on Cement01, jdmoths_2BF22D0D.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Footsteps\FOOT-Walking on Cement01, jdmoths_01		65740
@@ -36,6 +38,8 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	774160064	Computer Fan	Y:\Documents\THC2018\THC2018_WwiseProject\.cache\Mac\SFX\Computer Fan_AA788D75.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Computer Fan		3302848
 	779451080	Door Open	Y:\Documents\THC2018\THC2018_WwiseProject\.cache\Mac\SFX\Door Open_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Door Open		136144
 	780241240	Puzzle correct	Y:\Documents\THC2018\THC2018_WwiseProject\.cache\Mac\SFX\Puzzle correct_5C1EE05E.wem		\Actor-Mixer Hierarchy\Default Work Unit\Puzzle\Puzzle correct		538528
+	810866731	No	Y:\Documents\THC2018\THC2018_WwiseProject\.cache\Mac\SFX\No_E1825E92.wem		\Actor-Mixer Hierarchy\Default Work Unit\Menu\No		247488
+	821114391	Yes	Y:\Documents\THC2018\THC2018_WwiseProject\.cache\Mac\SFX\Yes_26D08764.wem		\Actor-Mixer Hierarchy\Default Work Unit\Menu\Yes		260612
 	822988725	Phone Ringing	Y:\Documents\THC2018\THC2018_WwiseProject\.cache\Mac\SFX\Phone Ringing_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Phone Ringing		2385950
 	851630794	FOOT-Walking on Cement01, jdmoths_02	Y:\Documents\THC2018\THC2018_WwiseProject\.cache\Mac\SFX\FOOT-Walking on Cement01, jdmoths_F2E4B2B1.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Footsteps\FOOT-Walking on Cement01, jdmoths_02		64100
 	852051534	Door Lock 3	Y:\Documents\THC2018\THC2018_WwiseProject\.cache\Mac\SFX\Door Lock 3_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Door Lock\Door Lock 3		163144

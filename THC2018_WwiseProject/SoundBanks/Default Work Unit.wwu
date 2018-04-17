@@ -12,12 +12,14 @@
 						<ObjectRef Name="DoorClose" ID="{1C0D2D9D-3D65-4513-9C9C-EFE4F4A2DC32}" WorkUnitID="{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="DoorOpen" ID="{94DF6008-70AB-4590-AB82-3C1872C0F640}" WorkUnitID="{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="Music_Gameplay" ID="{14E3F086-5365-45DA-BB0B-A7B9F5084468}" WorkUnitID="{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="No_Menu" ID="{715A264B-8E74-464F-A5B6-87D4A7381C0D}" WorkUnitID="{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="LineStart" ID="{960773E0-3661-46C0-9209-5E2D4AD9B94D}" WorkUnitID="{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="Footsteps" ID="{12F53BAF-0721-4A2B-A3D4-18DCC768E1C3}" WorkUnitID="{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="Fan" ID="{47FAFA20-C7CD-4B4B-88C3-ECE347960BFA}" WorkUnitID="{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="Button" ID="{490698D8-7F0B-4B97-AAF0-F6EE208AADBC}" WorkUnitID="{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="SlidingDoorOpen" ID="{31F93D3E-C1C4-4BB4-8576-532C033C5609}" WorkUnitID="{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="SlidingDoorClose" ID="{072147B9-A597-4D03-9FC2-6B5F905BAE86}" WorkUnitID="{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Yes_Menu" ID="{8641FA25-7F84-4E92-BBD7-F52CB9AD0385}" WorkUnitID="{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="PuzzleComplete" ID="{0974B435-4413-4ED0-979F-E8838BC24B28}" WorkUnitID="{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}" Filter="7" Origin="Manual"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>

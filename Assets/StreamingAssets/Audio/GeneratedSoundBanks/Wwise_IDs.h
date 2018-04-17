@@ -23,10 +23,12 @@ namespace AK
         static const AkUniqueID LINEEND = 3118278710U;
         static const AkUniqueID LINESTART = 4004898589U;
         static const AkUniqueID MUSIC_GAMEPLAY = 620878633U;
+        static const AkUniqueID NO_MENU = 339096882U;
         static const AkUniqueID PHONE = 3104856687U;
         static const AkUniqueID PUZZLECOMPLETE = 2628769756U;
         static const AkUniqueID SLIDINGDOORCLOSE = 2462111035U;
         static const AkUniqueID SLIDINGDOOROPEN = 3537518429U;
+        static const AkUniqueID YES_MENU = 2047954648U;
     } // namespace EVENTS
 
     namespace BANKS
