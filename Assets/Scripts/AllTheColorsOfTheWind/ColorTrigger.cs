@@ -9,7 +9,7 @@ namespace AllTheColorsOfTheWind {
 		/// The color on which the trigger method is called.
 		/// </summary>
 		public ColorBit triggerColor;
-		public bool triggered;
+		protected bool triggered;
 		#endregion
 
 		#region Methods
@@ -22,7 +22,7 @@ namespace AllTheColorsOfTheWind {
 			Debug.Log("Check Called | " + color + " | " + triggerColor);
 			if (triggerColor.Equals(color)) {
 				Trigger();
-				triggered = true;
+				//triggered = true;
 				return true;
 			}
 			return false;
@@ -37,7 +37,7 @@ namespace AllTheColorsOfTheWind {
 			//Debug.Log("CanUnTrigger Called: " + triggered);
 			if (triggered) {
 				Untrigger();
-				triggered = false;
+				//triggered = false;
 				return true;
 			} else {
 				return false;
@@ -55,23 +55,37 @@ namespace AllTheColorsOfTheWind {
 				return false;
 			} else {
 				Trigger();
-				triggered = true;
+				//triggered = true;
 				return true;
 				
 			}
+		}
+
+		/// <summary>
+		/// Tests if internal variable triggered is true
+		/// </summary>
+		/// <returns>true if triggered is true, else false</returns>
+		public bool GetTriggered() {
+			return triggered;
+		}
+
+		/// <summary>
+		/// Sets internal variable triggered to given boolean
+		/// </summary>
+		/// <returns>true if triggered is true, else false</returns>
+		public void SetTriggered(bool b) {
+			triggered = b;
 		}
 		#endregion
 
 		#region Abstract
 		/// <summary>
 		/// Code for what happens when the colors match.
-		/// If calling directly, must also set bool triggered to true.
 		/// </summary>
 		public abstract void Trigger();
 
 		/// <summary>
 		/// Undoes whatever Trigger does, if applicable.
-		/// If calling directly, must also set bool triggered to false.
 		/// </summary>
 		public abstract void Untrigger();
 		#endregion
