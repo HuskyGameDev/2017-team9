@@ -152,6 +152,51 @@ public class GridSquare : MonoBehaviour {
 			sprites.StartCoroutine(sprites.RemoveLineInDirection(dir, this, tempLine));*/
 	}
 
+
+	/// <summary>
+	/// Performs a series of checks on this grid square's state. Should be called whenever a line is drawn on this square.
+	/// </summary>
+	public void EnsureSquareIntegrity() {
+		//Basically, this is the runtime/gameplay version of validate square
+		//All line edges are complete
+		for (int i = 0; i < lines.Length; i++) {
+			if (lines [i] != null) {
+				//Make sure we have a complete edge
+				if (neighbors [i] != null) {
+					if (neighbors[i].lines[(int)oppositeDirection [i]] != lines [i]) {
+						//Remove Both
+						lines[i] = null;
+						neighbors[i].lines[(int)oppositeDirection[i]] = null;
+						//Ensure our neightbor
+						neighbors[i].EnsureSquareIntegrity();
+					} else {
+						//They match and we can do nothing
+					}
+				}
+			} 
+			else {
+				//Make sure that this edge is empty
+				if (neighbors[i] != null && neighbors[i].lines[(int)oppositeDirection[i]] != null) {
+					//Remove the reference
+					neighbors[i].lines[(int)oppositeDirection[i]] = null;
+					//Tell that one to update itself
+					neighbors[i].EnsureSquareIntegrity();
+				}                                            
+			}
+		}
+
+		//All visuals are fully drawn (Edges are ensured at this point for non null lines)
+		for (int i = 0; i < lines.Length; i++) {
+			if (lines[i] != null) {
+				//[TODO] Update the graphics on both sides of the edge to have full line sections.
+				string path = "Sprites/Grid/Line/OutToIn/Anim_OutToIn_1";
+				sprites.lines[i].sprite = Resources.Load<Sprite>(path);
+				neighbors[(int)oppositeDirection[i]].sprite = Resources.Load<Sprite>(path);
+				UpdateLine((GridDirection)i);
+			}
+		}
+	}
+
 	public LinkedList<KeyValuePair<GridSquare, GridDirection>> GetLine(GridDirection startDir) {
 		//Track a list of all sections of this line we have found
 		LinkedList<KeyValuePair<GridSquare, GridDirection>> foundList = new LinkedList<KeyValuePair<GridSquare, GridDirection>>();
@@ -238,6 +283,22 @@ public class GridSquare : MonoBehaviour {
 		else
 			other.ClearSingleLine(oppositeDirection[(int)dir]);
 
+		//Ensure that we are the correct color before we start drawing visuals
+		Color32 col = Color.white;
+		if (type != GridType.Empty) {
+			col = component.GetOutput().color;
+		}
+		else {
+			//Find were we came from and set our future part to that color
+			for (int i = 0; i < lines.Length; i++) {
+				if (lines[i] != null) {
+					col = neighbors[i].sprites.lines[(int)oppositeDirection[i]].color;
+				}
+			}
+		}
+
+		sprites.lines [(int)dir].color = col;
+		neighbors[(int)dir].sprites.lines[(int)oppositeDirection [(int)dir]] = col;
 		//Create our connection
 		lines[(int)dir] = line;
 		neighbors[(int)dir].lines[(int)oppositeDirection[(int)dir]] = line;

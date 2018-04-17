@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -88,7 +89,9 @@ public class GridSpriteVisuals : MonoBehaviour {
 		yield return a.sprites.StartCoroutine(AnimFromResources(a.sprites.lines[(int)dir], Anim_InToOut, 33, true, lineAnimSpeed));
 		yield return b.sprites.StartCoroutine(AnimFromResources(b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]], Anim_OutToIn, 33, true, lineAnimSpeed));
 
-		b.UpdateLine(GridSquare.oppositeDirection[(int)dir]);
+		a.EnsureSquareIntegrity();
+		b.EnsureSquareIntegrity();
+		//b.UpdateLine(GridSquare.oppositeDirection[(int)dir]);
 	}
 
 
@@ -105,6 +108,9 @@ public class GridSpriteVisuals : MonoBehaviour {
 
 		yield return b.sprites.StartCoroutine(AnimFromResources(b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]], Anim_InToOut, 33, false, lineAnimSpeed));
 		b.sprites.lines[(int)GridSquare.oppositeDirection[(int)dir]].sprite = null;
+
+		a.EnsureSquareIntegrity();
+		b.EnsureSquareIntegrity();
 	}
 
 
