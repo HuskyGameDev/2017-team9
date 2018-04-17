@@ -185,6 +185,48 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Music_Gameplay" ID="{14E3F086-5365-45DA-BB0B-A7B9F5084468}">
+					<ChildrenList>
+						<Action Name="" ID="{7BD91407-CD10-4BEB-82D8-328081A7CDAE}" ShortID="806080533">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Music Gameplay" ID="{1F856293-AEE1-43E2-BB20-ABF856EC808B}" WorkUnitID="{81EC2559-910B-4FFF-B407-91511DC95592}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Yes_Menu" ID="{8641FA25-7F84-4E92-BBD7-F52CB9AD0385}">
+					<ChildrenList>
+						<Action Name="" ID="{F111B121-E841-4C8C-B296-06808DCE8C36}" ShortID="790635142">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Yes" ID="{003D2388-F532-4841-A324-C5AF41810D0F}" WorkUnitID="{81EC2559-910B-4FFF-B407-91511DC95592}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="No_Menu" ID="{715A264B-8E74-464F-A5B6-87D4A7381C0D}">
+					<ChildrenList>
+						<Action Name="" ID="{848530A2-8D83-41B8-BB59-981873FF954A}" ShortID="804721011">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="No" ID="{E7AEC32D-E055-42D3-B196-6C8B4D5CF6F7}" WorkUnitID="{81EC2559-910B-4FFF-B407-91511DC95592}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

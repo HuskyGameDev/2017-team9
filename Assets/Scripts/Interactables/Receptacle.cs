@@ -26,7 +26,7 @@ public class Receptacle : Interactable {
 	/// </summary>
 	/// <returns>materials using those colors for generating visuals</returns>
 	private Material[] FindTriggerColors() {
-		if (triggers.Length < 1) {
+		if (triggers.Length < 1) {	// don't bother if there are no triggers
 			triggerColors = new ColorBit[0];
 			return new Material[0];
 		}
@@ -34,7 +34,7 @@ public class Receptacle : Interactable {
 		Material[] temp = new Material[triggers.Length];
 		ColorBit[] colorTemp = new ColorBit[triggers.Length];
 		int size = 1;
-		temp[0] = new Material(Shader.Find("Sprites/Diffuse"));
+		temp[0] = new Material(Shader.Find("Sprites/Default")); //"Sprites/Diffuse"));
 		temp[0].SetColor("_Color", triggers[0].triggerColor.color);
 		colorTemp[0] = triggers[0].triggerColor;
 
@@ -46,7 +46,7 @@ public class Receptacle : Interactable {
 				}
 			}
 			if (!exists) {
-				temp[size] = new Material(Shader.Find("Sprites/Diffuse"));
+				temp[size] = new Material(Shader.Find("Sprites/Default")); //"Sprites/Diffuse"));
 				temp[size].SetColor("_Color", triggers[i].triggerColor.color);
 				colorTemp[size] = triggers[i].triggerColor;
 				size += 1;
@@ -78,6 +78,7 @@ public class Receptacle : Interactable {
 				DestroyImmediate(this.transform.GetChild(i).gameObject, true);
 			}
 		}
+
 		Material[] triggerMaterials = FindTriggerColors();
 		triggerVisuals = new GameObject[triggerColors.Length, 4];
 
