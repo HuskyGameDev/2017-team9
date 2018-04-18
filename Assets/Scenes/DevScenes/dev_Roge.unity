@@ -1846,6 +1846,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4294967040
     nulled: 0
+  triggered: 0
 --- !u!54 &71447726
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7053,6 +7054,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4294902015
     nulled: 0
+  triggered: 0
 --- !u!54 &231865445
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8589,6 +8591,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4278255360
     nulled: 0
+  triggered: 0
 --- !u!54 &272604519
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8704,9 +8707,10 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 0
     nulled: 0
+  triggered: 0
   start: {x: 0, y: 0, z: 0}
   end: {x: 0, y: 0, z: -1.45}
-  slideTime: 0.1
+  slideTime: 1
 --- !u!54 &273970763
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8822,6 +8826,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4294967295
     nulled: 0
+  triggered: 0
 --- !u!54 &279039777
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10515,6 +10520,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4294901760
     nulled: 0
+  triggered: 0
 --- !u!54 &311382462
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11442,6 +11448,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4294967040
     nulled: 0
+  triggered: 0
 --- !u!54 &328604668
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11612,10 +11619,10 @@ MonoBehaviour:
   onSprite: {fileID: 21300000, guid: 24bf11c2a1938024cb55ae2de4bb84db, type: 3}
   pressed: 0
   triggers:
-  - {fileID: 780283775}
-  - {fileID: 611729901}
   - {fileID: 1061028834}
   - {fileID: 273970762}
+  - {fileID: 780283775}
+  - {fileID: 611729901}
 --- !u!1 &335400407
 GameObject:
   m_ObjectHideFlags: 0
@@ -13825,6 +13832,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4278190335
     nulled: 0
+  triggered: 0
 --- !u!54 &391616901
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22220,7 +22228,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 611729899}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 282063e841b122b4fae92d7950062ae6, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ccc4c5a76c1ebe4ba7de6b65b38c8c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   triggerColor:
@@ -22228,6 +22236,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 0
     nulled: 0
+  triggered: 0
 --- !u!54 &611729902
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -26146,6 +26155,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4278190335
     nulled: 0
+  triggered: 0
 --- !u!54 &772854536
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -26404,6 +26414,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 0
     nulled: 0
+  triggered: 0
 --- !u!54 &780283776
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -38472,7 +38483,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1061028833
 Transform:
   m_ObjectHideFlags: 0
@@ -38502,6 +38513,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 0
     nulled: 0
+  triggered: 0
 --- !u!54 &1061028835
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -52127,6 +52139,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4287269514
     nulled: 0
+  triggered: 0
 --- !u!54 &1469270209
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -55656,6 +55669,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4278255615
     nulled: 0
+  triggered: 0
 --- !u!54 &1577936784
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -56398,6 +56412,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4278190335
     nulled: 0
+  triggered: 0
 --- !u!54 &1588925616
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -57757,6 +57772,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4294901980
     nulled: 0
+  triggered: 0
 --- !u!54 &1642686265
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -64506,6 +64522,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4278190335
     nulled: 0
+  triggered: 0
 --- !u!54 &1867748603
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -73084,6 +73101,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4278190080
     nulled: 0
+  triggered: 0
 --- !u!54 &2127971095
 Rigidbody:
   m_ObjectHideFlags: 0

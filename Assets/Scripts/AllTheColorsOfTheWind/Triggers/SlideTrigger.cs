@@ -39,21 +39,25 @@ namespace AllTheColorsOfTheWind {
 			if (target == null) {
 				target = this.gameObject;
 			}
-			start.x = target.transform.position.x + start.x;
-			start.y = target.transform.position.y + start.y;
-			start.z = target.transform.position.z + start.z;
-			end.x = target.transform.position.x + end.x;
-			end.y = target.transform.position.y + end.y;
-			end.z = target.transform.position.z + end.z;
+			start = target.transform.position + start;
+			end = target.transform.position + end;
 		}
 
 		public override void Trigger() {
-			sliding = true;
+			if (sliding) {
+				counter = 1 - counter;
+			} else {
+				sliding = true;
+			}
 			triggered = true;
 		}
 
 		public override void Untrigger() {
-			sliding = true;
+			if (sliding) {
+				counter = 1 - counter;
+			} else {
+				sliding = true;
+			}
 			triggered = false;
 		}
 	}
