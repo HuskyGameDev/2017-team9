@@ -95,6 +95,8 @@ public class GridMovementController : MonoBehaviour {
 
 					currentSquare.AddLine(movementDirection, currentLine);
 					StartCoroutine(TransitionToNewSquare(movementDirection));
+					if (neighbor.type != GridSquare.GridType.Empty)
+						currentLine = new GridSquare.LineHint();
 				}
 				else if (CheckLegalBackDownLineMove(movementDirection, out neighbor)) {
 					currentSquare.ClearSingleLine(movementDirection);
