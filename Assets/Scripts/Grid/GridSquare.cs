@@ -189,9 +189,9 @@ public class GridSquare : MonoBehaviour {
 		for (int i = 0; i < lines.Length; i++) {
 			if (lines[i] != null) {
 				//[TODO] Update the graphics on both sides of the edge to have full line sections.
-				string path = "Sprites/Grid/Line/OutToIn/Anim_OutToIn_1";
-				sprites.lines[i].sprite = Resources.Load<Sprite>(path);
-				neighbors[(int)oppositeDirection[i]].sprite = Resources.Load<Sprite>(path);
+				string path = "Sprites/Grid/Line/OutToIn/Anim_InToOut_0";
+				//sprites.lines[i].sprite = Resources.Load<Sprite>(path);
+				//neighbors[i].sprites.lines[(int)oppositeDirection[i]].sprite = Resources.Load<Sprite>(path);
 				UpdateLine((GridDirection)i);
 			}
 		}
@@ -298,7 +298,7 @@ public class GridSquare : MonoBehaviour {
 		}
 
 		sprites.lines [(int)dir].color = col;
-		neighbors[(int)dir].sprites.lines[(int)oppositeDirection [(int)dir]] = col;
+		neighbors[(int)dir].sprites.lines[(int)oppositeDirection [(int)dir]].color = col;
 		//Create our connection
 		lines[(int)dir] = line;
 		neighbors[(int)dir].lines[(int)oppositeDirection[(int)dir]] = line;
