@@ -8,12 +8,17 @@ public struct ColorBit {
 	public ColorBit(Color32? color) {
 		this.nulled = (color == null);
 		if (nulled == false)
-			this.color = (Color32)color;
+			this.color = new Color32(color.Value.r, color.Value.g, color.Value.b, 255); //Create a color based on the passed one but with no transparency 
 		else
-			this.color = default(Color32);
+			this.color = new Color32(255,255,255,255); // Pure white is the default color.
 
 	}
 
+	/// <summary>
+	/// Override the Equals method to allow for comparision with Color32 and ColorBit
+	/// </summary>
+	/// <param name="obj"></param>
+	/// <returns></returns>
 	public override bool Equals(object obj) {
 		if (obj.GetType() == typeof(Color32)) {
 			Color32 c = (Color32)obj;
@@ -26,10 +31,19 @@ public struct ColorBit {
 		else
 			return false;
 	}
+	/// <summary>
+	/// Had to override the hashcode
+	/// </summary>
+	/// <returns></returns>
 	public override int GetHashCode() {
 		return base.GetHashCode();
 	}
+
+	/// <summary>
+	/// Ovveride the ToString to give out better information on this ColorBit 
+	/// </summary>
+	/// <returns></returns>
 	public override string ToString() {
-		return nulled.ToString() + " | (" + color.r + ", " + color.g + ", " + color.b + ")";
+		return "ColorBit: " + nulled.ToString() + " | (" + color.r + ", " + color.g + ", " + color.b + ")";
 	}
 }

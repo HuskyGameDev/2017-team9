@@ -92,10 +92,10 @@ public class PlayerControls : MonoBehaviour {
 	void Update () {
 
 		//This section allows the player to lock the camera and look around with the mouse
-		if (state == PlayerState.Freemove && InputManager.GetGameButton(InputManager.GameButton.CameraLock))
-			state = PlayerState.Freemove;// PlayerState.LockedWithMouse;
+		/*if (state == PlayerState.Freemove && InputManager.GetGameButton(InputManager.GameButton.CameraLock))
+			state = PlayerState.LockedWithMouse;// PlayerState.LockedWithMouse;
 		else if (state == PlayerState.LockedWithMouse && InputManager.GetGameButton(InputManager.GameButton.CameraLock) == false)
-			state = PlayerState.Freemove;
+			state = PlayerState.Freemove;*/
 
 		//Change over the cursor
 		if (state == PlayerState.LockedWithMouse) {
@@ -106,36 +106,6 @@ public class PlayerControls : MonoBehaviour {
 			cursor.Switch(cursor.defaultCursor);
 			Cursor.lockState = CursorLockMode.Locked;
 		}
-
-		/*
-		//Check if we need to switch to gridinteraction mode
-		if (state == PlayerState.LockedWithMouse) {
-			//If the player is in the right state, and they have clicked
-			if (InputManager.GetGameButtonDown(InputManager.GameButton.Interact1)) {
-				RaycastHit rayInfo;
-				//Ray, ray info out, max distance, ignoremask
-
-				Physics.Raycast(PlayerControls.instance.playerCamera.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition), out rayInfo, terminalInteractionDistance, ignoreMask);
-				if (rayInfo.collider != null && rayInfo.collider.gameObject.tag == "GridSquare") {
-					Debug.Log("Raycast on: " + rayInfo.collider.gameObject.name);
-
-					//Check if the think we are clicking on is part of a square.
-					//[TODO] Make this so that you can continue a half drawn line
-					GridSquare square = rayInfo.collider.gameObject.GetComponent<GridSquare>();
-					if (square != null && square.type != GridSquare.GridType.Empty) {
-						//If this puzzle is ok to edit
-						if (square.puzzle.editable) {
-							state = PlayerState.GridInteractionTransition;
-							gridSurfer.currentSquare = square;
-							gridSurfer.StartCoroutine("TransitionToGrid");
-						}
-					}
-				}
-			}
-		}*/
-
-
-
 		if (state == PlayerState.Freemove && InputManager.GetGameButtonDown(InputManager.GameButton.Interact1)) {
 			RaycastHit rayInfo;
 			//Ray, ray info out, max distance, ignoremask
@@ -159,11 +129,6 @@ public class PlayerControls : MonoBehaviour {
 				rayInfo.collider.gameObject.GetComponent<Interactable>().Interact();
 			}
 		}
-
-
-
-
-
 		//Check if we need to switch out of gridinteraction mode
 		if (state == PlayerState.GridInteraction) {
 			if (InputManager.GetGameButtonDown(InputManager.GameButton.Cancel) && gridMovementController.state != GridMovementController.GridMovementState.Disabled) {
@@ -172,7 +137,6 @@ public class PlayerControls : MonoBehaviour {
 				gridMovementController.StartCoroutine("TransitionToPlayer");
 			}
 		}
-
 	}
 
 	/// <summary>
