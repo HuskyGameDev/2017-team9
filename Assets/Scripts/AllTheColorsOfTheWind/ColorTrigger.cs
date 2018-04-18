@@ -9,7 +9,7 @@ namespace AllTheColorsOfTheWind {
 		/// The color on which the trigger method is called.
 		/// </summary>
 		public ColorBit triggerColor;
-		/*protected*/ public bool triggered = false;
+		protected bool triggered = false;
 		#endregion
 
 		#region Methods
