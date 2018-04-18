@@ -287,7 +287,7 @@ public class GridSquare : MonoBehaviour {
 			other.ClearSingleLine(oppositeDirection[(int)dir]);
 
 		//Ensure that we are the correct color before we start drawing visuals
-		Color32 col = Color.white;
+		Color32 col = sprites.lines[(int)dir].color;
 		if (type != GridType.Empty) {
 			col = component.GetOutput().color;
 		}
