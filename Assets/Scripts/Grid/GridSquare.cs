@@ -163,15 +163,20 @@ public class GridSquare : MonoBehaviour {
 			if (lines [i] != null) {
 				//Make sure we have a complete edge
 				if (neighbors [i] != null) {
-					if (neighbors[i].lines[(int)oppositeDirection [i]] != lines [i]) {
+					if (neighbors [i].lines [(int)oppositeDirection [i]] != lines [i]) {
+						//We both have lines, but they do not match!
 						//Remove Both
-						lines[i] = null;
-						neighbors[i].lines[(int)oppositeDirection[i]] = null;
+						lines [i] = null;
+						neighbors [i].lines [(int)oppositeDirection [i]] = null;
 						//Ensure our neightbor
-						neighbors[i].EnsureSquareIntegrity();
+						neighbors [i].EnsureSquareIntegrity ();
 					} else {
-						//They match and we can do nothing
+						//They match, Good! We get to do nothing.
 					}
+				} 
+				else {
+					//Our neighbors is null but ours is not, so we need to be null
+					lines[i] = null;
 				}
 			} 
 			else {
@@ -191,7 +196,7 @@ public class GridSquare : MonoBehaviour {
 				string path = "Sprites/Grid/Line/OutToIn/Anim_OutToIn_33";
 				sprites.lines[i].sprite = Resources.Load<Sprite>(path);
 				neighbors[i].sprites.lines[(int)oppositeDirection[i]].sprite = Resources.Load<Sprite>(path);
-				UpdateLine ((GridDirection)i);
+				UpdateLine((GridDirection)i);
 			} 
 			else {
 				string path = "Sprites/Grid/Line/OutToIn/Anim_OutToIn_0";
