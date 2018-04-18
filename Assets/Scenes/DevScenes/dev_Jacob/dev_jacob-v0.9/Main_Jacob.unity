@@ -2738,6 +2738,7 @@ GameObject:
   - component: {fileID: 127851083}
   - component: {fileID: 127851082}
   - component: {fileID: 127851081}
+  - component: {fileID: 127851085}
   m_Layer: 0
   m_Name: Button
   m_TagString: Interactable
@@ -2778,6 +2779,7 @@ MonoBehaviour:
   onSprite: {fileID: 21300000, guid: 24bf11c2a1938024cb55ae2de4bb84db, type: 3}
   pressed: 0
   triggers:
+  - {fileID: 127851085}
   - {fileID: 1140354374}
   - {fileID: 1308897111}
   - {fileID: 1353652567}
@@ -2836,6 +2838,25 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 127851079}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &127851085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 127851079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ab3392668fe1654687669ef8b798e7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerColor:
+    color:
+      serializedVersion: 2
+      rgba: 4283030051
+    nulled: 0
+  start: {x: 0, y: 0, z: 0}
+  end: {x: 0, y: 0, z: 0.5}
+  slideTime: 1
 --- !u!1 &139896332
 GameObject:
   m_ObjectHideFlags: 0
@@ -24775,7 +24796,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1353652566
 Transform:
   m_ObjectHideFlags: 0
