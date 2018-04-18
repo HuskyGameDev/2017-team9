@@ -188,11 +188,14 @@ public class GridSquare : MonoBehaviour {
 		//All visuals are fully drawn (Edges are ensured at this point for non null lines)
 		for (int i = 0; i < lines.Length; i++) {
 			if (lines[i] != null) {
-				//[TODO] Update the graphics on both sides of the edge to have full line sections.
-				string path = "Sprites/Grid/Line/OutToIn/Anim_InToOut_0";
-				//sprites.lines[i].sprite = Resources.Load<Sprite>(path);
-				//neighbors[i].sprites.lines[(int)oppositeDirection[i]].sprite = Resources.Load<Sprite>(path);
-				UpdateLine((GridDirection)i);
+				string path = "Sprites/Grid/Line/OutToIn/Anim_OutToIn_33";
+				sprites.lines[i].sprite = Resources.Load<Sprite>(path);
+				neighbors[i].sprites.lines[(int)oppositeDirection[i]].sprite = Resources.Load<Sprite>(path);
+				UpdateLine ((GridDirection)i);
+			} 
+			else {
+				string path = "Sprites/Grid/Line/OutToIn/Anim_OutToIn_0";
+				sprites.lines[i].sprite = Resources.Load<Sprite>(path);
 			}
 		}
 	}
