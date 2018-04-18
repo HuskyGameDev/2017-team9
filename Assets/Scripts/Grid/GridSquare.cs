@@ -190,7 +190,7 @@ public class GridSquare : MonoBehaviour {
 			}
 		}
 
-		//All visuals are fully drawn (Edges are ensured at this point for non null lines)
+		//Ensure all visuals are fully drawn (Edges are ensured at this point for non null lines)
 		for (int i = 0; i < lines.Length; i++) {
 			if (lines[i] != null) {
 				string path = "Sprites/Grid/Line/OutToIn/Anim_OutToIn_33";
@@ -201,6 +201,8 @@ public class GridSquare : MonoBehaviour {
 			else {
 				string path = "Sprites/Grid/Line/OutToIn/Anim_OutToIn_0";
 				sprites.lines[i].sprite = Resources.Load<Sprite>(path);
+				if (neighbors[i] != null)
+					neighbors[i].sprites.lines[(int)oppositeDirection[i]].sprite = Resources.Load<Sprite>(path);
 			}
 		}
 	}
