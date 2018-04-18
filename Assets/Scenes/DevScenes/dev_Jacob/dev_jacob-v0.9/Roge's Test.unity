@@ -7847,6 +7847,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114680269552839778, guid: ec2ddb6fbfec1994896397c2f9ff9673,
+        type: 2}
+      propertyPath: mouseSensitivity
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ec2ddb6fbfec1994896397c2f9ff9673, type: 2}
   m_IsPrefabParent: 0
@@ -19584,7 +19589,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1088609313
 Transform:
@@ -19666,9 +19671,9 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4283030051
     nulled: 0
-  start: {x: -24.08, y: 0.8374, z: -0.055}
-  end: {x: -24.08, y: 0.8374, z: -4.63}
-  slideTime: 0.01
+  start: {x: 0, y: 0, z: 0}
+  end: {x: 0, y: 0, z: -4.8}
+  slideTime: 1
 --- !u!1 &1096832213
 GameObject:
   m_ObjectHideFlags: 0
@@ -24813,7 +24818,7 @@ MonoBehaviour:
   triggerColor:
     color:
       serializedVersion: 2
-      rgba: 4283030051
+      rgba: 4278255360
     nulled: 0
 --- !u!1 &1357849977
 GameObject:
