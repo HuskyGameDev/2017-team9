@@ -2854,9 +2854,10 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4283030051
     nulled: 0
+  triggered: 0
   start: {x: 0, y: 0, z: 0}
-  end: {x: 0, y: 0, z: 0.5}
-  slideTime: 1
+  end: {x: 0, y: 0, z: 0.1}
+  slideTime: 2
 --- !u!1 &139896332
 GameObject:
   m_ObjectHideFlags: 0
@@ -5634,6 +5635,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4291116800
     nulled: 0
+  triggered: 0
 --- !u!1 &273593383
 GameObject:
   m_ObjectHideFlags: 0
@@ -9153,6 +9155,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4280771839
     nulled: 0
+  triggered: 0
   start: {x: 0, y: 0, z: 0}
   end: {x: 0, y: 0, z: -4.5}
   slideTime: 3.5
@@ -14343,6 +14346,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4280746239
     nulled: 0
+  triggered: 0
 --- !u!1 &818935353
 GameObject:
   m_ObjectHideFlags: 0
@@ -19681,6 +19685,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4283030051
     nulled: 0
+  triggered: 0
   start: {x: 0, y: 0, z: 0}
   end: {x: 0, y: 0, z: -4.63}
   slideTime: 3.5
@@ -20475,6 +20480,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4283030051
     nulled: 0
+  triggered: 0
 --- !u!1 &1140504303
 GameObject:
   m_ObjectHideFlags: 0
@@ -21011,6 +21017,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4281471465
     nulled: 0
+  triggered: 0
 --- !u!1 &1162966158
 GameObject:
   m_ObjectHideFlags: 0
@@ -23857,6 +23864,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4283030051
     nulled: 0
+  triggered: 0
 --- !u!1 &1309345309
 GameObject:
   m_ObjectHideFlags: 0
@@ -24830,6 +24838,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4283030051
     nulled: 0
+  triggered: 0
 --- !u!1 &1357849977
 GameObject:
   m_ObjectHideFlags: 0
@@ -26149,6 +26158,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4280771839
     nulled: 0
+  triggered: 0
   start: {x: 0, y: 0, z: 0}
   end: {x: 0, y: 0, z: -4.5}
   slideTime: 3.5
@@ -38360,6 +38370,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4282704154
     nulled: 0
+  triggered: 0
 --- !u!1 &2126309827
 GameObject:
   m_ObjectHideFlags: 0
