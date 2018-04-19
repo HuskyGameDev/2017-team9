@@ -31,32 +31,32 @@ public class Receptacle : Interactable {
 			return new Material[0];
 		}
 
-		Material[] temp = new Material[triggers.Length];
 		ColorBit[] colorTemp = new ColorBit[triggers.Length];
-		int size = 1;
-		temp[0] = new Material(Shader.Find("Sprites/Default")); //"Sprites/Diffuse"));
-		temp[0].SetColor("_Color", triggers[0].triggerColor.color);
-		colorTemp[0] = triggers[0].triggerColor;
-
-		for (int i = 1; i < triggers.Length; i++) {
+		int size = 0;
+	
+		for (int i = 0; i < triggers.Length; i++) {
 			bool exists = false;
 			for (int j = 0; j < size; j++) {
-				if (temp[j].color.Equals(triggers[i].triggerColor.color)) {
+				//Debug.Log("Comparing (" + temp[j].color.ToString() + ") and (" + triggers[i].triggerColor.color.ToString() + ")");
+				if (colorTemp[j].color.Equals(triggers[i].triggerColor.color)) {
 					exists = true;
+					//Debug.Log("This triggercolor was already added");
 				}
 			}
 			if (!exists) {
-				temp[size] = new Material(Shader.Find("Sprites/Default")); //"Sprites/Diffuse"));
-				temp[size].SetColor("_Color", triggers[i].triggerColor.color);
+				//Debug.Log("Adding trigger color" + triggers[i].triggerColor.ToString() + ", there are now " + size + " trigger colors");
 				colorTemp[size] = triggers[i].triggerColor;
 				size += 1;
 			}
 		}
-
+		//Debug.Log("there are " + size + "trigger colors total");
+	
+		// Size is one larger than actual number of colors
 		Material[] triggerMaterials = new Material[size];
 		triggerColors = new ColorBit[size];
 		for (int i = 0; i < size; i++) {
-			triggerMaterials[i] = temp[i];
+			triggerMaterials[i] = new Material(Shader.Find("Sprites/Default")); //"Sprites/Diffuse"));
+			triggerMaterials[i].SetColor("_Color", colorTemp[i].color);
 			triggerColors[i] = colorTemp[i];
 		}
 		return triggerMaterials;
