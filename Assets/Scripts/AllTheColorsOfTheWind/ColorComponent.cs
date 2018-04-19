@@ -69,15 +69,24 @@ namespace AllTheColorsOfTheWind {
 		}
 
 		public bool CheckOutput() {
-			Debug.Log("told to Check Output: " + GetString());
+			//Debug.Log("----------------------------------" + gameObject.name);
+			//Debug.Log("told to Check Output: " + GetString());
+			//Debug.Log("Current Output: " + cache.ToString());
 			GetInput();
 			ColorBit newResult = CalculateOutput();
 			if (newResult.Equals(cache) == false) {
-				Debug.Log("And I actually could! " + ((newResult.nulled) ? "Null" : newResult.ToString()));
+			//	Debug.Log("And I actually could! " + ((newResult.nulled) ? "Null" : newResult.ToString()));
 				//Update the result
 				cache = newResult;
+			//	Debug.Log("New Output: " + cache.ToString() + " | Updating connected components");
 				UpdateConnectedComponents();
+			//	Debug.Log("E----------------------------------" + gameObject.name);
+				//Update all the connected lines so they are the right color
+				square.UpdateAllLines();
 				return true;
+			}
+			else {
+			//	Debug.Log("Output was the same as before");
 			}
 			return false;
 		}
@@ -94,6 +103,7 @@ namespace AllTheColorsOfTheWind {
 					if (foundLine.Last.Value.Key.type != GridSquare.GridType.Empty) {
 						//And if it is not us and and on an input socket 
 						if (foundLine.Last.Value.Key != this.square && foundLine.Last.Value.Key.socketState[(int)foundLine.Last.Value.Value] == GridSquare.SocketState.Input) {
+				//			Debug.LogWarning(foundLine.Last.Value.Key.gameObject.name + "| Component" + foundLine.Last.Value.Key.component.GetString() + " updated");
 							//Tell them to check their output
 							foundLine.Last.Value.Key.component.CheckOutput();
 						}
@@ -140,7 +150,7 @@ namespace AllTheColorsOfTheWind {
 		public ColorBit[] ValidateInput() {
 			//First, check if we should even have input
 			if (InputCountType() == SocketCountType.None) {
-				Debug.LogWarning(GetString() + "Failed Input Validation by : No Input allowed");
+				//Debug.LogWarning(GetString() + "Failed Input Validation by : No Input allowed");
 				return new ColorBit[0];
 			}
 			else {
@@ -149,7 +159,7 @@ namespace AllTheColorsOfTheWind {
 				//Find the valid inputs and track them
 				for (int i = 0; i < inputs.Count; i++) {
 					if (inputs[i].nulled == false) {
-						Debug.Log(inputs[i]);
+						//Debug.Log(inputs[i]);
 						ret.Add(inputs[i]);
 					}
 				}
@@ -165,7 +175,7 @@ namespace AllTheColorsOfTheWind {
 				}
 				else {
 					//otherwise we have failed
-					Debug.LogWarning(GetString() + " Failed Input Validation by : Not matching (" + ret.Count + "/" + InputCount()+ ")");
+					//Debug.LogWarning(GetString() + " Failed Input Validation by : Not matching (" + ret.Count + "/" + InputCount()+ ")");
 
 					return new ColorBit[0];
 				}

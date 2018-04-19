@@ -112,7 +112,7 @@ public class PlayerControls : MonoBehaviour {
 
 			Physics.Raycast(PlayerControls.instance.playerCamera.GetComponent<Camera>().ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)), out rayInfo, terminalInteractionDistance, ignoreMask);
 			if (rayInfo.collider != null && rayInfo.collider.gameObject.tag == "GridSquare") {
-				Debug.Log("Raycast on: " + rayInfo.collider.gameObject.name);
+				//Debug.Log("Raycast on: " + rayInfo.collider.gameObject.name);
 
 				//Check if the think we are clicking on is part of a square.
 				GridSquare square = rayInfo.collider.gameObject.GetComponent<GridSquare>();

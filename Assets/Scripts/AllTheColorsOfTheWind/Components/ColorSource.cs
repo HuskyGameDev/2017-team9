@@ -19,6 +19,7 @@ namespace AllTheColorsOfTheWind {
 		#region Public
 		#region Override
 		public override ColorBit CalculateOutput() {
+			//Debug.Log(sourceColor + " | " + (new ColorBit(sourceColor)).ToString());
 			return new ColorBit(sourceColor);
 		}
 

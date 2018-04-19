@@ -123,33 +123,6 @@ public class GridSquare : MonoBehaviour {
 				}
 			}
 		}
-
-		/*
-		if (lines[(int)dir] == null)
-			return;
-
-		//Store the lines for modification later
-		GridLine tempLine;
-		tempLine = lines[(int)dir];
-
-		lines[(int)dir] = null;
-		neighbors[(int)dir].lines[(int)oppositeDirection[(int)dir]] = null;
-
-
-		lines[(int)dir] = null;
-		neighbors[(int)dir].lines[(int)oppositeDirection[(int)dir]] = null;
-
-		tempLine.Remove(this, dir);
-		tempLine.Remove(neighbors[(int)dir], oppositeDirection[(int)dir]);
-
-
-		//So for clearing a line we need to do something special
-		//If we are clearing a line in a direction that belongs to a component then we have it shrink out of the component
-		//[TODO] There is a visual bug that must be accounted for here. If you are backing down the very last point of this line the visuals will break
-		if (neighbors[(int)dir].type != GridType.Empty)
-			sprites.StartCoroutine(sprites.RemoveLineInDirection(oppositeDirection[(int)dir], neighbors[(int)dir], tempLine));
-		else
-			sprites.StartCoroutine(sprites.RemoveLineInDirection(dir, this, tempLine));*/
 	}
 
 
@@ -240,6 +213,16 @@ public class GridSquare : MonoBehaviour {
 			return null;
 		}
 		return foundList;
+	}
+
+	/// <summary>
+	/// Updates all lines on this square
+	/// </summary>
+	public void UpdateAllLines() {
+		for (int i = 0; i < lines.Length; i++) {
+			if (lines[i] != null)
+				UpdateLine((GridDirection)i);
+		}
 	}
 
 

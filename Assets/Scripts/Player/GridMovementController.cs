@@ -42,10 +42,10 @@ public class GridMovementController : MonoBehaviour {
 		}
 		//Get the current line if we click down on the mouse. SPECIAL CASE: in order to make the game feel a bit better, we also check if it is the first frame we are in this unrestricted state and the player is holding the mouse button down.
 		if (InputManager.GetGameButtonDown(InputManager.GameButton.Interact1) || (currentLine == null && firstUnrestrictedState && InputManager.GetGameButton(InputManager.GameButton.Interact1))) {
-			Debug.Log(currentSquare.CountLines()[0] + " | " + currentSquare.CountLines()[1]);
+			//Debug.Log(currentSquare.CountLines()[0] + " | " + currentSquare.CountLines()[1]);
 			//We want to start drawing a line, so we either need to find the one on the grid or make one (if we can)
 			if (currentSquare.type != GridSquare.GridType.Empty) {
-				Debug.Log("Creating a new Line!");
+				//Debug.Log("Creating a new Line!");
 				//Whenever we are on a component, we can just make a new line.
 				currentLine = new GridSquare.LineHint();
 			}
@@ -80,7 +80,13 @@ public class GridMovementController : MonoBehaviour {
 			//Continue if we have player input to move in a direction.
 			if (GetMovementDirection(out movementDirection)) {
 				GridSquare neighbor;
-				if (CheckLegalRegularMove(movementDirection, out neighbor)) {
+
+
+				if (CheckLegalBackDownLineMove(movementDirection, out neighbor)) {
+					currentSquare.ClearSingleLine(movementDirection);
+					StartCoroutine(TransitionToNewSquare(movementDirection));
+				}
+				else if (CheckLegalRegularMove(movementDirection, out neighbor)) {
 					//If we are leaving a component we need to start a new line
 					if (currentSquare.type != GridSquare.GridType.Empty)
 						currentLine = new GridSquare.LineHint();
@@ -99,13 +105,10 @@ public class GridMovementController : MonoBehaviour {
 					currentSquare.AddLine(movementDirection, currentLine);
 					StartCoroutine(TransitionToNewSquare(movementDirection));
 				}
-				else if (CheckLegalBackDownLineMove(movementDirection, out neighbor)) {
-					currentSquare.ClearSingleLine(movementDirection);
-					StartCoroutine(TransitionToNewSquare(movementDirection));
-				}
 				else {
 					Debug.Log("Fail move while trying to draw");
 					//[TODO]play movement failure animation
+					StartCoroutine(FailedMovementAnimation(movementDirection));
 				}
 			}
 		}
@@ -114,11 +117,12 @@ public class GridMovementController : MonoBehaviour {
 			if (GetMovementDirection(out movementDirection)) {
 				if (CheckLegalMovementBase(movementDirection)) {
 					//We are not trying to draw so we can just move
-					Debug.Log("Fail move");
 					StartCoroutine(TransitionToNewSquare(movementDirection));
 				}
 				else {
-					//[TODO] Play movement failure animation
+					Debug.Log("Fail move");
+					//Play movement failure animation
+					StartCoroutine(FailedMovementAnimation(movementDirection));
 				}
 			}
 		}
@@ -194,7 +198,7 @@ public class GridMovementController : MonoBehaviour {
 					return false;
 			}
 		}
-		Debug.Log("Passed regular movement check.");
+		//Debug.Log("Passed regular movement check.");
 		return true;
 	}
 
@@ -233,6 +237,45 @@ public class GridMovementController : MonoBehaviour {
 		return square.transform.position + square.transform.forward * -3.0f * square.puzzle.transform.localScale.x;
 	}
 
+	IEnumerator FailedMovementAnimation(GridSquare.GridDirection dir) {
+		state = GridMovementState.Disabled;
+		Vector3[] mapping = new Vector3[] {
+			currentSquare.transform.up, // Up
+			currentSquare.transform.right, // Right
+			-currentSquare.transform.up, // Down (negative Up)
+			-currentSquare.transform.right // Left (negative right)
+		};
+		Vector3 wiggleDir = mapping[(int)dir];
+		Vector3 currentPos = player.playerCamera.transform.position;
+		float wiggleScale = 0.1f;
+		Vector3 goalPos = currentPos + (wiggleDir * wiggleScale);
+		float cTime = 0.00000001f; // We dont want it to be zero to avoid divide by zero errors
+		float maxtime = 0.25f;
+		float halftime = maxtime / 2.0f;
+
+		while (cTime < maxtime) {
+			Debug.Log("In Loop");
+			cTime += Time.deltaTime;
+			float p = (cTime - ((cTime >= halftime) ? halftime : 0)) / halftime;
+			if (cTime <= halftime) {
+				Debug.Log("Move towards: " + p);
+				//Do anim towards new pos
+				player.playerCamera.transform.position = Vector3.Lerp(currentPos, goalPos, p);
+			} 
+			else {
+				Debug.Log("Move away: " + p);
+				//Do anim towards orig pos
+				player.playerCamera.transform.position = Vector3.Lerp(goalPos, currentPos, p);
+			}
+			yield return null;
+		}
+
+		//Ensure we are back were we started
+		player.playerCamera.transform.position = currentPos;
+		yield return null;
+		state = GridMovementState.Unrestricted;
+	}
+
 	IEnumerator TransitionToNewSquare(GridSquare.GridDirection transitionDirection) {
 		state = GridMovementState.Disabled;
 		GridSquare newSquare = currentSquare.neighbors[(int)transitionDirection];
@@ -242,7 +285,7 @@ public class GridMovementController : MonoBehaviour {
 		//Debug.Log("Move " + currentSquare.name + " -> " + newSquare.name);
 
 
-		float cTime = 0.0f;
+		float cTime = 0.00000001f; // We dont want it to be zero to avoid divide by zero errors
 		//The transition takes 2 seconds
 		float maxTime = 0.25f;
 
@@ -272,7 +315,7 @@ public class GridMovementController : MonoBehaviour {
 		Vector3 goalPosition = posAboveSquare(currentSquare);
 		Quaternion startRotation = player.playerCamera.transform.rotation;
 
-		float cTime = 0.0f;
+		float cTime = 0.00000001f; // We dont want it to be zero to avoid divide by zero errors
 		//The transition takes 2 seconds
 		float maxTime = 0.5f;
 
@@ -298,6 +341,7 @@ public class GridMovementController : MonoBehaviour {
 
 
 	IEnumerator TransitionToPlayer() {
+		currentLine = null;
 		currentSquare = null;
 		state = GridMovementState.Disabled;
 		//For best results, this should use local position and local rotation so we can use vector.zero and player.cameraPitch to line things up right

@@ -39,7 +39,9 @@ namespace AllTheColorsOfTheWind {
 			byte g = (byte)Mathf.Min(addG + inputs[0].color.g, 255);
 			byte b = (byte)Mathf.Min(addB + inputs[0].color.b, 255);
 
-			return new ColorBit(new Color32(r, g, b, inputs[0].color.a));
+			ColorBit newOutput = new ColorBit(new Color32(r, g, b, inputs[0].color.a));
+			//Debug.LogWarning("Adder outputting " + newOutput + " | " + additionValue + " | " + inputs[0].ToString());
+			return newOutput;
 		}
 
 		public override string GetString() {
