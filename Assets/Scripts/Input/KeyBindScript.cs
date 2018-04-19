@@ -11,8 +11,8 @@ public class KeyBindScript : MonoBehaviour {
     public Text up, left, down, right, pause;
     private GameObject currentKey;
     private int Pvalue = 0;
-    public Color32 normal = new Color(5, 5, 5, 5);
-    public Color32 selected = new Color(255,255,255,255);
+    public Color normal = new Color(0, 255, 45, 255);
+    public Color selected = new Color(255,255,255,255);
     // Use this for initialization
     public Button StartButton;
     public Button Options;
@@ -22,10 +22,12 @@ public class KeyBindScript : MonoBehaviour {
     public GameObject Options_Menu;
     public GameObject Player;
     private PlayerControls.PlayerState PreviousState;
+	private Scene scene;
 
     void Start () {
+		scene = SceneManager.GetActiveScene();
 
-        if (SceneManager.ReferenceEquals(SceneManager.GetActiveScene(), SceneManager.GetSceneByName("dev_Richy")))
+		if (scene == SceneManager.GetSceneByName("dev_Richy"))
         {
             Main_Menu.SetActive(true);
             Options_Menu.SetActive(false);
@@ -63,7 +65,9 @@ public class KeyBindScript : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Pause"))))
         {
-            PausePlease();
+			if (!(Options_Menu.activeSelf)) {
+				PausePlease ();
+			}
         }
        
     }
@@ -78,7 +82,7 @@ public class KeyBindScript : MonoBehaviour {
                 keys[currentKey.name] = e.keyCode;
                 currentKey.transform.GetChild(0).GetComponent<Text>().text = e.keyCode.ToString();
                 currentKey.GetComponent<Image>().color = normal;
-                currentKey = null; 
+				currentKey = null; 
             }
         }
     }
@@ -87,7 +91,7 @@ public class KeyBindScript : MonoBehaviour {
     {
         if(currentKey != null)
         {
-            currentKey.GetComponent<Image>().color = normal;
+			currentKey.GetComponent<Image>().color = normal;
         }
 
         currentKey = clicked;
@@ -96,13 +100,10 @@ public class KeyBindScript : MonoBehaviour {
 
     void StartGame()
     {
-        Debug.Log("LOAD THE FUCKING SCENE");
-        Debug.Log("Loading Scene ");
-        SceneManager.LoadScene("Main_Jacob");
+        SceneManager.LoadScene("PauseMenu");
     }
     void OptionsMenu()
     {
-        Debug.Log("LOAD THE FUCKING OPTIONS SCREEN");
         Main_Menu.SetActive(false);
         Options_Menu.SetActive(true);
         
@@ -116,11 +117,10 @@ public class KeyBindScript : MonoBehaviour {
 
     void PausePlease()
     {
-        Debug.Log("I'm trying to Pause");
         if (Pvalue == 0)
         {
             PreviousState = Player.GetComponent<PlayerControls>().state;
-            Player.GetComponent<PlayerControls>().state = PlayerControls.PlayerState.Locked;
+            Player.GetComponent<PlayerControls>().state = PlayerControls.PlayerState.LockedWithMouse;
             Main_Menu.SetActive(true);
             Pvalue = 1;
         }
@@ -139,10 +139,9 @@ public class KeyBindScript : MonoBehaviour {
         foreach(var key in keys)
         {
             PlayerPrefs.SetString(key.Key, key.Value.ToString());
-            Options_Menu.SetActive(false);
-            Main_Menu.SetActive(true);
         }
-
+		Options_Menu.SetActive(false);
+		Main_Menu.SetActive(true);
         PlayerPrefs.Save(); 
     }
 

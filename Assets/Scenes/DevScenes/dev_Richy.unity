@@ -126,7 +126,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &81965173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1182,8 +1182,10 @@ MonoBehaviour:
   StartButton: {fileID: 1452557926}
   Options: {fileID: 537390496}
   Quit: {fileID: 1721790221}
+  Resume: {fileID: 0}
   Main_Menu: {fileID: 81965172}
   Options_Menu: {fileID: 1364833351}
+  Player: {fileID: 0}
 --- !u!4 &574038248
 Transform:
   m_ObjectHideFlags: 0
