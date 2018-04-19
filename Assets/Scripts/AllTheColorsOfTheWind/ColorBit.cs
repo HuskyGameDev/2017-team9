@@ -10,7 +10,7 @@ public struct ColorBit {
 		if (nulled == false)
 			this.color = new Color32(color.Value.r, color.Value.g, color.Value.b, 255); //Create a color based on the passed one but with no transparency 
 		else
-			this.color = new Color32(255,255,255,255); // Pure white is the default color.
+			this.color = new Color32(127,127,127,200); // Medium Gray is the default color.
 
 	}
 
@@ -22,11 +22,11 @@ public struct ColorBit {
 	public override bool Equals(object obj) {
 		if (obj.GetType() == typeof(Color32)) {
 			Color32 c = (Color32)obj;
-			return (color.r == c.r) && (color.g == c.g) && (color.b == c.b);
+			return (color.r == c.r) && (color.g == c.g) && (color.b == c.b) && (color.a == c.a);
 		}
 		else if (obj.GetType() == typeof(ColorBit)) {
 			ColorBit c = (ColorBit)obj;
-			return c.nulled == nulled && (color.r == c.color.r) && (color.g == c.color.g) && (color.b == c.color.b);
+			return c.nulled == nulled && (color.r == c.color.r) && (color.g == c.color.g) && (color.b == c.color.b) && (color.a == c.color.a);
 		}
 		else
 			return false;
@@ -44,6 +44,6 @@ public struct ColorBit {
 	/// </summary>
 	/// <returns></returns>
 	public override string ToString() {
-		return "ColorBit: " + nulled.ToString() + " | (" + color.r + ", " + color.g + ", " + color.b + ")";
+		return "ColorBit: " + nulled.ToString() + " | (" + color.r + ", " + color.g + ", " + color.b + ", " + color.a + ")";
 	}
 }

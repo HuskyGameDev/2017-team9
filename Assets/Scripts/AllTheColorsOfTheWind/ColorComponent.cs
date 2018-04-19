@@ -36,7 +36,8 @@ namespace AllTheColorsOfTheWind {
 			set {
 				_cache = value;
 				foreach (ColorTrigger t in triggers) {
-					t.Check(_cache);
+                    foreach (ColorTrigger q in t.gameObject.GetComponents<ColorTrigger>()) 
+					    q.Check(_cache);
 				}
 			}
 		}
