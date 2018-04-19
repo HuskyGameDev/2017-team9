@@ -54,7 +54,7 @@ namespace AllTheColorsOfTheWind {
 		}
 
 		public override int InputCount() {
-			return 2;
+			return 3;
 		}
 
 		public override SocketCountType InputCountType() {
