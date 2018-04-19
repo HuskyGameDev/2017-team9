@@ -22,6 +22,7 @@ namespace AllTheColorsOfTheWind {
 					if (target.transform.position == end) {
 						sliding = false;
 						counter = 0.0f;
+						stopEmiting();
 					}
 				} else {
 					counter += (Time.deltaTime)/slideTime;
@@ -29,6 +30,7 @@ namespace AllTheColorsOfTheWind {
 					if (target.transform.position == start) {
 						sliding = false;
 						counter = 0.0f;
+						stopEmiting();
 					}
 				}
 			}
@@ -47,6 +49,7 @@ namespace AllTheColorsOfTheWind {
 			if (sliding) {
 				counter = 1 - counter;
 			} else {
+				startEmiting();
 				sliding = true;
 			}
 			triggered = true;
@@ -56,9 +59,28 @@ namespace AllTheColorsOfTheWind {
 			if (sliding) {
 				counter = 1 - counter;
 			} else {
+				startEmiting();
 				sliding = true;
 			}
 			triggered = false;
+		}
+
+		public void startEmiting() {
+			ParticleSystem[] parts = this.GetComponentsInChildren<ParticleSystem>();
+			//Debug.Log("Activating " + parts.Length + " emmiters");
+			for (int i = 0; i < parts.Length; i++) {
+				//Debug.Log("Playing emitter " + i);
+				parts[i].Play();
+			}
+		}
+
+		public void stopEmiting() {
+			ParticleSystem[] parts = this.GetComponentsInChildren<ParticleSystem>();
+			//Debug.Log("Deactivating " + parts.Length + " emmiters");
+			for (int i = 0; i < parts.Length; i++) {
+				//Debug.Log("Stopping emitter " + i);
+				parts[i].Stop();
+			}
 		}
 	}
 }

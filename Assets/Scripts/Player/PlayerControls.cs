@@ -125,7 +125,7 @@ public class PlayerControls : MonoBehaviour {
 					}
 				}
 			} else if (rayInfo.collider != null && rayInfo.collider.gameObject.tag == "Interactable") { // check if object is pickup
-				Debug.Log("Raycast on: " + rayInfo.collider.gameObject.name);
+				//Debug.Log("Raycast on: " + rayInfo.collider.gameObject.name);
 				rayInfo.collider.gameObject.GetComponent<Interactable>().Interact();
 			}
 		}

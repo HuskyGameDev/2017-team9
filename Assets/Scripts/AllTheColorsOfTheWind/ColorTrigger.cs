@@ -10,6 +10,7 @@ namespace AllTheColorsOfTheWind {
 		/// </summary>
 		public ColorBit triggerColor;
 		protected bool triggered = false;
+		public bool particles = true;
 		#endregion
 
 		#region Methods
@@ -75,6 +76,37 @@ namespace AllTheColorsOfTheWind {
 		/// <returns>true if triggered is true, else false</returns>
 		public void SetTriggered(bool b) {
 			triggered = b;
+		}
+
+		
+		public void Awake() {
+			createParticleSystems();
+		}
+
+		public void createParticleSystems() {
+			if (particles) {
+				GameObject target = this.gameObject;
+				ParticleSystem part_rect = Instantiate(Resources.Load<ParticleSystem>("Particles/PartSys_Rectangle"));
+				part_rect.transform.parent = target.transform;
+				part_rect.transform.localPosition = new Vector3(0, 0, 0);
+				part_rect.transform.localScale = new Vector3(1, 1, 1);
+				ParticleSystem.ShapeModule shapeMod = part_rect.shape;
+				shapeMod.scale = target.transform.lossyScale + new Vector3(0.1f, 0.1f, 0.1f);
+				ParticleSystem.MainModule mainMod = part_rect.main;
+				float red = triggerColor.color.r;
+				float green = triggerColor.color.g;
+				float blue = triggerColor.color.b;
+				mainMod.startColor = new Color(red / 255, green / 255, blue / 255);
+
+				ParticleSystem part_circ = Instantiate(Resources.Load<ParticleSystem>("Particles/PartSys_Circle"));
+				part_circ.transform.parent = target.transform;
+				part_circ.transform.localPosition = new Vector3(0, 0, 0);
+				part_circ.transform.localScale = new Vector3(1, 1, 1);
+				shapeMod = part_circ.shape;
+				shapeMod.scale = target.transform.lossyScale + new Vector3(0.1f, 0.1f, 0.1f);
+				mainMod = part_circ.main;
+				mainMod.startColor = new Color(red / 255, green / 255, blue / 255);
+			}
 		}
 		#endregion
 
