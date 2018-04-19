@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,20 +34,20 @@ namespace AllTheColorsOfTheWind {
 			*/
 
 			//Store the first one.
-			byte r = inputs[0].color.r;
-			byte g = inputs[0].color.g;
-			byte b = inputs[0].color.b;
+			int r = inputs[0].color.r;
+			int g = inputs[0].color.g;
+			int b = inputs[0].color.b;
 
 
 			//And add the rest to it
 			for (int i = 1; i < inputs.Length; i++) {
-				r += inputs[i].color.r;
+                r += inputs[i].color.r;
 				g += inputs[i].color.g;
-				b += inputs[i].color.b;
+                b += (int) inputs[i].color.b;
 
-			}
+            }
 
-			return new ColorBit(new Color32(r,g,b, inputs[0].color.a));
+            return new ColorBit(new Color32((byte)Mathf.Min(r, 255), (byte)Mathf.Min(g, 255), (byte)Mathf.Min(b, 255), (byte)Mathf.Min((int) inputs[0].color.a, 255) ) );
 		}
 
 		public override string GetString() {
