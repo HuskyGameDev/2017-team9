@@ -100,7 +100,7 @@ public class KeyBindScript : MonoBehaviour {
 
     void StartGame()
     {
-        SceneManager.LoadScene("PauseMenu");
+        SceneManager.LoadScene("Main_Jacob");
     }
     void OptionsMenu()
     {
