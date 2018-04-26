@@ -13,30 +13,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AcousticTextureWwu:
   - Guid: '{E043C3C1-8C0C-4974-93A8-99A686C099CE}'
-    m_lastTimePart2: -1999269031
-    m_lastTimePsrt1: -829132928
+    m_lastTimePart2: -1999268977
+    m_lastTimePsrt1: 1097203200
     ParentPhysicalPath: 
-    PhysicalPath: Virtual Acoustics/Default Work Unit.wwu
+    PhysicalPath: Virtual Acoustics\Default Work Unit.wwu
     List: []
   autoPopulateEnabled: 1
   AuxBusWwu:
   - Guid: '{5AD32E1A-081C-4281-91BA-CFF1907098EF}'
-    m_lastTimePart2: -1999269031
-    m_lastTimePsrt1: -829132928
+    m_lastTimePart2: -1999264426
+    m_lastTimePsrt1: 469185138
     ParentPhysicalPath: 
-    PhysicalPath: Master-Mixer Hierarchy/Default Work Unit.wwu
+    PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
     List: []
   BankWwu:
   - Guid: '{8E513DE1-6DF4-45DD-A284-16AA235D783B}'
-    m_lastTimePart2: -1999269030
-    m_lastTimePsrt1: 1830867072
+    m_lastTimePart2: -1999264426
+    m_lastTimePsrt1: 476155650
     ParentPhysicalPath: 
-    PhysicalPath: SoundBanks/Default Work Unit.wwu
+    PhysicalPath: SoundBanks\Default Work Unit.wwu
     List:
     - Guid: 7b7091aa18196546940d291a73cb22b3
       ID: -222937841
       Name: New_SoundBank
-      Path: Default Work Unit/New_SoundBank
+      Path: Default Work Unit\New_SoundBank
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
@@ -48,19 +48,199 @@ MonoBehaviour:
   defaultPoolSize: 4096
   EventWwu:
   - Guid: '{13A7824B-B2C9-4CC8-A4D2-F2A93E12A178}'
-    m_lastTimePart2: -1999269030
-    m_lastTimePsrt1: 980867072
+    m_lastTimePart2: -1999264426
+    m_lastTimePsrt1: 466459786
     ParentPhysicalPath: 
-    PhysicalPath: Events/Default Work Unit.wwu
+    PhysicalPath: Events\Default Work Unit.wwu
     List:
+    - Guid: d89806490b7f974baaf0f6ee208aadbc
+      ID: 977454165
+      Name: Button
+      Path: Default Work Unit\Button
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Button
+        ObjectType: 3
+      maxAttenuation: 100
+      maxDuration: 0
+      minDuration: 0
     - Guid: 9d2d0d1c653d13459c9cefe4f4a2dc32
       ID: -656509953
       Name: DoorClose
-      Path: Default Work Unit/DoorClose
+      Path: Default Work Unit\DoorClose
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
       - ElementName: DoorClose
+        ObjectType: 3
+      maxAttenuation: 100
+      maxDuration: 0
+      minDuration: 0
+    - Guid: be888b33a5e46441875787704dd1b64d
+      ID: -1758785984
+      Name: DoorLock
+      Path: Default Work Unit\DoorLock
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: DoorLock
+        ObjectType: 3
+      maxAttenuation: 100
+      maxDuration: 0
+      minDuration: 0
+    - Guid: 0860df94ab709045ab823c1872c0f640
+      ID: 1404805401
+      Name: DoorOpen
+      Path: Default Work Unit\DoorOpen
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: DoorOpen
+        ObjectType: 3
+      maxAttenuation: 100
+      maxDuration: 0
+      minDuration: 0
+    - Guid: 20fafa47cdc74b4b88c3ece347960bfa
+      ID: 1183803264
+      Name: Fan
+      Path: Default Work Unit\Fan
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Fan
+        ObjectType: 3
+      maxAttenuation: 100
+      maxDuration: 0
+      minDuration: 0
+    - Guid: af3bf51221072b4aa3d418dcc768e1c3
+      ID: -1909339098
+      Name: Footsteps
+      Path: Default Work Unit\Footsteps
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Footsteps
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - Guid: 0d523d29386f5f40a847c27f9d7a40fe
+      ID: 2080209293
+      Name: Keyboards
+      Path: Default Work Unit\Keyboards
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Keyboards
+        ObjectType: 3
+      maxAttenuation: 100
+      maxDuration: 0
+      minDuration: 0
+    - Guid: 3164e4cb9a4dc6428d4ed1a5fa9dc320
+      ID: -1176688586
+      Name: LineEnd
+      Path: Default Work Unit\LineEnd
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: LineEnd
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - Guid: e07307966136c04692095e2d4ad9b94d
+      ID: -290068707
+      Name: LineStart
+      Path: Default Work Unit\LineStart
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: LineStart
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - Guid: 86f0e3146553da45bb0ba7b9f5084468
+      ID: 620878633
+      Name: Music_Gameplay
+      Path: Default Work Unit\Music_Gameplay
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Music_Gameplay
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - Guid: 4b265a71748e4f46a5b687d4a7381c0d
+      ID: 339096882
+      Name: No_Menu
+      Path: Default Work Unit\No_Menu
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: No_Menu
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - Guid: b9231fffa6706b43ae223c1a9537ef82
+      ID: -1190110609
+      Name: Phone
+      Path: Default Work Unit\Phone
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Phone
+        ObjectType: 3
+      maxAttenuation: 100
+      maxDuration: 0
+      minDuration: 0
+    - Guid: 35b474091344d04e979fe8838bc24b28
+      ID: -1666197540
+      Name: PuzzleComplete
+      Path: Default Work Unit\PuzzleComplete
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: PuzzleComplete
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - Guid: b947210797a5034d9fc26b5f905bae86
+      ID: -1832856261
+      Name: SlidingDoorClose
+      Path: Default Work Unit\SlidingDoorClose
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SlidingDoorClose
+        ObjectType: 3
+      maxAttenuation: 100
+      maxDuration: 0
+      minDuration: 0
+    - Guid: 3e3df931c4c1b44b8576532c033c5609
+      ID: -757448867
+      Name: SlidingDoorOpen
+      Path: Default Work Unit\SlidingDoorOpen
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SlidingDoorOpen
+        ObjectType: 3
+      maxAttenuation: 100
+      maxDuration: 0
+      minDuration: 0
+    - Guid: 25fa4186847f924ebbd7f52cb9ad0385
+      ID: 2047954648
+      Name: Yes_Menu
+      Path: Default Work Unit\Yes_Menu
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Yes_Menu
         ObjectType: 3
       maxAttenuation: 0
       maxDuration: 0
@@ -79,30 +259,30 @@ MonoBehaviour:
   preparePoolSize: 0
   RtpcWwu:
   - Guid: '{017E9E7C-CBB3-4532-BCFD-0E1FA18BD4D7}'
-    m_lastTimePart2: -1999269031
-    m_lastTimePsrt1: -829132928
+    m_lastTimePart2: -1999268977
+    m_lastTimePsrt1: 1096303071
     ParentPhysicalPath: 
-    PhysicalPath: Game Parameters/Default Work Unit.wwu
+    PhysicalPath: Game Parameters\Default Work Unit.wwu
     List: []
   StateWwu:
   - Guid: '{C66CEDE8-A30B-4F25-BEB4-F4AC55199F3D}'
-    m_lastTimePart2: -1999269031
-    m_lastTimePsrt1: -829132928
+    m_lastTimePart2: -1999268977
+    m_lastTimePsrt1: 1097088170
     ParentPhysicalPath: 
-    PhysicalPath: States/Default Work Unit.wwu
+    PhysicalPath: States\Default Work Unit.wwu
     List: []
   streamingPoolSize: 1024
   SwitchWwu:
   - Guid: '{5A2E0D30-2B55-405B-B946-64198CA0B3DF}'
-    m_lastTimePart2: -1999269031
-    m_lastTimePsrt1: -829132928
+    m_lastTimePart2: -1999268977
+    m_lastTimePsrt1: 1097108176
     ParentPhysicalPath: 
-    PhysicalPath: Switches/Default Work Unit.wwu
+    PhysicalPath: Switches\Default Work Unit.wwu
     List: []
   TriggerWwu:
   - Guid: '{E0E611B2-F0DD-4350-B24E-3B4337DD4483}'
-    m_lastTimePart2: -1999269031
-    m_lastTimePsrt1: -829132928
+    m_lastTimePart2: -1999268977
+    m_lastTimePsrt1: 1097183185
     ParentPhysicalPath: 
-    PhysicalPath: Triggers/Default Work Unit.wwu
+    PhysicalPath: Triggers\Default Work Unit.wwu
     List: []

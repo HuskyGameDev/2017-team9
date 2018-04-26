@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using AK.Wwise;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(GridMovementController))]
@@ -16,7 +17,8 @@ public class PlayerControls : MonoBehaviour {
 	public PlayerState state = PlayerState.Freemove;
 
 
-
+	private float footStepTimer = 0.0f;
+	public float footstepRate = 1.0f;
 	public GameObject playerCamera;
 	public float moveSpeed = 10.0f;
 	public float rotationSpeed = 1.0f;
@@ -161,6 +163,14 @@ public class PlayerControls : MonoBehaviour {
 
 		//Translate this local oriented movement direction into one that makes sense in world coordinates
 		Vector3 moveDir = transform.TransformDirection(new Vector3(x, 0.0f, y));
+
+		if (moveDir.magnitude > 0.01f) {
+			footStepTimer += Time.deltaTime;
+			if (footStepTimer > footstepRate) {
+				footStepTimer -= footstepRate;
+				AkSoundEngine.PostEvent("Footsteps", this.gameObject);
+			}
+		}
 
 
 		//Apply a very harsh gravity to keep our player on the ground down slopes.

@@ -6429,6 +6429,9 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4278255360
     nulled: 0
+  puzzleCompleteNoise: 1
+  particles: 0
+  numberBurstParticles: 6
 --- !u!1 &417253841
 GameObject:
   m_ObjectHideFlags: 0
@@ -9958,11 +9961,6 @@ Prefab:
     - target: {fileID: 4643291636316154, guid: ec2ddb6fbfec1994896397c2f9ff9673, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114680269552839778, guid: ec2ddb6fbfec1994896397c2f9ff9673,
-        type: 2}
-      propertyPath: settings.keyboard.cameraLock
-      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ec2ddb6fbfec1994896397c2f9ff9673, type: 2}

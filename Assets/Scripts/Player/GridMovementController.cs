@@ -64,6 +64,9 @@ public class GridMovementController : MonoBehaviour {
 								break;
 							}
 						}
+						if (currentLine != null)
+							AkSoundEngine.PostEvent("LineStart", currentSquare.gameObject);
+
 					}
 				}
 			}
@@ -71,6 +74,8 @@ public class GridMovementController : MonoBehaviour {
 		else if (InputManager.GetGameButtonUp(InputManager.GameButton.Interact1)) {
 			//Make it so we are no longer drawing a line
 			Debug.Log("Mouse Released");
+			if (currentLine != null)
+				AkSoundEngine.PostEvent("LineEnd", currentSquare.gameObject);
 			currentLine = null;
 		}
 
@@ -88,8 +93,10 @@ public class GridMovementController : MonoBehaviour {
 				}
 				else if (CheckLegalRegularMove(movementDirection, out neighbor)) {
 					//If we are leaving a component we need to start a new line
-					if (currentSquare.type != GridSquare.GridType.Empty)
+					if (currentSquare.type != GridSquare.GridType.Empty) {
+						AkSoundEngine.PostEvent("LineStart", currentSquare.gameObject);
 						currentLine = new GridSquare.LineHint();
+					}
 
 					//Now that we have the movement direction, we need to see if another line is on this connection between nodes.
 					//If the node we are connecting to is type Empty, then we need to break every other line on it

@@ -9,6 +9,7 @@ namespace AllTheColorsOfTheWind {
 		/// The color on which the trigger method is called.
 		/// </summary>
 		public ColorBit triggerColor;
+		public bool puzzleCompleteNoise;
 		protected bool triggered = false;
 		public bool particles = true;
 		#endregion
@@ -22,6 +23,10 @@ namespace AllTheColorsOfTheWind {
 		public bool Check(ColorBit color) {
 			Debug.Log("Check Called | " + color + " | " + triggerColor);
 			if (triggerColor.Equals(color)) {
+				if (puzzleCompleteNoise) {
+					Debug.Log("Puzzle Complete nouise");
+					AkSoundEngine.PostEvent("PuzzleComplete", PlayerControls.instance.gameObject);
+				}
 				Trigger();
 				//triggered = true;
 				return true;
