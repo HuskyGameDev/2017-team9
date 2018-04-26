@@ -17,15 +17,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/DevScenes/dev_Justin.unity
     guid: 1366380d00aff674aac2af220a9e0802
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DevScenes/dev_Richy.unity
     guid: a8aefb17e6aa6e6498b13388ea3bf1fb
   - enabled: 0
     path: Assets/Scenes/DevScenes/dev_Jacob/dev_Jacob-v0.5.unity
     guid: 408de9278c0d6f24eab52784bec9704f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DevScenes/dev_Jacob/dev_jacob-v0.9/Main_Jacob.unity
     guid: 6eb16e2ae9409054fb2f61410373932c
   - enabled: 0
     path: Assets/Scenes/DevScenes/PauseMenu.unity
     guid: 194d10bfb10ead947bc1dafc614cc25c
+  - enabled: 1
+    path: Assets/Scenes/Trailer2.unity
+    guid: 474a6683b597bc840b72055568d16a3c

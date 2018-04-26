@@ -421,6 +421,8 @@ public class GridSquare : MonoBehaviour {
 
 
 			if (neighbors[i] != null) {
+				//Ensure the neigbor connection
+				neighbors[i].neighbors[(int)oppositeDirection[i]] = this;
 				if (socketState[i] == SocketState.None) {
 				//If we are none on this side, we need to be none on the other side
 					//Change their state
@@ -449,6 +451,35 @@ public class GridSquare : MonoBehaviour {
 		}
 
 		sprites.UpdateVisuals();
+	}
+
+	public void AddNeighbor(GridDirection dir) {
+		//Calcualte the displacement
+		Vector3[] mapping = new Vector3[] {
+			this.transform.up, // Up
+			this.transform.right, // Right
+			-this.transform.up, // Down (negative Up)
+			-this.transform.right // Left (negative right)
+		};
+		Vector3 displace = mapping[(int)dir] * this.transform.localScale.y;
+		//Create the new game object
+		GridSquare newSquare = null;
+		GameObject gO = Instantiate(Resources.Load("Grid/GridSquare", typeof(GameObject))) as GameObject;
+		newSquare = gO.GetComponent<GridSquare>();
+		//Put it in the correct world space
+		newSquare.transform.parent = this.transform.parent;
+		newSquare.transform.position = this.transform.position + displace;
+		newSquare.transform.localScale = this.transform.localScale;
+		newSquare.transform.localRotation = this.transform.localRotation;
+		//Add neighbors
+		neighbors[(int)dir] = newSquare;
+		newSquare.neighbors[(int)oppositeDirection[(int)dir]] = this;
+
+		socketState[(int)dir] = SocketState.Line;
+		newSquare.socketState[(int)oppositeDirection[(int)dir]] = SocketState.Line;
+
+		this.sprites.UpdateVisuals();
+		newSquare.sprites.UpdateVisuals();
 	}
 
 	public class LineHint { }

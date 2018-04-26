@@ -191,8 +191,8 @@ public class Receptacle : Interactable {
 		} else {
 			//Debug.Log("Held object exists, turn on visuals");
 			foreach (GameObject o in triggerVisuals) {
-				//Debug.Log("Turning off visual...");
-				o.SetActive(false);
+				//Debug.Log("Turning on visual...");
+				o.SetActive(true);
 			}
 
 			for (int c = 0; c < heldObject.GetComponent<Pickupable>().color.Length; c++) {  // for each color provided by held object
