@@ -6084,6 +6084,7 @@ GameObject:
   - component: {fileID: 127851083}
   - component: {fileID: 127851082}
   - component: {fileID: 127851081}
+  - component: {fileID: 127851085}
   m_Layer: 0
   m_Name: Button
   m_TagString: Interactable
@@ -6182,6 +6183,27 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 127851079}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &127851085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 127851079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ab3392668fe1654687669ef8b798e7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerColor:
+    color:
+      serializedVersion: 2
+      rgba: 4283030051
+    nulled: 0
+  puzzleCompleteNoise: 0
+  particles: 1
+  start: {x: 0, y: 0, z: 0}
+  end: {x: 0, y: 0, z: 1}
+  slideTime: 3.5
 --- !u!1 &129998146
 GameObject:
   m_ObjectHideFlags: 0
@@ -9250,7 +9272,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4294638130
     nulled: 0
-  puzzleCompleteNoise: 0
+  puzzleCompleteNoise: 1
   particles: 1
   start: {x: 0, y: 0, z: 0}
   end: {x: -0.1, y: 0, z: 3}
@@ -12663,7 +12685,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4291116800
     nulled: 0
-  puzzleCompleteNoise: 0
+  puzzleCompleteNoise: 1
   particles: 1
   numberBurstParticles: 6
 --- !u!1 &273217803
@@ -27674,7 +27696,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4281492735
     nulled: 0
-  puzzleCompleteNoise: 0
+  puzzleCompleteNoise: 1
   particles: 1
   start: {x: 0, y: 0, z: 0}
   end: {x: 0, y: 0, z: 5}
@@ -28958,7 +28980,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4278254080
     nulled: 0
-  puzzleCompleteNoise: 0
+  puzzleCompleteNoise: 1
   particles: 1
   start: {x: 0, y: 0, z: 0}
   end: {x: 5, y: 0, z: 0}
@@ -39899,7 +39921,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4294967295
     nulled: 0
-  puzzleCompleteNoise: 0
+  puzzleCompleteNoise: 1
   particles: 1
   start: {x: 0, y: 0, z: 0}
   end: {x: 0, y: 0, z: -11}
@@ -50558,11 +50580,11 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4283030051
     nulled: 0
-  puzzleCompleteNoise: 0
+  puzzleCompleteNoise: 1
   particles: 1
   start: {x: 0, y: 0, z: 0}
   end: {x: 0, y: 0, z: -4.8}
-  slideTime: 1
+  slideTime: 3.5
 --- !u!4 &1093703485 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4074260685636304, guid: a66841737c1e21a429c76c09f193f8ce,
@@ -53638,7 +53660,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4281467130
     nulled: 0
-  puzzleCompleteNoise: 0
+  puzzleCompleteNoise: 1
   particles: 1
   numberBurstParticles: 6
 --- !u!1 &1162966158
@@ -66181,7 +66203,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4280771839
     nulled: 0
-  puzzleCompleteNoise: 0
+  puzzleCompleteNoise: 1
   particles: 1
   start: {x: 0, y: 0, z: 0}
   end: {x: 0, y: 0, z: -4.5}
@@ -82645,7 +82667,7 @@ GameObject:
   - component: {fileID: 1766046786}
   - component: {fileID: 1766046789}
   m_Layer: 0
-  m_Name: Puzzle Form Wall (11)
+  m_Name: Puzzle Back P6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89369,7 +89391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 0}
+  profile: {fileID: 11400000, guid: c58c7399ec6f63a45a86c2c44d8aaebe, type: 2}
 --- !u!1 &1899889299
 GameObject:
   m_ObjectHideFlags: 0
@@ -100084,7 +100106,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4281532160
     nulled: 0
-  puzzleCompleteNoise: 0
+  puzzleCompleteNoise: 1
   particles: 1
   numberBurstParticles: 6
 --- !u!1 &2126309827

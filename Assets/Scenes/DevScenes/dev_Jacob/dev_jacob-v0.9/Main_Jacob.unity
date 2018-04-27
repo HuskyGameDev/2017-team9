@@ -857,6 +857,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4281492735
     nulled: 0
+  puzzleCompleteNoise: 0
   particles: 1
   numberBurstParticles: 6
 --- !u!1 &12748148
@@ -1222,6 +1223,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4291335680
     nulled: 0
+  puzzleCompleteNoise: 0
   particles: 1
   numberBurstParticles: 6
 --- !u!1 &15005059
@@ -6082,6 +6084,7 @@ GameObject:
   - component: {fileID: 127851083}
   - component: {fileID: 127851082}
   - component: {fileID: 127851081}
+  - component: {fileID: 127851085}
   m_Layer: 0
   m_Name: Button
   m_TagString: Interactable
@@ -6097,8 +6100,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 127851079}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -23.311, y: 0.686, z: 2.288}
-  m_LocalScale: {x: 0.017238693, y: 0.19999999, z: 0.19999999}
+  m_LocalPosition: {x: -23.311, y: 0.686, z: 2.301}
+  m_LocalScale: {x: 0.06990655, y: 0.19999999, z: 0.19999999}
   m_Children:
   - {fileID: 1662609504}
   m_Father: {fileID: 210645532}
@@ -6126,6 +6129,7 @@ MonoBehaviour:
   - {fileID: 1308897111}
   - {fileID: 1353652567}
   - {fileID: 1088609317}
+  - {fileID: 127851085}
 --- !u!23 &127851082
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6180,6 +6184,27 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 127851079}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &127851085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 127851079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ab3392668fe1654687669ef8b798e7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerColor:
+    color:
+      serializedVersion: 2
+      rgba: 4283030051
+    nulled: 0
+  puzzleCompleteNoise: 0
+  particles: 1
+  start: {x: 0, y: 0, z: 0}
+  end: {x: 0, y: 0, z: 0.1}
+  slideTime: 3.5
 --- !u!1 &129998146
 GameObject:
   m_ObjectHideFlags: 0
@@ -9118,6 +9143,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4294638130
     nulled: 0
+  puzzleCompleteNoise: 1
   particles: 1
   start: {x: 0, y: 0, z: 0}
   end: {x: -0.1, y: 0, z: 3}
@@ -9469,6 +9495,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4291335680
     nulled: 0
+  puzzleCompleteNoise: 1
   particles: 1
   start: {x: 0, y: 0, z: 0}
   end: {x: 0, y: 0, z: -4.5}
@@ -9716,7 +9743,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &209039783
 Transform:
   m_ObjectHideFlags: 0
@@ -9747,6 +9774,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4294967295
     nulled: 0
+  puzzleCompleteNoise: 0
   particles: 1
   numberBurstParticles: 6
 --- !u!1 &209163879
@@ -9941,6 +9969,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4280771839
     nulled: 0
+  puzzleCompleteNoise: 0
   particles: 1
   numberBurstParticles: 6
 --- !u!1 &211476144
@@ -12432,6 +12461,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4291116800
     nulled: 0
+  puzzleCompleteNoise: 1
   particles: 1
   numberBurstParticles: 6
 --- !u!1 &273217803
@@ -21721,6 +21751,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4280771839
     nulled: 0
+  puzzleCompleteNoise: 1
   particles: 1
   start: {x: 0, y: 0, z: 0}
   end: {x: 0, y: 0, z: -4.5}
@@ -26097,7 +26128,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &594435671
 Transform:
   m_ObjectHideFlags: 0
@@ -26128,6 +26159,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4281492735
     nulled: 0
+  puzzleCompleteNoise: 0
   particles: 1
   numberBurstParticles: 6
 --- !u!1 &594485044
@@ -26842,6 +26874,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4281492735
     nulled: 0
+  puzzleCompleteNoise: 1
   particles: 1
   start: {x: 0, y: 0, z: 0}
   end: {x: 0, y: 0, z: 5}
@@ -27929,6 +27962,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4278254080
     nulled: 0
+  puzzleCompleteNoise: 1
   particles: 1
   start: {x: 0, y: 0, z: 0}
   end: {x: 5, y: 0, z: 0}
@@ -28991,6 +29025,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4294967295
     nulled: 0
+  puzzleCompleteNoise: 0
   particles: 1
   start: {x: 0, y: 0, z: 0}
   end: {x: 0, y: 0, z: -11}
@@ -30443,6 +30478,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4281492735
     nulled: 0
+  puzzleCompleteNoise: 0
   particles: 1
   start: {x: 0, y: 0, z: 0}
   end: {x: 0, y: 0, z: 5}
@@ -32763,7 +32799,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &728686663
 Light:
   m_ObjectHideFlags: 0
@@ -35714,6 +35750,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4281492735
     nulled: 0
+  puzzleCompleteNoise: 0
   particles: 1
   start: {x: 0, y: 0, z: 0}
   end: {x: 0, y: 0, z: -1}
@@ -36156,6 +36193,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4281467130
     nulled: 0
+  puzzleCompleteNoise: 0
   particles: 1
   numberBurstParticles: 6
 --- !u!1 &810100452
@@ -36730,6 +36768,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4281492735
     nulled: 0
+  puzzleCompleteNoise: 0
   particles: 1
   numberBurstParticles: 6
 --- !u!1 &823576521
@@ -38611,6 +38650,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4294967295
     nulled: 0
+  puzzleCompleteNoise: 1
   particles: 1
   start: {x: 0, y: 0, z: 0}
   end: {x: 0, y: 0, z: -11}
@@ -48367,6 +48407,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4281492735
     nulled: 0
+  puzzleCompleteNoise: 0
   particles: 1
   numberBurstParticles: 6
 --- !u!1 &1073563896
@@ -48965,10 +49006,11 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4283030051
     nulled: 0
+  puzzleCompleteNoise: 1
   particles: 1
   start: {x: 0, y: 0, z: 0}
   end: {x: 0, y: 0, z: -4.8}
-  slideTime: 1
+  slideTime: 3.5
 --- !u!4 &1093703485 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4074260685636304, guid: a66841737c1e21a429c76c09f193f8ce,
@@ -49856,6 +49898,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4294967295
     nulled: 0
+  puzzleCompleteNoise: 0
   particles: 1
   numberBurstParticles: 6
 --- !u!1 &1116054330
@@ -51209,6 +51252,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4283030051
     nulled: 0
+  puzzleCompleteNoise: 0
   particles: 1
   numberBurstParticles: 6
 --- !u!1 &1140504303
@@ -52042,6 +52086,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4281467130
     nulled: 0
+  puzzleCompleteNoise: 1
   particles: 1
   numberBurstParticles: 6
 --- !u!1 &1162966158
@@ -54989,6 +55034,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4280771839
     nulled: 0
+  puzzleCompleteNoise: 0
   particles: 1
   numberBurstParticles: 6
 --- !u!1 &1240678394
@@ -56543,7 +56589,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1267890618
 Transform:
   m_ObjectHideFlags: 0
@@ -56574,6 +56620,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4291335680
     nulled: 0
+  puzzleCompleteNoise: 0
   particles: 1
   numberBurstParticles: 6
 --- !u!1 &1269490227
@@ -58610,6 +58657,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4283030051
     nulled: 0
+  puzzleCompleteNoise: 0
   particles: 1
   numberBurstParticles: 6
 --- !u!1 &1309345309
@@ -60756,7 +60804,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1353652566
 Transform:
   m_ObjectHideFlags: 0
@@ -60787,6 +60835,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4278255360
     nulled: 0
+  puzzleCompleteNoise: 0
   particles: 1
   numberBurstParticles: 6
 --- !u!1 &1356732308
@@ -64502,6 +64551,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4280771839
     nulled: 0
+  puzzleCompleteNoise: 0
   particles: 1
   start: {x: 0, y: 0, z: 0}
   end: {x: 0, y: 0, z: -4.5}
@@ -67942,6 +67992,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4294967295
     nulled: 0
+  puzzleCompleteNoise: 0
   particles: 1
   numberBurstParticles: 6
 --- !u!1 &1491680234
@@ -77576,6 +77627,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4294967295
     nulled: 0
+  puzzleCompleteNoise: 0
   particles: 1
   numberBurstParticles: 6
 --- !u!1 &1704996198
@@ -79127,6 +79179,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4281492735
     nulled: 0
+  puzzleCompleteNoise: 0
   particles: 1
   start: {x: 0, y: 0, z: 0}
   end: {x: 0, y: 0, z: -1}
@@ -80361,6 +80414,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4291335680
     nulled: 0
+  puzzleCompleteNoise: 0
   particles: 1
   start: {x: 0, y: 0, z: 0}
   end: {x: 0, y: 0, z: -4.5}
@@ -97242,6 +97296,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4294638130
     nulled: 0
+  puzzleCompleteNoise: 0
   particles: 1
   numberBurstParticles: 6
 --- !u!1 &2125136407
@@ -97343,6 +97398,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4281532160
     nulled: 0
+  puzzleCompleteNoise: 1
   particles: 1
   numberBurstParticles: 6
 --- !u!1 &2126309827
