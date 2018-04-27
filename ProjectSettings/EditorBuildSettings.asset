@@ -29,6 +29,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/DevScenes/PauseMenu.unity
     guid: 194d10bfb10ead947bc1dafc614cc25c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Trailer2.unity
     guid: 474a6683b597bc840b72055568d16a3c
+  - enabled: 1
+    path: Assets/Scenes/Product/StartingScene.unity
+    guid: b747a3721b4de3f4da11f1929cc46bec
+  - enabled: 1
+    path: Assets/Scenes/Product/DemoLevel.unity
+    guid: aac16020ad0fc3642ae1d9548387038b

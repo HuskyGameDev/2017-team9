@@ -27,7 +27,7 @@ public class KeyBindScript : MonoBehaviour {
     void Start () {
 		scene = SceneManager.GetActiveScene();
 
-		if (scene == SceneManager.GetSceneByName("dev_Richy"))
+		if (scene == SceneManager.GetSceneByName("StartingScene"))
         {
             Main_Menu.SetActive(true);
             Options_Menu.SetActive(false);
@@ -100,7 +100,7 @@ public class KeyBindScript : MonoBehaviour {
 
     void StartGame()
     {
-        SceneManager.LoadScene("Main_Jacob");
+        SceneManager.LoadScene("DemoLevel");
     }
     void OptionsMenu()
     {
@@ -110,8 +110,6 @@ public class KeyBindScript : MonoBehaviour {
     }
     void GetOut()
     {
-        Debug.Log("GET THE FUCK OUT OF OUR GAME");
-        Debug.Log("Quit");
         Application.Quit();
     }
 
