@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.1273174, g: 0.13414761, b: 0.12107885, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -321,7 +321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8e29fd1e7b5144f8bbbc826e35347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataComponent: {fileID: 0}
+  sprites: {fileID: 0}
+  component: {fileID: 0}
   type: 0
   socketState: 00000000000000000000000000000000
   neighbors:
@@ -329,6 +330,7 @@ MonoBehaviour:
   - {fileID: 769414595}
   - {fileID: 592718967}
   - {fileID: 1849520171}
+  puzzle: {fileID: 0}
 --- !u!65 &28921815
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1675,7 +1677,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8e29fd1e7b5144f8bbbc826e35347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataComponent: {fileID: 0}
+  sprites: {fileID: 0}
+  component: {fileID: 0}
   type: 0
   socketState: 00000000000000000000000000000000
   neighbors:
@@ -1683,6 +1686,7 @@ MonoBehaviour:
   - {fileID: 592718967}
   - {fileID: 0}
   - {fileID: 1859539681}
+  puzzle: {fileID: 0}
 --- !u!65 &186820204
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4477,6 +4481,8 @@ GameObject:
   - component: {fileID: 416073712}
   - component: {fileID: 416073711}
   - component: {fileID: 416073710}
+  - component: {fileID: 416073717}
+  - component: {fileID: 416073716}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4578,8 +4584,42 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &416073716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 416073709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4e83bd82b7c84b248d4b098aba585bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDefaultListener: 1
+  listenerId: 0
+--- !u!114 &416073717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 416073709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b30d6bb3d8a54e1f8a5e5ffc9c5d406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_listeners:
+    initialListenerList: []
+    useDefaultListeners: 1
+  isEnvironmentAware: 0
+  isStaticObject: 0
+  m_positionOffsetData:
+    KeepMe: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
 --- !u!1 &418161081
 GameObject:
   m_ObjectHideFlags: 0
@@ -5249,7 +5289,7 @@ Transform:
   m_LocalScale: {x: 0.6011017, y: 0.71369314, z: 9.849567}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &490533259
 GameObject:
@@ -5279,7 +5319,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   editable: 1
-  squareScale: 1
   width: 6
   height: 4
 --- !u!4 &490533261
@@ -7130,7 +7169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8e29fd1e7b5144f8bbbc826e35347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataComponent: {fileID: 0}
+  sprites: {fileID: 0}
+  component: {fileID: 0}
   type: 0
   socketState: 00000000000000000000000000000000
   neighbors:
@@ -7138,6 +7178,7 @@ MonoBehaviour:
   - {fileID: 807519798}
   - {fileID: 1258275119}
   - {fileID: 186820203}
+  puzzle: {fileID: 0}
 --- !u!65 &592718968
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7559,7 +7600,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8e29fd1e7b5144f8bbbc826e35347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataComponent: {fileID: 636413814}
+  sprites: {fileID: 0}
+  component: {fileID: 0}
   type: 8
   socketState: 00000000000000000000000002000000
   neighbors:
@@ -7567,6 +7609,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 1553794294}
   - {fileID: 1258275119}
+  puzzle: {fileID: 0}
 --- !u!114 &636413814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8646,6 +8689,72 @@ Transform:
   m_Father: {fileID: 592718972}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &699614451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 699614454}
+  - component: {fileID: 699614453}
+  - component: {fileID: 699614452}
+  m_Layer: 0
+  m_Name: WwiseGlobal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &699614452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 699614451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61e36d87fce994c6eaae468451bd24d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basePath: Audio/GeneratedSoundBanks
+  language: English(US)
+  defaultPoolSize: 4096
+  lowerPoolSize: 2048
+  streamingPoolSize: 1024
+  preparePoolSize: 0
+  memoryCutoffThreshold: 0.95
+  monitorPoolSize: 128
+  monitorQueuePoolSize: 64
+  callbackManagerBufferSize: 4
+  spatialAudioPoolSize: 4096
+  maxSoundPropagationDepth: 8
+  diffractionFlags: 11
+  engineLogging: 1
+--- !u!114 &699614453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 699614451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b240629ec2c2547ebb04a3576c9b9508, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &699614454
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 699614451}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &701327807
 GameObject:
   m_ObjectHideFlags: 0
@@ -8677,7 +8786,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8e29fd1e7b5144f8bbbc826e35347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataComponent: {fileID: 0}
+  sprites: {fileID: 0}
+  component: {fileID: 0}
   type: 0
   socketState: 00000000000000000000000000000000
   neighbors:
@@ -8685,6 +8795,7 @@ MonoBehaviour:
   - {fileID: 765520287}
   - {fileID: 0}
   - {fileID: 0}
+  puzzle: {fileID: 0}
 --- !u!65 &701327809
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9219,7 +9330,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &721740500
 GameObject:
@@ -9709,7 +9820,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8e29fd1e7b5144f8bbbc826e35347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataComponent: {fileID: 0}
+  sprites: {fileID: 0}
+  component: {fileID: 0}
   type: 0
   socketState: 00000000000000000000000000000000
   neighbors:
@@ -9717,6 +9829,7 @@ MonoBehaviour:
   - {fileID: 1849520171}
   - {fileID: 1859539681}
   - {fileID: 1108026566}
+  puzzle: {fileID: 0}
 --- !u!65 &759380851
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9941,7 +10054,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8e29fd1e7b5144f8bbbc826e35347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataComponent: {fileID: 0}
+  sprites: {fileID: 0}
+  component: {fileID: 0}
   type: 0
   socketState: 00000000000000000000000000000000
   neighbors:
@@ -9949,6 +10063,7 @@ MonoBehaviour:
   - {fileID: 1716761529}
   - {fileID: 0}
   - {fileID: 701327808}
+  puzzle: {fileID: 0}
 --- !u!65 &765520288
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10213,7 +10328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8e29fd1e7b5144f8bbbc826e35347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataComponent: {fileID: 0}
+  sprites: {fileID: 0}
+  component: {fileID: 0}
   type: 0
   socketState: 00000000000000000000000000000000
   neighbors:
@@ -10221,6 +10337,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 807519798}
   - {fileID: 28921814}
+  puzzle: {fileID: 0}
 --- !u!65 &769414596
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10698,7 +10815,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8e29fd1e7b5144f8bbbc826e35347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataComponent: {fileID: 0}
+  sprites: {fileID: 0}
+  component: {fileID: 0}
   type: 0
   socketState: 00000000000000000000000000000000
   neighbors:
@@ -10706,6 +10824,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 636413813}
   - {fileID: 592718967}
+  puzzle: {fileID: 0}
 --- !u!65 &807519799
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12133,7 +12252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8e29fd1e7b5144f8bbbc826e35347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataComponent: {fileID: 0}
+  sprites: {fileID: 0}
+  component: {fileID: 0}
   type: 0
   socketState: 00000000000000000000000000000000
   neighbors:
@@ -12141,6 +12261,7 @@ MonoBehaviour:
   - {fileID: 2088124032}
   - {fileID: 2018072515}
   - {fileID: 0}
+  puzzle: {fileID: 0}
 --- !u!65 &933775281
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13372,7 +13493,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8e29fd1e7b5144f8bbbc826e35347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataComponent: {fileID: 0}
+  sprites: {fileID: 0}
+  component: {fileID: 0}
   type: 0
   socketState: 00000000000000000000000000000000
   neighbors:
@@ -13380,6 +13502,7 @@ MonoBehaviour:
   - {fileID: 1171874837}
   - {fileID: 765520287}
   - {fileID: 2018072515}
+  puzzle: {fileID: 0}
 --- !u!65 &1011595785
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13702,7 +13825,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8e29fd1e7b5144f8bbbc826e35347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataComponent: {fileID: 0}
+  sprites: {fileID: 0}
+  component: {fileID: 0}
   type: 0
   socketState: 00000000000000000000000000000000
   neighbors:
@@ -13710,6 +13834,7 @@ MonoBehaviour:
   - {fileID: 1665195089}
   - {fileID: 0}
   - {fileID: 1716761529}
+  puzzle: {fileID: 0}
 --- !u!65 &1022842584
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15250,7 +15375,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8e29fd1e7b5144f8bbbc826e35347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataComponent: {fileID: 0}
+  sprites: {fileID: 0}
+  component: {fileID: 0}
   type: 0
   socketState: 00000000000000000000000000000000
   neighbors:
@@ -15258,6 +15384,7 @@ MonoBehaviour:
   - {fileID: 759380850}
   - {fileID: 2088124032}
   - {fileID: 1641876295}
+  puzzle: {fileID: 0}
 --- !u!65 &1108026567
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16208,7 +16335,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8e29fd1e7b5144f8bbbc826e35347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataComponent: {fileID: 0}
+  sprites: {fileID: 0}
+  component: {fileID: 0}
   type: 0
   socketState: 00000000000000000000000000000000
   neighbors:
@@ -16216,6 +16344,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 1716761529}
   - {fileID: 1011595784}
+  puzzle: {fileID: 0}
 --- !u!65 &1171874838
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17392,7 +17521,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8e29fd1e7b5144f8bbbc826e35347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataComponent: {fileID: 0}
+  sprites: {fileID: 0}
+  component: {fileID: 0}
   type: 0
   socketState: 00000000000000000000000000000000
   neighbors:
@@ -17400,6 +17530,7 @@ MonoBehaviour:
   - {fileID: 636413813}
   - {fileID: 1665195089}
   - {fileID: 0}
+  puzzle: {fileID: 0}
 --- !u!65 &1258275120
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21247,7 +21378,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8e29fd1e7b5144f8bbbc826e35347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataComponent: {fileID: 0}
+  sprites: {fileID: 0}
+  component: {fileID: 0}
   type: 0
   socketState: 00000000000000000000000000000000
   neighbors:
@@ -21255,6 +21387,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 1665195089}
+  puzzle: {fileID: 0}
 --- !u!65 &1553794295
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22781,7 +22914,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8e29fd1e7b5144f8bbbc826e35347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataComponent: {fileID: 0}
+  sprites: {fileID: 0}
+  component: {fileID: 0}
   type: 0
   socketState: 00000000000000000000000000000000
   neighbors:
@@ -22789,6 +22923,7 @@ MonoBehaviour:
   - {fileID: 1108026566}
   - {fileID: 933775280}
   - {fileID: 0}
+  puzzle: {fileID: 0}
 --- !u!65 &1641876296
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23223,7 +23358,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8e29fd1e7b5144f8bbbc826e35347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataComponent: {fileID: 0}
+  sprites: {fileID: 0}
+  component: {fileID: 0}
   type: 0
   socketState: 00000000000000000000000000000000
   neighbors:
@@ -23231,6 +23367,7 @@ MonoBehaviour:
   - {fileID: 1553794294}
   - {fileID: 0}
   - {fileID: 1022842583}
+  puzzle: {fileID: 0}
 --- !u!65 &1665195090
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24043,7 +24180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8e29fd1e7b5144f8bbbc826e35347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataComponent: {fileID: 0}
+  sprites: {fileID: 0}
+  component: {fileID: 0}
   type: 0
   socketState: 00000000000000000000000000000000
   neighbors:
@@ -24051,6 +24189,7 @@ MonoBehaviour:
   - {fileID: 1022842583}
   - {fileID: 0}
   - {fileID: 765520287}
+  puzzle: {fileID: 0}
 --- !u!65 &1716761530
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26623,7 +26762,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8e29fd1e7b5144f8bbbc826e35347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataComponent: {fileID: 0}
+  sprites: {fileID: 0}
+  component: {fileID: 0}
   type: 0
   socketState: 00000000000000000000000000000000
   neighbors:
@@ -26631,6 +26771,7 @@ MonoBehaviour:
   - {fileID: 28921814}
   - {fileID: 186820203}
   - {fileID: 759380850}
+  puzzle: {fileID: 0}
 --- !u!65 &1849520172
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26944,7 +27085,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8e29fd1e7b5144f8bbbc826e35347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataComponent: {fileID: 0}
+  sprites: {fileID: 0}
+  component: {fileID: 0}
   type: 0
   socketState: 00000000000000000000000000000000
   neighbors:
@@ -26952,6 +27094,7 @@ MonoBehaviour:
   - {fileID: 186820203}
   - {fileID: 1171874837}
   - {fileID: 2088124032}
+  puzzle: {fileID: 0}
 --- !u!65 &1859539682
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29684,7 +29827,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8e29fd1e7b5144f8bbbc826e35347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataComponent: {fileID: 0}
+  sprites: {fileID: 0}
+  component: {fileID: 0}
   type: 0
   socketState: 00000000000000000000000000000000
   neighbors:
@@ -29692,6 +29836,7 @@ MonoBehaviour:
   - {fileID: 1011595784}
   - {fileID: 701327808}
   - {fileID: 0}
+  puzzle: {fileID: 0}
 --- !u!65 &2018072516
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30644,7 +30789,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8e29fd1e7b5144f8bbbc826e35347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataComponent: {fileID: 2088124033}
+  sprites: {fileID: 0}
+  component: {fileID: 0}
   type: 4
   socketState: 00000000010000000000000000000000
   neighbors:
@@ -30652,6 +30798,7 @@ MonoBehaviour:
   - {fileID: 1859539681}
   - {fileID: 1011595784}
   - {fileID: 933775280}
+  puzzle: {fileID: 0}
 --- !u!114 &2088124033
 MonoBehaviour:
   m_ObjectHideFlags: 0
